@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlna:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="Detail.css">
+	
+	<title>ビル情報｜新規登録</title>
+	
+ </head>
+ <body>
+ 	<div th:fragment="EmployeeRegister_contents">
+ 		<div class="row">
+ 			<div class="col-sm-5">
+ 				<div class="page-header">
+ 				<h1>ビル情報</h1>
+ 			</div>
+ 				
+ 			<form method="post" th:acthion="@{/EmployeeRegister}"
+ 			th:object="${signupform}">
+ 			<table class="table table-bordered table-hover">
+ 			
+ 			<!-- ビル情報入力エリア -->
+ 			<tr>
+ 			
+ 			<!-- ビルID -->
+ 			<th class="active col-sm-3">ビルID</th>
+ 			<td>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
+ 		</tr>	
+ 		<tr>
+ 		
+ 			<!-- ビル名 -->
+ 			<th class="active">ビル名</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 		
+ 			<!-- 担当従業員名 -->
+ 			<th class="active">担当従業員名</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 	
+ 			<!-- 郵便番号 -->
+ 			<th class="active">郵便番号</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 	
+ 			<!-- 住所 -->
+ 			<th class="active">住所</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 	
+ 			<!-- 電話番号 -->
+ 			<th class="active">電話番号</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 	
+ 			<!-- メールアドレス -->
+ 			<th class="active">メールアドレス</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 				<!-- 必要人数 -->
+ 			<th class="active">必要人数</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 	
+ 			<!-- 希望時間 -->
+ 			<th class="active">希望時間</th>
+ 			<td>
+ 			<div class="form-group">
+ 			<input type="text" class="form-control"/>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	<tr>
+ 	
+ 			<!-- 希望曜日 -->
+ 			<th class="active">希望曜日</th>
+ 			<td>
+ 			<div class="form-group"
+ 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
+ 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
+ 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
+ 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
+ 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
+ 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
+ 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
+ 			</div>
+ 			<span class="text-danger"
+ 				th:if="${#fields.hasEroors('desire_youbi')}"
+ 				th:errors="*{desire_youbi}">
+ 			</span>
+ 		</div>
+ 	</td>
+ 	</tr>
+ 	</table>
+ 	</form>
+ 	<!-- 登録ボタン -->
+ 			<button class="btn btn-primary btn-lg pull-right"
+ 				type="submit"
+ 				name="register"
+ 				onclick="location.href='BuildingRegisterCushon.html'"
+ 				>
+ 					登録
+ 				</button>
+ 			
+ 			<button class="btn btn-primary btn-lg pull-right"
+ 				type="submit"
+ 				name="register"
+ 				onclick="location.href='BuildingManage.html'"
+ 				>ビル一覧へ戻る
+ 				</button>
+ 			<!--フッター -->
+  <footer>
+    <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
+  </footer>
+  
+ 		</div>
+ 	</div>
+ 	</div>	
+ 
+ </body>
+ </html>
