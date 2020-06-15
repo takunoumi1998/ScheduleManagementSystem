@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table th,table td{
+  padding: 10px 0;
+  text-align: center;
+}
+
+table tr:nth-child(odd){
+  background-color: #eee
+}
+table th{
+	width:300px;
+	height:80px;
+}
+.square1{
+	width:40px;
+	height:20px;
+	background:lightsalmon;
+}
+.square2{
+	width:100px;
+	height:20px;
+	background:skyblue;
+}
+.square3{
+	width:120px;
+	height:20px;
+	background:gold;
+}
+.square4{
+	width:120px;
+	height:20px;
+	background:palegreen;
+}
