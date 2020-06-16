@@ -31,8 +31,9 @@
  			<th class="active col-sm-3">ビルID</th>
  			<td>
  				<div class="form-group">
- 					<input type="text" class="form-control"/>
- 					<!--  th:value="*{buildingID}" th:field="*{buildingID}"-->
+ 					<input type="text" class="form-control"
+ 						th:field="*{buildongId}"/>
+ 					<!--  th:value="*{buildingId}" -->
  				</div>
  			</td>
  		</tr>
@@ -42,7 +43,8 @@
  			<th class="active">ビル名</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongName}"/>
  		</div>
  	</td>
  	</tr>
@@ -52,7 +54,8 @@
  			<th class="active">担当従業員名</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 			th:field="*{buildong}"/>
  		</div>
  	</td>
  	</tr>
@@ -62,7 +65,8 @@
  			<th class="active">郵便番号</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongAdNumber}"/>
  		</div>
  	</td>
  	</tr>
@@ -72,7 +76,8 @@
  			<th class="active">住所</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongAddress}"/>
  		</div>
  	</td>
  	</tr>
@@ -82,7 +87,8 @@
  			<th class="active">電話番号</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongPhoneNumber}"/>
  		</div>
  	</td>
  	</tr>
@@ -92,7 +98,8 @@
  			<th class="active">メールアドレス</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongMail}"/>
  		</div>
  	</td>
  	</tr>
@@ -101,7 +108,8 @@
  			<th class="active">必要人数</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongNinzu}"/>
  		</div>
  	</td>
  	</tr>
@@ -111,7 +119,8 @@
  			<th class="active">希望時間</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"
+ 				th:field="*{buildongTime}"/>
  		</div>
  	</td>
  	</tr>
@@ -137,13 +146,18 @@
  	</td>
  	</tr>
  	</table>
+ 		<ul>
+ 		<li th:each="error:${#fields.detailedErrors()}">
+ 			<span th:text="${error.message}">Error message</span>
+ 			</li>
+ 			</ul>
  	</form>
+
  	<!-- 登録ボタン -->
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
  				name="register"
- 				onclick="location.href='confirm.html'"
- 				>
+ 				th:href="@{'/confirm'}">
  					登録
  				</button>
 
