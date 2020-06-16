@@ -28,6 +28,15 @@
 
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
+	//コントローラーからのデータ受け取り
+	var workList = /*[[${workList}]]*/
+	var buildingList = /*[[${buildingList}]]*/
+	var employeeList = /*[[${employeeList}]]*/
+
+	for(var work of workList){
+		var workDay = new Date(work.workDay);
+	}
+
 	//配列
 	var week = ["日","月","火","水","木","金","土"];
 	var items = ["ビル名","清掃日","人数"];
@@ -70,28 +79,54 @@
 	////////////////////////////////////////////////////////
 
 	//テーブル詳細の作成////////////////////////////////////
-	for(var i = 0; i < 2; i++){
-		var str = ["ビル名","月水金","人数"];
-		var tr = document.createElement('tr');
-		for(var j = 0; j < str.length; j++){
-			var td = document.createElement('td');
-			td.setAttribute("rowspan","2")
-			td.textContent= str[j];
-			tr.appendChild(td);
-		}
 
-		for(var j = 0; j < 2; j++){
+	for(var building of buildingList){
+		var tr = document.createElement('tr');
+
+			var td = document.createElement('td');
+			td.setAttribute("rowspan",building.buildingNinzu)
+			td.textContent= building.buildingName;
+			tr.appendChild(td);
+
+			var td = document.createElement('td');
+			td.setAttribute("rowspan",building.buildingNinzu)
+			td.textContent= building.buildingName;
+			tr.appendChild(td);
+
+			var td = document.createElement('td');
+			td.setAttribute("rowspan",building.buildingNinzu)
+			td.textContent= building.buildingNinzu;
+			tr.appendChild(td);
+
+		//tr追加（ビル）
+		for(var j = 0; j < building.buildingNinzu; j++){
+			//td追加（日毎）
 			for(var k = 1; k <= DAY_OF_MONTH; k++){
 				var td = document.createElement('td');
 				var select = document.createElement('select');
+				for(var work of workList){
+					var workDay = new Date(work.workDay);
+					if(k == workDay.getDate() && building.buildingId == work.buildingId){
+						td.style.backgroundColor="lightblue"
+					}
+				}
 				select.setAttribute("onChange","selectCheck(this)");
 				select.setAttribute("class","day"+k);
-				for(var l = 0; l < 30; l++){
+				//select追加（従業員）
+				for(var employee of employeeList){
 					var option = document.createElement('option');
-					option.textContent="従業員名"+l;
-					option.setAttribute("value",l);
+					option.textContent=employee.employeeName;
+					option.setAttribute("value",employee.employeeId);
+					for(var work of workList){
+						var workDay = new Date(work.workDay);
+						if(employee.employeeId == work.employeeId && workDay.getDate() == k && work.buildingId == building.buildingId){
+							console.log("通過");
+							option.setAttribute("selected","");
+						}
+					}
 					select.appendChild(option);
 				}
+
 				td.appendChild(select);
 				tr.appendChild(td);
 			}
@@ -152,7 +187,6 @@
     		parent[0].style.backgroundColor="lightsalmon";
     	}
 	}
-
 /*]]>*/
 </script>
 

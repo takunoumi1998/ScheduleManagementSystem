@@ -6,17 +6,12 @@ table{
   border-spacing: 0;
 }
 
-table th,table td{
-  padding: 10px 0;
-  text-align: center;
+th{
+	background-color:#40e0d0;
 }
 
-table tr:nth-child(odd){
-  background-color: #eee
-}
-table th{
-	width:300px;
-	height:80px;
+td{
+	min-width:100px;
 }
 .square1{
 	width:40px;
