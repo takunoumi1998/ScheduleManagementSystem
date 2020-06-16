@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlna:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
+
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="Detail.css">
-	
+
 	<title>従業員｜詳細</title>
-	
+
  </head>
  <body>
  	<div th:fragment="EmployeeDetail_contents">
@@ -16,12 +16,12 @@
  				<div class="page-header">
  				<h1>従業員詳細</h1>
  			</div>
- 				
+
  			<form method="post" th:acthion="@{/EmployeeDetail}"
  			th:object="${signupform}">
  			<table class="table table-bordered table-hover">
  			<tr>
- 			
+
  			<!-- 従業員ID -->
  			<th class="active col-sm-2">従業員ID</th>
  			<td class="col-sm-3">
@@ -31,9 +31,9 @@
  					readonly="readonly"/>
  				</div>
  			</td>
- 		</tr>	
+ 		</tr>
  		<tr>
- 		
+
  			<!-- 氏名 -->
  			<th class="active">氏名</th>
  			<td>
@@ -49,7 +49,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 担当ビルID -->
  			<th class="active">担当ビルID</th>
  			<td>
@@ -65,7 +65,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 郵便番号 -->
  			<th class="active">郵便番号</th>
  			<td>
@@ -81,7 +81,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 住所 -->
  			<th class="active">住所</th>
  			<td>
@@ -97,7 +97,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 電話番号 -->
  			<th class="active">電話番号</th>
  			<td>
@@ -113,7 +113,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- メールアドレス -->
  			<th class="active">メールアドレス</th>
  			<td>
@@ -129,7 +129,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 希望日数 -->
  			<th class="active">希望日数</th>
  			<td>
@@ -145,7 +145,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 希望曜日 -->
  			<th class="active">希望曜日</th>
  			<td>
@@ -175,17 +175,17 @@
  				>
  					変更
  				</button>
- 				
+
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
  				name="register"
  				onclick="location.href='EmployeeManage.html'"
  				>従業員一覧へ戻る
  				</button>
- 			
+
  		</div>
  	</div>
- 	</div>	
- 
+ 	</div>
+
  </body>
  </html>
