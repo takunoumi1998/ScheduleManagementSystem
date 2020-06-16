@@ -24,111 +24,112 @@
  			<!-- ビル情報入力エリア -->
  			<tr>
 
- 			<!-- ビルID -->
- 			<th class="active col-sm-3">ビルID</th>
+ 			<!-- ビル名 -->
+ 	<tr>
+ 		<th class="active col-sm-3">ビル名</th>
  			<td>
  				<div class="form-group">
- 					<input type="text" class="form-control"/>
+ 					<input type="text" class="form-control"
+ 						th:field="*{buildingName}"/>
+ 	<!--  th:value="*{buildingName}" -->
  				</div>
  			</td>
- 		</tr>
- 		<tr>
+ 	</tr>
 
- 			<!-- ビル名 -->
- 			<th class="active">ビル名</th>
+ 	<!-- 必要人数 -->
+ 	<tr>
+ 		<th class="active">必要人数</th>
  			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"
+ 		th:field="*{buildingNinzu}"/>
+ 				</div>
+ 			</td>
+ 	</tr>
+
+ 	<!-- 希望時間 -->
+ 	<tr>
+ 	<th class="active">希望時間</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 		th:field="*{buildingTime}"/>
+ 	</div>
  	</td>
  	</tr>
- 	<tr>
 
- 			<!-- 担当従業員名 -->
- 			<th class="active">担当従業員名</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
+	<!-- 希望曜日 -->
  	<tr>
-
- 			<!-- 郵便番号 -->
- 			<th class="active">郵便番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 	<th class="active">希望曜日</th>
+ 	<td>
+	<div class="form-group">
+ 		<label><input type="checkbox" name="building_monday" value="月">月</label>
+ 		<label><input type="checkbox" name="building_tuesday" value="火">火</label>
+ 		<label><input type="checkbox" name="building_wednesday" value="水">水</label>
+ 		<label><input type="checkbox" name="building_thursday" value="木">木</label>
+ 		<label><input type="checkbox" name="building_friday" value="金">金</label>
+ 		<label><input type="checkbox" name="building_saturday" value="土">土</label>
+ 		<label><input type="checkbox" name="building_sunday" value="日">日</label>
  		</div>
- 	</td>
- 	</tr>
- 	<tr>
-
- 			<!-- 住所 -->
- 			<th class="active">住所</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
-
- 			<!-- 電話番号 -->
- 			<th class="active">電話番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
-
- 			<!-- メールアドレス -->
- 			<th class="active">メールアドレス</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 				<!-- 必要人数 -->
- 			<th class="active">必要人数</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
-
- 			<!-- 希望時間 -->
- 			<th class="active">希望時間</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
-
- 			<!-- 希望曜日 -->
- 			<th class="active">希望曜日</th>
- 			<td>
- 			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
- 			</div>
- 			<span class="text-danger"
- 				th:if="${#fields.hasEroors('desire_youbi')}"
+ 		<span class="text-danger"
+ 			th:if="${#fields.hasEroors('desire_youbi')}"
  				th:errors="*{desire_youbi}">
- 			</span>
+ 		</span>
+ 	</td>
+ 	</tr>
+
+	<!-- 担当従業員名 -->
+	<tr>
+ 	<th class="active">担当従業員名</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 		th:field="*{employeeName}"/>
+ 	</div>
+ 	</td>
+ 	</tr>
+
+ 	<!-- 郵便番号 -->
+ 	<tr>
+ 	<th class="active">郵便番号</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 		th:field="*{buildingAdNumber}"/>
+ 	</div>
+ 	</td>
+ 	</tr>
+
+ 	<!-- 住所 -->
+ 	<tr>
+ 	<th class="active">住所</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 	th:field="*{buildingAddress}"/>
+ 	</div>
+ 	</td>
+ 	</tr>
+
+ 	<!-- 電話番号 -->
+ 	<tr>
+ 	<th class="active">電話番号</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 	th:field="*{buildingPhoneNumber}"/>
+ 	</div>
+ 	</td>
+ 	</tr>
+
+ 	<!-- メールアドレス -->
+ 	<tr>
+ 	<th class="active">メールアドレス</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 			th:field="*{buildingMail}"/>
+ 	</div>
  	</td>
  	</tr>
  	</table>
