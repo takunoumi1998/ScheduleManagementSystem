@@ -21,7 +21,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	@Override
 	public List<Employee>selectMany()throws DataAccessException{
 		//employeeテーブルからデータを取得
-		List<Map<String,Object>>getList=jdbc.queryForList("select*from employee");
+		List<Map<String,Object>>getList=jdbc.queryForList("select * from employee");
 		//結果返却用の変数
 		List<Employee>employeeList=new ArrayList<>();
 

@@ -3,7 +3,7 @@
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="Emp_Build_info.css">
+<link rel="stylesheet" th:href="@{/css/admin/Emp_Build_info.css}">
 <title>従業員一覧</title>
 </head>
 <body>
@@ -32,13 +32,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<td>メール</td>
 		<td></td>
 	</tr>
-	<tr th:each="employee:${employeeList}">
+	<tr th:each="employee : ${employeeList}">
 		<td><input type="checkbox"></td>
 		<td th:text="${employee.employee_Id}"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td th:text="${employee.employee_Name}"></td>
+		<td th:text="${employee.employee_Ad_Number}"></td>
+		<td th:text="${employee.employee_Phone_Number}"></td>
+		<td th:text="${employee.employee_Mail}"></td>
 		<td><input type="button" value="詳細"onclick="location.href='EmployeeDetail.html'"></td>
 	</tr>
 
