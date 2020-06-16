@@ -46,9 +46,25 @@ public class EmployeeController {
 			@RequestParam("employee_Phone_Number")String str6,
 			@RequestParam("employee_Mail")String str7,
 			@RequestParam("desire_Days")String str8,
+			@RequestParam(value="desire_monday",required=false)boolean day1,
+			@RequestParam(value="desire_tuesday",required=false)boolean day2,
+			@RequestParam(value="desire_wednesday",required=false)boolean day3,
+			@RequestParam(value="desire_thursday",required=false)boolean day4,
+			@RequestParam(value="desire_friday",required=false)Boolean day5,
+			@RequestParam(value="desire_saturday",required=false)Boolean day6,
+			@RequestParam(value="desire_sunday",required=false)Boolean day7,
 			Model model)
 
+
+
+
 			{
+		StringBuilder resultBuilder=new StringBuilder();
+
+
+
+
+
 		model.addAttribute("employee_Id",str1);
 		model.addAttribute("employee_Name",str2);
 		model.addAttribute("building_Id",str3);
@@ -57,6 +73,9 @@ public class EmployeeController {
 		model.addAttribute("employee_Phone_Number",str6);
 		model.addAttribute("employee_Mail",str7);
 		model.addAttribute("desire_Days",str8);
+		model.addAttribute("result",resultBuilder.toString());
+
+
 
 
 

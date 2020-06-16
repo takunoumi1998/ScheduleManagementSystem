@@ -26,94 +26,94 @@
 
  			<!-- 従業員ID -->
  			<th class="active col-sm-3">従業員ID</th>
- 			<td>
+
+			<div class="form-group">
  				<td th:text="${employee_Id}"></td>
- 			</td>
+ 		</div>
+
  		</tr>
+
  		<tr>
 
  			<!-- 氏名 -->
  			<th class="active">氏名</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 				<td th:text="${employee_Name}"></td>
  		</div>
- 	</td>
+
  	</tr>
  	<tr>
 
  			<!-- 担当ビルID -->
  			<th class="active">担当ビルID</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<td th:text="${building_Id}"></td>
  		</div>
- 	</td>
+
  	</tr>
+ 	<br>
  	<tr>
 
  			<!-- 郵便番号 -->
  			<th class="active">郵便番号</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<td th:text="${employee_Post_Number}"></td>
  		</div>
- 	</td>
+
  	</tr>
  	<tr>
 
  			<!-- 住所 -->
  			<th class="active">住所</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<td th:text="${employee_Ad_Number}"></td>
  		</div>
- 	</td>
+
  	</tr>
  	<tr>
 
  			<!-- 電話番号 -->
  			<th class="active">電話番号</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<td th:text="${employee_Phone_Number}"></td>
  		</div>
- 	</td>
+
  	</tr>
  	<tr>
 
  			<!-- メールアドレス -->
  			<th class="active">メールアドレス</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<td th:text="${employee_Mail}"></td>
  		</div>
- 	</td>
+
  	</tr>
  	<tr>
 
  			<!-- 希望日数 -->
  			<th class="active">希望日数</th>
- 			<td>
+
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<td th:text="${desire_Days}"></td>
  		</div>
- 	</td>
+
  	</tr>
  	<tr>
 
  			<!-- 希望曜日 -->
  			<th class="active">希望曜日</th>
- 			<td>
- 			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
- 			</div>
+ 			<td th:text="${result}"></td>
+
+
+
+
+
 
 
 
@@ -133,9 +133,10 @@
        </div>
 
 
-     </div>
+
      </div>
  	</div>
-
+</div>
+</div>
    </body>
  </html>
