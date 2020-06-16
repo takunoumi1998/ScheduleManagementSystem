@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegisterController {
 
-	private Map<String, String> getCheckBoxItems(){
+	//private Map<String, String> getCheckBoxItems(){
 
 		Map<String, String> selectMap = new LinkedHashMap<>();
 
-		return selectMap;
-	}
+		//return selectMap;
+	//}
 
 	/**
      * ビル情報登録画面のGETメソッド用処理.
@@ -27,19 +27,25 @@ public class RegisterController {
 		// チェックボックスの初期化メソッド呼び出し
 
 
-		// BuildingRegister.htmlに画面遷移
-		return "create/register";
+		// ビル：register.htmlに画面遷移
+		return "admin/building/create/register";
 	}
 
 	/**
      * ビル情報登録画面のPOSTメソッド用処理.
      */
-    @PostMapping("/register")
-    public String postRegister(Model model) {
+    @PostMapping("/confirm")
+    public String postConfirm(Model model) {
 
 
-    	// BuildingRegisterCushon.htmlに画面遷移
-    	return "create/confirm";
+    	// ビル：registerCushon.htmlに画面遷移
+    	return "admin/building/create/confirm";
+    }
+
+    @PostMapping("/complete")
+    public String postComplete(Model model) {
+
+    	return "admin/building/create/complete";
     }
 
 }
