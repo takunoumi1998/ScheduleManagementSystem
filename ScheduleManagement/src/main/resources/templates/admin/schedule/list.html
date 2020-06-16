@@ -3,1168 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/admin/WorkTimeTable.css}">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>勤務関係</title>
 </head>
 <body>
-<h1>勤務表作成</h1>
-<h3>※色の注釈</h3>
-<p class="square1">重複</p>
-<p class="square2">勤務削除依頼</p>
-<p class="square3">法定日数超過分</p>
-<p class="square4">希望日数超過分</p>
-<button>確認画面へ</button>
-<button style="float:right"onclick="location.href='TopMenu.html'" >トップに戻る</button>
-<p></p>
-<table border="1">
-	<tr>
-		<td colspan="2" rowspan="2">ビル名</td>
-		<td colspan="2" rowspan="2">清掃指定日</td>
-		<td rowspan="2">人数</td>
-		<td>水</td>
-		<td>木</td>
-		<td>金</td>
-		<td>土</td>
-		<td>日</td>
-		<td>月</td>
-		<td>火</td>
-		<td>水</td>
-		<td>木</td>
-		<td>金</td>
-		<td>土</td>
-		<td>日</td>
-		<td>月</td>
-		<td>火</td>
-		<td>水</td>
-		<td>木</td>
-		<td>金</td>
-		<td>土</td>
-		<td>日</td>
-		<td>月</td>
-		<td>火</td>
-		<td>水</td>
-		<td>木</td>
-		<td>金</td>
-		<td>土</td>
-		<td>日</td>
-		<td>月</td>
-		<td>火</td>
-		<td>水</td>
-		<td>木</td>
-		<td>金</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>2</td>
-		<td>3</td>
-		<td>4</td>
-		<td>5</td>
-		<td>6</td>
-		<td>7</td>
-		<td>8</td>
-		<td>9</td>
-		<td>10</td>
-		<td>11</td>
-		<td>12</td>
-		<td>13</td>
-		<td>14</td>
-		<td>15</td>
-		<td>16</td>
-		<td>17</td>
-		<td>18</td>
-		<td>19</td>
-		<td>20</td>
-		<td>21</td>
-		<td>22</td>
-		<td>23</td>
-		<td>24</td>
-		<td>25</td>
-		<td>26</td>
-		<td>27</td>
-		<td>28</td>
-		<td>29</td>
-		<td>30</td>
-		<td>31</td>
-	</tr>
-	<tr>
-		<td colspan="2">A</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">B</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">C</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">D</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">E</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">F</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">G</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">H</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">I</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">J</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">K</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">L</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">M</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">N</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">O</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">P</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">Q</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">R</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">S</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">T</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">U</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">V</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">W</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">X</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">Y</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">Z</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">A1</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">B2</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">C3</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="2">D4</td>
-		<td colspan="2"></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-</table>
+	<h1>勤務表作成</h1>
+	<h3>※色の注釈</h3>
+	<p class="square1">重複</p>
+	<p class="square2">勤務削除依頼</p>
+	<p class="square3">法定日数超過分</p>
+	<p class="square4">希望日数超過分</p>
+	<button>確認画面へ</button>
+	<button style="float: right" onclick="location.href='TopMenu.html'">トップに戻る</button>
+	<p></p>
+	<table border="1" id="scheduleTable">
+
+	</table>
+
+
+	<div id='schedule'></div>
 </body>
 </html>
+
+
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+	//配列
+	var week = ["日","月","火","水","木","金","土"];
+	var items = ["ビル名","清掃日","人数"];
+
+	//日付関係
+	var date = new Date();
+	var monthLastDay = new Date(date.getFullYear(),date.getMonth()+1,0);
+	var monthFirstDay = new Date(date.getFullYear(),date.getMonth(),1);
+	var DAY_OF_MONTH = monthLastDay.getDate();
+	var DAY_OF_THE_WEEK = monthFirstDay.getDay();
+
+	//法定時間
+	var legalLimit = [160,165,171,177];
+
+	//スケジュールテーブル要素の取得
+	var scheduleTable = document.getElementById("scheduleTable");
+
+	//////テーブルヘッダーの作成////////////////////////////
+	var tr = document.createElement('tr');
+	for(var i = 0; i < items.length; i++){
+		var th = document.createElement('th');
+		th.textContent = items[i];
+		th.setAttribute("rowspan","2");
+		tr.appendChild(th);
+	}
+	for(var i = 1; i <= DAY_OF_MONTH; i++){
+		var th = document.createElement('th');
+		th.textContent = week[i%7];
+		tr.appendChild(th);
+	}
+	scheduleTable.appendChild(tr);
+
+	var tr = document.createElement('tr');
+	for(var i = 1; i <= DAY_OF_MONTH; i++){
+		var th = document.createElement('th');
+		th.textContent = i;
+		tr.appendChild(th);
+	}
+	scheduleTable.appendChild(tr);
+	////////////////////////////////////////////////////////
+
+	//テーブル詳細の作成////////////////////////////////////
+	for(var i = 0; i < 2; i++){
+		var str = ["ビル名","月水金","人数"];
+		var tr = document.createElement('tr');
+		for(var j = 0; j < str.length; j++){
+			var td = document.createElement('td');
+			td.setAttribute("rowspan","2")
+			td.textContent= str[j];
+			tr.appendChild(td);
+		}
+
+		for(var j = 0; j < 2; j++){
+			for(var k = 1; k <= DAY_OF_MONTH; k++){
+				var td = document.createElement('td');
+				var select = document.createElement('select');
+				select.setAttribute("onChange","selectCheck(this)");
+				select.setAttribute("class","day"+k);
+				for(var l = 0; l < 30; l++){
+					var option = document.createElement('option');
+					option.textContent="従業員名"+l;
+					option.setAttribute("value",l);
+					select.appendChild(option);
+				}
+				td.appendChild(select);
+				tr.appendChild(td);
+			}
+			scheduleTable.appendChild(tr);
+			var tr = document.createElement('tr');
+		}
+	}
+	/////////////////////////////////////////////////////
+
+	//重複している値を出力するメソッド
+	function getDuplicateValues ([...array]){
+		return array.filter((value, index, self) => self.indexOf(value) === index && self.lastIndexOf(value) !== index);
+	}
+
+	//select要素選択時に実行するメソッド（入力値チェック）
+	function selectCheck(select){
+    	//クラス名をもとに要素を取得する
+    	var elements = document.getElementsByClassName(select.className);
+
+    	//要素の値を保持するための配列
+    	var elementValues = [];
+
+		//添え字を保持する配列
+    	var indexArray = [];
+
+    	//重複している値を格納する配列
+    	var duplicateArray = [];
+
+		//色を変更する要素の添え字を格納する
+		var indexRed = [];
+
+  		//elementsから値だけを抽出してelementValueに格納
+    	for(var i = 0; i < elements.length; i++){
+	    	elementValues.push(elements[i].value);
+    	}
+
+  		//さらにgetDuplicateValuesで重複している値のみを抽出
+    	duplicateArray = getDuplicateValues(elementValues);
+
+  		//重複している要素の添え字をindexRedに格納
+    	for(var i = 0; i < duplicateArray.length; i++){
+			for(var j = 0; j < elements.length; j++){
+				if(elements[j].value == duplicateArray[i]){
+					indexRed.push(j);
+				}
+			}
+    	}
+
+  		//一度全ての要素をデフォルトの色に設定
+    	for(var i = 0; i < elements.length; i ++){
+    		var parent = $(elements[i]).parent();
+    		parent[0].style.backgroundColor="white";
+    	}
+
+		//重複している要素の色を格納
+    	for(var i = 0; i < indexRed.length; i++){
+    		var parent = $(elements[indexRed[i]]).parent();
+    		parent[0].style.backgroundColor="lightsalmon";
+    	}
+	}
+
+/*]]>*/
+</script>
+
+
