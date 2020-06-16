@@ -53,5 +53,17 @@ public class BuildingJdbcImpl implements BuildingDao{
 		return buildingList;
 	}
 
+	@Override
+	public Building selectOne(String buildingId) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	@Override
+	public List<Building> selectMany1() throws DataAccessException {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
 
 }
