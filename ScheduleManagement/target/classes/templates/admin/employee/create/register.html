@@ -1,110 +1,109 @@
 <!DOCTYPE html>
-<html xmlna:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
+
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
-	
+	<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
+
 	<title>従業員｜登録</title>
-	
+
  </head>
  <body>
- 	<div th:fragment="EmployeeRegister_contents">
+<div th:fragment="EmployeeRegister_contents">
  		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
  				<h1>新規登録</h1>
  			</div>
- 				
- 			<form method="post" th:acthion="@{/EmployeeRegister}"
- 			th:object="${signupform}">
+
+ 			<form method="post" action="/admin/employee/create/confirm">
+
  			<table class="table table-bordered table-hover">
- 			
+
  			<!-- 従業員入力エリア -->
  			<tr>
- 			
+
  			<!-- 従業員ID -->
  			<th class="active col-sm-3">従業員ID</th>
  			<td>
  				<div class="form-group">
- 					<input type="text" class="form-control"/>
+ 					<input type="text" class="form-control" name="employee_Id"/>
  				</div>
  			</td>
- 		</tr>	
+ 		</tr>
  		<tr>
- 		
+
  			<!-- 氏名 -->
  			<th class="active">氏名</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control" name="employee_Name"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 担当ビルID -->
  			<th class="active">担当ビルID</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control"name="building_Id"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 郵便番号 -->
  			<th class="active">郵便番号</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control" name="employee_Post_Number"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 住所 -->
  			<th class="active">住所</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control" name="employee_Ad_Number"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 電話番号 -->
  			<th class="active">電話番号</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control" name="employee_Phone_Number"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- メールアドレス -->
  			<th class="active">メールアドレス</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control" name="employee_Mail"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 希望日数 -->
  			<th class="active">希望日数</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"/>
+ 			<input type="text" class="form-control" name="desire_Days"/>
  		</div>
  	</td>
  	</tr>
  	<tr>
- 	
- 			<!-- 希望曜日 -->
+     <!-- 希望曜日 -->
  			<th class="active">希望曜日</th>
  			<td>
  			<div class="form-group">
@@ -116,36 +115,36 @@
  				<label><input type="checkbox" name="desire_monday" value="土">土</label>
  				<label><input type="checkbox" name="desire_monday" value="日">日</label>
  			</div>
- 			<span class="text-danger"
- 				th:if="${#fields.hasEroors('desire_youbi')}"
- 				th:errors="*{desire_youbi}">
- 			</span>
+
+
+ 		</div>
  		</div>
  	</td>
  	</tr>
  	</table>
- 	
+
  	<!-- 登録ボタン -->
- 			
- 				</form>
- 				
+
+
+
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
- 				name="register"
- 				onclick="location.href='EmployeeRegisterCushon.html'"
- 				>登録
- 				</button>
- 				
+ 				name="register">
+				登録
+ 				</button></form>
+
+
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
- 				name="register"
- 				onclick="location.href='EmployeeManage.html'"
- 				>従業員一覧へ戻る
+ 				name="register">
+
+ 				従業員一覧へ戻る
  				</button>
- 			
+
+
  		</div>
  	</div>
- 	</div>	
- 
+ 	</div>
+
  </body>
  </html>
