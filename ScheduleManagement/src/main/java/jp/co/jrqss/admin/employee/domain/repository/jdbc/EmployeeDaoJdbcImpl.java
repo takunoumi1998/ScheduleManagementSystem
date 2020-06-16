@@ -13,7 +13,7 @@ import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.repository.EmployeeDao;
 
 @Repository
-public class EmployeeJdbcImpl implements EmployeeDao{
+public class EmployeeDaoJdbcImpl implements EmployeeDao{
 
 	@Autowired
 	JdbcTemplate jdbc;
