@@ -15,7 +15,7 @@
  			<div class="col-sm-5">
  				<div class="page-header">
  				<h1>入力内容確認</h1>
- 			</div>
+ 				</div>
 
  			<form method="post" th:acthion="@{/EmployeeRegister}"
  			th:object="${signupform}">
@@ -26,41 +26,41 @@
 
  			<!-- 従業員ID -->
  			<th class="active col-sm-3">従業員ID</th>
-
+			<td th:text="${employee_Id}">
 			<div class="form-group">
- 				<td th:text="${employee_Id}"></td>
- 		</div>
 
+ 			</div>
+			</td>
  		</tr>
 
  		<tr>
 
  			<!-- 氏名 -->
  			<th class="active">氏名</th>
-
+			<td th:text="${employee_Name}"></td>
  			<div class="form-group">
- 				<td th:text="${employee_Name}"></td>
- 		</div>
+
+ 			</div>
 
  	</tr>
  	<tr>
 
  			<!-- 担当ビルID -->
  			<th class="active">担当ビルID</th>
-
+			<td th:text="${building_Id}"></td>
  			<div class="form-group">
- 			<td th:text="${building_Id}"></td>
+
  		</div>
 
  	</tr>
- 	<br>
+
  	<tr>
 
  			<!-- 郵便番号 -->
  			<th class="active">郵便番号</th>
-
+			<td th:text="${employee_Post_Number}"></td>
  			<div class="form-group">
- 			<td th:text="${employee_Post_Number}"></td>
+
  		</div>
 
  	</tr>
@@ -68,9 +68,9 @@
 
  			<!-- 住所 -->
  			<th class="active">住所</th>
-
+			<td th:text="${employee_Ad_Number}"></td>
  			<div class="form-group">
- 			<td th:text="${employee_Ad_Number}"></td>
+
  		</div>
 
  	</tr>
@@ -78,9 +78,9 @@
 
  			<!-- 電話番号 -->
  			<th class="active">電話番号</th>
-
+			<td th:text="${employee_Phone_Number}"></td>
  			<div class="form-group">
- 			<td th:text="${employee_Phone_Number}"></td>
+
  		</div>
 
  	</tr>
@@ -88,9 +88,9 @@
 
  			<!-- メールアドレス -->
  			<th class="active">メールアドレス</th>
-
+			<td th:text="${employee_Mail}"></td>
  			<div class="form-group">
- 			<td th:text="${employee_Mail}"></td>
+
  		</div>
 
  	</tr>
@@ -98,9 +98,9 @@
 
  			<!-- 希望日数 -->
  			<th class="active">希望日数</th>
-
+			<td th:text="${desire_Days}"></td>
  			<div class="form-group">
- 			<td th:text="${desire_Days}"></td>
+
  		</div>
 
  	</tr>
@@ -108,16 +108,14 @@
 
  			<!-- 希望曜日 -->
  			<th class="active">希望曜日</th>
- 			<td th:text="${result}"></td>
+ 			<td th:text="${monday}"></td>
+			<td th:text="${tuesday}"></td>
+ 			<td th:text="${wednesday}"></td>
+ 			<td th:text="${thursday}"></td>
+ 			<td th:text="${friday}"></td>
+ 			<td th:text="${saturday}"></td>
+ 			<td th:text="${sunday}"></td>
 
-
-
-
-
-
-
-
- 	</td>
  	</tr>
  	</table>
  	</form>
@@ -137,6 +135,6 @@
      </div>
  	</div>
 </div>
-</div>
+
    </body>
  </html>

@@ -17,7 +17,7 @@
  				<h1>新規登録</h1>
  			</div>
 
- 			<form method="post" action="/admin/employee/create/confirm">
+ 			<form method="post" action="/admin/employee/create/confirm" >
 
  			<table class="table table-bordered table-hover">
 
@@ -28,7 +28,7 @@
  			<th class="active col-sm-3">従業員ID</th>
  			<td>
  				<div class="form-group">
- 					<input type="text" class="form-control" name="employee_Id"/>
+ 					<input type="text" class="form-control" name="employee_Id" />
  				</div>
  			</td>
  		</tr>
@@ -48,7 +48,7 @@
  			<th class="active">担当ビルID</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control"name="building_Id"/>
+ 			<input type="text" class="form-control"name="building_Id" />
  		</div>
  	</td>
  	</tr>
@@ -58,17 +58,18 @@
  			<th class="active">郵便番号</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control" name="employee_Post_Number"/>
+ 			<input type="text" class="form-control" name="employee_Ad_Number"/>
  		</div>
  	</td>
  	</tr>
+
  	<tr>
 
  			<!-- 住所 -->
  			<th class="active">住所</th>
  			<td>
  			<div class="form-group">
- 			<input type="text" class="form-control" name="employee_Ad_Number"/>
+ 			<input type="text" class="form-control" name="employee_Address"/>
  		</div>
  	</td>
  	</tr>
@@ -102,18 +103,18 @@
  		</div>
  	</td>
  	</tr>
- 	<tr>
+<tr>
      <!-- 希望曜日 -->
  			<th class="active">希望曜日</th>
  			<td>
  			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_tuesday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_wednesday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_thursday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_friday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_saturday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_sunday" value="日">日</label>
+ 				<label><input type="checkbox" name="desire_monday" value="1">月</label>
+ 				<label><input type="checkbox" name="desire_tuesday" value="1">火</label>
+ 				<label><input type="checkbox" name="desire_wednesday" value="1">水</label>
+ 				<label><input type="checkbox" name="desire_thursday" value="1">木</label>
+ 				<label><input type="checkbox" name="desire_friday" value="1">金</label>
+ 				<label><input type="checkbox" name="desire_saturday" value="1">土</label>
+ 				<label><input type="checkbox" name="desire_sunday" value="1">日</label>
  			</div>
 
 
@@ -131,15 +132,16 @@
  				type="submit"
  				name="register">
 				登録
- 				</button></form>
+ 				</button>
+ 				</form>
 
-
+			<form action="/admin/employee/list" method="get">
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
  				name="register">
 
  				従業員一覧へ戻る
- 				</button>
+ 				</button></form>
 
 
  		</div>

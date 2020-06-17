@@ -10,4 +10,6 @@ public interface EmployeeDao {
 
 	public List<Employee>selectMany()throws DataAccessException;
 
+
+	public int insertOne(Employee employee)throws DataAccessException;
 }

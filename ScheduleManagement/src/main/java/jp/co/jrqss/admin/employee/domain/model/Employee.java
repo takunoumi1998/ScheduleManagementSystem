@@ -17,6 +17,7 @@ public class Employee {
 	private boolean employee_Saturday;
 	private boolean employee_Sunday;
 	private String employee_Ad_Number;
+	private String employee_Address;
 	private String employee_Phone_Number;
 	private String employee_Mail;
 

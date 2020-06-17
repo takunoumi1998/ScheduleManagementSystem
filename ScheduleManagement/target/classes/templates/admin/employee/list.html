@@ -7,6 +7,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <title>従業員一覧</title>
 </head>
 <body>
+
 <h1>従業員情報</h1>
 <form  method="post">
   <p>検索したい従業員名を入力してください。</p>
@@ -39,7 +40,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<td th:text="${employee.employee_Id}"></td>
 		<td th:text="${employee.employee_Name}"></td>
 		<td th:text="${employee.employee_Ad_Number}"></td>
-		<td th:text="${employee.employee_Phone_Number}"></td>
+		<td th:text="${employee.employee_Address}"></td>
 		<td th:text="${employee.employee_Mail}"></td>
 		<td><input type="button" value="詳細"onclick="location.href='EmployeeDetail.html'"></td>
 	</tr>

@@ -19,4 +19,19 @@ public class EmployeeService {
 		return employeedao.selectMany();
 	}
 
+	//insert用　一件登録
+	public boolean insert(Employee employee) {
+
+		int rowNumber=employeedao.insertOne(employee);
+		boolean result=false;
+
+		if(rowNumber>0) {
+
+			result=true;
+		}
+
+		return result;
+
+	}
+
 }
