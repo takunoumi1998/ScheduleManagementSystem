@@ -19,9 +19,58 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	JdbcTemplate jdbc;
 
 	@Override
+	public int count() throws DataAccessException {
+
+		int count=jdbc.queryForObject("select count(*) from building,Integer.class");
+
+		return count;
+	}
+
+	@Override
+	public int insertOne(Building building) throws DataAccessException {
+
+		// 1件登録
+		int rowNumber = jdbc.update("INSERT INTO m_user(building_id,"
+                + " building_name,"
+                + " employee_name,"
+                + " building_ninzu,"
+                + " building_time,"
+                + " building_monday,"
+                + " building_tuesday,"
+                + " building_wednesday,"
+                + " building_thursday,"
+                + " building_friday,"
+                + " building_saturday,"
+                + " building_sunday,"
+                + " building_ad_number,"
+                + " building_address,"
+                + " building_phone_number,"
+                + " building_mail,"
+                + " VALUES(?, ?, ?, ?, ?, ?, ?)",
+                building.getBuildingId(),
+                building.getBuildingName(),
+                building.getEmployeeName(),
+                building.getBuildingNinzu(),
+                building.getBuildingTime(),
+                building.getbuildingMonday(),
+                building.getBuildingTuesday(),
+                building.getBuildingWednesday(),
+                building.getBuildingThursday(),
+                building.getBuildingFriday(),
+                building.getBuildingSaturday(),
+                building.getBuildingSunday(),
+                building.getBuildingAdNumber(),
+                building.getBuildingAddress(),
+                building.getBuildingPhoneNumber(),
+                building.getBuildingMail());
+
+        return rowNumber;
+    }
+
+	@Override
 	public List<Building>selectMany() throws DataAccessException {
 
-		// buildingテーブルからデータを取得
+		// buildingテーブルからデータを全件取得
 		List<Map<String,Object>>getList=jdbc.queryForList("select * from building");
 //														   "select * from building"
 		// 結果返却用の変数

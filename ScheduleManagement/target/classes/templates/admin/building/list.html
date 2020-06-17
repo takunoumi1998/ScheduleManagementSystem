@@ -27,7 +27,7 @@
 </p>
 <table border="1">
 	<tr>
-
+		<td></td>
 		<td>ビルID</td>
 		<td>ビル名称</td>
 		<td>清掃曜日・頻度</td>
@@ -42,7 +42,9 @@
 		<td th:text="${building.buildingName}"></td>
 		<td th:text="${building.buildingNinzu}"></td>
 		<td th:text="${building.buildingTime}"></td>
-		<td><input type="button" value="詳細"onclick="location.href='BuildingDetail.html'"></td>
+		<form method="post" action="/admin/building/change/change">
+		<td><input type="button" value="詳細"></td>
+		</form>
 	</tr>
 
 </table>
