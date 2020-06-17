@@ -9,5 +9,7 @@ public class Work {
 	private int workId;
 	private int buildingId;
 	private int employeeId;
-	private Date workDay;
+	private int workNumber;
+	private int workDay;
+	private Date workDate;
 }

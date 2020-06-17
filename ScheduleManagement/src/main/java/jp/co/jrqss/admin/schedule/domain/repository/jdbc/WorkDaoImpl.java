@@ -34,7 +34,9 @@ public class WorkDaoImpl implements WorkDao{
 				work.setWorkId((int)map.get("work_id"));
 				work.setBuildingId((int)map.get("building_id"));
 				work.setEmployeeId((int)map.get("employee_id"));
-				work.setWorkDay((Date)map.get("work_day"));
+				work.setWorkNumber((int)map.get("work_number"));
+				work.setWorkDay((int)map.get("work_day"));
+				work.setWorkDate((Date)map.get("work_date"));
 
 				workList.add(work);
 			}

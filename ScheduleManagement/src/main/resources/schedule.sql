@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS work(
 	work_id INT PRIMARY KEY,
 	building_id INT ,
 	employee_id INT ,
-	work_day DATE ,
+	work_number INT ,
+	work_day INT ,
+	work_date DATE ,
 	FOREIGN KEY (building_id) REFERENCES building(building_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
