@@ -19,7 +19,9 @@
   <input type="search" name="search" placeholder="名前を入力">
   <input type="submit" name="submit" value="検索">
 </form><br>
-<p><button class="button1" type="button" name="newinfo"onclick="location.href='BuildingRegister.html'" >新規登録</button>
+<p>
+<form method="post" action="/admin/building/create/register">
+<button class="button1" type="submit" name="newinfo" >新規登録</button></form>
 <button class="button2" type="submit" name="delite" onclick="location.href='BuildingDeleteConfirm.html'">チェックしたビルを削除</button>
 <button style="float:right"onclick="location.href='TopMenu.html'" >トップに戻る</button>
 </p>
@@ -34,8 +36,10 @@
 		<td></td>
 	</tr>
 	<tr>
+	<tr th:each="building:${buildingList}">
 		<td><input type="checkbox"></td>
 		<td>1</td>
+		<td th:text="${building.building_id}"></td>
 		<td></td>
 		<td></td>
 		<td></td>

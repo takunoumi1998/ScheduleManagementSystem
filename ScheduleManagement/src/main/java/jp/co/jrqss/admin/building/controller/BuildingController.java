@@ -16,14 +16,19 @@ public class BuildingController {
 	@Autowired
 	BuildingService buildingService;
 
+	/**
+	 * ビル情報一覧画面を表示
+	 * @param model Model
+	 * @return ビル情報一覧画面
+	 */
 	@GetMapping("admin/building/list")
-	public String getAdminBuildingList(Model midel) {
+	public String getAdminBuildingList(Model model) {
 
 		List<Building>buildingList=buildingService.selectMany();
 
-		model.addAtribute("buildingList",buildingList);
+		model.addAttribute("buildingList",buildingList);
 
-		return "/admin/building/list";
+		return "admin/building/list";
 	}
 
 }

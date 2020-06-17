@@ -18,7 +18,7 @@ public class Building {
 	private boolean buildingSaturday;
 	private boolean buildingSunday;
 	private String buildingAdNumber;
-	private String buildingAdress;
+	private String buildingAddress;
 	private String buildingPhoneNumber;
 	private String buildingMail;
 }
