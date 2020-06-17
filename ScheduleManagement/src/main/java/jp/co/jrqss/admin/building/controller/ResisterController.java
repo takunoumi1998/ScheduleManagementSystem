@@ -15,6 +15,7 @@ public class ResisterController {
 
 	@GetMapping("/resister")
 	public String getResister(@ModelAttribute ResisterForm form, Model model) {
+
 		return "/admin/building/create/resister";
 	}
 
@@ -27,7 +28,9 @@ public class ResisterController {
 		if(bindingResult.hasErrors()) {
 			return getResister(form,model);
 		}
-		return "admin/login/login";
-	}
 
+		System.out.println(form);
+
+		return "admin/create/confirm";
+	}
 }
