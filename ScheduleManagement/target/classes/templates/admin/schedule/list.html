@@ -16,7 +16,7 @@
 	<button>確認画面へ</button>
 	<button style="float: right" onclick="location.href='TopMenu.html'">トップに戻る</button>
 	<p></p>
-	<table border="1" id="scheduleTable">
+	<table id="scheduleTable">
 
 	</table>
 
@@ -33,8 +33,10 @@
 	var buildingList = /*[[${buildingList}]]*/
 	var employeeList = /*[[${employeeList}]]*/
 
+	console.log(workList);
+
 	for(var work of workList){
-		var workDay = new Date(work.workDay);
+		var workDate = new Date(work.workDate);
 	}
 
 	//配列
@@ -83,31 +85,34 @@
 	for(var building of buildingList){
 		var tr = document.createElement('tr');
 
-			var td = document.createElement('td');
-			td.setAttribute("rowspan",building.buildingNinzu)
-			td.textContent= building.buildingName;
-			tr.appendChild(td);
+		var td = document.createElement('td');
+		td.setAttribute("rowspan",building.buildingNinzu)
+		td.setAttribute("class","out-of-table-fixed")
+		td.textContent= building.buildingName;
+		tr.appendChild(td);
 
-			var td = document.createElement('td');
-			td.setAttribute("rowspan",building.buildingNinzu)
-			td.textContent= building.buildingName;
-			tr.appendChild(td);
+		var td = document.createElement('td');
+		td.setAttribute("rowspan",building.buildingNinzu)
+		td.textContent= building.buildingName;
+		tr.appendChild(td);
 
-			var td = document.createElement('td');
-			td.setAttribute("rowspan",building.buildingNinzu)
-			td.textContent= building.buildingNinzu;
-			tr.appendChild(td);
+		var td = document.createElement('td');
+		td.setAttribute("rowspan",building.buildingNinzu)
+		td.textContent= building.buildingNinzu;
+		tr.appendChild(td);
 
 		//tr追加（ビル）
-		for(var j = 0; j < building.buildingNinzu; j++){
+		for(var j = 1; j <= building.buildingNinzu; j++){
 			//td追加（日毎）
 			for(var k = 1; k <= DAY_OF_MONTH; k++){
 				var td = document.createElement('td');
 				var select = document.createElement('select');
 				for(var work of workList){
-					var workDay = new Date(work.workDay);
-					if(k == workDay.getDate() && building.buildingId == work.buildingId){
-						td.style.backgroundColor="lightblue"
+					var workDate = new Date(work.workDate);
+					if(k == workDate.getDate() && building.buildingId == work.buildingId){
+						if(work.workNumber == j){
+							td.style.backgroundColor="lightblue"
+						}
 					}
 				}
 				select.setAttribute("onChange","selectCheck(this)");
@@ -118,10 +123,12 @@
 					option.textContent=employee.employeeName;
 					option.setAttribute("value",employee.employeeId);
 					for(var work of workList){
-						var workDay = new Date(work.workDay);
-						if(employee.employeeId == work.employeeId && workDay.getDate() == k && work.buildingId == building.buildingId){
-							console.log("通過");
-							option.setAttribute("selected","");
+						var workDate = new Date(work.workDate);
+						if(employee.employeeId == work.employeeId && workDate.getDate() == k && work.buildingId == building.buildingId){
+							if(work.workNumber == j){
+								console.log("通過");
+								option.setAttribute("selected","");
+							}
 						}
 					}
 					select.appendChild(option);
