@@ -20,7 +20,6 @@ td{
 }
 
 td.out-of-table-fixed{
-	  /* 横スクロール時に固定する */
 	position: -webkit-sticky;
 	position: sticky;
 	left: 0;
@@ -30,6 +29,11 @@ td.out-of-table-fixed{
 
 tr{
 	border-bottom:solid 1px black;
+
+}
+
+tr:hover{
+	background-color: #dcdcdc;
 }
 
 
