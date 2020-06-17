@@ -40,7 +40,6 @@ public class BuildingJdbcImpl implements BuildingDao{
 			building.setBuilding_friday((boolean)map.get("building_friday"));
 			building.setBuilding_saturday((boolean)map.get("building_saturday"));
 			building.setBuilding_sunday((boolean)map.get("building_sunday"));
-			building.setEmployee_name((String)map.get("employee_name"));
 			building.setBuilding_ad_number((int)map.get("building_ad_number"));
 			building.setBuilding_address((String)map.get("building_address"));
 			building.setBuilding_phone_number((int)map.get("building_phone_number"));

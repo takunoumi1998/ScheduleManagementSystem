@@ -14,12 +14,10 @@ CREATE TABLE IF NOT EXISTS building (
 	building_friday BOOLEAN,
 	building_saturday BOOLEAN,
 	building_sunday BOOLEAN,
-	employee_name VARCHAR(256),
 	building_ad_number INT,
 	building_address VARCHAR(100),
 	building_phone_address INT,
-	building_mail VARCHAR(100),
-	FOREIGN KEY(employee_name) REFERENCES employee(employee_name)
+	building_mail VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS employee (
