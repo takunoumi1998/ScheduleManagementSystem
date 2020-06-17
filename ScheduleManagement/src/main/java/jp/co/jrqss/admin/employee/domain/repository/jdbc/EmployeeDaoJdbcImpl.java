@@ -23,19 +23,21 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	public int insertOne(Employee employee)throws DataAccessException{
 
 		int rowNumber=jdbc.update("insert into employee(employee_id,"
-				+ "building_id"
-				+ "employee_name"
-				+ "desire_days"
-				+ "employee_monday"
-				+"employee_tuesday"
-				+"employee_wednesday"
-				+"employee_thursday"
-				+"employee_friday"
-				+"employee_saturday"
-				+"employee_sunday"
-				+"employee_ad_number"
-				+"employee_phone_number"
+				+"building_id,"
+				+"employee_name,"
+				+"desire_days,"
+				+"employee_monday,"
+				+"employee_tuesday,"
+				+"employee_wednesday,"
+				+"employee_thursday,"
+				+"employee_friday,"
+				+"employee_saturday,"
+				+"employee_sunday,"
+				+"employee_ad_number,"
+				+"employee_address,"
+				+"employee_phone_number,"
 				+"employee_mail)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,employee.getEmployee_Id()
 				,employee.getBuilding_Id()
 				,employee.getEmployee_Name()
@@ -48,16 +50,9 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				,employee.isEmployee_Saturday()
 				,employee.isEmployee_Sunday()
 				,employee.getEmployee_Ad_Number()
+				,employee.getEmployee_Address()
 				,employee.getEmployee_Phone_Number()
 				,employee.getEmployee_Mail());
-
-
-
-
-
-
-
-
 
 		return rowNumber;
 	}
