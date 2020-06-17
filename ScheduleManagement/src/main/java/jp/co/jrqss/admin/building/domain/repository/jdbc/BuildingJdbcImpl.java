@@ -65,5 +65,11 @@ public class BuildingJdbcImpl implements BuildingDao{
 		return null;
 	}
 
+	@Override
+	public void Building(String buildingId) {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
 
 }

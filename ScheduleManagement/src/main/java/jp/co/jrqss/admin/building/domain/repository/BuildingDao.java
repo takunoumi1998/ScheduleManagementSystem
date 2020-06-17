@@ -10,8 +10,10 @@ public interface BuildingDao {
 
 	public List<Building>selectMany1()throws DataAccessException;
 
-	Building selectOne(String buildingId);
+	void Building (String buildingId);
 
 	<T> List<Building> selectMany();
+
+	jp.co.jrqss.admin.building.domain.model.Building selectOne(String buildingId);
 
 }

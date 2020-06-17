@@ -25,12 +25,6 @@ public class ResisterController {
 			BindingResult bindingResult,
 			Model model) {
 
-		if(bindingResult.hasErrors()) {
-			return getResister(form,model);
-		}
-
-		System.out.println(form);
-
-		return "admin/create/confirm";
+		return "redirect:/admin/building/create/confirm";
 	}
 }
