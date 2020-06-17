@@ -22,8 +22,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	public List<Building>selectMany() throws DataAccessException {
 
 		// buildingテーブルからデータを取得
-		List<Map<String,Object>>getList=jdbc.queryForList("select*form building");
-
+		List<Map<String,Object>>getList=jdbc.queryForList("select * from building");
+//														   "select * from building"
 		// 結果返却用の変数
 		List<Building>buildingList=new ArrayList<>();
 
