@@ -42,9 +42,6 @@ public class ResisterForm {
 	private boolean building_sunday;
 
 	@NotBlank
-	private String employee_name;
-
-	@NotBlank
 	private int building_ad_number;
 
 	@NotBlank
