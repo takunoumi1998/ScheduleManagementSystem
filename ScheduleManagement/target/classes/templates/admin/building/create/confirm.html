@@ -43,87 +43,88 @@
  	</td>
  	</tr>
 
- 			<!-- 郵便番号 -->
+ 	<!-- 郵便番号 -->
  	<tr>
- 			<th class="active">郵便番号</th>
+ 		<th class="active">郵便番号</th>
  			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
  	</tr>
- 	<tr>
 
- 			<!-- 住所 -->
- 			<th class="active">住所</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
+ 	<!-- 住所 -->
  	<tr>
+ 		<th class="active">住所</th>
+ 			<td>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
+ 	</tr>
 
- 			<!-- 電話番号 -->
- 			<th class="active">電話番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
+ 	<!-- 電話番号 -->
  	<tr>
+ 		<th class="active">電話番号</th>
+ 			<td>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
+ 	</tr>
 
- 			<!-- メールアドレス -->
- 			<th class="active">メールアドレス</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
+ 	<!-- メールアドレス -->
  	<tr>
- 				<!-- 必要人数 -->
- 			<th class="active">必要人数</th>
+ 		<th class="active">メールアドレス</th>
  			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
  	</tr>
- 	<tr>
 
- 			<!-- 希望時間 -->
- 			<th class="active">希望時間</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
+ 	<!-- 必要人数 -->
  	<tr>
-
- 			<!-- 希望曜日 -->
- 			<th class="active">希望曜日</th>
+ 		<th class="active">必要人数</th>
  			<td>
- 			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
- 			</div>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
+ 	</tr>
+
+ 	<!-- 希望時間 -->
+ 	<tr>
+ 		<th class="active">希望時間</th>
+ 			<td>
+ 				<div class="form-group">
+ 					<input type="text" class="form-control"/>
+ 				</div>
+ 			</td>
+ 	</tr>
+
+ 	<!-- 希望曜日 -->
+ 	<tr>
+ 		<th class="active">希望曜日</th>
+ 			<td>
+ 				<div class="form-group">
+ 					<label><input type="checkbox" name="desire_monday" value="月">月</label>
+ 					<label><input type="checkbox" name="desire_monday" value="火">火</label>
+ 					<label><input type="checkbox" name="desire_monday" value="水">水</label>
+ 					<label><input type="checkbox" name="desire_monday" value="木">木</label>
+ 					<label><input type="checkbox" name="desire_monday" value="金">金</label>
+ 					<label><input type="checkbox" name="desire_monday" value="土">土</label>
+ 					<label><input type="checkbox" name="desire_monday" value="日">日</label>
+ 				</div>
  			<span class="text-danger"
  				th:if="${#fields.hasEroors('desire_youbi')}"
  				th:errors="*{desire_youbi}">
  			</span>
- 		</div>
- 	</td>
+ 			</td>
  	</tr>
  	</table>
  	</form>
+
  	<p>この内容で確定しますか？</p>
 
        <div class="submit">
@@ -134,8 +135,7 @@
          <input type="submit"onclick="location.href='BuildingRegister.html'" value="戻る">
        </div>
 
-
+		</div>
      </div>
-
    </body>
  </html>
