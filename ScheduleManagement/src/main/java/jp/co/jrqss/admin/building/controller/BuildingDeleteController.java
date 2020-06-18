@@ -29,7 +29,7 @@ public class BuildingDeleteController {
 			model.addAttribute("result", "削除失敗");
 		}
 
-		return getList(model);
+		return "admin/building/list";
 	}
 
 }

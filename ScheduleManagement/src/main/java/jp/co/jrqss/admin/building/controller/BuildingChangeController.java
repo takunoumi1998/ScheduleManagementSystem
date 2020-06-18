@@ -53,7 +53,7 @@ public class BuildingChangeController {
 			model.addAttribute("result","更新失敗(トランザクションテスト)");
 		}
 
-		return getList(model);
+		return "admin/building/list";
 
 	}
 
