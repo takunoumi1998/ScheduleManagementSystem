@@ -10,4 +10,6 @@ public interface BuildingChangeDao {
 
 	public int updateOne(Building building) throws DataAccessException;
 
+	public int deleteOne(String building_id)throws DataAccessException;
+
 }

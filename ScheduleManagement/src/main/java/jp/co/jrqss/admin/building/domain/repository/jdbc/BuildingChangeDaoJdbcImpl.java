@@ -41,4 +41,11 @@ public class BuildingChangeDaoJdbcImpl {
 		return buildingChange;
 
 	}
+
+	public int deleteOne(String building_id)throws DataAccessException{
+
+		int rowNumber = jdbc.update("DELETE FROM building WHERE building_id = ?",building_id);
+
+		return rowNumber;
+	}
 }

@@ -19,4 +19,9 @@ public class BuildingService {
 		return buildingdao.selectMany();
 	}
 
+	public static boolean deleteOne(int building_id) {
+		// TODO 自動生成されたメソッド・スタブ
+		return false;
+	}
+
 }
