@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
+import jp.co.jrqss.admin.building.domain.model.BuildingForm;
 import jp.co.jrqss.admin.building.domain.service.BuildingService;
 
 @Controller
@@ -27,54 +27,70 @@ public class BuildingController {
 	@GetMapping("admin/building/list")
 	public String getAdminBuildingList(Model model) {
 
+		// ビル一覧の生成
 		List<Building>buildingList=buildingService.selectMany();
 
+		// Modelにリストを登録
 		model.addAttribute("buildingList",buildingList);
+
+		// データ件数を取得
+		int count = buildingService.count();
+		model.addAttribute("buildingListCount", count);
 
 		return "admin/building/list";
 	}
 
-	@PostMapping("admin/building/create/register")
-	public String postAdminBuildingCreateRegister(Model model) {
+	/**
+     * 新規登録画面のGETメソッド用処理.
+     */
+	@GetMapping("admin/building/create/register")
+	public String getAdminBuildingCreateRegister(Model model) {
 
 		return "admin/building/create/register";
 	}
 
-	@PostMapping("admin/building/change/change")
-	public String postAdminBuildingChangeChange(Model model) {
+
+	/**
+     * ユーザー詳細画面のGETメソッド用処理.
+     */
+	@GetMapping("admin/building/change/change")
+	public String getAdminBuildingChangeChange(@ModelAttribute BuildingForm form,
+			Model model,
+			@PathVariable("id") int buildingId) {
+
+		// ビルID確認
+		System.out.println("buildingId = " + buildingId);
+
+		// コンテンツ部分にビル詳細を表示するための文字列を登録
+		model.addAttribute("contents", "admin/building/change/change ::change_contents");
+
+
+		// ビル情報を取得
+		Building building = buildingService.selectOne(buildingId);
+
+		// ビルクラスをフォームクラスに変換
+		form.setBuildingId(building.getBuildingId());
+		form.setBuildingName(building.getBuildingName());
+		form.setBuildingNinzu(building.getBuildingNinzu());
+		form.setBuildingTime(building.getBuildingTime());
+		form.setBuildingMonday(building.isBuildingMonday());
+		form.setBuildingTuesday(building.isBuildingTuesday());
+		form.setBuildingWednesday(building.isBuildingWednesday());
+		form.setBuildingTuesday(building.isBuildingTuesday());
+		form.setBuildingFriday(building.isBuildingFriday());
+		form.setBuildingSaturday(building.isBuildingSaturday());
+		form.setBuildingSunday(building.isBuildingSunday());
+		form.setBuildingAdNumber(building.getBuildingAdNumber());
+		form.setBuildingAddress(building.getBuildingAddress());
+		form.setBuildingPhoneNumber(building.getBuildingPhoneNumber());
+		form.setBuildingMail(building.getBuildingMail());
+
+		// Modelに登録
+		model.addAttribute("buildingForm", form);
 
 		return "admin/building/change/change";
 	}
 
-	@RequestMapping("admin/buiiding/create/confirm")
-	public String postAdminBuildingCreateConfirm(
-		@RequestParam("buildingId")String str1,
-		@RequestParam("buildingName")String str2,
-		@RequestParam("employeeName")String str3,
-		@RequestParam("buildingNinzu")String str4,
-		@RequestParam("buildingTime")String str5,
-		@RequestParam("buildingAdNumber")String str6,
-		@RequestParam("buildingAddress")String str7,
-		@RequestParam("buildingPhoneNumber")String str8,
-		@RequestParam("buildingMail")String str9,
-		@RequestParam("buildingDesireDays")String str10,
-		Model model) {
 
-		model.addAttribute("buildingId",str1);
-		model.addAttribute("buildingName",str2);
-		model.addAttribute("employee",str3);
-		model.addAttribute("buildingNinzu",str4);
-		model.addAttribute("buildingTime",str5);
-		model.addAttribute("buildingAdNumber",str6);
-		model.addAttribute("buildingAddress",str7);
-		model.addAttribute("buildingPhoneNumber",str8);
-		model.addAttribute("buildingMail",str9);
-		model.addAttribute("buildingDesireDays",str10);
-
-		return "admin/building/create/confirm";
-
-
-
-	}
 
 }

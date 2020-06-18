@@ -7,7 +7,6 @@ public class Building {
 
 	private int buildingId;
 	private String buildingName;
-	private String employeeName;
 	private int buildingNinzu;
 	private int buildingTime;
 	private boolean buildingMonday;
