@@ -46,7 +46,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_ad_number,"
 				+"building_address,"
 				+"building_phone_number,"
-				+"building_mail),"
+				+"building_mail)"
 				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,building.getBuildingId()
 				,building.getBuildingName()
@@ -153,7 +153,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_ad_number,"
 				+"building_address,"
 				+"building_phone_number,"
-				+"building_mail),"
+				+"building_mail)"
 				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,building.getBuildingId()
 				,building.getBuildingName()

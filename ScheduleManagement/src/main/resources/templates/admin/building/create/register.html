@@ -20,7 +20,8 @@
  				<h1>ビル情報</h1>
  			</div>
 
- 			<form method="post" action="admin/employee/create/confirm">
+ 			<form method="post" action="admin/employee/create/confirm"
+ 				th:object="${buildingForm}">
  			<table class="table table-bordered table-hover">
 
  			<!-- ビル情報入力エリア -->

@@ -3,7 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="@{/css/admin/Emp_Build_info.css}">
+<link rel="stylesheet" th:href="@{/css/admin/Emp_Build_info.css}">
 
 <!-- Bootstrapの設定 -->
     <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
@@ -45,7 +45,7 @@
 
 		<td>
 		<!-- 動的 URL -->
-		<a class ="btn btn-primary"th:href="@{'/change/'+${building.buildingId}}">
+		<a class ="btn btn-primary"th:href="@{'/admin/building/change/change/'+${building.buildingId}}">
 			詳細
 		</a>
 	</td>

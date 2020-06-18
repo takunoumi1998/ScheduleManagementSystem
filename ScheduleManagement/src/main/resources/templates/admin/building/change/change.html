@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html xmlna:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
+
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
-	
+	<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
+
 	<title>ビル情報｜詳細</title>
-	
+
  </head>
  <body>
- 	<div th:fragment="EmployeeRegister_contents">
+ 	<div th:fragment="cange_contents">
  		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
  				<h1>ビル情報</h1>
  			</div>
- 				
- 			<form method="post" th:acthion="@{/EmployeeRegister}"
- 			th:object="${signupform}">
+
+ 			<form method="post" th:acthion="@{/admin/building/change/change}"
+ 			th:object="${buildingform}">
  			<table class="table table-bordered table-hover">
- 			
+
  			<!-- ビル情報入力エリア -->
  			<tr>
- 			
+
  			<!-- ビルID -->
  			<th class="active col-sm-3">ビルID</th>
  			<td>
@@ -31,9 +31,9 @@
  					<input type="text" class="form-control"/>
  				</div>
  			</td>
- 		</tr>	
+ 		</tr>
  		<tr>
- 		
+
  			<!-- ビル名 -->
  			<th class="active">ビル名</th>
  			<td>
@@ -43,7 +43,7 @@
  	</td>
  	</tr>
  	<tr>
- 		
+
  			<!-- 担当従業員名 -->
  			<th class="active">担当従業員名</th>
  			<td>
@@ -53,7 +53,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 郵便番号 -->
  			<th class="active">郵便番号</th>
  			<td>
@@ -63,7 +63,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 住所 -->
  			<th class="active">住所</th>
  			<td>
@@ -73,7 +73,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 電話番号 -->
  			<th class="active">電話番号</th>
  			<td>
@@ -83,7 +83,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- メールアドレス -->
  			<th class="active">メールアドレス</th>
  			<td>
@@ -102,7 +102,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 希望時間 -->
  			<th class="active">希望時間</th>
  			<td>
@@ -112,7 +112,7 @@
  	</td>
  	</tr>
  	<tr>
- 	
+
  			<!-- 希望曜日 -->
  			<th class="active">希望曜日</th>
  			<td>
@@ -125,10 +125,7 @@
  				<label><input type="checkbox" name="desire_monday" value="土">土</label>
  				<label><input type="checkbox" name="desire_monday" value="日">日</label>
  			</div>
- 			<span class="text-danger"
- 				th:if="${#fields.hasEroors('desire_youbi')}"
- 				th:errors="*{desire_youbi}">
- 			</span>
+
  		</div>
  	</td>
  	</tr>
@@ -137,9 +134,7 @@
  	<!-- 変更ボタン -->
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
- 				name="update"
- 				onclick="location.href='BuildingDetailCushon.html'"
- 				>
+ 				name="update">
  					変更
  				</button>
  			<button class="btn btn-primary btn-lg pull-right"
@@ -148,15 +143,15 @@
  				onclick="location.href='BuildingManage.html'"
  				>ビル一覧へ戻る
  				</button>
- 			
+
  			<!--フッター -->
   <footer>
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
-  
+
  		</div>
  	</div>
- 	</div>	
- 
+ 	</div>
+
  </body>
  </html>
