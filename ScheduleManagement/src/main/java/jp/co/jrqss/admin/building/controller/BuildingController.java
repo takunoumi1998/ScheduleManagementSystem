@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.model.BuildingForm;
+import jp.co.jrqss.admin.building.domain.model.GroupOrder;
 import jp.co.jrqss.admin.building.domain.service.BuildingService;
 
 @Controller
@@ -51,14 +54,23 @@ public class BuildingController {
 		return "admin/building/create/register";
 	}
 
+
 	/**
      * 新規登録画面のPOSTメソッド用処理.
      */
 	@PostMapping("admin/building/create/register")
-	public String postAdminBuildingCreateRegister(@ModelAttribute BuildingForm form,Model model) {
+	public String postAdminBuildingCreateRegister(@ModelAttribute @Validated(GroupOrder.class) BuildingForm form,
+			BindingResult bindingResult, Model model) {
 
+		if(bindingResult.hasErrors()) {
 
-	// 登録用変数
+			return getAdminBuildingCreateRegister(form,model);
+		}
+
+		// formの中身をコンソールに出して確認
+		System.out.println(form);
+
+	// insert用変数
 			Building building = new Building();
 
 			building.setBuildingId(form.getBuildingId());
@@ -87,7 +99,7 @@ public class BuildingController {
 	            System.out.println("insert失敗");
 	        }
 
-			return "redirect:/list";
+			return "redirect:/admin/building/list";
 
 	}
 

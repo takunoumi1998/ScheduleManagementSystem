@@ -20,7 +20,7 @@
  				<h1>ビル情報</h1>
  			</div>
 
- 			<form method="post" action="admin/employee/create/confirm"
+ 			<form method="get" action="admin/building/list"
  				th:object="${buildingForm}">
  			<table class="table table-bordered table-hover">
 
@@ -42,16 +42,6 @@
  			<td>
  			<div class="form-group">
  			<input type="text" class="form-control" name="buildingName"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
-
- 			<!-- 担当従業員名 -->
- 			<th class="active">担当従業員名</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control" name="employeeName"/>
  		</div>
  	</td>
  	</tr>
@@ -132,15 +122,14 @@
  	</td>
  	</tr>
  	</table>
+</form>
 
- 	</form>
-
+	<form method="get" action="/admin/building/list">
  	<!-- 登録ボタン -->
- 		<form method="get" action="/admin/building/list">
  			<button class="button1" type="submit" name="register">登録</button></form>
 
-		<form method="get" action="/admin/employee/list">
- 			<button class="button2" type="submit" name="back">ビル一覧へ戻る</button></form>
+		<!--  <form method="get" action="/admin/employee/list">
+ 			<button class="button2" type="submit" name="back">ビル一覧へ戻る</button></form> -->
 
  <!--フッター -->
   <footer>
