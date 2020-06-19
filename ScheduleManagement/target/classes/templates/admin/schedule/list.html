@@ -13,12 +13,16 @@
 	<p class="square2">勤務削除依頼</p>
 	<p class="square3">法定日数超過分</p>
 	<p class="square4">希望日数超過分</p>
+	<p class="square5">自動追加</p>
 	<button class="left">確認画面へ</button>
 	<button class="right" style="float: right" onclick="location.href='TopMenu.html'">トップに戻る</button>
 	<p></p>
-	<table id="scheduleTable">
 
-	</table>
+	<form action="/admin/schedule/create" method="post">
+		<table id="scheduleTable">
+		</table>
+		<input type="submit" value="更新">
+	</form>
 
 
 	<div id='schedule'></div>
@@ -32,23 +36,19 @@
 	var workList = /*[[${workList}]]*/
 	var buildingList = /*[[${buildingList}]]*/
 	var employeeList = /*[[${employeeList}]]*/
+	var desireList = /*[[${desireList}]]*/
 
-	console.log(workList);
-
-	for(var work of workList){
-		var workDate = new Date(work.workDate);
-	}
-
-	//配列
+	//曜日の配列
 	var week = ["日","月","火","水","木","金","土"];
-	var items = ["ビル名","清掃日","人数"];
+	var items = ["ビル名","人数"]
 
 	//日付関係
-	var date = new Date();
-	var monthLastDay = new Date(date.getFullYear(),date.getMonth()+1,0);
-	var monthFirstDay = new Date(date.getFullYear(),date.getMonth(),1);
-	var DAY_OF_MONTH = monthLastDay.getDate();
-	var DAY_OF_THE_WEEK = monthFirstDay.getDay();
+	var date = new Date();	//現在
+	var monthLastDay = new Date(date.getFullYear(),date.getMonth()+2,0);	//今月末日
+	var monthFirstDay = new Date(date.getFullYear(),date.getMonth()+1,1);	//今月初日
+	console.log(monthFirstDay);
+	var DAY_OF_MONTH = monthLastDay.getDate();	//今月の日数
+	var DAY_OF_THE_WEEK = monthFirstDay.getDay();	//今月初日の曜日
 
 	//法定時間
 	var legalLimit = [160,165,171,177];
@@ -57,20 +57,28 @@
 	var scheduleTable = document.getElementById("scheduleTable");
 
 	//////テーブルヘッダーの作成////////////////////////////
+
+	//tr要素の生成
 	var tr = document.createElement('tr');
+
+	//固定要素
 	for(var i = 0; i < items.length; i++){
 		var th = document.createElement('th');
+		if(i == 0 ){th.setAttribute("class","out-of-table-fixed");}
 		th.textContent = items[i];
 		th.setAttribute("rowspan","2");
-		tr.appendChild(th);
+		tr.appendChild(th)
 	}
-	for(var i = 1; i <= DAY_OF_MONTH; i++){
+
+	//曜日
+	for(var i = DAY_OF_THE_WEEK; i < (DAY_OF_MONTH+DAY_OF_THE_WEEK); i++){
 		var th = document.createElement('th');
 		th.textContent = week[i%7];
 		tr.appendChild(th);
 	}
 	scheduleTable.appendChild(tr);
 
+	//日付
 	var tr = document.createElement('tr');
 	for(var i = 1; i <= DAY_OF_MONTH; i++){
 		var th = document.createElement('th');
@@ -82,62 +90,142 @@
 
 	//テーブル詳細の作成////////////////////////////////////
 
+	//ビルの数だけの表を作る
 	for(var building of buildingList){
-		var tr = document.createElement('tr');
+		//ビルの曜日を取得する
+		var week_days = [building.buildingMonday,
+			building.buildingTuesday,
+			building.buildingWednesday,
+			building.buildingThursday,
+			building.buildingFriday,
+			building.buildingSaturday,
+			building.buildingSunday]
 
+		//要素の生成
+		var tr = document.createElement('tr');
 		var td = document.createElement('td');
+
+		//ビル名の設定
 		td.setAttribute("rowspan",building.buildingNinzu)
 		td.setAttribute("class","out-of-table-fixed")
 		td.textContent= building.buildingName;
 		tr.appendChild(td);
 
-		var td = document.createElement('td');
-		td.setAttribute("rowspan",building.buildingNinzu)
-		td.textContent= building.buildingName;
-		tr.appendChild(td);
-
+		//人数の設定
 		var td = document.createElement('td');
 		td.setAttribute("rowspan",building.buildingNinzu)
 		td.textContent= building.buildingNinzu;
 		tr.appendChild(td);
 
-		//tr追加（ビル）
+		//[ビル清掃を担当する人数]分繰り返す。
 		for(var j = 1; j <= building.buildingNinzu; j++){
 			//td追加（日毎）
 			for(var k = 1; k <= DAY_OF_MONTH; k++){
+
+				//セレクトのデフォルト値を設定するかを判定するフラグ
+				var flag = 0;
+
+				//要素の取得
 				var td = document.createElement('td');
 				var select = document.createElement('select');
-				for(var work of workList){
-					var workDate = new Date(work.workDate);
-					if(k == workDate.getDate() && building.buildingId == work.buildingId){
-						if(work.workNumber == j){
-							td.style.backgroundColor="lightblue"
-						}
-					}
+
+				//曜日によってデータを格納できるか変更する
+				if(week_days[(k+DAY_OF_THE_WEEK-1)%7]==false){
+					td.style.backgroundColor="lightgray";
+					tr.appendChild(td);
+					continue;
 				}
-				select.setAttribute("onChange","selectCheck(this)");
-				select.setAttribute("class","day"+k);
-				//select追加（従業員）
+
+				//セレクト要素に属性を追加
+				select.setAttribute("name","selected");
+				select.setAttribute("onChange","selectCheck(this)");	//変更時selectCheckメソッドを実行させる属性
+				select.setAttribute("class","day"+k);	//クラス名の設定
+
+				//selectの中身を追加（従業員）
 				for(var employee of employeeList){
+					//要素の取得
 					var option = document.createElement('option');
+
+					//option要素に属性を設定
 					option.textContent=employee.employeeName;
-					option.setAttribute("value",employee.employeeId);
+
+					var week = (k%7 == 0) ? Math.floor(k/7) : Math.floor(k/7+1);
+					var selectDate = new Date(monthFirstDay.getFullYear(),monthFirstDay.getMonth(),k);
+					var selectDateStr = selectDate.getFullYear()+"-"+(selectDate.getMonth()+1)+"-"+selectDate.getDate();
+
+
+					//カンマ区切りで情報を格納
+					option.setAttribute("value",building.buildingId+","
+							+employee.employeeId+","
+							+j+","
+							+week+","
+							+((k+DAY_OF_THE_WEEK-1)%7)+","
+							+selectDateStr
+							);
+
+					//先月の勤務表をコピー
 					for(var work of workList){
 						var workDate = new Date(work.workDate);
-						if(employee.employeeId == work.employeeId && workDate.getDate() == k && work.buildingId == building.buildingId){
-							if(work.workNumber == j){
-								console.log("通過");
+						var workDay = workDate.getDay();
+						var workWeek = work.workWeek;
+						var workMonth = workDate.getMonth();
+						var month = date.getMonth()+1;
+
+						if(employee.employeeId == work.employeeId
+								&& work.buildingId == building.buildingId
+								&& workWeek == week
+								&& work.workDay == (k+DAY_OF_THE_WEEK-1)%7
+								&& work.workNumber == j){
 								option.setAttribute("selected","");
-							}
+								if(workMonth != month){
+									td.style.backgroundColor="pink"
+								}
+							flag = 1;
 						}
 					}
 					select.appendChild(option);
 				}
 
+				//要素の取得
+				var option = document.createElement('option')
+
+				//属性の追加
+				option.textContext="";
+
+				//勤務者がいない場合はセレクト要素のデフォルトを設定する。
+				if(flag == 0){
+					option.setAttribute("selected","")
+				}
+
+				//////////////////////////削除希望反映場所/////////////////////
+				//buildingId == this.buildingId;
+				//workDate == this.workDate;
+				//workNumber == this.buildingNinzu
+
+				for(var desire of desireList ){
+					var workDate = new Date(desire.workDate);
+					var day = workDate.getDate();
+					if(desire.buildingId == building.buildingId
+							&& desire.workNumber == j
+							&& day == k){
+						td.style.backgroundColor="skyblue"
+					}
+				}
+
+				///////////////////////////////////////////////////////////////
+
+				//親要素に子要素を追加
+				select.appendChild(option);
 				td.appendChild(select);
 				tr.appendChild(td);
+
+				//フラグの初期化
+				flag = 0;
 			}
+			//親要素に子要素を追加
 			scheduleTable.appendChild(tr);
+
+			//要素の生成
 			var tr = document.createElement('tr');
 		}
 	}
@@ -150,6 +238,7 @@
 
 	//select要素選択時に実行するメソッド（入力値チェック）
 	function selectCheck(select){
+
     	//クラス名をもとに要素を取得する
     	var elements = document.getElementsByClassName(select.className);
 
@@ -167,7 +256,8 @@
 
   		//elementsから値だけを抽出してelementValueに格納
     	for(var i = 0; i < elements.length; i++){
-	    	elementValues.push(elements[i].value);
+    		var employeeIds = elements[i].value.split(`,`);
+	    	elementValues.push(employeeIds[1]);
     	}
 
   		//さらにgetDuplicateValuesで重複している値のみを抽出
@@ -176,7 +266,10 @@
   		//重複している要素の添え字をindexRedに格納
     	for(var i = 0; i < duplicateArray.length; i++){
 			for(var j = 0; j < elements.length; j++){
-				if(elements[j].value == duplicateArray[i]){
+				console.log(elementValues[i])
+				if(elementValues[j] == null){
+					console.log()
+				}else if(elementValues[j] == duplicateArray[i]){
 					indexRed.push(j);
 				}
 			}
