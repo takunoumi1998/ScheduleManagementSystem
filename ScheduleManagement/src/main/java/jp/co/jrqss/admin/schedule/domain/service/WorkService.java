@@ -15,6 +15,6 @@ public class WorkService {
 	WorkDaoImpl workDaoImpl;
 
 	public List<Work> getWorkInfo(){
-		return workDaoImpl.selectAll();
+		return workDaoImpl.getNextMonthDate();
 	}
 }

@@ -9,23 +9,25 @@
 <body>
 	<h1>勤務表作成</h1>
 	<h3>※色の注釈</h3>
-	<p class="square1">重複</p>
-	<p class="square2">勤務削除依頼</p>
-	<p class="square3">法定日数超過分</p>
-	<p class="square4">希望日数超過分</p>
-	<p class="square5">自動追加</p>
+	<div class="rabel">
+		<p class="square1">重複</p>
+		<p class="square2">勤務削除依頼</p>
+		<p class="square3">法定日数超過分</p>
+		<p class="square4">希望日数超過分</p>
+		<p class="square5">自動追加</p>
+	</div>
 	<button class="left">確認画面へ</button>
 	<button class="right" style="float: right" onclick="location.href='TopMenu.html'">トップに戻る</button>
 	<p></p>
 
 	<form action="/admin/schedule/create" method="post">
-		<table id="scheduleTable">
-		</table>
-		<input type="submit" value="更新">
+		<div id='schedule'>
+
+		</div>
+		<div class="right">
+			<input class="updatebtn" type="submit" value="更新">
+		</div>
 	</form>
-
-
-	<div id='schedule'></div>
 </body>
 </html>
 
@@ -46,7 +48,6 @@
 	var date = new Date();	//現在
 	var monthLastDay = new Date(date.getFullYear(),date.getMonth()+2,0);	//今月末日
 	var monthFirstDay = new Date(date.getFullYear(),date.getMonth()+1,1);	//今月初日
-	console.log(monthFirstDay);
 	var DAY_OF_MONTH = monthLastDay.getDate();	//今月の日数
 	var DAY_OF_THE_WEEK = monthFirstDay.getDay();	//今月初日の曜日
 
@@ -54,7 +55,7 @@
 	var legalLimit = [160,165,171,177];
 
 	//スケジュールテーブル要素の取得
-	var scheduleTable = document.getElementById("scheduleTable");
+	var scheduleTable = document.getElementById("schedule");
 
 	//////テーブルヘッダーの作成////////////////////////////
 
@@ -93,13 +94,14 @@
 	//ビルの数だけの表を作る
 	for(var building of buildingList){
 		//ビルの曜日を取得する
-		var week_days = [building.buildingMonday,
+		var week_days = [
+			building.buildingSunday,
+			building.buildingMonday,
 			building.buildingTuesday,
 			building.buildingWednesday,
 			building.buildingThursday,
 			building.buildingFriday,
-			building.buildingSaturday,
-			building.buildingSunday]
+			building.buildingSaturday]
 
 		//要素の生成
 		var tr = document.createElement('tr');
@@ -122,6 +124,7 @@
 			//td追加（日毎）
 			for(var k = 1; k <= DAY_OF_MONTH; k++){
 
+
 				//セレクトのデフォルト値を設定するかを判定するフラグ
 				var flag = 0;
 
@@ -139,7 +142,7 @@
 				//セレクト要素に属性を追加
 				select.setAttribute("name","selected");
 				select.setAttribute("onChange","selectCheck(this)");	//変更時selectCheckメソッドを実行させる属性
-				select.setAttribute("class","day"+k);	//クラス名の設定
+				select.setAttribute("class",k);	//クラス名の設定
 
 				//selectの中身を追加（従業員）
 				for(var employee of employeeList){
@@ -170,16 +173,30 @@
 						var workWeek = work.workWeek;
 						var workMonth = workDate.getMonth();
 						var month = date.getMonth()+1;
-
 						if(employee.employeeId == work.employeeId
 								&& work.buildingId == building.buildingId
 								&& workWeek == week
 								&& work.workDay == (k+DAY_OF_THE_WEEK-1)%7
 								&& work.workNumber == j){
-								option.setAttribute("selected","");
-								if(workMonth != month){
-									td.style.backgroundColor="pink"
+
+							for(var desire of desireList){
+
+								var date1 = new Date(desire.workDate);
+								var month1 = date1.getMonth();
+								var date1 = date1.getDate();
+								var date2 = new Date(selectDateStr);
+								var month2 = date2.getMonth();
+								var date2 = date2.getDate();
+
+								if(month1 == month2 && desire.buildingId == building.buildingId && desire.workNumber == j && date1 == date2 && desire.employeeId == work.employeeId){
+									td.style.backgroundColor="skyblue"
 								}
+							}
+
+							option.setAttribute("selected","");
+							if(workMonth != month){
+								td.style.backgroundColor="pink"
+							}
 							flag = 1;
 						}
 					}
@@ -191,6 +208,13 @@
 
 				//属性の追加
 				option.textContext="";
+				option.setAttribute("value",building.buildingId+","
+						+"none,"
+						+j+","
+						+week+","
+						+((k+DAY_OF_THE_WEEK-1)%7)+","
+						+selectDateStr
+						);
 
 				//勤務者がいない場合はセレクト要素のデフォルトを設定する。
 				if(flag == 0){
@@ -201,16 +225,6 @@
 				//buildingId == this.buildingId;
 				//workDate == this.workDate;
 				//workNumber == this.buildingNinzu
-
-				for(var desire of desireList ){
-					var workDate = new Date(desire.workDate);
-					var day = workDate.getDate();
-					if(desire.buildingId == building.buildingId
-							&& desire.workNumber == j
-							&& day == k){
-						td.style.backgroundColor="skyblue"
-					}
-				}
 
 				///////////////////////////////////////////////////////////////
 
@@ -229,6 +243,7 @@
 			var tr = document.createElement('tr');
 		}
 	}
+
 	/////////////////////////////////////////////////////
 
 	//重複している値を出力するメソッド
@@ -240,52 +255,89 @@
 	function selectCheck(select){
 
     	//クラス名をもとに要素を取得する
-    	var elements = document.getElementsByClassName(select.className);
+    	for(var p = 0; p < DAY_OF_MONTH; p++){
+	    	var elements = document.getElementsByClassName((p+1));
 
-    	//要素の値を保持するための配列
-    	var elementValues = [];
+	    	//要素の値を保持するための配列
+	    	var elementValues = [];
 
-		//添え字を保持する配列
-    	var indexArray = [];
+			//添え字を保持する配列
+	    	var indexArray = [];
 
-    	//重複している値を格納する配列
-    	var duplicateArray = [];
+	    	//重複している値を格納する配列
+	    	var duplicateArray = [];
 
-		//色を変更する要素の添え字を格納する
-		var indexRed = [];
+			//色を変更する要素の添え字を格納する
+			var indexRed = [];
 
-  		//elementsから値だけを抽出してelementValueに格納
-    	for(var i = 0; i < elements.length; i++){
-    		var employeeIds = elements[i].value.split(`,`);
-	    	elementValues.push(employeeIds[1]);
+	  		//elementsから値だけを抽出してelementValueに格納
+	    	for(var i = 0; i < elements.length; i++){
+	    		var employeeIds = elements[i].value.split(`,`);
+		    	elementValues.push(employeeIds[1]);
+	    	}
+
+	  		//さらにgetDuplicateValuesで重複している値のみを抽出
+	    	duplicateArray = getDuplicateValues(elementValues);
+
+	  		//重複している要素の添え字をindexRedに格納
+	    	for(var i = 0; i < duplicateArray.length; i++){
+				for(var j = 0; j < elements.length; j++){
+					if(elementValues[j] == "none"){
+					}else if(elementValues[j] == null){
+					}else if(elementValues[j] == duplicateArray[i]){
+						indexRed.push(j);
+					}
+				}
+	    	}
+
+	  		//一度全ての要素をデフォルトの色に設定
+	    	for(var i = 0; i < elements.length; i ++){
+	    		var parent = $(elements[i]).parent();
+	    		parent[0].style.backgroundColor="";
+	    	}
+
+			//重複している要素の色を格納
+	    	for(var i = 0; i < indexRed.length; i++){
+	    		var parent = $(elements[indexRed[i]]).parent();
+	    		parent[0].style.backgroundColor="lightsalmon";
+	    	}
     	}
 
-  		//さらにgetDuplicateValuesで重複している値のみを抽出
-    	duplicateArray = getDuplicateValues(elementValues);
+		duplicationCheck();
+	}
 
-  		//重複している要素の添え字をindexRedに格納
-    	for(var i = 0; i < duplicateArray.length; i++){
-			for(var j = 0; j < elements.length; j++){
-				console.log(elementValues[i])
-				if(elementValues[j] == null){
-					console.log()
-				}else if(elementValues[j] == duplicateArray[i]){
-					indexRed.push(j);
+	//超過処理
+	function duplicationCheck(){
+		var desireDays;
+		var selects = document.getElementsByTagName("select");
+		var counts = new Array(employeeList.length);
+		for(var i = 0; i < employeeList.length; i++){
+			counts[i]=0;
+		}
+
+		for(var i = 0; i < selects.length; i++){
+			var values = selects[i].value.split(`,`);
+			for(var j = 0; j < employeeList.length; j++){
+				if(values[1] == employeeList[j].employeeId){
+					counts[j]++;
 				}
 			}
-    	}
+		}
 
-  		//一度全ての要素をデフォルトの色に設定
-    	for(var i = 0; i < elements.length; i ++){
-    		var parent = $(elements[i]).parent();
-    		parent[0].style.backgroundColor="white";
-    	}
+		for(var i = 0; i < selects.length; i++){
+			for(var j = 0; j < employeeList.length; j++){
+				var values = selects[i].value.split(`,`);
+				var parent = $(selects[i]).parent();
 
-		//重複している要素の色を格納
-    	for(var i = 0; i < indexRed.length; i++){
-    		var parent = $(elements[indexRed[i]]).parent();
-    		parent[0].style.backgroundColor="lightsalmon";
-    	}
+				if(counts[j] > employeeList[j].desireDays && values[1] == employeeList[j].employeeId){
+					parent[0].style.backgroundColor="palegreen"
+				}else if(counts[j] <= employeeList[j].desireDays && values[1] == employeeList[j].employeeId){
+					if(parent[0].style.backgroundColor=="palegreen"){
+						parent[0].style.backgroundColor=""
+					}
+				}
+			}
+		}
 	}
 /*]]>*/
 </script>

@@ -10,50 +10,85 @@ table{
 
 th{
 	background-color:#40e0d0;
-	border:solid 1px black;
+	border:solid 0.1px black;
 }
 
 td{
 	min-width:100px;
 	text-align:center;
-	border:solid 1px black;
+	border:solid 0.1px black;
 }
 
-td.out-of-table-fixed{
+.out-of-table-fixed{
 	position: -webkit-sticky;
 	position: sticky;
 	left: 0;
 	background-color:#40e0d0;
-	border-bottom:solid 1px black;
+	border-bottom:solid 0.1px black;
 }
 
 tr{
-	border-bottom:solid 1px black;
+	border-bottom:solid 0.1px black;
 
 }
 
 tr:hover{
-	background-color: #dcdcdc;
+	background-color: beige;
 }
 
 
 .square1{
-	width:40px;
-	height:20px;
+	text-align:center;
 	background:lightsalmon;
 }
 .square2{
-	width:100px;
-	height:20px;
+	text-align:center;
 	background:skyblue;
 }
 .square3{
-	width:120px;
-	height:20px;
+	text-align:center;
 	background:gold;
 }
 .square4{
-	width:120px;
-	height:20px;
+	text-align:center;
 	background:palegreen;
+}
+
+.square5{
+	text-align:center;
+	background:pink;
+}
+
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#schedule{
+	width:100%;
+	max-height:50vh;
+	overflow:scroll;
+}
+
+p{
+	display:inline;
+}
+
+.rabel{
+	width:100%;
+	margin-bottom:20px;
+}
+
+button{
+	margin:10px;
+}
+
+.updatebtn{
+	margin:30px;
+	width:10%
+
+}
+
+.right{
+	text-align:right;
 }

@@ -38,6 +38,13 @@ public class BuildingDaoImpl implements BuildingDao {
 				building.setBuildingName((String)map.get("building_name"));
 				building.setBuildingNinzu((int)map.get("building_ninzu"));
 				building.setBuildingTime((int)map.get("building_time"));
+				building.setBuildingMonday((boolean)map.get("building_monday"));
+				building.setBuildingTuesday((boolean)map.get("building_tuesday"));
+				building.setBuildingWednesday((boolean)map.get("building_wednesday"));
+				building.setBuildingThursday((boolean)map.get("building_thursday"));
+				building.setBuildingFriday((boolean)map.get("building_friday"));
+				building.setBuildingSaturday((boolean)map.get("building_saturday"));
+				building.setBuildingSunday((boolean)map.get("building_sunday"));
 
 				buildingList.add(building);
 			}

@@ -42,7 +42,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				employeeList.add(employee);
 			}
 		}catch(Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return employeeList;
