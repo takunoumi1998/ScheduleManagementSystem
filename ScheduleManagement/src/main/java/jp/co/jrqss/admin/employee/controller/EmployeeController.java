@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
 //import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.service.EmployeeService;
+
 
 @Controller
 public class EmployeeController {
@@ -22,23 +22,23 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 
+
+	/*一覧表示*/
 	@GetMapping("/admin/employee/list")
 	public String getAdminEmployeeList(Model model) {
-
 		List<Employee>employeeList=employeeService.selectMany();
-
 		model.addAttribute("employeeList",employeeList);
-
 		return "admin/employee/list";
 	}
 
-	@PostMapping("/admin/employee/create/register")
+	/*登録画面へ遷移*/
+	@GetMapping("/admin/employee/create/register")
 	public String postAdminEmployeeCreateRegister(Model model) {
-
-		return "admin/employee/create/register";
+	return "admin/employee/create/register";
 
 	}
 
+	/*新規登録から確認画面*/
 	@RequestMapping("/admin/employee/create/confirm")
 	public String postAdminEmployeeCreateConfirm(
 			@RequestParam("employee_Id")int str1,
@@ -49,19 +49,16 @@ public class EmployeeController {
 			@RequestParam("employee_Phone_Number")String str6,
 			@RequestParam("employee_Mail")String str7,
 			@RequestParam("desire_Days")int str8,
-			@RequestParam(value="desire_monday",required=false)boolean day1,
-			@RequestParam(value="desire_tuesday",required=false)boolean day2,
-			@RequestParam(value="desire_wednesday",required=false)boolean day3,
-			@RequestParam(value="desire_thursday",required=false)boolean day4,
-			@RequestParam(value="desire_friday",required=false)boolean day5,
-			@RequestParam(value="desire_saturday",required=false)boolean day6,
-			@RequestParam(value="desire_sunday",required=false)boolean day7,
-
-
-
+			@RequestParam(value="employee_Monday",required=false)boolean day1,
+			@RequestParam(value="employee_Tuesday",required=false)boolean day2,
+			@RequestParam(value="employee_Wednesday",required=false)boolean day3,
+			@RequestParam(value="employee_Thursday",required=false)boolean day4,
+			@RequestParam(value="employee_Friday",required=false)boolean day5,
+			@RequestParam(value="employee_Saturday",required=false)boolean day6,
+			@RequestParam(value="employee_Sunday",required=false)boolean day7,
 			Model model) {
 
-		Employee employee=new Employee();
+		/*Employee employee=new Employee();
 
 		employee.setEmployee_Id(str1);
 		employee.setEmployee_Name(str2);
@@ -78,8 +75,7 @@ public class EmployeeController {
 		employee.setEmployee_Friday(day5);
 		employee.setEmployee_Saturday(day6);
 		employee.setEmployee_Sunday(day7);
-
-
+*/
 
 
 		model.addAttribute("employee_Id",str1);
@@ -90,52 +86,20 @@ public class EmployeeController {
 		model.addAttribute("employee_Phone_Number",str6);
 		model.addAttribute("employee_Mail",str7);
 		model.addAttribute("desire_Days",str8);
-		//確認画面用にbooleanでtrueだったら曜日に変換
-		if(day1==true) {
-			String monday=String.valueOf(day1);
-			monday="月";
-		model.addAttribute("monday",monday);
-		}
-		if(day2==true) {
-			String tuesday=String.valueOf(day2);
-			tuesday="火";
-		model.addAttribute("tuesday",tuesday);
-		}
-		if(day3==true) {
-			String wednesday=String.valueOf(day3);
-			wednesday="水";
-		model.addAttribute("wednesday",wednesday);
-		}
-		if(day4==true) {
-			String thursday=String.valueOf(day4);
-			thursday="木";
-		model.addAttribute("thursday",thursday);
-		}
-		if(day5==true) {
-			String friday=String.valueOf(day5);
-			friday="金";
-		model.addAttribute("friday",friday);
-		}
-		if(day6==true) {
-			String saturday=String.valueOf(day6);
-			saturday="土";
-		model.addAttribute("saturday",saturday);
-		}
-		if(day7==true) {
-			String sunday=String.valueOf(day7);
-			sunday="日";
-		model.addAttribute("sunday",sunday);
-		}
-
+		model.addAttribute("employee_Monday",day1);
+		model.addAttribute("employee_Tuesday",day2);
+		model.addAttribute("employee_Wednesday",day3);
+		model.addAttribute("employee_Thursday",day4);
+		model.addAttribute("employee_Friday",day5);
+		model.addAttribute("employee_Saturday",day6);
+		model.addAttribute("employee_Sunday",day7);
 		return "admin/employee/create/confirm";
-
-
 	}
 
-
+	/*確認画面から完了画面へ*/
 	@PostMapping("/admin/employee/create/complete")
-	public String postAdminEmployeeCreateComplete(@ModelAttribute Employee employee) {
-
+	public String postAdminEmployeeCreateComplete(@ModelAttribute Employee employee
+		) {
 		//Employee employee=new Employee();
 		employee.setEmployee_Id(employee.getEmployee_Id());
 		employee.setEmployee_Name(employee.getEmployee_Name());
@@ -154,21 +118,52 @@ public class EmployeeController {
 		employee.setEmployee_Sunday(employee.isEmployee_Sunday());
 
 		boolean result=employeeService.insert(employee);
-
 		if(result==true) {
 			System.out.println("成功");
 		}else {
 			System.out.println("失敗");
 		}
-
-
 		return "admin/employee/create/complete";
 	}
 
-	@PostMapping("/admin/employee/create/backregister")
-	public String postAdminEmployeeCreateBackregister(RedirectAttributes redirectAttributes,Model model){
+	/*確認画面から登録画面へ　修正*/
+	@RequestMapping("/admin/employee/create/backregister")
+	public String AdminEmployeeCreateBackregister(
 
-		return "redirect:admin/employee/create/register";
+		@RequestParam("employee_Id")int str1,
+		@RequestParam("employee_Name")String str2,
+		@RequestParam("building_Id")int str3,
+		@RequestParam("employee_Ad_Number")String str4,
+		@RequestParam("employee_Address")String str5,
+		@RequestParam("employee_Phone_Number")String str6,
+		@RequestParam("employee_Mail")String str7,
+		@RequestParam("desire_Days")int str8,
+		@RequestParam(value="employee_Monday",required=false)boolean day1,
+		@RequestParam(value="employee_Tuesday",required=false)boolean day2,
+		@RequestParam(value="employee_Wednesday",required=false)boolean day3,
+		@RequestParam(value="employee_Thursday",required=false)boolean day4,
+		@RequestParam(value="employee_Friday",required=false)boolean day5,
+		@RequestParam(value="employee_Saturday",required=false)boolean day6,
+		@RequestParam(value="employee_Sunday",required=false)boolean day7,
+		Model model){
+
+		model.addAttribute("employee_Id",str1);
+		model.addAttribute("employee_Name",str2);
+		model.addAttribute("building_Id",str3);
+		model.addAttribute("employee_Ad_Number",str4);
+		model.addAttribute("employee_Address",str5);
+		model.addAttribute("employee_Phone_Number",str6);
+		model.addAttribute("employee_Mail",str7);
+		model.addAttribute("desire_Days",str8);
+		model.addAttribute("employee_Monday",day1);
+		model.addAttribute("employee_Tuesday",day2);
+		model.addAttribute("employee_Wednesday",day3);
+		model.addAttribute("employee_Thursday",day4);
+		model.addAttribute("employee_Friday",day5);
+		model.addAttribute("employee_Saturday",day6);
+		model.addAttribute("employee_Sunday",day7);
+
+		return "admin/employee/create/register";
 	}
 
 	@PostMapping("/admin/employee/delete/confirm")
@@ -178,6 +173,21 @@ public class EmployeeController {
 		return "admin/employee/delete/confirm";
 
 	}
+
+
+	@GetMapping("/admin/employee/change/change")
+	public String getAdminEmployeeChangeChange(
+			//@RequestParam("employee_Id")int str1,
+			Model model) {
+
+		//System.out.println(str1);
+
+
+
+		return "admin/employee/change/change";
+
+	}
+
 
 
 }

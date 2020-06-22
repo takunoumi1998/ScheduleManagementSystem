@@ -15,7 +15,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <input type="submit" name="submit"value="検索">
 </form><br>
 <p>
-<form method="post" action="/admin/employee/create/register">
+<form method="get" action="/admin/employee/create/register">
 <button class="button1" type="submit" name="newinfo">新規登録</button></form>
 <form method="post" action="/admin/employee/delete/confirm">
 <button class="button2" type="submit" name="delite">チェックした従業員を削除</button>
@@ -32,22 +32,29 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<td></td>
 		<td>従業員ID</td>
 		<td>従業員氏名</td>
-		<td>郵便番号</td>
 		<td>住所</td>
+		<td>電話番号</td>
 		<td>メール</td>
 		<td></td>
 	</tr>
+
+<!-- 詳細ページへはgetメソッドのみ飛べる コントローラーにgetを作っておく-->
 	<tr th:each="employee : ${employeeList}">
 		<td><input type="checkbox" name="delete" value="1"></td>
 		<td th:text="${employee.employee_Id}"></td>
 		<td th:text="${employee.employee_Name}"></td>
-		<td th:text="${employee.employee_Ad_Number}"></td>
 		<td th:text="${employee.employee_Address}"></td>
+		<td th:text="${employee.employee_Phone_Number}"></td>
 		<td th:text="${employee.employee_Mail}"></td>
-		<td><input type="button" value="詳細"onclick="location.href='EmployeeDetail.html'"></td>
+		<td><a th:href="@{'/admin/employee/change/change/'}">詳細</a>
+
+
+
+		</td>
 	</tr>
 
 </table>
+
 
 
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
