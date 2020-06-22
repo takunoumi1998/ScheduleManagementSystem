@@ -34,4 +34,10 @@ public class EmployeeService {
 
 	}
 
+	public Employee selectOne(int employee_Id) {
+
+		return employeedao.selectOne(employee_Id);
+
+	}
+
 }

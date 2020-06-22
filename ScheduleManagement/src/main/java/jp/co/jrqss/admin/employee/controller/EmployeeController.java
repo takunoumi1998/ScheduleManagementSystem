@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
+import jp.co.jrqss.admin.employee.domain.model.EmployeeForm;
 //import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.service.EmployeeService;
 
@@ -175,12 +177,55 @@ public class EmployeeController {
 	}
 
 
-	@GetMapping("/admin/employee/change/change")
-	public String getAdminEmployeeChangeChange(
-			//@RequestParam("employee_Id")int str1,
-			Model model) {
+	@GetMapping("/admin/employee/change/change/{employee_Id:.+}")
+	public String getAdminEmployeeChangeChange(@ModelAttribute
+						EmployeeForm form,
+						Model model,
+						@PathVariable("employee_Id")int employee_Id) {
 
-		//System.out.println(str1);
+		System.out.println("employee_Id="+employee_Id);
+
+		//employee_Idのチェック
+
+		Employee employee=employeeService.selectOne(employee_Id);
+
+		/*form.setEmployee_Id(employee.getEmployee_Id());
+		form.setEmployee_Name(employee.getEmployee_Name());
+		form.setBuilding_Id(employee.getBuilding_Id());
+		form.setEmployee_Ad_Number(employee.getEmployee_Ad_Number());
+		form.setEmployee_Address(employee.getEmployee_Address());
+		form.setEmployee_Phone_Number(employee.getEmployee_Phone_Number());
+		form.setEmployee_Mail(employee.getEmployee_Mail());
+		form.setDesire_Days(employee.getDesire_Days());
+		form.setEmployee_Monday(employee.isEmployee_Monday());
+		form.setEmployee_Tuesday(employee.isEmployee_Tuesday());
+		form.setEmployee_Wednesday(employee.isEmployee_Wednesday());
+		form.setEmployee_Thursday(employee.isEmployee_Thursday());
+		form.setEmployee_Friday(employee.isEmployee_Friday());
+		form.setEmployee_Saturday(employee.isEmployee_Saturday());
+		form.setEmployee_Sunday(employee.isEmployee_Sunday());*/
+
+		model.addAttribute("employee_Id",employee.getEmployee_Id());
+		model.addAttribute("employee_Name",employee.getEmployee_Name());
+		model.addAttribute("building_Id",employee.getBuilding_Id());
+		model.addAttribute("employee_Ad_Number",employee.getEmployee_Ad_Number());
+		model.addAttribute("employee_Address",employee.getEmployee_Address());
+		model.addAttribute("employee_Phone_Number",employee.getEmployee_Phone_Number());
+		model.addAttribute("employee_Mail",employee.getEmployee_Mail());
+		model.addAttribute("desire_Days",employee.getDesire_Days());
+		model.addAttribute("employee_Monday",employee.isEmployee_Monday());
+		model.addAttribute("employee_Tuesday",employee.isEmployee_Tuesday());
+		model.addAttribute("employee_Wednesday",employee.isEmployee_Wednesday());
+		model.addAttribute("employee_Thursday",employee.isEmployee_Thursday());
+		model.addAttribute("employee_Friday",employee.isEmployee_Friday());
+		model.addAttribute("employee_Saturday",employee.isEmployee_Saturday());
+		model.addAttribute("employee_Sunday",employee.isEmployee_Sunday());
+
+
+
+
+
+		//System.out.println("employee_Name");
 
 
 

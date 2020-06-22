@@ -46,7 +46,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<td th:text="${employee.employee_Address}"></td>
 		<td th:text="${employee.employee_Phone_Number}"></td>
 		<td th:text="${employee.employee_Mail}"></td>
-		<td><a th:href="@{'/admin/employee/change/change/'}">詳細</a>
+		<td><a th:href="@{'/admin/employee/change/change/'+${employee.employee_Id}}">詳細</a>
 
 
 

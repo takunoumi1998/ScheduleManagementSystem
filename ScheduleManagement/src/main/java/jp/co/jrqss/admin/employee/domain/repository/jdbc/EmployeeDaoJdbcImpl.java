@@ -91,5 +91,38 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 		return employeeList;
 	}
 
+	//1件取得　queryForMapを使う
+	@Override
+	public Employee selectOne(int employee_Id)throws DataAccessException{
+		Map<String,Object>map=jdbc.queryForMap("select*from employee "+" where employee_id=? ",employee_Id);
+
+
+		//結果返却用の変数
+		Employee employee=new Employee();
+
+
+
+		//結果返却用の変数にセットする　1件なのでリストは使わない
+		employee.setEmployee_Id((int)map.get("employee_id"));
+		employee.setBuilding_Id((int)map.get("building_id"));
+		employee.setEmployee_Name((String)map.get("employee_name"));
+		employee.setDesire_Days((int)map.get("desire_days"));
+		employee.setEmployee_Monday((boolean)map.get("employee_monday"));
+		employee.setEmployee_Tuesday((boolean)map.get("employee_tuesday"));
+		employee.setEmployee_Wednesday((boolean)map.get("employee_wednesday"));
+		employee.setEmployee_Thursday((boolean)map.get("employee_thursday"));
+		employee.setEmployee_Friday((boolean)map.get("employee_friday"));
+		employee.setEmployee_Saturday((boolean)map.get("employee_saturday"));
+		employee.setEmployee_Sunday((boolean)map.get("employee_sunday"));
+		employee.setEmployee_Ad_Number((String)map.get("employee_ad_number"));
+		employee.setEmployee_Address((String)map.get("employee_address"));
+		employee.setEmployee_Phone_Number((String)map.get("employee_phone_number"));
+		employee.setEmployee_Mail((String)map.get("employee_mail"));
+
+
+
+		return employee;
+	}
+
 
 }
