@@ -6,16 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.model.BuildingForm;
-import jp.co.jrqss.admin.building.domain.model.GroupOrder;
 import jp.co.jrqss.admin.building.domain.service.BuildingService;
 
 @Controller
@@ -25,9 +23,7 @@ public class BuildingController {
 	BuildingService buildingService;
 
 	/**
-	 * ビル情報一覧画面を表示
-	 * @param model Model
-	 * @return ビル情報一覧画面
+	 * 【ビル情報一覧】画面を表示
 	 */
 	@GetMapping("admin/building/list")
 	public String getAdminBuildingList(Model model) {
@@ -38,15 +34,15 @@ public class BuildingController {
 		// Modelにリストを登録
 		model.addAttribute("buildingList",buildingList);
 
-		// データ件数を取得
-		int count = buildingService.count();
-		model.addAttribute("buildingListCount", count);
+		/** データ件数を取得
+		* int count = buildingService.count();
+		* model.addAttribute("buildingListCount", count); */
 
 		return "admin/building/list";
 	}
 
 	/**
-     * 新規登録画面のGETメソッド用処理.
+     * 【新規登録】画面
      */
 	@GetMapping("admin/building/create/register")
 	public String getAdminBuildingCreateRegister(@ModelAttribute BuildingForm form,Model model) {
@@ -56,50 +52,125 @@ public class BuildingController {
 
 
 	/**
-     * 新規登録画面のPOSTメソッド用処理.
+     * 【確認】画面
      */
-	@PostMapping("admin/building/create/register")
-	public String postAdminBuildingCreateRegister(@ModelAttribute @Validated(GroupOrder.class) BuildingForm form,
-			BindingResult bindingResult, Model model) {
+	@PostMapping("admin/building/create/confirm")
+	public String postAdminBuildingCreateConfirm(@RequestParam("buildingId")int str1,
+			@RequestParam("buildingName")String str2,
+			@RequestParam("buildingNinzu")int str3,
+			@RequestParam("buildingTime")int str4,
+			@RequestParam(value="buildingMonday",required=false)boolean day1,
+			@RequestParam(value="buildingTuesday",required=false)boolean day2,
+			@RequestParam(value="buildingWednesday",required=false)boolean day3,
+			@RequestParam(value="buildingThursday",required=false)boolean day4,
+			@RequestParam(value="buildingFriday",required=false)boolean day5,
+			@RequestParam(value="buildingSaturday",required=false)boolean day6,
+			@RequestParam(value="buildingSunday",required=false)boolean day7,
+			@RequestParam("buildingAdNumber")String str5,
+			@RequestParam("buildingAddress")String str6,
+			@RequestParam("buildingPhoneNumber")String str7,
+			@RequestParam("buildingMail")String str8,
+			Model model) {
 
-		if(bindingResult.hasErrors()) {
+		model.addAttribute("buildingId",str1);
+		model.addAttribute("buildingName",str2);
+		model.addAttribute("buildingNinzu",str3);
+		model.addAttribute("buildingTime",str4);
+		model.addAttribute("buildingMonday",day1);
+		model.addAttribute("buildingTuesday",day2);
+		model.addAttribute("buildingWednesday",day3);
+		model.addAttribute("buildingThursday",day4);
+		model.addAttribute("buildingFriday",day5);
+		model.addAttribute("buildingSaturday",day6);
+		model.addAttribute("buildingSunday",day7);
+		model.addAttribute("buildingAdNumber",str5);
+		model.addAttribute("buildingAddress",str6);
+		model.addAttribute("buildingPhoneNumber",str7);
+		model.addAttribute("buildingMail",str8);
 
-			return getAdminBuildingCreateRegister(form,model);
-		}
+			return "admin/building/create/confirm";
+	}
+
+	/**
+     * 【完了】画面
+     */
+	@PostMapping("admin/building/create/complete")
+	public String postAdminBuildingCreateComplete(@ModelAttribute BuildingForm form,
+			Model model) {
 
 		// formの中身をコンソールに出して確認
-		System.out.println(form);
+				System.out.println(form);
 
-	// insert用変数
-			Building building = new Building();
+			// insert用変数
+					Building building = new Building();
 
-			building.setBuildingId(form.getBuildingId());
-			building.setBuildingName(form.getBuildingName());
-			building.setBuildingNinzu(form.getBuildingNinzu());
-			building.setBuildingTime(form.getBuildingTime());
-			building.setBuildingMonday(form.isBuildingMonday());
-			building.setBuildingTuesday(form.isBuildingTuesday());
-			building.setBuildingWednesday(form.isBuildingWednesday());
-			building.setBuildingTuesday(form.isBuildingTuesday());
-			building.setBuildingFriday(form.isBuildingFriday());
-			building.setBuildingSaturday(form.isBuildingSaturday());
-			building.setBuildingSunday(form.isBuildingSunday());
-			building.setBuildingAdNumber(form.getBuildingAdNumber());
-			building.setBuildingAddress(form.getBuildingAddress());
-			building.setBuildingPhoneNumber(form.getBuildingPhoneNumber());
-			building.setBuildingMail(form.getBuildingMail());
+					building.setBuildingId(form.getBuildingId());
+					building.setBuildingName(form.getBuildingName());
+					building.setBuildingNinzu(form.getBuildingNinzu());
+					building.setBuildingTime(form.getBuildingTime());
+					building.setBuildingMonday(form.isBuildingMonday());
+					building.setBuildingTuesday(form.isBuildingTuesday());
+					building.setBuildingWednesday(form.isBuildingWednesday());
+					building.setBuildingTuesday(form.isBuildingTuesday());
+					building.setBuildingFriday(form.isBuildingFriday());
+					building.setBuildingSaturday(form.isBuildingSaturday());
+					building.setBuildingSunday(form.isBuildingSunday());
+					building.setBuildingAdNumber(form.getBuildingAdNumber());
+					building.setBuildingAddress(form.getBuildingAddress());
+					building.setBuildingPhoneNumber(form.getBuildingPhoneNumber());
+					building.setBuildingMail(form.getBuildingMail());
 
-			// ビル登録処理
-			boolean result = buildingService.insert(building);
+					// ビル登録処理
+					boolean result = buildingService.insert(building);
 
-			// 登録結果の判定
-			if (result == true) {
-	            System.out.println("insert成功");
-	        } else {
-	            System.out.println("insert失敗");
-	        }
+					// 登録結果の判定
+					if (result == true) {
+			            System.out.println("insert成功");
+			        } else {
+			            System.out.println("insert失敗");
+			        }
 
-			return "redirect:/admin/building/list";
+					return "admin/building/create/complete";
+	}
+
+	/**
+     * 【修正】完了画面→登録画面
+     */
+	@PostMapping("admin/building/create/backregister")
+	public String postAdminBuildingCreateBackregister(@RequestParam("buildingId")int str1,
+			@RequestParam("buildingName")String str2,
+			@RequestParam("buildingNinzu")int str3,
+			@RequestParam("buildingTime")int str4,
+			@RequestParam(value="buildingMonday",required=false)boolean day1,
+			@RequestParam(value="buildingTuesday",required=false)boolean day2,
+			@RequestParam(value="buildingWednesday",required=false)boolean day3,
+			@RequestParam(value="buildingThursday",required=false)boolean day4,
+			@RequestParam(value="buildingFriday",required=false)boolean day5,
+			@RequestParam(value="buildingSaturday",required=false)boolean day6,
+			@RequestParam(value="buildingSunday",required=false)boolean day7,
+			@RequestParam("buildingAdNumber")String str5,
+			@RequestParam("buildingAddress")String str6,
+			@RequestParam("buildingPhoneNumber")String str7,
+			@RequestParam("buildingMail")String str8,
+			Model model) {
+
+		model.addAttribute("buildingId",str1);
+		model.addAttribute("buildingName",str2);
+		model.addAttribute("buildingNinzu",str3);
+		model.addAttribute("buildingTime",str4);
+		model.addAttribute("buildingMonday",day1);
+		model.addAttribute("buildingTuesday",day2);
+		model.addAttribute("buildingWednesday",day3);
+		model.addAttribute("buildingThursday",day4);
+		model.addAttribute("buildingFriday",day5);
+		model.addAttribute("buildingSaturday",day6);
+		model.addAttribute("buildingSunday",day7);
+		model.addAttribute("buildingAdNumber",str5);
+		model.addAttribute("buildingAddress",str6);
+		model.addAttribute("buildingPhoneNumber",str7);
+		model.addAttribute("buildingMail",str8);
+
+		return "admin/building/create/register";
 
 	}
 

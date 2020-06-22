@@ -15,112 +15,125 @@
  				<h1>入力内容確認</h1>
  			</div>
 
- 			<form method="post" th:acthion="@{/confirm}"
- 			th:object="${registerform}">
- 			<table class="table table-bordered table-hover">
+ 			<form method="post" action="admin/building/create/complete"
+ 					th:action="@{/admin/building/create/complete}">
 
           <!-- ビル情報入力エリア -->
- 			<tr>
 
  			<!-- ビルID -->
- 			<th class="active col-sm-3">ビルID</th>
- 		<td>
- 			<td th:text="${buildingId}"></td>
- 		</td>
- 		</tr>
- 		<tr>
+ 			<label for="buildingId">ビルID</label>
+ 			<p th:text="*{buildingId}"></p>
+ 			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
 
  			<!-- ビル名 -->
- 			<th class="active">ビル名</th>
- 		<td>
- 			<td th:text="${buildingName}"></td>
- 		</td>
- 		</tr>
- 		<tr>
-
- 			<!-- 担当従業員名 -->
- 			<th class="active">担当従業員名</th>
- 			<td>
-				<td th:text="${employeeName}"></td>
- 		</td>
- 		</tr>
- 		<tr>
+ 			<label for="buildingName">ビル名</label>
+ 			<p th:text="*{buildingName}"></p>
+ 			<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
 
  			<!-- 郵便番号 -->
- 			<th class="active">郵便番号</th>
- 			<td>
-				<td th:text="${buildingAdNumber}"></td>
- 		</td>
- 		</tr>
- 		<tr>
+ 			<label for="buildingAdNumber">郵便番号</label>
+ 			<p th:text="*{buildingAdNumber}"></p>
+ 			<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
 
  			<!-- 住所 -->
- 			<th class="active">住所</th>
- 			<td>
- 				<td th:text="${buildingAddress}"></td>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="buildingAddress">住所</label>
+ 			<p th:text="*{buildingAddress}"></p>
+ 			<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">
 
  			<!-- 電話番号 -->
- 			<th class="active">電話番号</th>
- 			<td>
- 				<td th:text="${buildingPhoneNumber}"></td>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="buildingPhoneNumber">電話番号</label>
+ 			<p th:text="*{buildingPhoneNumber}"></p>
+ 			<input type="hidden" name="buildingPhoneNumber" id="buildingPhoneNUmber" th:value="*{buildingPhoneNumber}">
 
  			<!-- メールアドレス -->
- 			<th class="active">メールアドレス</th>
- 			<td>
- 				<td th:text="${buildingMail}"></td>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="buildingMail">メールアドレス</label>
+ 			<p th:text="*{buildingMail}"></p>
+ 			<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
+
  				<!-- 必要人数 -->
- 			<th class="active">必要人数</th>
- 			<td>
- 				<td th:text="${buildingNinzu}"></td>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="buildingNinzu">必要人数</label>
+ 			<p th:text="*{buildingNinzu}"></p>
+ 			<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
 
  			<!-- 希望時間 -->
- 			<th class="active">希望時間</th>
- 			<td>
- 				<td th:text="${buildingTime}"></td>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="buildingTime">希望時間</label>
+ 			<p th:text="*{buildingTime}"></p>
+ 			<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
 
  			<!-- 希望曜日 -->
- 			<th class="active">希望曜日</th>
- 			<td>
- 			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
+ 			<label for="desireDays">希望曜日</label>
+ 			<p th:text="*{desireDays}"></p>
+ 			<input type="hidden" name="desireDays" id="desireDays" th:value="*{desireDays}">
+
+ 			<div id="buildingMonday">
+ 			<label for="buildingMonday">月曜日</label>
+ 			<p th:text="*{buildingMonday}"></p>
  			</div>
+ 			<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
 
- 		</div>
- 	</td>
- 	</tr>
- 	</table>
- 	</form>
+ 			<div id="buildingTuesday">
+ 			<label for="buildingTuesday">火曜日</label>
+ 			<p th:text="*{buildingTuesday}"></p>
+ 			</div>
+ 			<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
 
-       <div class="submit">
+ 			<div id="buildingWednesday">
+ 			<label for="buildingWednesday">水曜日</label>
+ 			<p th:text="*{buildingWednesday}"></p>
+ 			</div>
+ 			<input type="hidden" name="buildingWednesday" id="buildingWednesday" th:value="*{buildingWednesday}">
 
-		<form method="post" action="/admin/building/create/complete">
-         <input type="submit" value="送信"></form>
-         <input type="submit"onclick="location.href='BuildingRegister.html'" value="戻る">
+ 			<div id="buildingThursday">
+ 			<label for="buildingThursday">木曜日</label>
+ 			<p th:text="*{buildingThursday}"></p>
+ 			</div>
+ 			<input type="hidden" name="buildingThursday" id="buildingThursday" th:value="*{buildingThursday}">
+
+ 			<div id="buildingFriday">
+ 			<label for="buildingFriday">金曜日</label>
+ 			<p th:text="*{buildingFriday}"></p>
+ 			</div>
+ 			<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
+
+ 			<div id="buildingSaturday">
+ 			<label for="buildingSaturday">土曜日</label>
+ 			<p th:text="*{buildingSaturday}"></p>
+ 			</div>
+ 			<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
+
+ 			<div id="buildingSunday">
+ 			<label for="buildingSunday">日曜日</label>
+ 			<p th:text="*{buildingSunday}"></p>
+ 			</div>
+ 			<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
+
+		<p>この内容で確定しますか？</p>
+
+         <button type="submit" value="confirm">確定</button>
+
+    </form>
+
+    <form method="post" action="/admin/building/create/backregister">
+    	<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
+    	<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
+    	<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
+    	<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">
+    	<input type="hidden" name="buildingPhoneNumber" id="buildingPhoneNumber" th:value="*{buildingPhoneNumber}">
+    	<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
+    	<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
+    	<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
+    	<input type="hidden" name="desireDays" id="desireDays" th:value="*{desireDays}">
+    	<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
+    	<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
+    	<input type="hidden" name="buildingWednesday" id="buildingWednesday" th:value="*{buildingWednesday}">
+    	<input type="hidden" name="buildingThursday" id="buildingThursday" th:value="*{buildingThursday}">
+    	<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
+    	<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
+    	<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
+    	<input type="submit"value="修正する">
+    </form>
+
        </div>
-
-
-     </div>
 
    </body>
  </html>
