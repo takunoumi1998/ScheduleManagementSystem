@@ -6,29 +6,29 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>勤務関係</title>
 </head>
-<body>
-	<h1>勤務表作成</h1>
-	<h3>※色の注釈</h3>
-	<div class="rabel">
-		<p class="square1">重複</p>
-		<p class="square2">勤務削除依頼</p>
-		<p class="square3">法定日数超過分</p>
-		<p class="square4">希望日数超過分</p>
-		<p class="square5">自動追加</p>
-	</div>
-	<form action="/admin/top">
-		<input type="submit" value="トップに戻る" class="left" style="margin-bottom:3vw; float: left;">
-	</form>
-
-	<form action="/admin/schedule/create" method="post">
-		<div id='schedule'>
-
+	<body>
+		<h1>勤務表作成</h1>
+		<h3>※色の注釈</h3>
+		<div class="rabel">
+			<p class="square1">重複</p>
+			<p class="square2">勤務削除依頼</p>
+			<p class="square3">法定日数超過分</p>
+			<p class="square4">希望日数超過分</p>
+			<p class="square5">自動追加</p>
 		</div>
-		<div class="right">
-			<input class="updatebtn" type="submit" value="変更" onClick="return checks()">
-		</div>
-	</form>
-</body>
+		<form action="/admin/top">
+			<input type="submit" value="トップに戻る" class="left" style="margin-bottom:3vw; float: left;">
+		</form>
+
+		<form action="/admin/schedule/create" method="post">
+			<div id='schedule'>
+
+			</div>
+			<div class="right">
+				<input class="updatebtn" type="submit" value="変更" onClick="return checks()">
+			</div>
+		</form>
+	</body>
 </html>
 
 
@@ -264,8 +264,11 @@
 	//select要素選択時に実行するメソッド（入力値チェック）
 	function selectCheck(select){
 
+		duplicationCheck();
+
     	//クラス名をもとに要素を取得する
     	for(var p = 0; p < DAY_OF_MONTH; p++){
+
 	    	var elements = document.getElementsByClassName((p+1));
 
 	    	//要素の値を保持するための配列
@@ -303,7 +306,10 @@
 	  		//一度全ての要素をデフォルトの色に設定
 	    	for(var i = 0; i < elements.length; i ++){
 	    		var parent = $(elements[i]).parent();
-	    		parent[0].style.backgroundColor="";
+	    		if(parent[0].style.backgroundColor=="lightsalmon"){
+	    			console.log("白色")
+		    		parent[0].style.backgroundColor="";
+	    		}
 	    	}
 
 			//重複している要素の色を格納
@@ -312,8 +318,6 @@
 	    		parent[0].style.backgroundColor="lightsalmon";
 	    	}
     	}
-
-		duplicationCheck();
 	}
 
 	//超過処理
@@ -344,6 +348,7 @@
 
 				if(counts[j] > employeeList[j].desireDays && values[1] == employeeList[j].employeeId){
 					parent[0].style.backgroundColor="palegreen"
+					console.log("超過")
 				}else if(counts[j] <= employeeList[j].desireDays && values[1] == employeeList[j].employeeId){
 					if(parent[0].style.backgroundColor=="palegreen"){
 						parent[0].style.backgroundColor=""
@@ -357,7 +362,6 @@
 			for(var j = 0; j < employeeList.length; j++){
 				if(values[1] == employeeList[j].employeeId){
 					hours[j] = (hours[j] + parseInt(values[6]))
-					console.log(hours[j])
 				}
 			}
 		}
