@@ -38,10 +38,25 @@ FOREIGN KEY(building_id) REFERENCES building(building_id)
 );
 
 CREATE TABLE IF NOT EXISTS work(
-	work_id INT PRIMARY KEY,
 	building_id INT ,
 	employee_id INT ,
-	work_day DATE ,
+	work_number INT ,
+	work_week INT ,
+	work_day INT ,
+	work_date DATE ,
+	PRIMARY KEY(building_id,work_number,work_date),
 	FOREIGN KEY (building_id) REFERENCES building(building_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
+
+drop table desire;
+CREATE TABLE IF NOT EXISTS desire(
+	building_id INT ,
+	work_number INT ,
+	work_date DATE ,
+	employee_id INT ,
+	desire_date DATE ,
+	PRIMARY KEY (building_id , work_number , work_date),
+	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);
+
