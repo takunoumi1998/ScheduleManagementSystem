@@ -23,7 +23,7 @@ public class BuildingController {
 	BuildingService buildingService;
 
 	/**
-	 * 【ビル情報一覧】画面を表示
+	 * 【ビル情報一覧】
 	 */
 	@GetMapping("admin/building/list")
 	public String getAdminBuildingList(Model model) {
@@ -42,7 +42,7 @@ public class BuildingController {
 	}
 
 	/**
-     * 【新規登録】画面
+     * 【新規登録】
      */
 	@GetMapping("admin/building/create/register")
 	public String getAdminBuildingCreateRegister(@ModelAttribute BuildingForm form,Model model) {
@@ -52,7 +52,7 @@ public class BuildingController {
 
 
 	/**
-     * 【確認】画面
+     * 【確認】
      */
 	@PostMapping("admin/building/create/confirm")
 	public String postAdminBuildingCreateConfirm(@RequestParam("buildingId")int str1,
@@ -92,7 +92,7 @@ public class BuildingController {
 	}
 
 	/**
-     * 【完了】画面
+     * 【完了】
      */
 	@PostMapping("admin/building/create/complete")
 	public String postAdminBuildingCreateComplete(@ModelAttribute BuildingForm form,
@@ -134,7 +134,7 @@ public class BuildingController {
 	}
 
 	/**
-     * 【修正】完了画面→登録画面
+     * 【修正】完了→登録
      */
 	@PostMapping("admin/building/create/backregister")
 	public String postAdminBuildingCreateBackregister(@RequestParam("buildingId")int str1,
@@ -174,14 +174,13 @@ public class BuildingController {
 
 	}
 
-
 	/**
-     * ユーザー詳細画面のGETメソッド用処理.
+     * 【ユーザー詳細】
      */
-	@GetMapping("admin/building/change/change/{id:.+}")
+	@GetMapping("admin/building/change/change/{buildingId:.+}")
 	public String getAdminBuildingChangeChange(@ModelAttribute BuildingForm form,
 			Model model,
-			@PathVariable("id") int buildingId) {
+			@PathVariable("buildingId") int buildingId) {
 
 		// ビルID確認
 		System.out.println("buildingId = " + buildingId);
@@ -201,7 +200,7 @@ public class BuildingController {
 		form.setBuildingMonday(building.isBuildingMonday());
 		form.setBuildingTuesday(building.isBuildingTuesday());
 		form.setBuildingWednesday(building.isBuildingWednesday());
-		form.setBuildingTuesday(building.isBuildingTuesday());
+		form.setBuildingThursday(building.isBuildingThursday());
 		form.setBuildingFriday(building.isBuildingFriday());
 		form.setBuildingSaturday(building.isBuildingSaturday());
 		form.setBuildingSunday(building.isBuildingSunday());
@@ -209,6 +208,22 @@ public class BuildingController {
 		form.setBuildingAddress(building.getBuildingAddress());
 		form.setBuildingPhoneNumber(building.getBuildingPhoneNumber());
 		form.setBuildingMail(building.getBuildingMail());
+
+	/*	model.addAttribute("buildingId",building.getBuildingId());
+		model.addAttribute("buildingName",building.getBuildingName());
+		model.addAttribute("buildingNinzu",building.getBuildingNinzu());
+		model.addAttribute("buildingTime",building.getBuildingTime());
+		model.addAttribute("buildingMonday",building.isBuildingMonday());
+		model.addAttribute("buildingTuesday",building.isBuildingTuesday());
+		model.addAttribute("buildingWednesday",building.isBuildingWednesday());
+		model.addAttribute("buildingThursday",building.isBuildingThursday());
+		model.addAttribute("buildingFriday",building.isBuildingFriday());
+		model.addAttribute("buildingSaturday",building.isBuildingSaturday());
+		model.addAttribute("buildingSunday",building.isBuildingSunday());
+		model.addAttribute("buildingAdNumber",building.getBuildingAdNumber());
+		model.addAttribute("buildingAddress",building.getBuildingAddress());
+		model.addAttribute("buildingPhoneNumber",building.getBuildingPhoneNumber());
+		model.addAttribute("buildingMail",building.getBuildingMail());	*/
 
 		// Modelに登録
 		model.addAttribute("buildingForm", form);

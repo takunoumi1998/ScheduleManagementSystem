@@ -67,7 +67,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		return rowNumber;
 	}
 
-	// データを1件取得
+	// データを1件取得・・queryForMap
 	@Override
 	public Building selectOne(int buildingId) throws DataAccessException {
 
@@ -77,7 +77,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		// 結果返却用の変数
 		Building building = new Building();
 
-		// 取得したデータを結果返却用の変数にセット
+		// 取得したデータを結果返却用の変数にセット・・1件なのでリストは使わない
 		building.setBuildingId((int) map.get("buildng_id"));
 		building.setBuildingName((String) map.get("building_name"));
 		building.setBuildingNinzu((int)map.get("building_ninzu"));
