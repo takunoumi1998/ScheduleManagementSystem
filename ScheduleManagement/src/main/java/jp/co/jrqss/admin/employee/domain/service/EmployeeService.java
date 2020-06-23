@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.repository.EmployeeDao;
 
-@Service
+@Service("EmployeeServiceEmployee")
 public class EmployeeService {
 
 	@Autowired

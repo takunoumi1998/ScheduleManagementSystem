@@ -1,7 +1,6 @@
---drop table desire;
---DROP TABLE work;
---drop table employee;
---drop table building;
+-- DROP TABLE work;
+-- DROP TABLE employee;
+-- DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT PRIMARY KEY,

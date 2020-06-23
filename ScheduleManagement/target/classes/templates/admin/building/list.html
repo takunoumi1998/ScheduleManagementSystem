@@ -20,12 +20,16 @@
   <input type="submit" name="submit" value="検索">
 </form><br>
 <p>
+<div style="margin-bottom:3vw; float: right;">
 <form method="get" action="/admin/building/create/register">
 <!-- <form method="get" th:href="@{'/admin/building/create/register'}"> -->
 <button class="button1" type="submit" name="newinfo" >新規登録</button></form>
 <form method="post" action="/admin/building/delete/confirm">
 <button class="button2" type="submit" name="delite">チェックしたビルを削除</button></form>
-<button style=float:right >トップに戻る</button>
+</div>
+<form action="/admin/top">
+	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
+</form>
 </p>
 <table border="1">
 	<tr>
