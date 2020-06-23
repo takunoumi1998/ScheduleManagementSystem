@@ -6,29 +6,29 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <title>勤務関係</title>
 </head>
-<body>
-	<h1>勤務表作成</h1>
-	<h3>※色の注釈</h3>
-	<div class="rabel">
-		<p class="square1">重複</p>
-		<p class="square2">勤務削除依頼</p>
-		<p class="square3">法定日数超過分</p>
-		<p class="square4">希望日数超過分</p>
-		<p class="square5">自動追加</p>
-	</div>
-	<button class="left">確認画面へ</button>
-	<button class="right" style="float: right" onclick="location.href='TopMenu.html'">トップに戻る</button>
-	<p></p>
-
-	<form action="/admin/schedule/create" method="post">
-		<div id='schedule'>
-
+	<body>
+		<h1>勤務表作成</h1>
+		<h3>※色の注釈</h3>
+		<div class="rabel">
+			<p class="square1">重複</p>
+			<p class="square2">勤務削除依頼</p>
+			<p class="square3">法定日数超過分</p>
+			<p class="square4">希望日数超過分</p>
+			<p class="square5">自動追加</p>
 		</div>
-		<div class="right">
-			<input class="updatebtn" type="submit" value="更新" onClick="return checks()">
-		</div>
-	</form>
-</body>
+		<form action="/admin/top">
+			<input type="submit" value="トップに戻る" class="left" style="margin-bottom:3vw; float: left;">
+		</form>
+
+		<form action="/admin/schedule/create" method="post">
+			<div id='schedule'>
+
+			</div>
+			<div class="right">
+				<input class="updatebtn" type="submit" value="変更" onClick="return checks()">
+			</div>
+		</form>
+	</body>
 </html>
 
 
@@ -52,8 +52,17 @@
 	var DAY_OF_THE_WEEK = monthFirstDay.getDay();	//今月初日の曜日
 
 	//法定時間
-	var legalLimit = [160,165,171,177];
+	if(DAY_OF_MONTH == 28){
+		legalLimit = 160*60;
+	}else if(DAY_OF_MONTH == 29){
+		legalLimit = 165*60;
+	}else if(DAY_OF_MONTH == 30){
+		legalLimit = 171*60;
+	}else{
+		legalLimit = 177*60;
+	}
 
+	console.log(legalLimit)
 	//スケジュールテーブル要素の取得
 	var scheduleTable = document.getElementById("schedule");
 
@@ -163,7 +172,8 @@
 							+j+","
 							+week+","
 							+((k+DAY_OF_THE_WEEK-1)%7)+","
-							+selectDateStr
+							+selectDateStr+","
+							+building.buildingTime
 							);
 
 					//先月の勤務表をコピー
@@ -254,8 +264,11 @@
 	//select要素選択時に実行するメソッド（入力値チェック）
 	function selectCheck(select){
 
+		duplicationCheck();
+
     	//クラス名をもとに要素を取得する
     	for(var p = 0; p < DAY_OF_MONTH; p++){
+
 	    	var elements = document.getElementsByClassName((p+1));
 
 	    	//要素の値を保持するための配列
@@ -293,7 +306,10 @@
 	  		//一度全ての要素をデフォルトの色に設定
 	    	for(var i = 0; i < elements.length; i ++){
 	    		var parent = $(elements[i]).parent();
-	    		parent[0].style.backgroundColor="";
+	    		if(parent[0].style.backgroundColor=="lightsalmon"){
+	    			console.log("白色")
+		    		parent[0].style.backgroundColor="";
+	    		}
 	    	}
 
 			//重複している要素の色を格納
@@ -302,8 +318,6 @@
 	    		parent[0].style.backgroundColor="lightsalmon";
 	    	}
     	}
-
-		duplicationCheck();
 	}
 
 	//超過処理
@@ -311,8 +325,11 @@
 		var desireDays;
 		var selects = document.getElementsByTagName("select");
 		var counts = new Array(employeeList.length);
+		var hours = new Array(employeeList.length);
+
 		for(var i = 0; i < employeeList.length; i++){
 			counts[i]=0;
+			hours[i]=0;
 		}
 
 		for(var i = 0; i < selects.length; i++){
@@ -331,8 +348,33 @@
 
 				if(counts[j] > employeeList[j].desireDays && values[1] == employeeList[j].employeeId){
 					parent[0].style.backgroundColor="palegreen"
+					console.log("超過")
 				}else if(counts[j] <= employeeList[j].desireDays && values[1] == employeeList[j].employeeId){
 					if(parent[0].style.backgroundColor=="palegreen"){
+						parent[0].style.backgroundColor=""
+					}
+				}
+			}
+		}
+
+		for(var i = 0; i < selects.length; i++){
+			var values = selects[i].value.split(`,`);
+			for(var j = 0; j < employeeList.length; j++){
+				if(values[1] == employeeList[j].employeeId){
+					hours[j] = (hours[j] + parseInt(values[6]))
+				}
+			}
+		}
+
+		for(var i = 0; i < selects.length; i++){
+			for(var j = 0; j < employeeList.length; j++){
+				var values = selects[i].value.split(`,`);
+				var parent = $(selects[i]).parent();
+
+				if(hours[j] > legalLimit && values[1] == employeeList[j].employeeId){
+					parent[0].style.backgroundColor="gold"
+				}else if(hours[j] <= legalLimit && values[1] == employeeList[j].employeeId){
+					if(parent[0].style.backgroundColor=="gold"){
 						parent[0].style.backgroundColor=""
 					}
 				}
@@ -347,6 +389,9 @@
 		for(var td of tds){
 			if(td.style.backgroundColor=="lightsalmon"){
 				alert("重複があります。修正してください。");
+				return false;
+			}else if(td.style.backgroundColor=="gold"){
+				alert("法定時間を超えています。修正してください。");
 				return false;
 			}
 		}

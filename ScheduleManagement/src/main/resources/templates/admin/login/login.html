@@ -10,40 +10,40 @@
 
     <title>ログイン</title>
 </head>
-<body class="text-center">
+<body class="text-center">aaaa
 
 	<div align="center">
-	
+
     <h1>ログイン</h1>
     <form method="post" action="/login">
-    
+
         <!-- ユーザーID -->
         <label>管理者ID</label>
         <input type="text" name="employee_id" size="24"/><br/>
         <br />
-        
+
         <!-- パスワード -->
         <label>パスワード</label>
         <input type="password" name="password" size="24"/><br/>
         <br />
-        
+
         <!-- ログインボタン -->
         <button class="btn btn-primary" type="submit">ログイン</button>
-        
+
     </form>
     <br/>
-    
+
     <!-- ユーザー登録画面へのリンク -->
     <a th:href="@{'/signup'}">従業員はこちら</a>
-    
-    
+
+
       <!--フッター -->
   <footer>
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
-  
+
   </div>
-  
-  
+
+
 </body>
 </html>
