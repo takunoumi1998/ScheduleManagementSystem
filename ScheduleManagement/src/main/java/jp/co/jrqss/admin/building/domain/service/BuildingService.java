@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.repository.BuildingDao;
 
-@Service
+@Service("BuildingServiceBuilding")
 public class BuildingService {
 
 	@Autowired

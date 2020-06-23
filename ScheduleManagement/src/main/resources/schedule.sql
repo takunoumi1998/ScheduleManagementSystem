@@ -1,7 +1,7 @@
-drop table desire;
-DROP TABLE work;
-drop table employee;
-drop table building;
+--drop table desire;
+--DROP TABLE work;
+--drop table employee;
+--drop table building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT PRIMARY KEY,
@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS work(
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
-drop table desire;
 CREATE TABLE IF NOT EXISTS desire(
 	building_id INT ,
 	work_number INT ,

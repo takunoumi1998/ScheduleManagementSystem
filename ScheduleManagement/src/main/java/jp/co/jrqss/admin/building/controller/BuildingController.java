@@ -3,6 +3,7 @@ package jp.co.jrqss.admin.building.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import jp.co.jrqss.admin.building.domain.service.BuildingService;
 @Controller
 public class BuildingController {
 
+	@Qualifier("BuildingServiceBuilding")
 	@Autowired
 	BuildingService buildingService;
 
