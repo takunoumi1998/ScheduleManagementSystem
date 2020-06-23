@@ -339,6 +339,25 @@
 			}
 		}
 	}
+
+
+	function check(){
+		var tds = document.getElementsByTagName("td");
+		for(var td of tds){
+			if(td.style.backgroundColor="lightsalmon"){
+				alert("重複があります。修正してください。");
+				return false;
+			}
+		}
+
+		for(var td of tds){
+			if(td.style.backgroundColor="palegreen"){
+				if(confirm("希望日数を超過しています。\n変更しますか？") == false){
+					return false;
+				}
+			}
+		}
+	}
 /*]]>*/
 </script>
 
