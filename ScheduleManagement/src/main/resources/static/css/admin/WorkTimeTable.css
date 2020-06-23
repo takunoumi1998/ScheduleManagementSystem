@@ -9,7 +9,7 @@ table{
 }
 
 th{
-	background-color:#40e0d0;
+	background-color:lightblue;
 	border:solid 0.1px black;
 }
 
@@ -23,7 +23,7 @@ td{
 	position: -webkit-sticky;
 	position: sticky;
 	left: 0;
-	background-color:#40e0d0;
+	background-color:lightblue;
 	border-bottom:solid 0.1px black;
 }
 

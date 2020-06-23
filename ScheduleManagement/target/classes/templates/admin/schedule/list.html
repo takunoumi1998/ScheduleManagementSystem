@@ -25,7 +25,7 @@
 
 		</div>
 		<div class="right">
-			<input class="updatebtn" type="submit" value="更新">
+			<input class="updatebtn" type="submit" value="更新" onClick="return checks()">
 		</div>
 	</form>
 </body>
@@ -341,19 +341,22 @@
 	}
 
 
-	function check(){
+	function checks(){
 		var tds = document.getElementsByTagName("td");
+
 		for(var td of tds){
-			if(td.style.backgroundColor="lightsalmon"){
+			if(td.style.backgroundColor=="lightsalmon"){
 				alert("重複があります。修正してください。");
 				return false;
 			}
 		}
 
 		for(var td of tds){
-			if(td.style.backgroundColor="palegreen"){
+			if(td.style.backgroundColor=="palegreen"){
 				if(confirm("希望日数を超過しています。\n変更しますか？") == false){
 					return false;
+				}else{
+					return true;
 				}
 			}
 		}
