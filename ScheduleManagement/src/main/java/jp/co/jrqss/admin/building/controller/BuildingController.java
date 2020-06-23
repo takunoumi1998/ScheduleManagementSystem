@@ -189,10 +189,10 @@ public class BuildingController {
 		model.addAttribute("contents", "admin/building/change/change ::change_contents");
 
 
-		// ビル情報を取得
+		// buildingIdを取得
 		Building building = buildingService.selectOne(buildingId);
 
-		// ビルクラスをフォームクラスに変換
+/*		// ビルクラスをフォームクラスに変換
 		form.setBuildingId(building.getBuildingId());
 		form.setBuildingName(building.getBuildingName());
 		form.setBuildingNinzu(building.getBuildingNinzu());
@@ -208,8 +208,12 @@ public class BuildingController {
 		form.setBuildingAddress(building.getBuildingAddress());
 		form.setBuildingPhoneNumber(building.getBuildingPhoneNumber());
 		form.setBuildingMail(building.getBuildingMail());
+*/
 
-	/*	model.addAttribute("buildingId",building.getBuildingId());
+//System.out.println("form.BN="+form.getBuildingName());
+
+
+		model.addAttribute("buildingId",building.getBuildingId());
 		model.addAttribute("buildingName",building.getBuildingName());
 		model.addAttribute("buildingNinzu",building.getBuildingNinzu());
 		model.addAttribute("buildingTime",building.getBuildingTime());
@@ -223,11 +227,11 @@ public class BuildingController {
 		model.addAttribute("buildingAdNumber",building.getBuildingAdNumber());
 		model.addAttribute("buildingAddress",building.getBuildingAddress());
 		model.addAttribute("buildingPhoneNumber",building.getBuildingPhoneNumber());
-		model.addAttribute("buildingMail",building.getBuildingMail());	*/
+		model.addAttribute("buildingMail",building.getBuildingMail());
 
 		// Modelに登録
-		model.addAttribute("buildingForm", form);
-
+/*		model.addAttribute("buildingForm", form);
+*/
 		return "admin/building/change/change";
 	}
 

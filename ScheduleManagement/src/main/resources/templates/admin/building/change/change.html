@@ -17,7 +17,8 @@
  		<h2>変更箇所を入力してください</h2>
 
  		<form method="post" id="admin/building/create/complete"
- 				action="admin/building/create/confirm" th:acthion="@{/admin/building/create/confirm}">
+ 				action="admin/building/create/confirm" th:acthion="@{/admin/building/create/confirm}"
+ 				th:object="${buildingForm}">
 
  			<!-- ビル情報入力エリア -->
 
@@ -61,14 +62,10 @@
  			<input type="text" class="form-control" id="buildingTime"
  					name="buildingTime" th:value="${buildingTime}"/>
 
- 			<!-- 希望曜日 -->
- 			<label for="desireDays">希望曜日</label>
- 			<input tyape="text" class="form-control" id="desireDays"
- 					name="desireDays" th:value="${dasireDays}"/>
-
  			<br>
 
- 			<label for="desireDays">希望曜日にチェックしてください</label>
+ 			<!-- 希望曜日 -->
+ 			<label for="desireDays">希望曜日にチェックを入れてください</label>
 
  				<h3>月曜日 <input type="checkbox" name="buildingMonday"
  								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>

@@ -78,7 +78,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		Building building = new Building();
 
 		// 取得したデータを結果返却用の変数にセット・・1件なのでリストは使わない
-		building.setBuildingId((int) map.get("buildng_id"));
+		building.setBuildingId((int) map.get("building_id"));
 		building.setBuildingName((String) map.get("building_name"));
 		building.setBuildingNinzu((int)map.get("building_ninzu"));
 		building.setBuildingTime((int)map.get("building_time"));
