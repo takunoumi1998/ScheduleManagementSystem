@@ -15,4 +15,7 @@ public interface EmployeeDao {
 
 	//1件だけ取得
 	public Employee selectOne(int employee_Id)throws DataAccessException;
+
+	//1件更新
+	public int updateOne(Employee employee)throws DataAccessException;
 }

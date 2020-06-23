@@ -31,7 +31,7 @@ employee_sunday boolean,
 employee_ad_number varchar(256),
 employee_address varchar(256),
 employee_phone_number varchar(256),
-employee_mail varchar(50),
+employee_mail varchar(256),
 PRIMARY KEY(employee_id),
 FOREIGN KEY(building_id) REFERENCES building(building_id)
 );

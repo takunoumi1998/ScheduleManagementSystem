@@ -40,4 +40,19 @@ public class EmployeeService {
 
 	}
 
+	public boolean updateOne(Employee employee) {
+
+		int rowNumber=employeedao.updateOne(employee);
+		boolean result=false;
+
+		if(rowNumber>0) {
+
+			result=true;
+		}
+
+		return result;
+
+
+	}
+
 }

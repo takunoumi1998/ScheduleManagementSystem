@@ -12,7 +12,7 @@
  <body>
  <h1>従業員詳細</h1>
  <h2>変更箇所を入力しなおしてください</h2>
-<form method="post"id="admin/employee/create/complete" action="admin/employee/create/confirm"th:action="@{/admin/employee/create/confirm}">
+<form method="post"id="admin/employee/change/complete" action="admin/employee/change/complete"th:action="@{/admin/employee/change/complete}">
 <label for="employee_Id">従業員ID</label>
 			<input type="text" class="form-control" id="employee_Id" name="employee_Id" th:value="${employee_Id}" readonly="readonly" />
 
@@ -46,7 +46,7 @@
 
               <label for="desire_Days">希望曜日にチェックしてください</label>
 
- 				<h3>月曜日　<input type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="1"></h3>
+ 				<h3>月曜日　<input type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="*{1}"></h3>
  				<h3>火曜日　<input type="checkbox" name="employee_Tuesday" th:checked="${employee_Tuesday==true}"th:value="*{1}"></h3>
  				<h3>水曜日　<input type="checkbox" name="employee_Wednesday"th:checked="${employee_Wednesday==true}" th:value="*{1}"></h3>
  				<h3>木曜日　<input type="checkbox" name="employee_Thursday" th:checked="${employee_Thursday==true}"th:value="*{1}"></h3>
@@ -63,7 +63,7 @@
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
  				name="register">
-				登録
+				変更する
  				</button>
 
  			</form>

@@ -124,5 +124,51 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 		return employee;
 	}
 
+	/*1件更新*/
+	@Override
+	public int updateOne(Employee employee)throws DataAccessException{
+
+		int rowNumber=jdbc.update("update employee "
+				+" set "
+				+" building_id=?, "
+				+" employee_name=?, "
+				+" desire_days=?,"
+				+" employee_monday=?,"
+				+" employee_tuesday=?,"
+				+" employee_wednesday=?,"
+				+" employee_thursday=?,"
+				+" employee_friday=?,"
+				+" employee_saturday=?,"
+				+" employee_sunday=?,"
+				+" employee_ad_number=?,"
+				+" employee_address=?,"
+				+" employee_phone_number=?,"
+				+" employee_mail = ?"
+				+" where employee_id = ? "
+				,employee.getBuilding_Id()
+				,employee.getEmployee_Name()
+				,employee.getDesire_Days()
+				,employee.isEmployee_Monday()
+				,employee.isEmployee_Tuesday()
+				,employee.isEmployee_Wednesday()
+				,employee.isEmployee_Thursday()
+				,employee.isEmployee_Friday()
+				,employee.isEmployee_Saturday()
+				,employee.isEmployee_Sunday()
+				,employee.getEmployee_Ad_Number()
+				,employee.getEmployee_Address()
+				,employee.getEmployee_Phone_Number()
+				,employee.getEmployee_Mail()
+				,employee.getEmployee_Id()
+				);
+
+		return rowNumber;
+	}
+
+
+
+
+
+
 
 }
