@@ -1,162 +1,102 @@
 <!DOCTYPE html>
-<html xmlna:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
+
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
-	
+	<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
+
 	<title>ビル情報｜詳細</title>
-	
+
  </head>
  <body>
- 	<div th:fragment="EmployeeRegister_contents">
- 		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
- 				<h1>ビル情報</h1>
+ 				<h1>ビル情報詳細</h1>
  			</div>
- 				
- 			<form method="post" th:acthion="@{/EmployeeRegister}"
- 			th:object="${signupform}">
- 			<table class="table table-bordered table-hover">
- 			
+ 		<h2>変更箇所を入力してください</h2>
+
+ 		<form method="post" id="admin/building/create/complete"
+ 				action="admin/building/create/confirm" th:acthion="@{/admin/building/create/confirm}"
+ 				th:object="${buildingForm}">
+
  			<!-- ビル情報入力エリア -->
- 			<tr>
- 			
+
  			<!-- ビルID -->
- 			<th class="active col-sm-3">ビルID</th>
- 			<td>
- 				<div class="form-group">
- 					<input type="text" class="form-control"/>
- 				</div>
- 			</td>
- 		</tr>	
- 		<tr>
- 		
+ 			<label for="buildingId">ビルID</label>
+ 				<input type="text" class="form-control" id="buildingId"
+ 					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
+
  			<!-- ビル名 -->
- 			<th class="active">ビル名</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 		
- 			<!-- 担当従業員名 -->
- 			<th class="active">担当従業員名</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 	
+ 			<label for="buildingName">ビル名</label>
+ 			<input type="text" class="form-control" id="buildingName"
+ 					name="buildingName" th:value="${buildingName}"/>
+
  			<!-- 郵便番号 -->
- 			<th class="active">郵便番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 	
+ 			<label for="buildingAdNumber">郵便番号</label>
+ 			<input type="text" class="form-control" id="buildingAdNumber"
+ 					name="buildingAdNumber" th:value="${buildingAdNumber}"/>
+
  			<!-- 住所 -->
- 			<th class="active">住所</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 	
+ 			<label for="buildingAddress">住所</label>
+ 			<input type="text" class="form-control" id="buildingAdress"
+ 					name="buildingAddress" th:value="${buildingAddress}"/>
+
  			<!-- 電話番号 -->
- 			<th class="active">電話番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 	
+ 			<label for="buildingPhoneNumber">電話番号</label>
+ 			<input type="text" class="form-control" id="buildingPhoneNumber"
+ 					name="buildingPhoneNumber" th:value="${buildingPhoneNumber}"/>
+
  			<!-- メールアドレス -->
- 			<th class="active">メールアドレス</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="buildingMail">メールアドレス</label>
+ 			<input type="text" class="form-control" id="buildingMail"
+ 					name="buildingMail" th:value="${buildingMail}"/>
+
  				<!-- 必要人数 -->
- 			<th class="active">必要人数</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 	
+ 			<label for="buildingNinzu">必要人数</label>
+ 			<input type="text" class="form-control" id="buildingNinzu"
+ 					name="buildingNinzu" th:value="${buildingNinzu}"/>
+
  			<!-- 希望時間 -->
- 			<th class="active">希望時間</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
- 	
+ 			<label for="buildingTime">希望時間</label>
+ 			<input type="text" class="form-control" id="buildingTime"
+ 					name="buildingTime" th:value="${buildingTime}"/>
+
+ 			<br>
+
  			<!-- 希望曜日 -->
- 			<th class="active">希望曜日</th>
- 			<td>
- 			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
- 			</div>
- 			<span class="text-danger"
- 				th:if="${#fields.hasEroors('desire_youbi')}"
- 				th:errors="*{desire_youbi}">
- 			</span>
- 		</div>
- 	</td>
- 	</tr>
- 	</table>
- 	</form>
+ 			<label for="desireDays">希望曜日にチェックを入れてください</label>
+
+ 				<h3>月曜日 <input type="checkbox" name="buildingMonday"
+ 								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
+ 				<h3>火曜日 <input type="checkbox" name="buildingTuesday"
+ 								th:checked="${buildingTuesday==true}" th:value="*{1}"></h3>
+ 				<h3>水曜日 <input type="checkbox" name="buildingWednesday"
+ 								th:checked="${buildingWednesday==true}" th:value="*{1}"></h3>
+ 				<h3>木曜日 <input type="checkbox" name="buildingThursday"
+								th:checked="${buildingThursday==true}" th:value="*{1}"></h3>
+ 				<h3>金曜日 <input type="checkbox" name="buildingFriday"
+ 								th:checked="${buildingFriday==true}" th:value="*{1}"></h3>
+ 				<h3>土曜日 <input type="checkbox" name="buildingSaturday"
+ 								th:checked="${buildingSaturday==true}" th:value="*{1}"></h3>
+ 				<h3>日曜日 <input type="checkbox" name="buildingSunday"
+ 								th:checked="${buildingSunday==true}" th:value="*{1}"></h3>
+
+
  	<!-- 変更ボタン -->
  			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit"
- 				name="update"
- 				onclick="location.href='BuildingDetailCushon.html'"
- 				>
- 					変更
- 				</button>
+ 				type="submit" name="register">登録</button>
+
+ 		</form>
+ 			<form method="get" action="/admin/building/list">
  			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit"
- 				name="register"
- 				onclick="location.href='BuildingManage.html'"
- 				>ビル一覧へ戻る
- 				</button>
- 			
+ 				type="submit" name="register">ビル一覧へ戻る</button></form>
+
  			<!--フッター -->
   <footer>
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
-  
+
  		</div>
- 	</div>
- 	</div>	
- 
  </body>
  </html>
