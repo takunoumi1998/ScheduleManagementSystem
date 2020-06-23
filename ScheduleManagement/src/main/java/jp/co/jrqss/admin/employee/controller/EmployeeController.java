@@ -164,7 +164,6 @@ public class EmployeeController {
 		System.out.println("employee_Id="+employee_Id);
 
 		//employee_Idのチェック
-
 		Employee employee=employeeService.selectOne(employee_Id);
 
 		/*form.setEmployee_Id(employee.getEmployee_Id());
@@ -313,44 +312,17 @@ public class EmployeeController {
 	@PostMapping("/admin/employee/change/complete")
 	public String AdminEmployeeChangeComplete(@ModelAttribute Employee employee,Model model) {
 
-		System.out.println("更新ボタンの処理");
-		//Employee employee=new Employee();
-
-/*		employee.setEmployee_Id(employee.getEmployee_Id());
-		employee.setEmployee_Name(employee.getEmployee_Name());
-		employee.setBuilding_Id(employee.getBuilding_Id());
-		employee.setEmployee_Ad_Number(employee.getEmployee_Ad_Number());
-		employee.setEmployee_Address(employee.getEmployee_Address());
-		employee.setEmployee_Phone_Number(employee.getEmployee_Phone_Number());
-		employee.setDesire_Days(employee.getDesire_Days());
-		employee.setEmployee_Mail(employee.getEmployee_Mail());
-		employee.setEmployee_Monday(employee.isEmployee_Monday());
-		employee.setEmployee_Tuesday(employee.isEmployee_Tuesday());
-		employee.setEmployee_Wednesday(employee.isEmployee_Wednesday());
-		employee.setEmployee_Thursday(employee.isEmployee_Thursday());
-		employee.setEmployee_Friday(employee.isEmployee_Friday());
-		employee.setEmployee_Saturday(employee.isEmployee_Saturday());
-		employee.setEmployee_Sunday(employee.isEmployee_Sunday());
-*/
-
 		boolean result =employeeService.updateOne(employee);
-
 		if(result==true) {
 			model.addAttribute("後進成功",result);
-
 		}else {
-			model.addAttribute("result","更新失敗");
-
+			model.addAttribute("更新失敗",result);
 		}
-
-
-
-
-
 
 		return "admin/employee/change/complete";
 	}
 
+	/*削除画面へ遷移*/
 
 
 
