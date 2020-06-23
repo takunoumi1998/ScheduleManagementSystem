@@ -1,30 +1,32 @@
 <!DOCTYPE html>
-<html xmlna:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	
+
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="DeleteComp.css">
-	
+
 	<title>変更｜完了</title>
-	
+
  </head>
  <body>
- 
+
  <div align="center">
- 
+
  				<h1>変更完了しました</h1>
- 			
+
  			<!-- 戻るボタン -->
-       <a href="#" class="btn-flat-border" onclick="location.href='EmployeeManage.html'" >従業員一覧へ戻る</a>
- 			
+      <form action="/admin/employee/list" method="get">
+       <button>従業員一覧へ戻る</button>
+			</form>
+
  	<!--フッター -->
   <footer>
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
-  
+
   </div>
-  
-  
+
+
 </body>
 </html>

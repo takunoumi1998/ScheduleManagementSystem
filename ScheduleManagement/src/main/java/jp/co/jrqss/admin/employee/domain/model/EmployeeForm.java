@@ -3,7 +3,8 @@ package jp.co.jrqss.admin.employee.domain.model;
 import lombok.Data;
 
 @Data
-public class Employee {
+public class EmployeeForm {
+
 
 	private int employee_Id;
 	private int building_Id;
