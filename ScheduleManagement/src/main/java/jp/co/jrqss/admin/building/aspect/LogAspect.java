@@ -4,7 +4,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 
 public class LogAspect {
-
 	/**
      * コントローラークラスのログ出力用アスペクト.
      */
