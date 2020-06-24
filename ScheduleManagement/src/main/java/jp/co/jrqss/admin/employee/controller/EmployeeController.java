@@ -3,6 +3,7 @@ package jp.co.jrqss.admin.employee.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import jp.co.jrqss.admin.employee.domain.service.EmployeeService;
 @Controller
 public class EmployeeController {
 
+	@Qualifier("EmployeeServiceEmployee")
 	@Autowired
 	EmployeeService employeeService;
 
