@@ -3,7 +3,6 @@ package jp.co.jrqss.admin.building.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -134,7 +133,7 @@ public class BuildingController {
 	}
 
 	/**
-     * 【修正】完了→登録
+     * 【登録】確認 → 修正
      */
 	@PostMapping("admin/building/create/backregister")
 	public String postAdminBuildingCreateBackregister(@RequestParam("buildingId")int str1,
@@ -192,8 +191,8 @@ public class BuildingController {
 		// buildingIdを取得
 		Building building = buildingService.selectOne(buildingId);
 
-/*		// ビルクラスをフォームクラスに変換
-		form.setBuildingId(building.getBuildingId());
+		// ビルクラスをフォームクラスに変換
+/*		form.setBuildingId(building.getBuildingId());
 		form.setBuildingName(building.getBuildingName());
 		form.setBuildingNinzu(building.getBuildingNinzu());
 		form.setBuildingTime(building.getBuildingTime());
@@ -236,21 +235,113 @@ public class BuildingController {
 	}
 
 	/**
-     * 更新用処理.
+     * 【変更 → 確認】
      */
-	@PostMapping(value = "admin/building/change/change", params = "update")
-	public String postBuildingChangeChangeUpdate(@ModelAttribute BuildingForm form,
+	@PostMapping("admin/building/change/confirm")
+	public String postAdminBuildingChangeeConfirm(@RequestParam("buildingId")int str1,
+			@RequestParam("buildingName")String str2,
+			@RequestParam("buildingNinzu")int str3,
+			@RequestParam("buildingTime")int str4,
+			@RequestParam(value="buildingMonday",required=false)boolean day1,
+			@RequestParam(value="buildingTuesday",required=false)boolean day2,
+			@RequestParam(value="buildingWednesday",required=false)boolean day3,
+			@RequestParam(value="buildingThursday",required=false)boolean day4,
+			@RequestParam(value="buildingFriday",required=false)boolean day5,
+			@RequestParam(value="buildingSaturday",required=false)boolean day6,
+			@RequestParam(value="buildingSunday",required=false)boolean day7,
+			@RequestParam("buildingAdNumber")String str5,
+			@RequestParam("buildingAddress")String str6,
+			@RequestParam("buildingPhoneNumber")String str7,
+			@RequestParam("buildingMail")String str8,
+			Model model) {
+
+		Building building = new Building();
+
+		building.setBuildingId(str1);
+		building.setBuildingName(str2);
+		building.setBuildingNinzu(str3);
+		building.setBuildingTime(str4);
+		building.setBuildingMonday(day1);
+		building.setBuildingTuesday(day2);
+		building.setBuildingWednesday(day3);
+		building.setBuildingThursday(day4);
+		building.setBuildingFriday(day5);
+		building.setBuildingSaturday(day6);
+		building.setBuildingSunday(day7);
+		building.setBuildingAdNumber(str5);
+		building.setBuildingAddress(str6);
+		building.setBuildingPhoneNumber(str7);
+		building.setBuildingMail(str8);
+
+		model.addAttribute("buildingId",str1);
+		model.addAttribute("buildingName",str2);
+		model.addAttribute("buildingNinzu",str3);
+		model.addAttribute("buildingTime",str4);
+		model.addAttribute("buildingMonday",day1);
+		model.addAttribute("buildingTuesday",day2);
+		model.addAttribute("buildingWednesday",day3);
+		model.addAttribute("buildingThursday",day4);
+		model.addAttribute("buildingFriday",day5);
+		model.addAttribute("buildingSaturday",day6);
+		model.addAttribute("buildingSunday",day7);
+		model.addAttribute("buildingAdNumber",str5);
+		model.addAttribute("buildingAddress",str6);
+		model.addAttribute("buildingPhoneNumber",str7);
+		model.addAttribute("buildingMail",str8);
+
+			return "admin/building/change/confirm";
+	}
+
+	/**
+     * 【変更】確認 → 修正
+     */
+	@PostMapping("admin/building/change/backchange")
+	public String postAdminBuildingChangeBackchange(@RequestParam("buildingId")int str1,
+			@RequestParam("buildingName")String str2,
+			@RequestParam("buildingNinzu")int str3,
+			@RequestParam("buildingTime")int str4,
+			@RequestParam(value="buildingMonday",required=false)boolean day1,
+			@RequestParam(value="buildingTuesday",required=false)boolean day2,
+			@RequestParam(value="buildingWednesday",required=false)boolean day3,
+			@RequestParam(value="buildingThursday",required=false)boolean day4,
+			@RequestParam(value="buildingFriday",required=false)boolean day5,
+			@RequestParam(value="buildingSaturday",required=false)boolean day6,
+			@RequestParam(value="buildingSunday",required=false)boolean day7,
+			@RequestParam("buildingAdNumber")String str5,
+			@RequestParam("buildingAddress")String str6,
+			@RequestParam("buildingPhoneNumber")String str7,
+			@RequestParam("buildingMail")String str8,
+			Model model) {
+
+		model.addAttribute("buildingId",str1);
+		model.addAttribute("buildingName",str2);
+		model.addAttribute("buildingNinzu",str3);
+		model.addAttribute("buildingTime",str4);
+		model.addAttribute("buildingMonday",day1);
+		model.addAttribute("buildingTuesday",day2);
+		model.addAttribute("buildingWednesday",day3);
+		model.addAttribute("buildingThursday",day4);
+		model.addAttribute("buildingFriday",day5);
+		model.addAttribute("buildingSaturday",day6);
+		model.addAttribute("buildingSunday",day7);
+		model.addAttribute("buildingAdNumber",str5);
+		model.addAttribute("buildingAddress",str6);
+		model.addAttribute("buildingPhoneNumber",str7);
+		model.addAttribute("buildingMail",str8);
+
+		return "admin/building/change/change";
+	}
+
+
+	/**
+     * 【完了】更新用処理
+     */
+	@PostMapping("admin/building/change/complete")
+	public String postAdminBuildingChangeComplete(@ModelAttribute Building building,
 			Model model) {
 
 		System.out.println("更新ボタンの処理");
 
-		// インスタンスの生成
-		Building building = new Building();
-
-		// フォームクラスをBuildingクラスに変換
-		building.setBuildingId(form.getBuildingId());
-
-		try {
 
 		// 更新実行
 		boolean result = buildingService.updateOne(building);
@@ -261,14 +352,7 @@ public class BuildingController {
 					model.addAttribute("result", "更新失敗");
 				}
 
-		}catch (DataAccessException e) {
-
-					model.addAttribute("result", "更新失敗(トランザクションテスト)");
-
-				}
-
-				// 一覧画面
-				return getAdminBuildingList(model);
+				return "admin/building/change/complete";
 
 }
 

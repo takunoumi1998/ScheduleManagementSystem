@@ -135,27 +135,27 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 
 	}
 
-
+	// 1件更新
 	@Override
 	public int updateOne(Building building)throws DataAccessException{
 
-		int rowNumber=jdbc.update("update building set(building_id,"
-				+"building_name,"
-				+"building_ninzu,"
-				+"building_time,"
-				+"building_monday,"
-				+"building_tuesday,"
-				+"building_wednesday,"
-				+"building_thursday,"
-				+"building_friday,"
-				+"building_saturday,"
-				+"building_sunday,"
-				+"building_ad_number,"
-				+"building_address,"
-				+"building_phone_number,"
-				+"building_mail)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-				,building.getBuildingId()
+		int rowNumber=jdbc.update("update building "
+				+" set "
+				+" building_name = ?, "
+				+" building_ninzu = ?, "
+				+" building_time = ?, "
+				+" building_monday = ?, "
+				+" building_tuesday = ?, "
+				+" building_wednesday = ?, "
+				+" building_thursday = ?, "
+				+" building_friday = ?, "
+				+" building_saturday = ?, "
+				+" building_sunday = ?, "
+				+" building_ad_number = ?, "
+				+" building_address = ?, "
+				+" building_phone_number = ?, "
+				+" building_mail = ? "
+				+" where building_id = ?"
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
 				,building.getBuildingTime()
@@ -169,10 +169,11 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingAdNumber()
 				,building.getBuildingAddress()
 				,building.getBuildingPhoneNumber()
-				,building.getBuildingMail());
-
+				,building.getBuildingMail()
+				,building.getBuildingId());
 		return rowNumber;
 	}
+
 
 	@Override
 	//SQL取得結果をサーバーにCSVで保存する
