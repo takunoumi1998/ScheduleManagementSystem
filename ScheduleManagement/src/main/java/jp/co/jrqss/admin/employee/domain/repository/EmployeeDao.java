@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 public interface EmployeeDao {
 
@@ -18,4 +19,7 @@ public interface EmployeeDao {
 
 	//1件更新
 	public int updateOne(Employee employee)throws DataAccessException;
+
+	//名前基準で検索
+	public List<Employee> findByName(SearchForm serchForm) throws DataAccessException;
 }

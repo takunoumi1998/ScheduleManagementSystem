@@ -5,6 +5,10 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
+<<<<<<< Updated upstream
+=======
+import jp.co.jrqss.admin.employee.form.SearchForm;
+>>>>>>> Stashed changes
 
 	public interface BuildingDao {
 
@@ -28,4 +32,9 @@ import jp.co.jrqss.admin.building.domain.model.Building;
 
 	    //SQL取得結果をサーバーにCSVで保存する
 	    public void buildingCsvOut() throws DataAccessException;
+<<<<<<< Updated upstream
+=======
+
+		public List<Building> findByName(SearchForm searchForm);
+>>>>>>> Stashed changes
 }

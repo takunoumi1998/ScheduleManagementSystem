@@ -11,12 +11,50 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.repository.BuildingDao;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Repository
 public class BuildingDaoJdbcImpl implements BuildingDao {
 
 	@Autowired
 	JdbcTemplate jdbc;
+
+
+
+	@Override
+	public List<Building> findByName(SearchForm searchForm) {
+		/// buildingテーブルからデータを全件取得
+		List<Map<String,Object>>getList=jdbc.queryForList("select * from building where building_name like ?","%"+searchForm.getSearchName()+"%");
+
+		// 結果返却用の変数
+		List<Building>buildingList=new ArrayList<>();
+
+		for(Map<String,Object>map:getList) {
+
+			Building building = new Building();
+
+			building.setBuildingId((int)map.get("building_id"));
+			building.setBuildingName((String)map.get("building_name"));
+			building.setBuildingNinzu((int)map.get("building_ninzu"));
+			building.setBuildingTime((int)map.get("building_time"));
+			building.setBuildingMonday((boolean)map.get("building_monday"));
+			building.setBuildingTuesday((boolean)map.get("building_tuesday"));
+			building.setBuildingWednesday((boolean)map.get("building_wednesday"));
+			building.setBuildingThursday((boolean)map.get("building_thursday"));
+			building.setBuildingFriday((boolean)map.get("building_friday"));
+			building.setBuildingSaturday((boolean)map.get("building_saturday"));
+			building.setBuildingSunday((boolean)map.get("building_sunday"));
+			building.setBuildingAdNumber((String)map.get("building_ad_number"));
+			building.setBuildingAddress((String)map.get("building_address"));
+			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
+			building.setBuildingMail((String)map.get("building_mail"));
+
+			// 結果返却用リストに返却
+			buildingList.add(building);
+		}
+
+		return buildingList;
+	}
 
 	// テーブルの件数を取得
 	@Override
@@ -176,7 +214,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 
 	@Override
 	//SQL取得結果をサーバーにCSVで保存する
-    public void buildingCsvOut() throws DataAccessException {
+	public void buildingCsvOut() throws DataAccessException {
 
-    }
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.repository.BuildingDao;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Service("BuildingServiceBuilding")
 public class BuildingService {
@@ -74,4 +75,8 @@ public class BuildingService {
 
         return result;
     }
+
+	public List<Building> findByName(SearchForm searchForm) {
+		return buildingdao.findByName(searchForm);
+	}
 }
