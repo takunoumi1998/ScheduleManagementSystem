@@ -19,8 +19,8 @@
 			<label for="employee_Name">氏名</label>
 			<input type="text" class="form-control" id="employee_Name"name="employee_Name"th:value="${employee_Name}"/>
 
-			<label for="building_Id">ビルID</label>
-			<input type="text" class="form-control" id="building_Id"name="building_Id" th:value="*{building_Id}"/>
+			<label for="employee_Adana">呼び名（勤務表に表示される名前）</label>
+			<input type="text" class="form-control" id="employee_Adana" name="employee_Adana" th:value="*{employee_Adana}"/>
 
  			<label for="employee_Ad_Number">郵便番号</label>
 			<input type="text" class="form-control" id="employee_Ad_Number"name="employee_Ad_Number"th:value="*{employee_Ad_Number}"/>
@@ -55,9 +55,10 @@
  				<h3>日曜日　<input type="checkbox" name="employee_Sunday" th:checked="${employee_Sunday==true}"th:value="*{1}"></h3>
 
 
+			<label for="employee_Bikou">備考</label>
+			<input type="text" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}"/>
 
-
-
+<br>
 
 
  			<button class="btn btn-primary btn-lg pull-right"

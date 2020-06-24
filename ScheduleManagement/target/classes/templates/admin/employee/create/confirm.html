@@ -28,9 +28,9 @@
 			<span th:text="*{employee_Name}"></span>
 			<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
 <p></p>
-			<label for="building_Id">ビルID　</label>
-			<span th:text="*{building_Id}"></span>
-			<input type="hidden" name="building_Id" id="building_Id" th:value="*{building_Id}">
+			<label for="building_Id">呼び名（勤務表に表示される名前）　</label>
+			<span th:text="*{employee_Adana}"></span>
+			<input type="hidden" name="employee_Adana" id="employee_Adana" th:value="*{employee_Adana}">
 <p></p>
 			<label for="employee_Ad_Number">郵便番号　</label>
 			<span th:text="*{employee_Ad_Number}"></span>
@@ -75,9 +75,14 @@
 			<p></p>
 			<label for="employee_Sunday">日曜日　</label>
 			<span th:text="*{employee_Sunday}"></span>
-
-
 			</div>
+
+
+			<label for="employee_Bikou">備考</label>
+ 			<span th:text="*{employee_Bikou}"></span>
+			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
+
+
 			<input type="hidden" name="employee_Monday" id="employee_Monday" th:value="*{employee_Monday}">
 
 
@@ -129,7 +134,7 @@
 			<form method="post" action="/admin/employee/create/backregister">
 			<input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}">
 			<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
-			<input type="hidden" name="building_Id" id="building_Id" th:value="*{building_Id}">
+			<input type="hidden" name="employee_Adana" id="employee_Adana" th:value="*{employee_Adana}">
 			<input type="hidden" name="employee_Ad_Number" id="employee_Ad_Number" th:value="*{employee_Ad_Number}">
 			<input type="hidden" name="employee_Address" id="employee_Address" th:value="*{employee_Address}">
 			<input type="hidden" name="employee_Phone_Number" id="employee_Phone_Number" th:value="*{employee_Phone_Number}">
@@ -142,6 +147,7 @@
 			<input type="hidden" name="employee_Friday" id="employee_Friday" th:value="*{employee_Friday}">
 			<input type="hidden" name="employee_Saturday" id="employee_Saturday" th:value="*{employee_Saturday}">
 			<input type="hidden" name="employee_Sunday" id="employee_Sunday" th:value="*{employee_Sunday}">
+			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
          <input type="submit"value="修正する">
          </form>
 

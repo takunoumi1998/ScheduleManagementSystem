@@ -23,8 +23,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	public int insertOne(Employee employee)throws DataAccessException{
 
 		int rowNumber=jdbc.update("insert into employee(employee_id,"
-				+"building_id,"
 				+"employee_name,"
+				+"employee_adana,"
 				+"desire_days,"
 				+"employee_monday,"
 				+"employee_tuesday,"
@@ -36,11 +36,12 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				+"employee_ad_number,"
 				+"employee_address,"
 				+"employee_phone_number,"
-				+"employee_mail)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				+"employee_mail,"
+				+ "employee_bikou)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,employee.getEmployee_Id()
-				,employee.getBuilding_Id()
 				,employee.getEmployee_Name()
+				,employee.getEmployee_Adana()
 				,employee.getDesire_Days()
 				,employee.isEmployee_Monday()
 				,employee.isEmployee_Tuesday()
@@ -52,7 +53,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				,employee.getEmployee_Ad_Number()
 				,employee.getEmployee_Address()
 				,employee.getEmployee_Phone_Number()
-				,employee.getEmployee_Mail());
+				,employee.getEmployee_Mail()
+				,employee.getEmployee_Bikou());
 
 		return rowNumber;
 	}
@@ -69,8 +71,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 			Employee employee=new Employee();
 
 			employee.setEmployee_Id((int)map.get("employee_id"));
-			employee.setBuilding_Id((int)map.get("building_id"));
 			employee.setEmployee_Name((String)map.get("employee_name"));
+			employee.setEmployee_Adana((String)map.get("employee_adana"));
 			employee.setDesire_Days((int)map.get("desire_days"));
 			employee.setEmployee_Monday((boolean)map.get("employee_monday"));
 			employee.setEmployee_Tuesday((boolean)map.get("employee_tuesday"));
@@ -83,6 +85,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 			employee.setEmployee_Address((String)map.get("employee_address"));
 			employee.setEmployee_Phone_Number((String)map.get("employee_phone_number"));
 			employee.setEmployee_Mail((String)map.get("employee_mail"));
+			employee.setEmployee_Bikou((String)map.get("employee_bikou"));
 
 			//結果返却用のリストに返却
 			employeeList.add(employee);
@@ -104,8 +107,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 
 		//結果返却用の変数にセットする　1件なのでリストは使わない
 		employee.setEmployee_Id((int)map.get("employee_id"));
-		employee.setBuilding_Id((int)map.get("building_id"));
 		employee.setEmployee_Name((String)map.get("employee_name"));
+		employee.setEmployee_Adana((String)map.get("employee_adana"));
 		employee.setDesire_Days((int)map.get("desire_days"));
 		employee.setEmployee_Monday((boolean)map.get("employee_monday"));
 		employee.setEmployee_Tuesday((boolean)map.get("employee_tuesday"));
@@ -118,7 +121,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 		employee.setEmployee_Address((String)map.get("employee_address"));
 		employee.setEmployee_Phone_Number((String)map.get("employee_phone_number"));
 		employee.setEmployee_Mail((String)map.get("employee_mail"));
-
+		employee.setEmployee_Bikou((String)map.get("employee_bikou"));
 
 
 		return employee;
@@ -130,8 +133,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 
 		int rowNumber=jdbc.update("update employee "
 				+" set "
-				+" building_id=?, "
 				+" employee_name=?, "
+				+" employee_adana=?, "
 				+" desire_days=?,"
 				+" employee_monday=?,"
 				+" employee_tuesday=?,"
@@ -143,10 +146,11 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				+" employee_ad_number=?,"
 				+" employee_address=?,"
 				+" employee_phone_number=?,"
-				+" employee_mail = ?"
+				+" employee_mail = ?,"
+				+" employee_bikou=? "
 				+" where employee_id = ? "
-				,employee.getBuilding_Id()
 				,employee.getEmployee_Name()
+				,employee.getEmployee_Adana()
 				,employee.getDesire_Days()
 				,employee.isEmployee_Monday()
 				,employee.isEmployee_Tuesday()
@@ -159,6 +163,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				,employee.getEmployee_Address()
 				,employee.getEmployee_Phone_Number()
 				,employee.getEmployee_Mail()
+				,employee.getEmployee_Bikou()
 				,employee.getEmployee_Id()
 				);
 
