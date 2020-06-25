@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" th:href="@{css/admin/Detail.css}">
+	<link rel="stylesheet" href="Detail.css">
 
 	<title>ビル情報｜入力内容確認ページ</title>
 
@@ -17,7 +17,7 @@
  				<h1>入力内容確認</h1>
  			</div>
 
- 			<form method="post" th:acthion="@{/admin/building/change/change}"
+ 			<form method="post" th:acthion="@{/EmployeeRegister}"
  			th:object="${signupform}">
  			<table class="table table-bordered table-hover">
 

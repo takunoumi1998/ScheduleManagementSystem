@@ -4,21 +4,21 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
+	<link rel="stylesheet" href="Detail.css">
 
 	<title>ビル情報｜詳細</title>
 
  </head>
  <body>
- 	<div th:fragment="change_contents">
+ 	<div th:fragment="EmployeeRegister_contents">
  		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
  				<h1>ビル情報</h1>
  			</div>
 
- 			<form method="post" th:acthion="@{/admin/building/change/change}"
- 			th:object="${resisterform}">
+ 			<form method="post" th:acthion="@{/EmployeeRegister}"
+ 			th:object="${signupform}">
  			<table class="table table-bordered table-hover">
 
  			<!-- ビル情報入力エリア -->
@@ -63,18 +63,29 @@
  	<th class="active">希望曜日</th>
  	<td>
 	<div class="form-group">
- 		<label><input type="checkbox" name="buildingMonday" value="月">月</label>
- 		<label><input type="checkbox" name="buildingTuesday" value="火">火</label>
- 		<label><input type="checkbox" name="buildingWednesday" value="水">水</label>
- 		<label><input type="checkbox" name="buildingThursday" value="木">木</label>
- 		<label><input type="checkbox" name="buildingFriday" value="金">金</label>
- 		<label><input type="checkbox" name="buildingSaturday" value="土">土</label>
- 		<label><input type="checkbox" name="buildingSunday" value="日">日</label>
+ 		<label><input type="checkbox" name="building_monday" value="月">月</label>
+ 		<label><input type="checkbox" name="building_tuesday" value="火">火</label>
+ 		<label><input type="checkbox" name="building_wednesday" value="水">水</label>
+ 		<label><input type="checkbox" name="building_thursday" value="木">木</label>
+ 		<label><input type="checkbox" name="building_friday" value="金">金</label>
+ 		<label><input type="checkbox" name="building_saturday" value="土">土</label>
+ 		<label><input type="checkbox" name="building_sunday" value="日">日</label>
  		</div>
  		<span class="text-danger"
  			th:if="${#fields.hasEroors('desire_youbi')}"
  				th:errors="*{desire_youbi}">
  		</span>
+ 	</td>
+ 	</tr>
+
+	<!-- 担当従業員名 -->
+	<tr>
+ 	<th class="active">担当従業員名</th>
+ 	<td>
+ 	<div class="form-group">
+ 	<input type="text" class="form-control"
+ 		th:field="*{employeeName}"/>
+ 	</div>
  	</td>
  	</tr>
 
@@ -127,16 +138,15 @@
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
  				name="update"
- 				onclick="location.href='admin/building/list.html'"
+ 				onclick="location.href='BuildingDetailCushon.html'"
  				>
  					変更
  				</button>
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
- 				name="delete"
- 				onclick="location.href='admin/building/list.html'"
- 				>
- 				削除
+ 				name="register"
+ 				onclick="location.href='BuildingManage.html'"
+ 				>ビル一覧へ戻る
  				</button>
 
  			<!--フッター -->

@@ -3,12 +3,12 @@ package jp.co.jrqss.admin.building.domain.model;
 import lombok.Data;
 
 @Data
-public class Building {
+public class BuildingChange {
 
 	private int building_id;
 	private String building_name;
 	private int building_ninzu;
-	private String building_time;
+	private int building_time;
 	private boolean building_monday;
 	private boolean building_tuesday;
 	private boolean building_wednesday;

@@ -1,6 +1,6 @@
--- DROP TABLE work;
--- DROP TABLE employee;
--- DROP TABLE building;
+ DROP TABLE work;
+ DROP TABLE employee;
+ DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT PRIMARY KEY,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS building (
 	building_sunday BOOLEAN,
 	building_ad_number INT,
 	building_address VARCHAR(100),
-	building_phone_number INT,
+	building_phone_address INT,
 	building_mail VARCHAR(100)
 );
 
