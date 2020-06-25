@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.model.BuildingForm;
 import jp.co.jrqss.admin.building.domain.service.BuildingService;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Controller
 public class BuildingController {
@@ -41,6 +42,23 @@ public class BuildingController {
 		* model.addAttribute("buildingListCount", count); */
 
 		return "admin/building/list";
+	}
+
+	/**
+	 * ビル名を元にビルを検索するメソッド
+	 * @param model
+	 * @param searchForm 入力値が格納されている
+	 * @return パス
+	 */
+	@PostMapping("admin/building/list")
+	public String postAdminBuildingList(Model model , @ModelAttribute("SearchForm") SearchForm searchForm) {
+		if(!(searchForm.getSearchName().equals(""))) {
+			List<Building> buildingList = buildingService.findByName(searchForm);
+			model.addAttribute("buildingList",buildingList);
+			return "admin/building/list";
+		}else {
+			return getAdminBuildingList(model);
+		}
 	}
 
 	/**

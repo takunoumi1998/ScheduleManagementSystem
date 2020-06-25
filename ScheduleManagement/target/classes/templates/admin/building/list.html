@@ -14,9 +14,9 @@
 </head>
 <body>
 <h1>ビル情報</h1>
-<form  method="post" action="/top">
+<form  method="post" action="/admin/building/list">
   <p>検索したいビル名を入力してください。</p>
-  <input type="search" name="search" placeholder="名前を入力">
+  <input type="search" name="searchName" placeholder="名前を入力">
   <input type="submit" name="submit" value="検索">
 </form><br>
 <p>
@@ -43,7 +43,7 @@
 	</tr>
 
 	<tr th:each="building:${buildingList}">
-		<td><input type="checkbox"></td>
+		<td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td>
 		<td th:text="${building.buildingId}"></td>
 		<td th:text="${building.buildingName}"></td>
 		<td th:text="${building.buildingNinzu}"></td>
