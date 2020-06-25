@@ -74,4 +74,22 @@ public class BuildingService {
 
         return result;
     }
+
+    /**
+     *  1件削除
+     */
+    public boolean deleteOne(int buildingId) {
+
+		int rowNumber=buildingdao.deleteOne(buildingId);
+		boolean result=false;
+
+		if(rowNumber>0) {
+
+			result=true;
+		}
+
+		return result;
+
+
+	}
 }

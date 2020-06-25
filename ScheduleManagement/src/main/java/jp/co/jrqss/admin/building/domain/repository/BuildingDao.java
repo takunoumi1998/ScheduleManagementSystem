@@ -28,4 +28,7 @@ import jp.co.jrqss.admin.building.domain.model.Building;
 
 	    //SQL取得結果をサーバーにCSVで保存する
 	    public void buildingCsvOut() throws DataAccessException;
+
+	    //1件削除
+		public int deleteOne(int buildingId) throws DataAccessException;
 }

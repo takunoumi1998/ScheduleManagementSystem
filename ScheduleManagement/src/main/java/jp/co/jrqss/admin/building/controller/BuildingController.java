@@ -286,6 +286,43 @@ public class BuildingController {
 
     }
 
+    /**
+     * ビル情報削除確認
+     */
 
+    @GetMapping("/admin/building/delete/confirm/{buildingId:.+}")
+    public String getAdminBuildingDeleteConfirm(@ModelAttribute BuildingForm form,
+			Model model,
+			@PathVariable("buildingId") int buildingId) {
+
+    	//ビル情報を1件取得
+    	Building building=buildingService.selectOne(buildingId);
+
+    	//削除確認画面に表示する内容
+    	model.addAttribute("buildingId",building.getBuildingId());
+    	model.addAttribute("buildingName",building.getBuildingName());
+
+    	return "admin/building/delete/confirm";
+
+    }
+
+    /**
+     * ビル削除→確認
+     */
+    @PostMapping("/admin/building/delete/complete")
+    public String postAdminBuildingDeleteComplete(@ModelAttribute Building building,Model model) {
+
+    	boolean result=buildingService.deleteOne(building.getBuildingId());
+
+		if(result==true) {
+			model.addAttribute("削除成功",result);
+		}else {
+			model.addAttribute("削除失敗",result);
+		}
+
+		return "admin/building/delete/complete";
+
+
+    }
 
 }

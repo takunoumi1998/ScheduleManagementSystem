@@ -179,4 +179,11 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
     public void buildingCsvOut() throws DataAccessException {
 
     }
+
+	//1件削除
+	@Override
+	public int deleteOne(int buildingId)throws DataAccessException{
+		int rowNumber=jdbc.update("delete from building where building_id=?",buildingId);
+		return rowNumber;
+	}
 }

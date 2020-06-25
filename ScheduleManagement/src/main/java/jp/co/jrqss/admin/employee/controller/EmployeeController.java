@@ -155,7 +155,7 @@ public class EmployeeController {
 
 	/*従業員詳細情報取得*/
 	@GetMapping("/admin/employee/change/change/{employee_Id:.+}")
-	public String getAdminEmployeeChangeChange(@ModelAttribute
+	public String getAdminEmployeeChangeChange(
 						@PathVariable("employee_Id")int employee_Id,Model model) {
 
 		System.out.println("employee_Id="+employee_Id);
@@ -284,7 +284,7 @@ public class EmployeeController {
 
 	/*削除画面へ遷移*/
 	@GetMapping("/admin/employee/delete/confirm/{employee_Id:.+}")
-	public String getAdminEmployeeDeleteConfirm(@ModelAttribute @PathVariable("employee_Id")int employee_Id,
+	public String getAdminEmployeeDeleteConfirm(@PathVariable("employee_Id")int employee_Id,
 		Model model) {
 
 		Employee employee=employeeService.selectOne(employee_Id);
