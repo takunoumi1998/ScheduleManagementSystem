@@ -17,13 +17,13 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <p>
 <form method="get" action="/admin/employee/create/register">
 <button style="margin-bottom:3vw; float: right;" class="button1" type="submit" name="newinfo">新規登録</button></form>
-<form method="post" action="/admin/employee/delete/confirm">
+<form method="post" action="/admin/employee/delete/confirm/ + {delete==true} + ${employee.employee_Id}}">
 <button style="margin-bottom:3vw; float: right;" class="button2" type="submit" name="delite">チェックした従業員を削除</button>
 </form>
 <form action="/admin/top">
 	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
 </form>
-</p>
+
 
 
 
@@ -37,7 +37,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<td>住所</td>
 		<td>電話番号</td>
 		<td>メール</td>
-		<td></td>
+		<td>詳細</td>
+		<td>削除</td>
 	</tr>
 
 <!-- 詳細ページへはgetメソッドのみ飛べる コントローラーにgetを作っておく-->
@@ -48,13 +49,9 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 		<td th:text="${employee.employee_Address}"></td>
 		<td th:text="${employee.employee_Phone_Number}"></td>
 		<td th:text="${employee.employee_Mail}"></td>
-		<td><a th:href="@{'/admin/employee/change/change/'+${employee.employee_Id}}">詳細</a>
-
-
-
-		</td>
+		<td><a th:href="@{'/admin/employee/change/change/'+${employee.employee_Id}}">詳細</a></td>
+		<td><a th:href="@{'/admin/employee/delete/confirm/'+${employee.employee_Id}}">削除</a></td>
 	</tr>
-
 </table>
 
 

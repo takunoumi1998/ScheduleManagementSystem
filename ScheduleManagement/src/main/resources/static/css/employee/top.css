@@ -1,0 +1,45 @@
+#calendar {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+section {
+    margin: 50px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+table.calendar {
+    border-spacing: 1;
+    border-collapse: collapse;
+    padding: 20px 40px 40px 40px;
+}
+
+td {
+    border: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;
+}
+
+td:first-child {
+    color: red;
+}
+
+td:last-child {
+    color: royalblue;
+}
+
+td.is-disabled {
+    color: #ccc;
+}
+
+button.tel{
+	margin:0 auto;
+	display:block;
+	width:450px;
+	height:100px;
+	background-color: gold;
+}

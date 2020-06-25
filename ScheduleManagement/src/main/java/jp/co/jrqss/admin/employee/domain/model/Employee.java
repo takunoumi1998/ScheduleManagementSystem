@@ -6,8 +6,8 @@ import lombok.Data;
 public class Employee {
 
 	private int employee_Id;
-	private int building_Id;
 	private String employee_Name;
+	private String employee_Adana;
 	private int desire_Days;
 	private boolean employee_Monday;
 	private boolean employee_Tuesday;
@@ -20,5 +20,6 @@ public class Employee {
 	private String employee_Address;
 	private String employee_Phone_Number;
 	private String employee_Mail;
+	private String employee_Bikou;
 
 }
