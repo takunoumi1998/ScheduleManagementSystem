@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="Emp_Build_info.css">
+<link rel="stylesheet" th:href="@{/css/admin/Emp_Build_info.css}">
 <title>ビル一覧</title>
 </head>
 <body>
+<div th:fragment="list_contents">
 <h1>ビル情報</h1>
 <form  method="post" action="/admin/building/create/resister">
   <p>検索したいビル名を入力してください。</p>
   <input type="search" name="search" placeholder="名前を入力">
   <input type="submit" name="submit" value="検索">
 </form><br>
-<p><button class="button1" type="button" name="newinfo"onclick="location.href='resister.html'" >新規登録</button>
+<p><button class="button1" type="button" name="newinfo"onclick="location.href='/admin/building/create/resister'" >新規登録</button>
 <div class = "balloonoya">
 <button class="button2" type="submit" name="deliteconfirm" >チェックしたビルを削除</button>
 	<span class = "balloon">本当に削除しますか？<br>
-	<button class="button3" type="submit" name="delite" onclick="location.href='list.html'">削除</button>
+	<button class="button3" type="submit" name="delite" onclick="location.href='/admin/building/list.html'">削除</button>
 	</span>
 </div>
 
 
-<button style="float:right"onclick="location.href='top.html'" >トップに戻る</button>
+<button style="float:right" onclick="location.href='/admin/top'" >トップに戻る</button>
 
 <table border="1">
 	<tr>
@@ -40,7 +42,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -49,7 +51,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -58,7 +60,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -67,7 +69,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -76,7 +78,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -85,7 +87,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -94,7 +96,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -103,7 +105,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -112,7 +114,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -121,7 +123,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -130,7 +132,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -139,7 +141,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -148,7 +150,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -157,7 +159,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -166,7 +168,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -175,7 +177,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -184,7 +186,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -193,7 +195,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -202,7 +204,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -211,7 +213,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -220,7 +222,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -229,7 +231,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -238,7 +240,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -247,7 +249,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -256,7 +258,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -265,7 +267,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -274,7 +276,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -283,7 +285,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -292,7 +294,7 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 	<tr>
 		<td><input type="checkbox"></td>
@@ -301,11 +303,11 @@
 		<td></td>
 		<td></td>
 		<td></td>
-		<td><input type="button" value="詳細"onclick="location.href='/change/change.html'"></td>
+		<td><input type="button" value="詳細" name="update" onclick="location.href='/admin/building/change/change.html'"></td>
 	</tr>
 </table>
 
-
+</div>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
 </body>
 </html>

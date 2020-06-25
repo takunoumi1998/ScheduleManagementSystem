@@ -5,20 +5,20 @@ import lombok.Data;
 @Data
 public class Building {
 
-	private int building_id;
-	private String building_name;
-	private int building_ninzu;
-	private String building_time;
-	private boolean building_monday;
-	private boolean building_tuesday;
-	private boolean building_wednesday;
-	private boolean building_thursday;
-	private boolean building_friday;
-	private boolean building_saturday;
-	private boolean building_sunday;
-	private int building_ad_number;
-	private String building_address;
-	private int building_phone_number;
-	private String building_mail;
+	private int buildingId;
+	private String buildingName;
+	private int buildingNinzu;
+	private int buildingTime;
+	private boolean buildingMonday;
+	private boolean buildingTuesday;
+	private boolean buildingWednesday;
+	private boolean buildingThursday;
+	private boolean buildingFriday;
+	private boolean buildingSaturday;
+	private boolean buildingSunday;
+	private int buildingAdNumber;
+	private String buildingAddress;
+	private int buildingPhoneNumber;
+	private String buildingMail;
 
 }

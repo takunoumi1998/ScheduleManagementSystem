@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="TopMenu.css">
+<link rel="stylesheet" th:href="@{/css/admin/TopMenu.css}">
 <title>トップメニュー</title>
 </head>
 <body>
@@ -10,10 +11,10 @@
 <div>
 <table>
 <ul id="menu">
-	<li><a href="WorkTimeTable.html">勤務表</a></li>
+	<li><a th:href="@{'/admin/schedule/list'}">勤務表</a></li>
 	<li><a href="WorkTimeHour.html">労働時間</a></li>
-	<li><a href="EmployeeManage.html">従業員情報</a></li>
-	<li><a href="BuildingManage.html">ビル情報</a></li>
+	<li><a th:href="@{'/admin/employee/list'}">従業員情報</a></li>
+	<li><a th:href="@{'/admin/building/list'}">ビル情報</a></li>
 </ul>
 </table>
 </div>
