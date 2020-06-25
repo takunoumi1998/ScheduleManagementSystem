@@ -31,7 +31,6 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 					Employee employee=new Employee();
 
 					employee.setEmployee_Id((int)map.get("employee_id"));
-					employee.setBuilding_Id((int)map.get("building_id"));
 					employee.setEmployee_Name((String)map.get("employee_name"));
 					employee.setDesire_Days((int)map.get("desire_days"));
 					employee.setEmployee_Monday((boolean)map.get("employee_monday"));
