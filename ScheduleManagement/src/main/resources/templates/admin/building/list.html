@@ -13,6 +13,7 @@
 <title>ビル一覧</title>
 </head>
 <body>
+<div th:fragment="list_contents">
 <h1>ビル情報</h1>
 <form  method="post" action="/admin/building/list">
   <p>検索したいビル名を入力してください。</p>
@@ -57,7 +58,7 @@
 
 </table>
 
-
+</div>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
 </body>
 </html>

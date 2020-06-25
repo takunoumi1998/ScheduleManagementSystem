@@ -10,7 +10,7 @@
 
     <title>ログイン</title>
 </head>
-<body class="text-center">aaaa
+<body class="text-center">
 
 	<div align="center">
 
@@ -18,7 +18,7 @@
     <form method="post" action="/login">
 
         <!-- ユーザーID -->
-        <label>管理者ID</label>
+        <label>従業員ID</label>
         <input type="text" name="employee_id" size="24"/><br/>
         <br />
 
@@ -28,18 +28,10 @@
         <br />
 
         <!-- ログインボタン -->
-<<<<<<< HEAD
-        <button class="btn btn-primary" type="submit">ログイン</button>
-=======
-        <button class="btn btn-primary" type="submit"><a th:href="@{'/admin/top'}">ログイン</a></button>
->>>>>>> miura
+        <button class="btn btn-primary" type="submit"><a th:href="@{'/employee/schedule/top'}">ログイン</a></button>
 
     </form>
     <br/>
-
-    <!-- ユーザー登録画面へのリンク -->
-    <a th:href="@{'/signup'}">従業員はこちら</a>
-
 
       <!--フッター -->
   <footer>
