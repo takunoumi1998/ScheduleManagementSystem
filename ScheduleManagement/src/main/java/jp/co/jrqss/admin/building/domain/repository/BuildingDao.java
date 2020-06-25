@@ -7,13 +7,24 @@ import org.springframework.dao.DataAccessException;
 import jp.co.jrqss.admin.building.domain.model.Building;
 
 public interface BuildingDao {
+/*
+	//buildingテーブルの件数を取得
+	public int count() throws DataAccessException;
+*/
+	//buildingテーブルにデータ1件insert
+	public int insertOne(Building building) throws DataAccessException;
 
-	public List<Building>selectMany1()throws DataAccessException;
+	//buildingテーブルのデータを１件取得
+	public Building selectOne(int buildingId)throws DataAccessException;
 
-	void Building (String buildingId);
+	//buildingテーブルのデータを全件取得
+	public List<Building> selectMany() throws DataAccessException;
 
-	<T> List<Building> selectMany();
+	//buildingテーブルを１件更新
+	public int updateOne(Building building) throws DataAccessException;
 
-	jp.co.jrqss.admin.building.domain.model.Building selectOne(String buildingId);
+	//buildingテーブルを１件削除
+	public int deleteOne(int buildingId) throws DataAccessException;
+
 
 }
