@@ -27,11 +27,11 @@ public class ResisterForm{
 
 	private boolean buildingSunday;
 
-	private int buildingAdNumber;
+	private String buildingAdNumber;
 
 	private String buildingAddress;
 
-	private int buildingPhoneNumber;
+	private String buildingPhoneNumber;
 
 	private String buildingMail;
 
