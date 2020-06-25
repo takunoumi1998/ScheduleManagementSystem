@@ -7,12 +7,19 @@ import org.springframework.stereotype.Service;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.repository.EmployeeDao;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Service("EmployeeServiceEmployee")
 public class EmployeeService {
 
 	@Autowired
 	EmployeeDao employeedao;
+
+
+
+	public List<Employee> findByName(SearchForm searchForm){
+		return employeedao.findByName(searchForm);
+	}
 
 	public List<Employee>selectMany(){
 
@@ -34,11 +41,15 @@ public class EmployeeService {
 
 	}
 
+
 	public Employee selectOne(int employee_Id) {
 
 		return employeedao.selectOne(employee_Id);
 
 	}
+
+
+
 
 	public boolean updateOne(Employee employee) {
 
@@ -54,5 +65,21 @@ public class EmployeeService {
 
 
 	}
+
+	public boolean deleteOne(int employee_Id) {
+
+		int rowNumber=employeedao.deleteOne(employee_Id);
+		boolean result=false;
+
+		if(rowNumber>0) {
+
+			result=true;
+		}
+
+		return result;
+
+
+	}
+
 
 }
