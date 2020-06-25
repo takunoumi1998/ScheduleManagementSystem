@@ -1,56 +1,38 @@
 package jp.co.jrqss.admin.building.domain.model;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
 import lombok.Data;
 
 @Data
-public class ResisterForm {
+public class ResisterForm{
 
-	@NotBlank(message="数字を入力")
-	private int building_id;
+	private int buildingId;
 
-	@NotBlank
-	private String building_name;
+	private String buildingName;
 
-	@NotBlank
-	private int building_ninzu;
+	private int buildingNinzu;
 
-	@NotBlank
-	private String building_time;
+	private int buildingTime;
 
-	@NotBlank
-	private boolean building_monday;
+	private boolean buildingMonday;
 
-	@NotBlank
-	private boolean building_tuesday;
+	private boolean buildingTuesday;
 
-	@NotBlank
-	private boolean building_wednesday;
+	private boolean buildingWednesday;
 
-	@NotBlank
-	private boolean building_thursday;
+	private boolean buildingThursday;
 
-	@NotBlank
-	private boolean building_friday;
+	private boolean buildingFriday;
 
-	@NotBlank
-	private boolean building_saturday;
+	private boolean buildingSaturday;
 
-	@NotBlank
-	private boolean building_sunday;
+	private boolean buildingSunday;
 
-	@NotBlank
-	private int building_ad_number;
+	private int buildingAdNumber;
 
-	@NotBlank
-	private String building_address;
+	private String buildingAddress;
 
-	@NotBlank
-	private int building_phone_number;
+	private int buildingPhoneNumber;
 
-	@Email
-	private String building_mail;
+	private String buildingMail;
 
 }

@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
+	<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
 
 	<title>ビル情報｜新規登録</title>
 
@@ -17,8 +17,8 @@
  				<h1>ビル情報</h1>
  			</div>
 
- 			<form method="post" th:acthion="@{/Building}"
- 			th:object="${resisterform}">
+ 			<form method="post" th:action="@{admin/building/create/resister}"
+ 			th:object="${resisterForm}">
  			<table class="table table-bordered table-hover">
 
  			<!-- ビル情報入力エリア -->
@@ -74,13 +74,13 @@
  	<th class="active">希望曜日</th>
  	<td>
 	<div class="form-group">
- 		<label><input type="checkbox" name="building_monday" value="月">月</label>
- 		<label><input type="checkbox" name="building_tuesday" value="火">火</label>
- 		<label><input type="checkbox" name="building_wednesday" value="水">水</label>
- 		<label><input type="checkbox" name="building_thursday" value="木">木</label>
- 		<label><input type="checkbox" name="building_friday" value="金">金</label>
- 		<label><input type="checkbox" name="building_saturday" value="土">土</label>
- 		<label><input type="checkbox" name="building_sunday" value="日">日</label>
+ 		<label><input type="checkbox" name="buildingMonday" value="月">月</label>
+ 		<label><input type="checkbox" name="buildingTuesday" value="火">火</label>
+ 		<label><input type="checkbox" name="buildingWednesday" value="水">水</label>
+ 		<label><input type="checkbox" name="buildingThursday" value="木">木</label>
+ 		<label><input type="checkbox" name="buildingFriday" value="金">金</label>
+ 		<label><input type="checkbox" name="buildingSaturday" value="土">土</label>
+ 		<label><input type="checkbox" name="buildingSunday" value="日">日</label>
  		</div>
  		<span class="text-danger"
  			th:if="${#fields.hasEroors('desire_youbi')}"
@@ -147,7 +147,7 @@
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
  				name="register"
- 				onclick="location.href='BuildingManage.html'"
+ 				onclick="location.href='list.html'"
  				>ビル一覧へ戻る
  				</button>
  			<!--フッター -->
