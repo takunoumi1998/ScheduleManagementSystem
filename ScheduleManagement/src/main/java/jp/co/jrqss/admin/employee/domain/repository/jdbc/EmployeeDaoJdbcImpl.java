@@ -170,10 +170,22 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 		return rowNumber;
 	}
 
+	/*1件削除*/
+	@Override
+	public int deleteOne(int employee_Id)throws DataAccessException{
 
+		int rowNumber=jdbc.update("delete from employee where employee_id=?",employee_Id);
 
-
-
+		return rowNumber;
+	}
 
 
 }
+
+
+
+
+
+
+
+

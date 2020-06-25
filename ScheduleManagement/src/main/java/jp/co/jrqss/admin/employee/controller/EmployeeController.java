@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
-import jp.co.jrqss.admin.employee.domain.model.EmployeeForm;
 //import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.service.EmployeeService;
 
@@ -62,11 +61,6 @@ public class EmployeeController {
 			@RequestParam(value="employee_Saturday",required=false)boolean day6,
 			@RequestParam(value="employee_Sunday",required=false)boolean day7,
 			Model model){
-
-
-
-
-
 		model.addAttribute("employee_Id",str1);
 		model.addAttribute("employee_Name",str2);
 		model.addAttribute("employee_Adana",str3);
@@ -108,7 +102,6 @@ public class EmployeeController {
 		employee.setEmployee_Saturday(employee.isEmployee_Saturday());
 		employee.setEmployee_Sunday(employee.isEmployee_Sunday());
 
-
 		boolean result=employeeService.insert(employee);
 		if(result==true) {
 			System.out.println("成功");
@@ -139,7 +132,6 @@ public class EmployeeController {
 		@RequestParam(value="employee_Saturday",required=false)boolean day6,
 		@RequestParam(value="employee_Sunday",required=false)boolean day7,
 		Model model){
-
 		model.addAttribute("employee_Id",str1);
 		model.addAttribute("employee_Name",str2);
 		model.addAttribute("employee_Adana",str3);
@@ -161,34 +153,15 @@ public class EmployeeController {
 	}
 
 
-
 	/*従業員詳細情報取得*/
 	@GetMapping("/admin/employee/change/change/{employee_Id:.+}")
 	public String getAdminEmployeeChangeChange(@ModelAttribute
-						EmployeeForm form,
-						Model model,
-						@PathVariable("employee_Id")int employee_Id) {
+						@PathVariable("employee_Id")int employee_Id,Model model) {
 
 		System.out.println("employee_Id="+employee_Id);
 
 		//employee_Idのチェック
 		Employee employee=employeeService.selectOne(employee_Id);
-
-		/*form.setEmployee_Id(employee.getEmployee_Id());
-		form.setEmployee_Name(employee.getEmployee_Name());
-		form.setBuilding_Id(employee.getBuilding_Id());
-		form.setEmployee_Ad_Number(employee.getEmployee_Ad_Number());
-		form.setEmployee_Address(employee.getEmployee_Address());
-		form.setEmployee_Phone_Number(employee.getEmployee_Phone_Number());
-		form.setEmployee_Mail(employee.getEmployee_Mail());
-		form.setDesire_Days(employee.getDesire_Days());
-		form.setEmployee_Monday(employee.isEmployee_Monday());
-		form.setEmployee_Tuesday(employee.isEmployee_Tuesday());
-		form.setEmployee_Wednesday(employee.isEmployee_Wednesday());
-		form.setEmployee_Thursday(employee.isEmployee_Thursday());
-		form.setEmployee_Friday(employee.isEmployee_Friday());
-		form.setEmployee_Saturday(employee.isEmployee_Saturday());
-		form.setEmployee_Sunday(employee.isEmployee_Sunday());*/
 
 		model.addAttribute("employee_Id",employee.getEmployee_Id());
 		model.addAttribute("employee_Name",employee.getEmployee_Name());
@@ -207,17 +180,9 @@ public class EmployeeController {
 		model.addAttribute("employee_Saturday",employee.isEmployee_Saturday());
 		model.addAttribute("employee_Sunday",employee.isEmployee_Sunday());
 
-
-
-
-
-		//System.out.println("employee_Name");
-
-
-
 		return "admin/employee/change/change";
-
 	}
+
 
 	/*従業員詳細変更から確認*/
 	@RequestMapping("/admin/employee/change/confirm")
@@ -239,42 +204,22 @@ public class EmployeeController {
 			@RequestParam(value="employee_Saturday",required=false)boolean day6,
 			@RequestParam(value="employee_Sunday",required=false)boolean day7,
 			Model model) {
-
-		Employee employee=new Employee();
-
-		employee.setEmployee_Id(str1);
-		employee.setEmployee_Name(str2);
-		employee.setEmployee_Adana(str3);
-		employee.setEmployee_Ad_Number(str4);
-		employee.setEmployee_Address(str5);
-		employee.setEmployee_Phone_Number(str6);
-		employee.setEmployee_Mail(str7);
-		employee.setDesire_Days(str8);
-		employee.setEmployee_Bikou(str9);
-		employee.setEmployee_Monday(day1);
-		employee.setEmployee_Tuesday(day2);
-		employee.setEmployee_Wednesday(day3);
-		employee.setEmployee_Thursday(day4);
-		employee.setEmployee_Friday(day5);
-		employee.setEmployee_Saturday(day6);
-		employee.setEmployee_Sunday(day7);
-
-		model.addAttribute("employee_Id",str1);
-		model.addAttribute("employee_Name",str2);
-		model.addAttribute("employee_Adana",str3);
-		model.addAttribute("employee_Ad_Number",str4);
-		model.addAttribute("employee_Address",str5);
-		model.addAttribute("employee_Phone_Number",str6);
-		model.addAttribute("employee_Mail",str7);
-		model.addAttribute("desire_Days",str8);
-		model.addAttribute("employee_Bikou",str9);
-		model.addAttribute("employee_Monday",day1);
-		model.addAttribute("employee_Tuesday",day2);
-		model.addAttribute("employee_Wednesday",day3);
-		model.addAttribute("employee_Thursday",day4);
-		model.addAttribute("employee_Friday",day5);
-		model.addAttribute("employee_Saturday",day6);
-		model.addAttribute("employee_Sunday",day7);
+			model.addAttribute("employee_Id",str1);
+			model.addAttribute("employee_Name",str2);
+			model.addAttribute("employee_Adana",str3);
+			model.addAttribute("employee_Ad_Number",str4);
+			model.addAttribute("employee_Address",str5);
+			model.addAttribute("employee_Phone_Number",str6);
+			model.addAttribute("employee_Mail",str7);
+			model.addAttribute("desire_Days",str8);
+			model.addAttribute("employee_Bikou",str9);
+			model.addAttribute("employee_Monday",day1);
+			model.addAttribute("employee_Tuesday",day2);
+			model.addAttribute("employee_Wednesday",day3);
+			model.addAttribute("employee_Thursday",day4);
+			model.addAttribute("employee_Friday",day5);
+			model.addAttribute("employee_Saturday",day6);
+			model.addAttribute("employee_Sunday",day7);
 		return "admin/employee/change/confirm";
 	}
 
@@ -327,18 +272,47 @@ public class EmployeeController {
 
 		boolean result =employeeService.updateOne(employee);
 		if(result==true) {
-			model.addAttribute("後進成功",result);
+			model.addAttribute("更新成功",result);
 		}else {
 			model.addAttribute("更新失敗",result);
 		}
+
+		System.out.println(result);
 
 		return "admin/employee/change/complete";
 	}
 
 	/*削除画面へ遷移*/
-	//@GetMapping("/admin/employee/delete/confirm/{delete=true:.employee_Id:.+}")
+	@GetMapping("/admin/employee/delete/confirm/{employee_Id:.+}")
+	public String getAdminEmployeeDeleteConfirm(@ModelAttribute @PathVariable("employee_Id")int employee_Id,
+		Model model) {
+
+		Employee employee=employeeService.selectOne(employee_Id);
+
+		model.addAttribute("employee_Id",employee.getEmployee_Id());
+		model.addAttribute("employee_Name",employee.getEmployee_Name());
+		model.addAttribute("employee_Adana",employee.getEmployee_Adana());
+
+		return "admin/employee/delete/confirm";
 
 
+	}
+
+
+	/*削除確認から完了*/
+	@PostMapping("/admin/employee/delete/complete")
+	public String postAdminEmployeeDeleteComplete(@ModelAttribute Employee employee,Model model) {
+
+		boolean result=employeeService.deleteOne(employee.getEmployee_Id());
+
+		if(result==true) {
+			model.addAttribute("削除成功",result);
+		}else {
+			model.addAttribute("削除失敗",result);
+		}
+
+		return "admin/employee/delete/complete";
+	}
 }
 
 
