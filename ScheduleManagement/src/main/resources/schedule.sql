@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS building (
 
 CREATE TABLE IF NOT EXISTS employee (
 employee_id INT,
-building_id int,
 employee_name varchar(256),
+employee_adana varchar(256),
 desire_days int,
 employee_monday boolean,
 employee_tuesday boolean,
@@ -36,8 +36,8 @@ employee_ad_number varchar(256),
 employee_address varchar(256),
 employee_phone_number varchar(256),
 employee_mail varchar(256),
-PRIMARY KEY(employee_id),
-FOREIGN KEY(building_id) REFERENCES building(building_id)
+employee_bikou varchar(256),
+PRIMARY KEY(employee_id)
 );
 
 CREATE TABLE IF NOT EXISTS work(

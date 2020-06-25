@@ -34,11 +34,15 @@ public class EmployeeService {
 
 	}
 
+
 	public Employee selectOne(int employee_Id) {
 
 		return employeedao.selectOne(employee_Id);
 
 	}
+
+
+
 
 	public boolean updateOne(Employee employee) {
 
@@ -54,5 +58,21 @@ public class EmployeeService {
 
 
 	}
+
+	public boolean deleteOne(int employee_Id) {
+
+		int rowNumber=employeedao.deleteOne(employee_Id);
+		boolean result=false;
+
+		if(rowNumber>0) {
+
+			result=true;
+		}
+
+		return result;
+
+
+	}
+
 
 }
