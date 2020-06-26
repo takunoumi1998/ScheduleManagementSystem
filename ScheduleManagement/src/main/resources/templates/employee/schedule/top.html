@@ -40,7 +40,7 @@
 			var dtmm = dtNow.getMonth() + 1;
 			var dtdd = dtNow.getDate();
 
-			document.write("<table border=1>");
+			document.write("<table border="1">");
 			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");
 			document.write("<tr>");
 			document.write("<th class='sun'>" + wName[0] + "</th>");
@@ -139,24 +139,6 @@
 	<p><a th:href="@{employee/schedule/menu}">メニュー画面へ</a></p>
 	<hr>
 	<div class="calendar" align="center">
-	<div>
-	<script type="text/javascript">
-		var dtNow = new Date();
-		var yyyy;
-		var mm;
-
-		yyyy = dtNow.getFullYear();
-		mm = dtNow.getMonth() + 1;
-		if(mm > 1) {
-			mm -= 1;
-		}
-		else {
-			mm = 12;
-			yyyy -= 1;
-		}
-		tblCalendar(yyyy, mm);
-	</script>
-	</div>
 
 	<div>
 	<script type="text/javascript">
