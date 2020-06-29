@@ -10,134 +10,86 @@
 
  </head>
  <body>
- 	<div th:fragment="change_contents">
- 		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
- 				<h1>ビル情報</h1>
+ 				<h1>ビル情報詳細</h1>
  			</div>
+ 		<h2>変更箇所を入力してください</h2>
 
- 			<form method="post" th:acthion="@{/admin/building/change/change}"
- 			th:object="${resisterform}">
- 			<table class="table table-bordered table-hover">
+ 		<form method="post" id="admin/building/change/complete"
+ 				action="admin/building/change/confirm"th:action="@{/admin/building/change/confirm}">
 
  			<!-- ビル情報入力エリア -->
- 			<tr>
+
+ 			<!-- ビルID -->
+ 			<label for="buildingId">ビルID</label>
+ 				<input type="text" class="form-control" id="buildingId"
+ 					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
 
  			<!-- ビル名 -->
- 	<tr>
- 		<th class="active col-sm-3">ビル名</th>
- 			<td>
- 				<div class="form-group">
- 					<input type="text" class="form-control"
- 						th:field="*{buildingName}"/>
- 	<!--  th:value="*{buildingName}" -->
- 				</div>
- 			</td>
- 	</tr>
+ 			<label for="buildingName">ビル名</label>
+ 			<input type="text" class="form-control" id="buildingName"
+ 					name="buildingName" th:value="${buildingName}"/>
 
- 	<!-- 必要人数 -->
- 	<tr>
- 		<th class="active">必要人数</th>
- 			<td>
- 				<div class="form-group">
- 					<input type="text" class="form-control"
- 		th:field="*{buildingNinzu}"/>
- 				</div>
- 			</td>
- 	</tr>
+ 			<!-- 郵便番号 -->
+ 			<label for="buildingAdNumber">郵便番号</label>
+ 			<input type="text" class="form-control" id="buildingAdNumber"
+ 					name="buildingAdNumber" th:value="${buildingAdNumber}"/>
 
- 	<!-- 希望時間 -->
- 	<tr>
- 	<th class="active">希望時間</th>
- 	<td>
- 	<div class="form-group">
- 	<input type="text" class="form-control"
- 		th:field="*{buildingTime}"/>
- 	</div>
- 	</td>
- 	</tr>
+ 			<!-- 住所 -->
+ 			<label for="buildingAddress">住所</label>
+ 			<input type="text" class="form-control" id="buildingAdress"
+ 					name="buildingAddress" th:value="${buildingAddress}"/>
 
-	<!-- 希望曜日 -->
- 	<tr>
- 	<th class="active">希望曜日</th>
- 	<td>
-	<div class="form-group">
- 		<label><input type="checkbox" name="buildingMonday" value="月">月</label>
- 		<label><input type="checkbox" name="buildingTuesday" value="火">火</label>
- 		<label><input type="checkbox" name="buildingWednesday" value="水">水</label>
- 		<label><input type="checkbox" name="buildingThursday" value="木">木</label>
- 		<label><input type="checkbox" name="buildingFriday" value="金">金</label>
- 		<label><input type="checkbox" name="buildingSaturday" value="土">土</label>
- 		<label><input type="checkbox" name="buildingSunday" value="日">日</label>
- 		</div>
- 		<span class="text-danger"
- 			th:if="${#fields.hasEroors('desire_youbi')}"
- 				th:errors="*{desire_youbi}">
- 		</span>
- 	</td>
- 	</tr>
+ 			<!-- 電話番号 -->
+ 			<label for="buildingPhoneNumber">電話番号</label>
+ 			<input type="text" class="form-control" id="buildingPhoneNumber"
+ 					name="buildingPhoneNumber" th:value="${buildingPhoneNumber}"/>
 
- 	<!-- 郵便番号 -->
- 	<tr>
- 	<th class="active">郵便番号</th>
- 	<td>
- 	<div class="form-group">
- 	<input type="text" class="form-control"
- 		th:field="*{buildingAdNumber}"/>
- 	</div>
- 	</td>
- 	</tr>
+ 			<!-- メールアドレス -->
+ 			<label for="buildingMail">メールアドレス</label>
+ 			<input type="text" class="form-control" id="buildingMail"
+ 					name="buildingMail" th:value="${buildingMail}"/>
 
- 	<!-- 住所 -->
- 	<tr>
- 	<th class="active">住所</th>
- 	<td>
- 	<div class="form-group">
- 	<input type="text" class="form-control"
- 	th:field="*{buildingAddress}"/>
- 	</div>
- 	</td>
- 	</tr>
+ 				<!-- 必要人数 -->
+ 			<label for="buildingNinzu">必要人数</label>
+ 			<input type="text" class="form-control" id="buildingNinzu"
+ 					name="buildingNinzu" th:value="${buildingNinzu}"/>
 
- 	<!-- 電話番号 -->
- 	<tr>
- 	<th class="active">電話番号</th>
- 	<td>
- 	<div class="form-group">
- 	<input type="text" class="form-control"
- 	th:field="*{buildingPhoneNumber}"/>
- 	</div>
- 	</td>
- 	</tr>
+ 			<!-- 希望時間 -->
+ 			<label for="buildingTime">希望時間</label>
+ 			<input type="text" class="form-control" id="buildingTime"
+ 					name="buildingTime" th:value="${buildingTime}"/>
 
- 	<!-- メールアドレス -->
- 	<tr>
- 	<th class="active">メールアドレス</th>
- 	<td>
- 	<div class="form-group">
- 	<input type="text" class="form-control"
- 			th:field="*{buildingMail}"/>
- 	</div>
- 	</td>
- 	</tr>
- 	</table>
- 	</form>
+ 			<br>
+
+ 			<!-- 希望曜日 -->
+ 			<label for="desireDays">希望曜日にチェックを入れてください</label>
+
+ 				<h3>月曜日 <input type="checkbox" name="buildingMonday"
+ 								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
+ 				<h3>火曜日 <input type="checkbox" name="buildingTuesday"
+ 								th:checked="${buildingTuesday==true}" th:value="*{1}"></h3>
+ 				<h3>水曜日 <input type="checkbox" name="buildingWednesday"
+ 								th:checked="${buildingWednesday==true}" th:value="*{1}"></h3>
+ 				<h3>木曜日 <input type="checkbox" name="buildingThursday"
+								th:checked="${buildingThursday==true}" th:value="*{1}"></h3>
+ 				<h3>金曜日 <input type="checkbox" name="buildingFriday"
+ 								th:checked="${buildingFriday==true}" th:value="*{1}"></h3>
+ 				<h3>土曜日 <input type="checkbox" name="buildingSaturday"
+ 								th:checked="${buildingSaturday==true}" th:value="*{1}"></h3>
+ 				<h3>日曜日 <input type="checkbox" name="buildingSunday"
+ 								th:checked="${buildingSunday==true}" th:value="*{1}"></h3>
+
+
  	<!-- 変更ボタン -->
  			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit"
- 				name="update"
- 				onclick="location.href='admin/building/list.html'"
- 				>
- 					変更
- 				</button>
+ 				type="submit" name="register">登録</button>
+
+ 		</form>
+ 			<form method="get" action="/admin/building/list">
  			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit"
- 				name="delete"
- 				onclick="location.href='admin/building/list.html'"
- 				>
- 				削除
- 				</button>
+ 				type="submit" name="register">ビル一覧へ戻る</button></form>
 
  			<!--フッター -->
   <footer>
@@ -145,8 +97,5 @@
   </footer>
 
  		</div>
- 	</div>
- 	</div>
-
  </body>
  </html>

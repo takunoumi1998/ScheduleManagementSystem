@@ -4,148 +4,102 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
+	<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
 
 	<title>従業員｜登録</title>
 
  </head>
  <body>
- 	<div th:fragment="EmployeeRegister_contents">
+<div th:fragment="EmployeeRegister_contents">
  		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
  				<h1>新規登録</h1>
  			</div>
 
- 			<form method="post" th:acthion="@{/EmployeeRegister}"
- 			th:object="${signupform}">
- 			<table class="table table-bordered table-hover">
+ 			<form method="post"id="admin/employee/create/confirm" action="admin/employee/create/confirm"th:action="@{/admin/employee/create/confirm}">
 
- 			<!-- 従業員入力エリア -->
- 			<tr>
+			<label for="employee_Id">従業員ID</label>
+			<input type="text" class="form-control" id="employee_Id" name="employee_Id" th:value="*{employee_Id}"/>
 
- 			<!-- 従業員ID -->
- 			<th class="active col-sm-3">従業員ID</th>
- 			<td>
- 				<div class="form-group">
- 					<input type="text" class="form-control"/>
- 				</div>
- 			</td>
- 		</tr>
- 		<tr>
+			<label for="employee_Name">氏名</label>
+			<input type="text" class="form-control" id="employee_Name"name="employee_Name"th:value="*{employee_Name}"/>
 
- 			<!-- 氏名 -->
- 			<th class="active">氏名</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
+			<label for="employee_Adana">呼び名(勤務表に表示される名前)</label>
+			<input type="text" class="form-control" id="employee_Adana"name="employee_Adana" th:value="*{employee_Adana}"/>
 
- 			<!-- 担当ビルID -->
- 			<th class="active">担当ビルID</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="employee_Ad_Number">郵便番号</label>
+			<input type="text" class="form-control" id="employee_Ad_Number"name="employee_Ad_Number"th:value="*{employee_Ad_Number}"/>
 
- 			<!-- 郵便番号 -->
- 			<th class="active">郵便番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
 
- 			<!-- 住所 -->
- 			<th class="active">住所</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="employee_Address">住所</label>
+ 			<input type="text" class="form-control" id="employee_Address"name="employee_Address"th:value="*{employee_Address}"/>
 
- 			<!-- 電話番号 -->
- 			<th class="active">電話番号</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="employee_Phone_Number">電話番号</label>
+ 			<input type="text" class="form-control" id="employee_Phone_Number"name="employee_Phone_Number"th:value="*{employee_Phone_Number}"/>
 
- 			<!-- メールアドレス -->
- 			<th class="active">メールアドレス</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
 
- 			<!-- 希望日数 -->
- 			<th class="active">希望日数</th>
- 			<td>
- 			<div class="form-group">
- 			<input type="text" class="form-control"/>
- 		</div>
- 	</td>
- 	</tr>
- 	<tr>
+ 			<label for="employee_Mail">メールアドレス</label>
+ 			<input type="text" class="form-control"  id="employee_Mail" name="employee_Mail"th:value="*{employee_Mail}"/>
 
- 			<!-- 希望曜日 -->
- 			<th class="active">希望曜日</th>
- 			<td>
- 			<div class="form-group">
- 				<label><input type="checkbox" name="desire_monday" value="月">月</label>
- 				<label><input type="checkbox" name="desire_monday" value="火">火</label>
- 				<label><input type="checkbox" name="desire_monday" value="水">水</label>
- 				<label><input type="checkbox" name="desire_monday" value="木">木</label>
- 				<label><input type="checkbox" name="desire_monday" value="金">金</label>
- 				<label><input type="checkbox" name="desire_monday" value="土">土</label>
- 				<label><input type="checkbox" name="desire_monday" value="日">日</label>
- 			</div>
- 			<span class="text-danger"
- 				th:if="${#fields.hasEroors('desire_youbi')}"
- 				th:errors="*{desire_youbi}">
- 			</span>
- 		</div>
- 	</td>
- 	</tr>
- 	</table>
 
- 	<!-- 登録ボタン -->
+ 			<label for="desire_Days">希望日数</label>
+ 			<input type="text" class="form-control" id="desire_Days"name="desire_Days"th:value="*{desire_Days}"/>
 
- 				</form>
 
+
+
+<br>
+
+              <label for="desire_Days">希望曜日にチェックを入れてください</label>
+
+ 				<h3>月曜日　<input type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="1"></h3>
+ 				<h3>火曜日　<input type="checkbox" name="employee_Tuesday" th:checked="${employee_Tuesday==true}"th:value="*{1}"></h3>
+ 				<h3>水曜日　<input type="checkbox" name="employee_Wednesday"th:checked="${employee_Wednesday==true}" th:value="*{1}"></h3>
+ 				<h3>木曜日　<input type="checkbox" name="employee_Thursday" th:checked="${employee_Thursday==true}"th:value="*{1}"></h3>
+ 				<h3>金曜日　<input type="checkbox" name="employee_Friday" th:checked="${employee_Friday==true}"th:value="*{1}"></h3>
+ 				<h3>土曜日　<input type="checkbox" name="employee_Saturday"th:checked="${employee_Saturday==true}" th:value="*{1}"></h3>
+ 				<h3>日曜日　<input type="checkbox" name="employee_Sunday" th:checked="${employee_Sunday==true}"th:value="*{1}"></h3>
+
+			<label for="desire_Days">備考</label>
+ 			<input type="text" class="form-control" id="employee_Bikou"name="employee_Bikou"th:value="*{employee_Bikou}"/>
+
+<p></p>
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
- 				name="register"
- 				onclick="location.href='EmployeeRegisterCushon.html'"
- 				>登録
+ 				name="register">
+				登録
  				</button>
 
+ 			</form>
+
+
+
+             <!-- 登録ボタン -->
+
+
+
+
+
+
+			<form action="/admin/employee/list" method="get">
  			<button class="btn btn-primary btn-lg pull-right"
  				type="submit"
- 				name="register"
- 				onclick="location.href='EmployeeManage.html'"
- 				>従業員一覧へ戻る
- 				</button>
+ 				name="register">
+
+ 				従業員一覧へ戻る
+ 				</button></form>
+ 		</div>
+ 		</div>
+
+
+
+
+
+
 
  		</div>
- 	</div>
- 	</div>
+
 
  </body>
  </html>

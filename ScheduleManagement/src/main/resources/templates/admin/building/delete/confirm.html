@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>確認画面</title>
+</head>
+<body>
+<h1>削除確認</h1>
+<p>以下の従業員を削除します。削除後はもとに戻せません。</p>
+<h3>ビルID：<span th:text="*{buildingId}"></span></h3>
+<h3>ビル名：<span th:text="*{buildingName}"></span></h3>
+
+
+<!-- 削除ボタン　隠しデータとしてbuildingIdを送る。 -->
+<form action="/admin/building/delete/complete" method="post">
+<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
+<button class="button4" type="submit">削除する</button>
+</form>
+
+
+<!-- 戻るボタン -->
+<form method="get" action="/admin/building/list"> <button class="button4" type="submit" >戻る</button>
+</form>
+
+<small>Copyright(c)チーム北岡 All Rights Reserved.</small>
+</body>
+</html>

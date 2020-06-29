@@ -8,14 +8,12 @@
 </head>
 <body>
 <h1>清掃業務管理システム</h1>
-<div>
+<div class="menu">
 <table>
-<ul id="menu">
-	<li><a th:href="@{'/admin/schedule/list'}">勤務表</a></li>
-	<li><a href="WorkTimeHour.html">労働時間</a></li>
-	<li><a th:href="@{'/admin/employee/list'}">従業員情報</a></li>
-	<li><a th:href="@{'/admin/building/list'}">ビル情報</a></li>
-</ul>
+	<a href="/admin/schedule/create"><li>勤務表</li></a>
+	<a href=""><li>労働時間</li></a>
+	<a href="/admin/employee/list"><li>従業員情報</li></a>
+	<a href="/admin/building/list"><li>ビル情報</li></a>
 </table>
 </div>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>

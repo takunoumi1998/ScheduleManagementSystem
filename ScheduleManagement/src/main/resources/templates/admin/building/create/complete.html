@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" th:href="@{/css/admin/DeleteComp.css}">
+	<link rel="stylesheet" th:href="@{css/admin/DeleteComp.css}">
 
 	<title>登録｜完了</title>
 
@@ -13,10 +13,11 @@
 
  <div align="center">
 
- 				<h1>登録しました</h1>
+ 				<h1>登録完了しました</h1>
 
  			<!-- 戻るボタン -->
-       <a href="#" class="btn-flat-border" onclick="location.href='/admin/building/list'" >ビル一覧へ戻る</a>
+       <form method="get" action="/admin/building/list"><button>ビル一覧へ戻る</button>
+       </form>
 
  	<!--フッター -->
   <footer>

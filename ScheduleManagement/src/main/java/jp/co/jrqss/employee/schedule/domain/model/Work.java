@@ -6,8 +6,9 @@ import lombok.Data;
 
 @Data
 public class Work {
-
+	private int buildingId;
+	private int workNumber;
+	private Date workDate;
 	private int employee_id;
-	private Date work_day;
-
+	private Date desireDate;
 }
