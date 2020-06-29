@@ -3,7 +3,6 @@ package jp.co.jrqss.admin.employee.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,7 @@ import jp.co.jrqss.admin.employee.domain.service.EmployeeService;
 @Controller
 public class EmployeeController {
 
-	@Qualifier("EmployeeServiceEmployee")
+	//@Qualifier("EmployeeServiceEmployee")
 	@Autowired
 	EmployeeService employeeService;
 
@@ -33,6 +32,7 @@ public class EmployeeController {
 		model.addAttribute("employeeList",employeeList);
 		return "admin/employee/list";
 	}
+
 
 	/*登録画面へ遷移*/
 	@GetMapping("/admin/employee/create/register")
@@ -84,26 +84,9 @@ public class EmployeeController {
 	@PostMapping("/admin/employee/create/complete")
 	public String postAdminEmployeeCreateComplete(@ModelAttribute Employee employee
 		) {
-		//Employee employee=new Employee();
-		employee.setEmployee_Id(employee.getEmployee_Id());
-		employee.setEmployee_Name(employee.getEmployee_Name());
-		employee.setEmployee_Adana(employee.getEmployee_Adana());
-		employee.setEmployee_Ad_Number(employee.getEmployee_Ad_Number());
-		employee.setEmployee_Address(employee.getEmployee_Address());
-		employee.setEmployee_Phone_Number(employee.getEmployee_Phone_Number());
-		employee.setEmployee_Mail(employee.getEmployee_Mail());
-		employee.setDesire_Days(employee.getDesire_Days());
-		employee.setEmployee_Bikou(employee.getEmployee_Bikou());
-		employee.setEmployee_Monday(employee.isEmployee_Monday());
-		employee.setEmployee_Tuesday(employee.isEmployee_Tuesday());
-		employee.setEmployee_Wednesday(employee.isEmployee_Wednesday());
-		employee.setEmployee_Thursday(employee.isEmployee_Thursday());
-		employee.setEmployee_Friday(employee.isEmployee_Friday());
-		employee.setEmployee_Saturday(employee.isEmployee_Saturday());
-		employee.setEmployee_Sunday(employee.isEmployee_Sunday());
 
-		boolean result=employeeService.insert(employee);
-		if(result==true) {
+		int result=employeeService.insertOne(employee);
+		if(result==1) {
 			System.out.println("成功");
 		}else {
 			System.out.println("失敗");
@@ -112,8 +95,8 @@ public class EmployeeController {
 	}
 
 	/*確認画面から登録画面へ　修正*/
-	@RequestMapping("/admin/employee/create/backregister")
-	public String AdminEmployeeCreateBackregister(
+	@PostMapping("/admin/employee/create/backregister")
+	public String postAdminEmployeeCreateBackregister(
 
 		@RequestParam("employee_Id")int str1,
 		@RequestParam("employee_Name")String str2,
@@ -185,7 +168,7 @@ public class EmployeeController {
 
 
 	/*従業員詳細変更から確認*/
-	@RequestMapping("/admin/employee/change/confirm")
+	@PostMapping("/admin/employee/change/confirm")
 	public String postAdminEmployeeChangeConfirm(
 			@RequestParam("employee_Id")int str1,
 			@RequestParam("employee_Name")String str2,
@@ -225,8 +208,8 @@ public class EmployeeController {
 
 
 	/*確認から修正*/
-	@RequestMapping("/admin/employee/change/backchange")
-	public String AdminEmployeeChangeBackchange(
+	@PostMapping("/admin/employee/change/backchange")
+	public String postAdminEmployeeChangeBackchange(
 
 		@RequestParam("employee_Id")int str1,
 		@RequestParam("employee_Name")String str2,
@@ -268,7 +251,7 @@ public class EmployeeController {
 
 	/*登録から完了*/
 	@PostMapping("/admin/employee/change/complete")
-	public String AdminEmployeeChangeComplete(@ModelAttribute Employee employee,Model model) {
+	public String postAdminEmployeeChangeComplete(@ModelAttribute Employee employee,Model model) {
 
 		boolean result =employeeService.updateOne(employee);
 		if(result==true) {

@@ -1,5 +1,6 @@
 package jp.co.jrqss.admin.building.domain.repository.jdbc;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,8 +47,10 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_ad_number,"
 				+"building_address,"
 				+"building_phone_number,"
-				+"building_mail)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				+"building_mail,"
+				+"building_start,"
+				+"building_end)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
@@ -62,7 +65,11 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingAdNumber()
 				,building.getBuildingAddress()
 				,building.getBuildingPhoneNumber()
-				,building.getBuildingMail());
+				,building.getBuildingMail()
+				,building.getBuildingStart()
+				,building.getBuildingEnd()
+				);
+
 
 		return rowNumber;
 	}
@@ -93,6 +100,10 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		building.setBuildingAddress((String)map.get("building_address"));
 		building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 		building.setBuildingMail((String)map.get("building_mail"));
+		building.setBuildingStart((Time)map.get("building_start"));
+		building.setBuildingEnd((Time)map.get("building_end"));
+
+
 
 		return building;
 	}
@@ -126,9 +137,14 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
+			building.setBuildingStart((Time)map.get("building_start"));
+			building.setBuildingEnd((Time)map.get("building_end"));
+
+
 
 			// 結果返却用リストに返却
 			buildingList.add(building);
+			//System.out.println(buildingList);
 		}
 
 		return buildingList;
@@ -153,8 +169,10 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_ad_number,"
 				+"building_address,"
 				+"building_phone_number,"
-				+"building_mail)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				+"building_mail"
+				+"building_start"
+				+"building_end)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
@@ -169,7 +187,11 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingAdNumber()
 				,building.getBuildingAddress()
 				,building.getBuildingPhoneNumber()
-				,building.getBuildingMail());
+				,building.getBuildingMail()
+				,building.getBuildingStart()
+				,building.getBuildingEnd()
+
+				);
 
 		return rowNumber;
 	}
@@ -183,7 +205,10 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	//1件削除
 	@Override
 	public int deleteOne(int buildingId)throws DataAccessException{
-		int rowNumber=jdbc.update("delete from building where building_id=?",buildingId);
+
+		int rowNumber=jdbc.update("delete from work where building_id=?",buildingId);
+		rowNumber=jdbc.update("delete from desire where building_id=?",buildingId);
+		rowNumber=jdbc.update("delete from building where building_id=?",buildingId);
 		return rowNumber;
 	}
 }

@@ -8,9 +8,10 @@ import jp.co.jrqss.admin.employee.domain.model.Employee;
 
 public interface EmployeeDao {
 
-	public List<Employee>selectMany()throws DataAccessException;
-
 	//Employeeテーブルの全データを取得
+	public List<Employee> selectMany()throws DataAccessException;
+
+	//1件追加
 	public int insertOne(Employee employee)throws DataAccessException;
 
 	//1件だけ取得

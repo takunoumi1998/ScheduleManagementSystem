@@ -91,7 +91,9 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 			employeeList.add(employee);
 		}
 
+		System.out.println(employeeList);
 		return employeeList;
+
 	}
 
 	//1件取得　queryForMapを使う
@@ -174,7 +176,9 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	@Override
 	public int deleteOne(int employee_Id)throws DataAccessException{
 
-		int rowNumber=jdbc.update("delete from employee where employee_id=?",employee_Id);
+		int rowNumber=jdbc.update("delete from work where employee_id=?",employee_Id);
+		rowNumber=jdbc.update("delete from desire where employee_id=?",employee_Id);
+		rowNumber=jdbc.update("delete from employee where employee_id=?",employee_Id);
 
 		return rowNumber;
 	}

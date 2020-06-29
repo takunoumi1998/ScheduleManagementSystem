@@ -1,6 +1,6 @@
--- DROP TABLE work;
--- DROP TABLE employee;
--- DROP TABLE building;
+ --DROP TABLE work;
+ --DROP TABLE employee;
+ --DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT PRIMARY KEY,
@@ -17,7 +17,10 @@ CREATE TABLE IF NOT EXISTS building (
 	building_ad_number VARCHAR(256),
 	building_address VARCHAR(256),
 	building_phone_number VARCHAR(256),
-	building_mail VARCHAR(50)
+	building_mail VARCHAR(50),
+	building_start time ,
+	building_end time
+
 );
 
 CREATE TABLE IF NOT EXISTS employee (
@@ -59,6 +62,7 @@ CREATE TABLE IF NOT EXISTS desire(
 	employee_id INT ,
 	desire_date DATE ,
 	PRIMARY KEY (building_id , work_number , work_date),
-	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+	FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+	FOREIGN KEY (building_id) REFERENCES building(building_id)
 );
 
