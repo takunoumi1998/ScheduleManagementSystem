@@ -3,97 +3,182 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8"></meta>
-<link rel="stylesheet" th:href="@{css/employee/top.css}">
-<title>勤務表</title>
+	<title>勤務表</title>
+	<link rel="stylesheet" type="text/css" th:href="@{css/employee/top.css}">
+	<script type="text/javascript">
+		function tblCalendar(yyyy, mm){
+			if(yyyy < 100) {
+				yyyy += 1900;
+			}
+			var wName = new Array();
+			wName[0] = "Sun";
+			wName[1] = "Mon";
+			wName[2] = "Tue";
+			wName[3] = "Wed";
+			wName[4] = "Thu";
+			wName[5] = "Fri";
+			wName[6] = "Sat";
+			var mDay = new Array();
+			mDay[0] = 0;
+			mDay[1] = 31;
+			mDay[2] = 28;
+			mDay[3] = 31;
+			mDay[4] = 30;
+			mDay[5] = 31;
+			mDay[6] = 30;
+			mDay[7] = 31;
+			mDay[8] = 31;
+			mDay[9] = 30;
+			mDay[10] = 31;
+			mDay[11] = 30;
+			mDay[12] = 31;
+			var	i;
+			var w;
+			var m;
+			var dtNow = new Date();
+			var dtyyyy = dtNow.getFullYear();
+			var dtmm = dtNow.getMonth() + 1;
+			var dtdd = dtNow.getDate();
+
+			document.write("<table border="1">");
+			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");
+			document.write("<tr>");
+			document.write("<th class='sun'>" + wName[0] + "</th>");
+			for(i = 1; i < 6; i++) {
+				document.write("<th class='day'>" + wName[i] + "</th>");
+			}
+			document.write("<th class='sat'>" + wName[6] + "</th>");
+			document.write("</tr>");
+
+			m = mDay[mm];
+			if(mm == 2 && yyyy % 4) {
+				m++;
+			}
+			w = GetWeekDay(yyyy, mm, 1);
+			for(i = 0; i < w; i++) {
+				document.write("<td class='other'>&nbsp;</td>");
+			}
+			for(i = 0; i < m; i++) {
+				if(w == 0) {
+					document.write("<tr>");
+				}
+
+				if(yyyy == dtyyyy && mm == dtmm && i + 1 == dtdd) {	// today?
+					document.write("<td class='today'>");
+				}
+				else if(w == 0) {
+					document.write("<td class='sun'>");
+				}
+				else if(w == 6) {
+					document.write("<td class='sat'>");
+				}
+				else {
+					document.write("<td class='day'>");
+				}
+				document.write(DayLink(yyyy, mm, i + 1) + "</td>");
+
+				if(w == 6) {
+					document.write("</tr>");
+				}
+
+				w = (w + 1) % 7;
+			}
+			for(i = 0; i < (7 - w) % 7; i++) {
+				document.write("<td class='other'>&nbsp;</td>");
+			}
+
+			document.write("</table>");
+
+			return;
+		}
+
+		function DayLink(yyyy, mm, dd){
+			var	hlk;
+
+			hlk = "<a th:href='";
+			hlk += yyyy;
+			if(mm < 10) {
+				hlk += "0" + mm;
+			}
+			else {
+				hlk += mm;
+			}
+			if(dd < 10) {
+				hlk += "0" + dd;
+			}
+			else {
+				hlk += dd;
+			}
+			hlk += ".html'>" + dd + "</a>";
+
+			return hlk;
+		}
+
+		function GetWeekDay(yyyy, mm, dd){
+			var ret;
+
+			if(mm < 3) {
+				yyyy--;
+				mm += 12;
+			}
+			ret = yyyy;
+			ret += Math.round((yyyy / 4) - 0.5);
+			ret -= Math.round((yyyy / 100) - 0.5);
+			ret += Math.round((yyyy / 400) - 0.5);
+			ret += Math.round((mm * 13 + 8) / 5 - 0.5);
+			ret += dd;
+			ret %= 7;
+
+			return ret;
+		}
+	</script>
 </head>
-<h1 align="center">清掃勤務表</h1>
+
 <body>
+	<h1 align="center">清掃勤務表</h1>
+	<p><a th:href="@{employee/schedule/menu}">メニュー画面へ</a></p>
+	<hr>
+	<div class="calendar" align="center">
 
-<div id="calendar"></div>
-<script type="text/javascript">
-const weeks = ['日', '月', '火', '水', '木', '金', '土']
-const date = new Date()
-const year = date.getFullYear()
-const month = date.getMonth() + 1
-const config = {
-    show: 2,
-}
+	<div>
+	<script type="text/javascript">
+		var dtNow = new Date();
+		tblCalendar(dtNow.getFullYear(), dtNow.getMonth() + 1);
+	</script>
+	</div>
 
-function showCalendar(year, month) {
-    for ( i = 0; i < config.show; i++) {
-        const calendarHtml = createCalendar(year, month)
-        const sec = document.createElement('section')
-        sec.innerHTML = calendarHtml
-        document.querySelector('#calendar').appendChild(sec)
+	<div>
+	<script type="text/javascript">
+		var dtNow = new Date();
+		var yyyy;
+		var mm;
 
-        month++
-        if (month > 12) {
-            year++
-            month = 1
-        }
-    }
-}
+		yyyy = dtNow.getFullYear();
+		mm = dtNow.getMonth() + 1;
+		if(mm < 12) {
+			mm += 1;
+		}
+		else {
+			mm = 1;
+			yyyy += 1;
+		}
+		tblCalendar(yyyy, mm);
+	</script>
+	</div>
+	</div>
+	<table align="center" style="font-size:25px">
+		<tr>
+			<td style="color: black">お知らせ</td>
+		</tr>
+		<tr>
+			<td style="color: black">・紙の勤務表は順次廃止します</td>
+		</tr>
+		<tr>
+			<td style="color: black">・当日の休暇希望（病気、忌引等）は以下のボタンからお電話ください</td>
+		</tr>
+	</table>
 
-function createCalendar(year, month) {
-    const startDate = new Date(year, month - 1, 1) // 月の最初の日を取得
-    const endDate = new Date(year, month,  0) // 月の最後の日を取得
-    const endDayCount = endDate.getDate() // 月の末日
-    const lastMonthEndDate = new Date(year, month - 1, 0) // 前月の最後の日の情報
-    const lastMonthendDayCount = lastMonthEndDate.getDate() // 前月の末日
-    const startDay = startDate.getDay() // 月の最初の日の曜日を取得
-    let dayCount = 1 // 日にちのカウント
-    let calendarHtml = '' // HTMLを組み立てる変数
+	<button class="tel" style="font-size:30px"><a href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
 
-    calendarHtml += '<h1>' + year  + '/' + month + '</h1>'
-    calendarHtml += '<table class="calendar">'
-
-    // 曜日の行を作成
-    for (let i = 0; i < weeks.length; i++) {
-        calendarHtml += '<td>' + weeks[i] + '</td>'
-    }
-
-    for (let w = 0; w < 6; w++) {
-        calendarHtml += '<tr>'
-
-        for (let d = 0; d < 7; d++) {
-            if (w == 0 && d < startDay) {
-                // 1行目で1日の曜日の前
-                let num = lastMonthendDayCount - startDay + d + 1
-                calendarHtml += '<td class="is-disabled">' + num + '</td>'
-            } else if (dayCount > endDayCount) {
-                // 末尾の日数を超えた
-                let num = dayCount - endDayCount
-                calendarHtml += '<td class="is-disabled">' + num + '</td>'
-                dayCount++
-            } else {
-                calendarHtml += '<td>' + dayCount + '</td>'
-                dayCount++
-            }
-        }
-        calendarHtml += '</tr>'
-    }
-    calendarHtml += '</table>'
-
-    return calendarHtml
-}
-
-showCalendar(year, month)
-</script>
-
-<table align="center" style="font-size:25px">
-	<tr>
-		<td colspan="4" style="color: black">お知らせ</td>
-	</tr>
-	<tr>
-		<td colspan="4" style="color: black">・紙の勤務表は順次廃止します</td>
-	</tr>
-	<tr>
-		<td colspan="4" style="color: black">・当日の休暇希望（病気、忌引等）は以下のボタンからお電話ください</td>
-	</tr>
-</table>
-
-<button class="tel" style="font-size:30px"><a href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
-
-<small>Copyright(c)チーム北岡 All Rights Reserved.</small>
 </body>
 </html>
