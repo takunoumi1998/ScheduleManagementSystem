@@ -49,6 +49,17 @@ public class BuildingController {
 		return "admin/building/create/register";
 	}
 
+/**	@PostMapping("admin/building/create/register")
+	public String postAdminBuildingCreateRegister(@ModelAttribute @Validated BuildingForm form,
+			BindingResult bindingResult, Model model) {
+
+		if(bindingResult.hasErrors()) {
+			return getAdminBuildingCreateRegister(form,model);
+		}
+
+		return "admin/building/create/confirm";
+	}
+*/
 
 	/**
      * 【確認】

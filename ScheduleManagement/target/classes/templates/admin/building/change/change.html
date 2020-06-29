@@ -8,63 +8,212 @@
 
 	<title>ビル情報｜詳細</title>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(function(){
+	$('#button01').on('click', function() {
+		var result = true;
+
+		if(!input_check()){
+			result = false;
+		}
+		return result;
+	});
+});
+
+	// 入力内容チェックのための関数
+	function input_check(){
+
+		var result = true;
+
+			// エラー用装飾のためのクラスリセット
+			$('#buildingId').removeClass("inp_error");
+			$('#buildingName').removeClass("inp_error");
+			$('#buildingAdNumber').removeClass("inp_error");
+			$('#buildingAddress').removeClass("inp_error");
+			$('#buildingPhoneNumber').removeClass("inp_error");
+			$('#buildingNinzu').removeClass("inp_error");
+			$('#buildingTime').removeClass("inp_error");
+
+			// 入力エラー文をリセット
+			$("#Id_error").empty();
+			$("#Name_error").empty();
+			$("#AdNum_error").empty();
+			$("#Ad_error").empty();
+			$("#PhoneNum_error").empty();
+			$("#Ninzu_error").empty();
+			$("#Time_error").empty();
+
+			// 入力内容セット
+			var buildingId   = $("#buildingId").val();
+			var buildingName  = $("#buildingName").val();
+			var buildingAdNumber = $("#buildingAdNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
+			var buildingAddress  = $("#buildingAddress").val();
+			var buildingPhoneNumber  = $("#buildingPhoneNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
+			var buildingNinzu  = $("#buildingNinzu").val();
+			var buildingTime  = $("#buildingTime").val();
+
+			// 入力内容チェック
+			// ビルID
+			if(buildingId == ""){
+				$("#Id_error").html(" 必須項目です ");
+				$("#buildingId").addClass("inp_error");
+				result = false;
+			}else if(!(buildingId.match(/^[0-9]+$/))){
+				$("#Id_error").html(" 半角数字で入力してください ");
+				$("#buildingId").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル名
+			if(buildingName == ""){
+				$("#Name_error").html(" 必須項目です ");
+				$("#buildingName").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル郵便番号
+			if(buildingAdNumber == ""){
+				$("#AdNum_error").html(" 必須項目です ");
+				$("#buildingAdNumber").addClass("inp_error");
+				result = false;
+			}else if(!(buildingAdNumber.match(/^[0-9]+$/))){
+				$("#AdNum_error").html(" 半角数字で入力してください ");
+				$("#buildingAdNumber").addClass("inp_error");
+				result = false;
+			}else if(!(buildingAdNumber.length == 7)){
+				$("#AdNum_error").html(" 正しい郵便番号を入力してください ");
+				$("#buildingAdNumber").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル住所
+			if(buildingAddress == ""){
+				$("#Ad_error").html(" 必須項目です ");
+				$("#buildingAddress").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル電話
+			if(buildingPhoneNumber == ""){
+				$("#PhoneNum_error").html(" 必須項目です ");
+				$("#buildingPhoneNumber").addClass("inp_error");
+				result = false;
+			}else if(!(buildingPhoneNumber.match(/^[0-9]+$/))){
+				$("#PhoneNum_error").html(" 半角数字で入力してください ");
+				$("#buildingPhoneNumber").addClass("inp_error");
+				result = false;
+			}else if(buildingPhoneNumber.length < 10){
+				$("#PhoneNum_error").html(" 正しい電話番号を入力してください ");
+				$("#buildingPhoneNumber").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル希望人数
+			if(buildingNinzu == ""){
+				$("#Ninzu_error").html(" 必須項目です ");
+				$("#buildingNinzu").addClass("inp_error");
+				result = false;
+			}else if(!(buildingNinzu.match(/^[0-9]+$/))){
+				$("#Ninzu_error").html(" 半角数字で入力してください ");
+				$("#buildingNinzu").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル希望時間
+			if(buildingTime == ""){
+				$("#Time_error").html(" 必須項目です ");
+				$("#buildingTime").addClass("inp_error");
+				result = false;
+			}else if(!(buildingTime.match(/^[0-9]+$/))){
+				$("#Time_error").html(" 半角数字で入力してください ");
+				$("#buildingTime").addClass("inp_error");
+				result = false;
+			}
+
+			return result;
+	}
+
+	</script>
+
  </head>
  <body>
- 			<div class="col-sm-5">
+
+ 		<div class="col-sm-5">
  				<div class="page-header">
  				<h1>ビル情報詳細</h1>
  			</div>
  		<h2>変更箇所を入力してください</h2>
 
- 		<form method="post" id="admin/building/change/complete"
+ 		<form method="post" name="change" id="admin/building/change/complete"
  				action="admin/building/change/confirm"th:action="@{/admin/building/change/confirm}">
 
  			<!-- ビル情報入力エリア -->
 
  			<!-- ビルID -->
+ 			<span class="req">必須</span>
  			<label for="buildingId">ビルID</label>
  				<input type="text" class="form-control" id="buildingId"
  					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
+ 				<span id="Id_error" class="error_m"></span>
 
  			<!-- ビル名 -->
+ 			<span class="req">必須</span>
  			<label for="buildingName">ビル名</label>
  			<input type="text" class="form-control" id="buildingName"
  					name="buildingName" th:value="${buildingName}"/>
+ 				<span id="Name_error" class="error_m"></span>
 
  			<!-- 郵便番号 -->
+ 			<span class="req">必須</span>
  			<label for="buildingAdNumber">郵便番号</label>
- 			<input type="text" class="form-control" id="buildingAdNumber"
+ 			<input type="text" class="number" id="buildingAdNumber"
  					name="buildingAdNumber" th:value="${buildingAdNumber}"/>
+ 				<span id="AdNum_error" class="error_m"></span>
 
  			<!-- 住所 -->
+ 			<span class="req">必須</span>
  			<label for="buildingAddress">住所</label>
- 			<input type="text" class="form-control" id="buildingAdress"
+ 			<input type="text" class="form-control" id="buildingAddress"
  					name="buildingAddress" th:value="${buildingAddress}"/>
+ 				<span id="Ad_error" class="error_m"></span>
 
  			<!-- 電話番号 -->
+ 			 <span class="req">必須</span>
  			<label for="buildingPhoneNumber">電話番号</label>
- 			<input type="text" class="form-control" id="buildingPhoneNumber"
+ 			<input type="text" class="number" id="buildingPhoneNumber"
  					name="buildingPhoneNumber" th:value="${buildingPhoneNumber}"/>
+ 				<span id="PhoneNum_error" class="error_m"></span>
 
  			<!-- メールアドレス -->
+ 			<span class="any">任意</span>
  			<label for="buildingMail">メールアドレス</label>
  			<input type="text" class="form-control" id="buildingMail"
  					name="buildingMail" th:value="${buildingMail}"/>
+ 				<span id="Mail_error" class="error_m"></span>
 
  				<!-- 必要人数 -->
+ 				<span class="req">必須</span>
  			<label for="buildingNinzu">必要人数</label>
- 			<input type="text" class="form-control" id="buildingNinzu"
+ 			<input type="text" class="number" id="buildingNinzu"
  					name="buildingNinzu" th:value="${buildingNinzu}"/>
+ 				<span id="Ninzu_error" class="error_m"></span>
 
  			<!-- 希望時間 -->
+ 			<span class="req">必須</span>
  			<label for="buildingTime">希望時間</label>
  			<input type="text" class="form-control" id="buildingTime"
  					name="buildingTime" th:value="${buildingTime}"/>
+ 				<span id="Time_error" class="error_m"></span>
 
  			<br>
 
  			<!-- 希望曜日 -->
+ 			<span class="any">任意</span>
  			<label for="desireDays">希望曜日にチェックを入れてください</label>
+ 			<span id="Days_error" class="error_m"></span>
+
 
  				<h3>月曜日 <input type="checkbox" name="buildingMonday"
  								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
@@ -84,7 +233,7 @@
 
  	<!-- 変更ボタン -->
  			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit" name="register">登録</button>
+ 				type="submit" name="register" id="button01">登録</button>
 
  		</form>
  			<form method="get" action="/admin/building/list">
