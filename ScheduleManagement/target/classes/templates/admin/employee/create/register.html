@@ -32,7 +32,7 @@ $(function(){
 			$('#employee_Name').removeClass("inp_error");
 			$('#employee_Ad_Number').removeClass("inp_error");
 			$('#employee_Address').removeClass("inp_error");
-			$('#employee_Phone_Number').removeClass("inp_error");
+			$('#employee_Phone_number').removeClass("inp_error");
 			$('#desire_Days').removeClass("inp_error");
 
 
@@ -60,7 +60,7 @@ $(function(){
 				$("#Id_error").html(" 必須項目です ");
 				$("#employee_Id").addClass("inp_error");
 				result = false;
-			}else if(!(buildingId.match(/^[0-9]+$/))){
+			}else if(!(employee_Id.match(/^[0-9]+$/))){
 				$("#Id_error").html(" 半角数字で入力してください ");
 				$("#employee_Id").addClass("inp_error");
 				result = false;
@@ -69,7 +69,7 @@ $(function(){
 			// 氏名
 			if(employee_Name == ""){
 				$("#Name_error").html(" 必須項目です ");
-				$("#employee_Namee").addClass("inp_error");
+				$("#employee_Name").addClass("inp_error");
 				result = false;
 			}
 
