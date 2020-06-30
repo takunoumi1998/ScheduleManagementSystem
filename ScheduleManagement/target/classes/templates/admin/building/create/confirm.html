@@ -73,56 +73,52 @@
 
 
 
- 			<!-- 希望曜日 -->
- 			<label for="desireDays">希望曜日</label>
- 			<p th:text="*{desireDays}"></p>
- 			<input type="hidden" name="desireDays" id="desireDays" th:value="*{desireDays}">
-
+			<!-- 希望曜日 -->
  			<div id="buildingMonday">
- 			<label for="buildingMonday">月曜日</label>
- 			<p th:text="*{buildingMonday}"></p>
+
+ 			<span th:text="*{buildingMonday}"></span>
  			</div>
  			<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
 
  			<div id="buildingTuesday">
- 			<label for="buildingTuesday">火曜日</label>
- 			<p th:text="*{buildingTuesday}"></p>
+
+ 			<span th:text="*{buildingTuesday}"></span>
  			</div>
  			<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
 
  			<div id="buildingWednesday">
- 			<label for="buildingWednesday">水曜日</label>
- 			<p th:text="*{buildingWednesday}"></p>
+
+ 			<span th:text="*{buildingWednesday}"></span>
  			</div>
  			<input type="hidden" name="buildingWednesday" id="buildingWednesday" th:value="*{buildingWednesday}">
 
  			<div id="buildingThursday">
- 			<label for="buildingThursday">木曜日</label>
- 			<p th:text="*{buildingThursday}"></p>
+
+ 			<span th:text="*{buildingThursday}"></span>
  			</div>
  			<input type="hidden" name="buildingThursday" id="buildingThursday" th:value="*{buildingThursday}">
 
  			<div id="buildingFriday">
- 			<label for="buildingFriday">金曜日</label>
- 			<p th:text="*{buildingFriday}"></p>
+
+ 			<span th:text="*{buildingFriday}"></span>
  			</div>
  			<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
 
  			<div id="buildingSaturday">
- 			<label for="buildingSaturday">土曜日</label>
- 			<p th:text="*{buildingSaturday}"></p>
+
+ 			<span th:text="*{buildingSaturday}"></span>
  			</div>
  			<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
 
  			<div id="buildingSunday">
- 			<label for="buildingSunday">日曜日</label>
- 			<p th:text="*{buildingSunday}"></p>
+
+ 			<span th:text="*{buildingSunday}"></span>
  			</div>
  			<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
 
 		<p>この内容で確定しますか？</p>
 
-         <button type="submit" value="confirm">確定</button>
+         <button type="submit" value="confirm" >確定</button>
 
     </form>
 
@@ -150,5 +146,42 @@
 
        </div>
 
+
+	<script>
+	var str = document.getElementById("buildingMonday").innerHTML;
+	str = str.replace(/true/g," 月曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingMonday").innerHTML = str;
+
+	var str = document.getElementById("buildingTuesday").innerHTML;
+	str = str.replace(/true/g," 火曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingTuesday").innerHTML = str;
+
+	var str = document.getElementById("buildingWednesday").innerHTML;
+	str = str.replace(/true/g,"水曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingWednesday").innerHTML = str;
+
+	var str = document.getElementById("buildingThursday").innerHTML;
+	str = str.replace(/true/g,"木曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingThursday").innerHTML = str;
+
+	var str = document.getElementById("buildingFriday").innerHTML;
+	str = str.replace(/true/g,"金曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingFriday").innerHTML = str;
+
+	var str = document.getElementById("buildingSaturday").innerHTML;
+	str = str.replace(/true/g,"土曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSaturday").innerHTML = str;
+
+	var str = document.getElementById("buildingSunday").innerHTML;
+	str = str.replace(/true/g,"日曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSunday").innerHTML = str;
+	</script>
    </body>
  </html>

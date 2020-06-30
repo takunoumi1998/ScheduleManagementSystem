@@ -44,6 +44,8 @@ function checkRegister(){
 		return false;
 
     }else{
+
+    	<!-- チェックボックス選択していないとき -->
     	var arr_checkboxes=document.getElementsByClassName("checkboxes");
 		var count=0;
 		for(var i=0;i<arr_checkboxes.length;i++){
@@ -51,7 +53,6 @@ function checkRegister(){
 
 				count++;
 			}
-
 		}
 		if(count<1){
 			alert("希望曜日を1つ以上選んでください");
@@ -59,24 +60,36 @@ function checkRegister(){
 		}
     	// ほかにもやりたいことを記述
 
+
+    	<!-- 時間逆の確認 -->
+    	var buildingStart=document.register.buildingStart.value;
+    	var buildingEnd=document.register.buildingEnd.value;
+
+    	if(buildingStart>buildingEnd){
+    		alert("時間が逆になっています。修正してください。");
+    		return false;
+    	}else if(buildingStart == buildingEnd){
+    		alert("時間が同じです。修正してください。");
+    		return false;
+    	}
+
 		<!-- 半角数字のみ -->
 
     	var flag = 0;
-    	if(document.register.buildingId.value.match(/[^0-9]/g)){
+    	if(document.register.buildingId.value.match(/[^0-9]+/g)){
     		flag = 1;
-    	}else if(document.register.buildingAdNumber.value.match(/[^0-9]/g)){
+    	}else if(document.register.buildingAdNumber.value.match(/[^0-9]+/g)){
     		flag = 1;
-    	}else if(document.register.buildingPhoneNumber.value.match(/[^0-9]/g)){
+    	}else if(document.register.buildingPhoneNumber.value.match(/[^0-9]+/g)){
     		flag = 1;
-    	}else if(document.register.buildingNinzu.value.match(/[^0-9]/g)){
+    	}else if(document.register.buildingNinzu.value.match(/[^0-9]+/g)){
     		flag = 1;
-    	}else if(document.register.buildingTime.value.match(/[^0-9]/g)){
+    	}else if(document.register.buildingTime.value.match(/[^0-9]+/g)){
     		flag = 1;
     	}
     		if(flag){
-    			("半角数字で入力してください")
+    			alert("半角数字で入力してください")
     			return false;
-
 		}else{
 
 			<!-- 文字制限 -->
@@ -90,13 +103,14 @@ function checkRegister(){
             	return false;
 
 			}else{
-
 	    			return true;
 			}
 		}
 	}
 }
 </script>
+
+
 
 
  </head>

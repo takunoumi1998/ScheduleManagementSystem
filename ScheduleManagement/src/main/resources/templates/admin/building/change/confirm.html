@@ -9,6 +9,14 @@
 	<title>ビル情報｜変更内容確認ページ</title>
 
  </head>
+
+
+
+
+
+
+
+
  <body>
  			<div class="col-sm-5">
  				<div class="page-header">
@@ -75,44 +83,44 @@
  			<!-- 希望曜日 -->
  			<h3>希望曜日</h3>
  			<div id="buildingMonday">
- 			<label for="buildingMonday">月曜日</label>
+
  			<span th:text="*{buildingMonday}"></span>
  			</div>
  			<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
 
  			<div id="buildingTuesday">
- 			<label for="buildingTuesday">火曜日</label>
+
  			<span th:text="*{buildingTuesday}"></span>
  			</div>
  			<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
 
  			<div id="buildingWednesday">
- 			<label for="buildingWednesday">水曜日</label>
+
  			<span th:text="*{buildingWednesday}"></span>
  			</div>
  			<input type="hidden" name="buildingWednesday" id="buildingWednesday" th:value="*{buildingWednesday}">
 
  			<div id="buildingThursday">
- 			<label for="buildingThursday">木曜日</label>
- 			<p th:text="*{buildingThursday}"></p>
+
+ 			<span th:text="*{buildingThursday}"></span>
  			</div>
  			<input type="hidden" name="buildingThursday" id="buildingThursday" th:value="*{buildingThursday}">
 
  			<div id="buildingFriday">
- 			<label for="buildingFriday">金曜日</label>
- 			<p th:text="*{buildingFriday}"></p>
+
+ 			<span th:text="*{buildingFriday}"></span>
  			</div>
  			<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
 
  			<div id="buildingSaturday">
- 			<label for="buildingSaturday">土曜日</label>
- 			<p th:text="*{buildingSaturday}"></p>
+
+ 			<span th:text="*{buildingSaturday}"></span>
  			</div>
  			<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
 
  			<div id="buildingSunday">
- 			<label for="buildingSunday">日曜日</label>
- 			<p th:text="*{buildingSunday}"></p>
+
+ 			<span th:text="*{buildingSunday}"></span>
  			</div>
  			<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
 
@@ -122,7 +130,7 @@
 
          </form>
 
-         <form method="post" action="/admin/building/change/backregister">
+         <form method="post" action="/admin/building/change/backchange">
     	<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
     	<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
     	<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
@@ -146,5 +154,46 @@
 
 	</div>
 
+
+
+	<script>
+	var str = document.getElementById("buildingMonday").innerHTML;
+	str = str.replace(/true/g," 月曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingMonday").innerHTML = str;
+
+	var str = document.getElementById("buildingTuesday").innerHTML;
+	str = str.replace(/true/g," 火曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingTuesday").innerHTML = str;
+
+	var str = document.getElementById("buildingWednesday").innerHTML;
+	str = str.replace(/true/g,"水曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingWednesday").innerHTML = str;
+
+	var str = document.getElementById("buildingThursday").innerHTML;
+	str = str.replace(/true/g,"木曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingThursday").innerHTML = str;
+
+	var str = document.getElementById("buildingFriday").innerHTML;
+	str = str.replace(/true/g,"金曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingFriday").innerHTML = str;
+
+	var str = document.getElementById("buildingSaturday").innerHTML;
+	str = str.replace(/true/g,"土曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSaturday").innerHTML = str;
+
+	var str = document.getElementById("buildingSunday").innerHTML;
+	str = str.replace(/true/g,"日曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSunday").innerHTML = str;
+	</script>
    </body>
+
+
+
  </html>
