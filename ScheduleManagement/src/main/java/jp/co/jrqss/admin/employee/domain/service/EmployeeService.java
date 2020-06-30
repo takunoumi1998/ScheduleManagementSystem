@@ -10,7 +10,10 @@ import jp.co.jrqss.admin.employee.domain.repository.EmployeeDao;
 import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Service("EmployeeServiceEmployee")
-public class EmployeeService {
+
+public class EmployeeService{
+
+
 
 	@Autowired
 	EmployeeDao employeedao;
@@ -21,23 +24,28 @@ public class EmployeeService {
 		return employeedao.findByName(searchForm);
 	}
 
-	public List<Employee>selectMany(){
 
+	//全件取得
+	public List<Employee>selectMany(){
 		return employeedao.selectMany();
 	}
 
+
+
+
+
 	//insert用　一件登録
-	public boolean insert(Employee employee) {
+	public int insertOne(Employee employee) {
 
 		int rowNumber=employeedao.insertOne(employee);
-		boolean result=false;
+		//boolean result=false;
 
-		if(rowNumber>0) {
+		/*if(rowNumber>0) {
 
 			result=true;
-		}
+		}*/
 
-		return result;
+		return rowNumber;
 
 	}
 
