@@ -1,5 +1,7 @@
 package jp.co.jrqss.admin.building.domain.model;
 
+import java.sql.Time;
+
 import lombok.Data;
 
 @Data
@@ -20,4 +22,6 @@ public class Building {
 	private String buildingAddress;
 	private String buildingPhoneNumber;
 	private String buildingMail;
+	private Time buildingStart;
+	private Time buildingEnd;
 }
