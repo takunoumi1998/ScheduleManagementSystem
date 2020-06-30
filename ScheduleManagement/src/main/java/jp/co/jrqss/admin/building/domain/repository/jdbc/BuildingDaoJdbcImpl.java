@@ -49,6 +49,9 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
+			building.setBuildingStart((Time)map.get("buildingStart"));
+			building.setBuildingEnd((Time)map.get("building_end"));
+
 
 			// 結果返却用リストに返却
 			buildingList.add(building);
@@ -193,25 +196,25 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	@Override
 	public int updateOne(Building building)throws DataAccessException{
 
-		int rowNumber=jdbc.update("update building set(building_id,"
-				+"building_name,"
-				+"building_ninzu,"
-				+"building_time,"
-				+"building_monday,"
-				+"building_tuesday,"
-				+"building_wednesday,"
-				+"building_thursday,"
-				+"building_friday,"
-				+"building_saturday,"
-				+"building_sunday,"
-				+"building_ad_number,"
-				+"building_address,"
-				+"building_phone_number,"
-				+"building_mail"
-				+"building_start"
-				+"building_end)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-				,building.getBuildingId()
+		int rowNumber=jdbc.update("update building "
+				+"set "
+				+"building_name = ?,"
+				+"building_ninzu = ?,"
+				+"building_time = ?,"
+				+"building_monday = ?,"
+				+"building_tuesday = ?,"
+				+"building_wednesday = ?,"
+				+"building_thursday = ?,"
+				+"building_friday = ?,"
+				+"building_saturday = ?,"
+				+"building_sunday = ?,"
+				+"building_ad_number = ?,"
+				+"building_address = ?,"
+				+"building_phone_number = ?,"
+				+"building_mail = ?,"
+				+"building_start = ?,"
+				+"building_end = ? "
+				+"where building_id = ?"
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
 				,building.getBuildingTime()
@@ -228,7 +231,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingMail()
 				,building.getBuildingStart()
 				,building.getBuildingEnd()
-
+				,building.getBuildingId()
 				);
 
 		return rowNumber;

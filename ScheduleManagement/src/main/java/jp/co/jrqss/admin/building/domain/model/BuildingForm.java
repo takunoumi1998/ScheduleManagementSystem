@@ -1,5 +1,7 @@
 package jp.co.jrqss.admin.building.domain.model;
 
+import java.sql.Time;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -56,6 +58,10 @@ public class BuildingForm {
 
 		@Email(message = "{email_check}")
 		private String buildingMail;
+
+		private Time buildingStart;
+
+		private Time buildingEnd;
 
 
 }

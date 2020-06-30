@@ -33,6 +33,7 @@ $(function(){
 			$('#employee_Ad_Number').removeClass("inp_error");
 			$('#employee_Address').removeClass("inp_error");
 			$('#employee_Phone_Number').removeClass("inp_error");
+			$('#desire_Days').removeClass("inp_error");
 
 
 			// 入力エラー文をリセット
@@ -41,6 +42,7 @@ $(function(){
 			$("#AdNum_error").empty();
 			$("#Ad_error").empty();
 			$("#PhoneNum_error").empty();
+			$("#Days_error").empty();
 
 
 			// 入力内容セット
@@ -49,6 +51,7 @@ $(function(){
 			var employee_Ad_Number = $("#employee_Ad_Number").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var employee_Address  = $("#employee_Address").val();
 			var employee_Phone_Number  = $("#employee_Phone_Number").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
+			var desire_Days   = $("#desire_Days").val();
 
 
 			// 入力内容チェック
@@ -91,7 +94,7 @@ $(function(){
 				$("#employee_Address").addClass("inp_error");
 			}
 
-			// ビル電話
+			// 電話
 			if(employee_Phone_Number == ""){
 				$("#PhoneNum_error").html(" 必須項目です ");
 				$("#employee_Phone_Number").addClass("inp_error");
@@ -103,6 +106,17 @@ $(function(){
 			}else if(employee_Phone_Number.length < 10){
 				$("#PhoneNum_error").html(" 正しい電話番号を入力してください ");
 				$("#employee_Phone_Number").addClass("inp_error");
+				result = false;
+			}
+
+			// 希望日数
+			if(desire_Days == ""){
+				$("#Days_error").html(" 必須項目です ");
+				$("#desire_Days").addClass("inp_error");
+				result = false;
+			}else if(!(desire_Days.match(/^[0-9]+$/))){
+				$("#Days_error").html(" 半角数字で入力してください ");
+				$("#desire_Days").addClass("inp_error");
 				result = false;
 			}
 
@@ -135,6 +149,7 @@ $(function(){
 			<span class="any">任意</span>
 			<label for="employee_Adana">呼び名(勤務表に表示される名前)</label>
 			<input type="text" class="form-control" id="employee_Adana"name="employee_Adana" th:value="*{employee_Adana}"/>
+			<span id="Adana_error" class="error_m"></span>
 
 			<span class="req">必須</span>
  			<label for="employee_Ad_Number">郵便番号</label>
@@ -154,16 +169,16 @@ $(function(){
 			<span class="any">任意</span>
  			<label for="employee_Mail">メールアドレス</label>
  			<input type="text" class="form-control"  id="employee_Mail" name="employee_Mail"th:value="*{employee_Mail}"/>
+			<span id="Mail_error" class="error_m"></span>
 
-			<span class="any">任意</span>
+			<span class="req">必須</span>
  			<label for="desire_Days">希望日数</label>
  			<input type="text" class="form-control" id="desire_Days"name="desire_Days"th:value="*{desire_Days}"/>
+ 			<span id="Days_error" class="error_m"></span>
 
 
-
-
-<br>
-			<span class="any">任意</span>
+<br/>
+			  <span class="any">任意</span>
               <label for="desire_Days">希望曜日にチェックを入れてください</label>
 
  				<h3>月曜日　<input type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="1"></h3>
@@ -174,6 +189,7 @@ $(function(){
  				<h3>土曜日　<input type="checkbox" name="employee_Saturday"th:checked="${employee_Saturday==true}" th:value="*{1}"></h3>
  				<h3>日曜日　<input type="checkbox" name="employee_Sunday" th:checked="${employee_Sunday==true}"th:value="*{1}"></h3>
 
+<br>
 			<span class="any">任意</span>
 			<label for="desire_Days">備考</label>
  			<input type="text" class="form-control" id="employee_Bikou"name="employee_Bikou"th:value="*{employee_Bikou}"/>
