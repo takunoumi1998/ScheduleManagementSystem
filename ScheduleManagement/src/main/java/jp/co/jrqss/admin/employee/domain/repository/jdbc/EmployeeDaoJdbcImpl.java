@@ -71,7 +71,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				+"employee_address,"
 				+"employee_phone_number,"
 				+"employee_mail,"
-				+ "employee_bikou)"
+				+"employee_bikou)"
 				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,employee.getEmployee_Id()
 				,employee.getEmployee_Name()

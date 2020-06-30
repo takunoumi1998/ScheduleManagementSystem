@@ -34,13 +34,29 @@ function checkRegister(){
     	flag = 1;
     }else if(document.register.buildingTime.value == ""){
     	flag = 1;
+    }else if(document.register.buildingStart.value == ""){
+    	flag = 1;
+    }else if(document.register.buildingEnd.value == ""){
+    	flag = 1;
     }
     if(flag){
         window.alert("必須項目を入力して下さい。");
 		return false;
 
     }else{
+    	var arr_checkboxes=document.getElementsByClassName("checkboxes");
+		var count=0;
+		for(var i=0;i<arr_checkboxes.length;i++){
+			if(arr_checkboxes[i].checked){
 
+				count++;
+			}
+
+		}
+		if(count<1){
+			alert("希望曜日を1つ以上選んでください");
+			return false;
+		}
     	// ほかにもやりたいことを記述
 
 		<!-- 半角数字のみ -->
@@ -144,23 +160,37 @@ function checkRegister(){
  				name="buildingTime" th:value="*{buildingTime}"/>
  			<span class="number"></span>
 
+ 			<!-- 希望開始時刻 -->
+ 			<label for="buildingStart">希望開始時刻 （選択して✓を押してください） *</label>
+ 			<input type="time" class="number" id="buildingStart"
+ 				name="buildingStart" min="00:00" max="23:59"  th:value="*{buildingStart}"/>
+			<span class="number"></span>
+
+			<!-- 希望終了時刻 -->
+			<label for="buildingEnd">希望終了時刻 (選択して✓を押してください) *</label>
+ 			<input type="time" class="number" id="buildingEnd"
+ 				name="buildingEnd" min="00:00" max="23:59"  th:value="*{buildingEnd}"/>
+			<span class="number"></span>
+
+
+
  			<!-- 希望曜日 -->
  			<label for="desireDays">希望曜日にチェックを入れてください</label>
  			<span class="alertarea"></span>
 
- 				<h3>月曜日 <input type="checkbox" name="buildingMonday"
+ 				<h3>月曜日 <input class="checkboxes" type="checkbox" name="buildingMonday"
  								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
- 				<h3>火曜日 <input type="checkbox" name="buildingTuesday"
+ 				<h3>火曜日 <input class="checkboxes" type="checkbox" name="buildingTuesday"
  								th:checked="${buildingTuesday==true}" th:value="*{1}"></h3>
- 				<h3>水曜日 <input type="checkbox" name="buildingWednesday"
+ 				<h3>水曜日 <input class="checkboxes" type="checkbox" name="buildingWednesday"
  								th:checked="${buildingWednesday==true}" th:value="*{1}"></h3>
- 				<h3>木曜日 <input type="checkbox" name="buildingThursday"
+ 				<h3>木曜日 <input class="checkboxes" type="checkbox" name="buildingThursday"
 								th:checked="${buildingThursday==true}" th:value="*{1}"></h3>
- 				<h3>金曜日 <input type="checkbox" name="buildingFriday"
+ 				<h3>金曜日 <input class="checkboxes" type="checkbox" name="buildingFriday"
  								th:checked="${buildingFriday==true}" th:value="*{1}"></h3>
- 				<h3>土曜日 <input type="checkbox" name="buildingSaturday"
+ 				<h3>土曜日 <input class="checkboxes" type="checkbox" name="buildingSaturday"
  								th:checked="${buildingSaturday==true}" th:value="*{1}"></h3>
- 				<h3>日曜日 <input type="checkbox" name="buildingSunday"
+ 				<h3>日曜日 <input class="checkboxes" type="checkbox" name="buildingSunday"
  								th:checked="${buildingSunday==true}" th:value="*{1}"></h3>
 
  	<!-- 登録ボタン -->

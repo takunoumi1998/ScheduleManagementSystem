@@ -50,7 +50,7 @@
  			<p th:text="*{buildingMail}"></p>
  			<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
 
- 				<!-- 必要人数 -->
+ 			<!-- 必要人数 -->
  			<label for="buildingNinzu">必要人数</label>
  			<p th:text="*{buildingNinzu}"></p>
  			<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
@@ -59,6 +59,19 @@
  			<label for="buildingTime">希望時間</label>
  			<p th:text="*{buildingTime}"></p>
  			<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
+
+ 			<!-- 希望開始時刻 -->
+ 			<label for="buildingStart">希望開始時刻</label>
+ 			<p th:text="*{buildingStart}"></p>
+ 			<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+
+ 			<!-- 希望終了時刻 -->
+ 			<label for="buildingEnd">希望終了時刻</label>
+ 			<p th:text="*{buildingEnd}"></p>
+ 			<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
+
+
+
 
  			<!-- 希望曜日 -->
  			<label for="desireDays">希望曜日</label>
@@ -130,6 +143,8 @@
     	<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
     	<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
     	<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
+    	<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+    	<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
     	<input type="submit"value="修正する">
     </form>
 
