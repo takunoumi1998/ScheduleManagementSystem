@@ -1,4 +1,6 @@
-package jp.co.jrqss.employee.schedule.controller;
+package jp.co.jrqss.employee.schedule.domain.service;
+
+import jp.co.jrqss.employee.schedule.domain.model.Work;
 
 public class workService {
 
