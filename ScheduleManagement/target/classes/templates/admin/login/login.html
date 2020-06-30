@@ -4,14 +4,13 @@
     <meta charset="UTF-8"></meta>
 
     <!-- Bootstrapの設定 -->
-    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
-    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>
 
     <title>ログイン</title>
 </head>
-<body class="text-center">aaaa
-
+AAAA
 BBBB
 	<div align="center">
 
@@ -20,7 +19,7 @@ BBBB
 
         <!-- ユーザーID -->
         <label>管理者ID</label>
-        <input type="text" name="employee_id" size="24"/><br/>
+        <input type="text" name="id" size="24"/><br/>
         <br />
 
         <!-- パスワード -->
@@ -28,13 +27,11 @@ BBBB
         <input type="password" name="password" size="24"/><br/>
         <br />
 
-        <!-- ログインボタン -->
-<<<<<<< HEAD
-        <button class="btn btn-primary" type="submit">ログイン</button>
-=======
-        <button class="btn btn-primary" type="submit"><a th:href="@{'/admin/top'}">ログイン</a></button>
->>>>>>> miura
+		<input type="submit" value="ログイン">
+    </form>
 
+    <form action="/logout">
+    	<input type="submit" value="ログアウト">
     </form>
     <br/>
 
