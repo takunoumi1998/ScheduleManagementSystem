@@ -1,5 +1,6 @@
 package jp.co.jrqss.admin.building.domain.repository.jdbc;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,12 +12,50 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.repository.BuildingDao;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Repository
 public class BuildingDaoJdbcImpl implements BuildingDao {
 
 	@Autowired
 	JdbcTemplate jdbc;
+
+
+
+	@Override
+	public List<Building> findByName(SearchForm searchForm) {
+		/// buildingテーブルからデータを全件取得
+		List<Map<String,Object>>getList=jdbc.queryForList("select * from building where building_name like ?","%"+searchForm.getSearchName()+"%");
+
+		// 結果返却用の変数
+		List<Building>buildingList=new ArrayList<>();
+
+		for(Map<String,Object>map:getList) {
+
+			Building building = new Building();
+
+			building.setBuildingId((int)map.get("building_id"));
+			building.setBuildingName((String)map.get("building_name"));
+			building.setBuildingNinzu((int)map.get("building_ninzu"));
+			building.setBuildingTime((int)map.get("building_time"));
+			building.setBuildingMonday((boolean)map.get("building_monday"));
+			building.setBuildingTuesday((boolean)map.get("building_tuesday"));
+			building.setBuildingWednesday((boolean)map.get("building_wednesday"));
+			building.setBuildingThursday((boolean)map.get("building_thursday"));
+			building.setBuildingFriday((boolean)map.get("building_friday"));
+			building.setBuildingSaturday((boolean)map.get("building_saturday"));
+			building.setBuildingSunday((boolean)map.get("building_sunday"));
+			building.setBuildingAdNumber((String)map.get("building_ad_number"));
+			building.setBuildingAddress((String)map.get("building_address"));
+			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
+			building.setBuildingMail((String)map.get("building_mail"));
+
+			// 結果返却用リストに返却
+			buildingList.add(building);
+		}
+
+		return buildingList;
+	}
 
 	// テーブルの件数を取得
 	@Override
@@ -46,8 +85,10 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_ad_number,"
 				+"building_address,"
 				+"building_phone_number,"
-				+"building_mail)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				+"building_mail,"
+				+"building_start,"
+				+"building_end)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
@@ -62,7 +103,11 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingAdNumber()
 				,building.getBuildingAddress()
 				,building.getBuildingPhoneNumber()
-				,building.getBuildingMail());
+				,building.getBuildingMail()
+				,building.getBuildingStart()
+				,building.getBuildingEnd()
+				);
+
 
 		return rowNumber;
 	}
@@ -93,6 +138,10 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		building.setBuildingAddress((String)map.get("building_address"));
 		building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 		building.setBuildingMail((String)map.get("building_mail"));
+		building.setBuildingStart((Time)map.get("building_start"));
+		building.setBuildingEnd((Time)map.get("building_end"));
+
+
 
 		return building;
 	}
@@ -126,9 +175,14 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
+			building.setBuildingStart((Time)map.get("building_start"));
+			building.setBuildingEnd((Time)map.get("building_end"));
+
+
 
 			// 結果返却用リストに返却
 			buildingList.add(building);
+			//System.out.println(buildingList);
 		}
 
 		return buildingList;
@@ -139,23 +193,25 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	@Override
 	public int updateOne(Building building)throws DataAccessException{
 
-		int rowNumber=jdbc.update("update building "
-				+" set "
-				+" building_name = ?, "
-				+" building_ninzu = ?, "
-				+" building_time = ?, "
-				+" building_monday = ?, "
-				+" building_tuesday = ?, "
-				+" building_wednesday = ?, "
-				+" building_thursday = ?, "
-				+" building_friday = ?, "
-				+" building_saturday = ?, "
-				+" building_sunday = ?, "
-				+" building_ad_number = ?, "
-				+" building_address = ?, "
-				+" building_phone_number = ?, "
-				+" building_mail = ? "
-				+" where building_id = ?"
+		int rowNumber=jdbc.update("update building set(building_id,"
+				+"building_name,"
+				+"building_ninzu,"
+				+"building_time,"
+				+"building_monday,"
+				+"building_tuesday,"
+				+"building_wednesday,"
+				+"building_thursday,"
+				+"building_friday,"
+				+"building_saturday,"
+				+"building_sunday,"
+				+"building_ad_number,"
+				+"building_address,"
+				+"building_phone_number,"
+				+"building_mail"
+				+"building_start"
+				+"building_end)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
 				,building.getBuildingTime()
@@ -170,14 +226,28 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingAddress()
 				,building.getBuildingPhoneNumber()
 				,building.getBuildingMail()
-				,building.getBuildingId());
+				,building.getBuildingStart()
+				,building.getBuildingEnd()
+
+				);
+
 		return rowNumber;
 	}
 
 
 	@Override
 	//SQL取得結果をサーバーにCSVで保存する
-    public void buildingCsvOut() throws DataAccessException {
+	public void buildingCsvOut() throws DataAccessException {
 
     }
+
+	//1件削除
+	@Override
+	public int deleteOne(int buildingId)throws DataAccessException{
+
+		int rowNumber=jdbc.update("delete from work where building_id=?",buildingId);
+		rowNumber=jdbc.update("delete from desire where building_id=?",buildingId);
+		rowNumber=jdbc.update("delete from building where building_id=?",buildingId);
+		return rowNumber;
+	}
 }

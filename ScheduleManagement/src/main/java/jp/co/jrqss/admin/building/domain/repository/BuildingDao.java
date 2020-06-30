@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 	public interface BuildingDao {
 
@@ -28,4 +29,9 @@ import jp.co.jrqss.admin.building.domain.model.Building;
 
 	    //SQL取得結果をサーバーにCSVで保存する
 	    public void buildingCsvOut() throws DataAccessException;
+
+	    //1件削除
+		public int deleteOne(int buildingId) throws DataAccessException;
+
+		public List<Building> findByName(SearchForm searchForm);
 }

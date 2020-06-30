@@ -1,4 +1,7 @@
-
+DROP TABLE desire;
+ DROP TABLE work;
+ DROP TABLE employee;
+ DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT PRIMARY KEY,
@@ -15,13 +18,16 @@ CREATE TABLE IF NOT EXISTS building (
 	building_ad_number VARCHAR(256),
 	building_address VARCHAR(256),
 	building_phone_number VARCHAR(256),
-	building_mail VARCHAR(50)
+	building_mail VARCHAR(50),
+	building_start time ,
+	building_end time
+
 );
 
 CREATE TABLE IF NOT EXISTS employee (
 employee_id INT,
-building_id int,
 employee_name varchar(256),
+employee_adana varchar(256),
 desire_days int,
 employee_monday boolean,
 employee_tuesday boolean,
@@ -30,15 +36,36 @@ employee_thursday boolean,
 employee_friday boolean,
 employee_saturday boolean,
 employee_sunday boolean,
-PRIMARY KEY(employee_id),
-FOREIGN KEY(building_id) REFERENCES building(building_id)
+employee_ad_number varchar(256),
+employee_address varchar(256),
+employee_phone_number varchar(256),
+employee_mail varchar(256),
+employee_bikou varchar(256),
+employee_password varchar(256),
+employee_role varchar(256) default 'ROLE_EMPLOYEE',
+PRIMARY KEY(employee_id)
 );
 
 CREATE TABLE IF NOT EXISTS work(
-	work_id INT PRIMARY KEY,
 	building_id INT ,
 	employee_id INT ,
-	work_day DATE ,
+	work_number INT ,
+	work_week INT ,
+	work_day INT ,
+	work_date DATE ,
+	PRIMARY KEY(building_id,work_number,work_date),
 	FOREIGN KEY (building_id) REFERENCES building(building_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
+
+CREATE TABLE IF NOT EXISTS desire(
+	building_id INT ,
+	work_number INT ,
+	work_date DATE ,
+	employee_id INT ,
+	desire_date DATE ,
+	PRIMARY KEY (building_id , work_number , work_date),
+	FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+	FOREIGN KEY (building_id) REFERENCES building(building_id)
+);
+

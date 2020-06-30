@@ -13,19 +13,24 @@
 <title>ビル一覧</title>
 </head>
 <body>
+<div th:fragment="list_contents">
 <h1>ビル情報</h1>
-<form  method="post" action="/top">
+<form  method="post" action="/admin/building/list">
   <p>検索したいビル名を入力してください。</p>
-  <input type="search" name="search" placeholder="名前を入力">
+  <input type="search" name="searchName" placeholder="名前を入力">
   <input type="submit" name="submit" value="検索">
 </form><br>
 <p>
+<div style="margin-bottom:3vw; float: right;">
 <form method="get" action="/admin/building/create/register">
 <!-- <form method="get" th:href="@{'/admin/building/create/register'}"> -->
 <button class="button1" type="submit" name="newinfo" >新規登録</button></form>
 <form method="post" action="/admin/building/delete/confirm">
 <button class="button2" type="submit" name="delite">チェックしたビルを削除</button></form>
-<button style=float:right >トップに戻る</button>
+</div>
+<form action="/admin/top">
+	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
+</form>
 </p>
 <table border="1">
 	<tr>
@@ -34,12 +39,12 @@
 		<td>ビル名称</td>
 		<td>清掃曜日・頻度</td>
 		<td>清掃時間</td>
-		<td></td>
-		<td></td>
+		<td>詳細</td>
+		<td>削除</td>
 	</tr>
 
 	<tr th:each="building:${buildingList}">
-		<td><input type="checkbox"></td>
+		<td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td>
 		<td th:text="${building.buildingId}"></td>
 		<td th:text="${building.buildingName}"></td>
 		<td th:text="${building.buildingNinzu}"></td>
@@ -49,11 +54,14 @@
 		<!-- 動的 URL -->
 		<a th:href="@{'/admin/building/change/change/'+${building.buildingId}}">詳細</a>
 	</td>
+
+
+	<td><a th:href="@{'/admin/building/delete/confirm/'+${building.buildingId}}">削除</a></td>
 	</tr>
 
 </table>
 
-
+</div>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
 </body>
 </html>

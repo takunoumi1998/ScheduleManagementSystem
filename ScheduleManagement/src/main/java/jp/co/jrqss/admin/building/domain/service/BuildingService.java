@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.repository.BuildingDao;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
-@Service
+@Service("BuildingServiceBuilding")
 public class BuildingService {
 
 	@Autowired
@@ -74,4 +75,26 @@ public class BuildingService {
 
         return result;
     }
+
+    /**
+     *  1件削除
+     */
+    public boolean deleteOne(int buildingId) {
+
+		int rowNumber=buildingdao.deleteOne(buildingId);
+		boolean result=false;
+
+		if(rowNumber>0) {
+
+			result=true;
+		}
+
+		return result;
+
+
+	}
+
+	public List<Building> findByName(SearchForm searchForm) {
+		return buildingdao.findByName(searchForm);
+	}
 }

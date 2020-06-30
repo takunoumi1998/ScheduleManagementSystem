@@ -3,6 +3,8 @@ package jp.co.jrqss.admin.building.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.jrqss.admin.building.domain.model.Building;
 import jp.co.jrqss.admin.building.domain.model.BuildingForm;
 import jp.co.jrqss.admin.building.domain.service.BuildingService;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Controller
 public class BuildingController {
 
+	@Qualifier("BuildingServiceBuilding")
 	@Autowired
 	BuildingService buildingService;
 
@@ -38,6 +42,23 @@ public class BuildingController {
 		* model.addAttribute("buildingListCount", count); */
 
 		return "admin/building/list";
+	}
+
+	/**
+	 * ビル名を元にビルを検索するメソッド
+	 * @param model
+	 * @param searchForm 入力値が格納されている
+	 * @return パス
+	 */
+	@PostMapping("admin/building/list")
+	public String postAdminBuildingList(Model model , @ModelAttribute("SearchForm") SearchForm searchForm) {
+		if(!(searchForm.getSearchName().equals(""))) {
+			List<Building> buildingList = buildingService.findByName(searchForm);
+			model.addAttribute("buildingList",buildingList);
+			return "admin/building/list";
+		}else {
+			return getAdminBuildingList(model);
+		}
 	}
 
 	/**
@@ -379,6 +400,43 @@ public class BuildingController {
 
     }
 
+    /**
+     * ビル情報削除確認
+     */
 
+    @GetMapping("/admin/building/delete/confirm/{buildingId:.+}")
+    public String getAdminBuildingDeleteConfirm(@ModelAttribute BuildingForm form,
+			Model model,
+			@PathVariable("buildingId") int buildingId) {
+
+    	//ビル情報を1件取得
+    	Building building=buildingService.selectOne(buildingId);
+
+    	//削除確認画面に表示する内容
+    	model.addAttribute("buildingId",building.getBuildingId());
+    	model.addAttribute("buildingName",building.getBuildingName());
+
+    	return "admin/building/delete/confirm";
+
+    }
+
+    /**
+     * ビル削除→確認
+     */
+    @PostMapping("/admin/building/delete/complete")
+    public String postAdminBuildingDeleteComplete(@ModelAttribute Building building,Model model) {
+
+    	boolean result=buildingService.deleteOne(building.getBuildingId());
+
+		if(result==true) {
+			model.addAttribute("削除成功",result);
+		}else {
+			model.addAttribute("削除失敗",result);
+		}
+
+		return "admin/building/delete/complete";
+
+
+    }
 
 }
