@@ -12,43 +12,43 @@ INSERT INTO building VALUES(1005,'Eビル',4,30,1,0,1,0,1,0,0,'8120004','福岡�
 INSERT INTO building VALUES(1006,'Fビル',2,1200,1,1,1,1,1,1,1,'8120005','福岡市博多区本町1-6','092-666-666','ff@co.jp','11:00','23:00');
 
 -- 従業員
-INSERT INTO employee VALUES(1001,'Aさん','明石家さんま',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ');
-INSERT INTO employee VALUES(1002,'Bさん','中尾彬',15,0,0,0,0,0,0,0,'8160020','福岡市西区愛宕浜1-1-1','0928411000','atago@edu.cc.jp','毎月第4月曜日はだめ');
-INSERT INTO employee VALUES(1003,'Cさん','石原さとみ',20,0,0,0,0,0,0,0,'8160001','福岡市南区大橋1-1-1','0928419999','oohashi@edu.cc.jp','毎月第4月曜日はだめ');
-INSERT INTO employee VALUES(1004,'Dくん','Dくん',25,0,0,0,0,0,0,0,'8160002','福岡市中央区天神1-1-1','0928419999','tenjiin@edu.cc.jp','毎月第4火曜日はだめ');
-INSERT INTO employee VALUES(1005,'Eさん','太郎ちゃん',15,0,0,0,0,0,0,0,'8160003','福岡市東区香椎1-1-1','0928419899','dddd@edu.cc.jp','毎週金曜日は3時まで');
+--INSERT INTO employee VALUES(1001,'Aさん','明石家さんま',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ');
+--INSERT INTO employee VALUES(1002,'Bさん','中尾彬',15,0,0,0,0,0,0,0,'8160020','福岡市西区愛宕浜1-1-1','0928411000','atago@edu.cc.jp','毎月第4月曜日はだめ');
+--INSERT INTO employee VALUES(1003,'Cさん','石原さとみ',20,0,0,0,0,0,0,0,'8160001','福岡市南区大橋1-1-1','0928419999','oohashi@edu.cc.jp','毎月第4月曜日はだめ');
+--INSERT INTO employee VALUES(1004,'Dくん','Dくん',25,0,0,0,0,0,0,0,'8160002','福岡市中央区天神1-1-1','0928419999','tenjiin@edu.cc.jp','毎月第4火曜日はだめ');
+--INSERT INTO employee VALUES(1005,'Eさん','太郎ちゃん',15,0,0,0,0,0,0,0,'8160003','福岡市東区香椎1-1-1','0928419899','dddd@edu.cc.jp','毎週金曜日は3時まで');
 
 
 -- 勤務
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,1,1,'2020-06-01');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,1,3,'2020-06-03');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,1,5,'2020-06-05');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,2,2,1,'2020-06-08');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,2,2,3,'2020-06-10');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,2,5,'2020-06-12');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,3,1,'2020-06-15');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,3,3,'2020-06-17');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,2,3,5,'2020-06-19');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,2,4,1,'2020-06-22');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,4,3,'2020-06-24');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,4,5,'2020-06-26');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,5,1,'2020-06-29');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,1,1,1,'2020-06-01');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,1,1,3,'2020-06-03');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,1,1,5,'2020-06-05');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,1,2,1,'2020-06-08');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,1,2,3,'2020-06-10');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,1,2,5,'2020-06-12');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,1,3,1,'2020-06-15');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,1,3,3,'2020-06-17');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,1,3,5,'2020-06-19');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,1,4,1,'2020-06-22');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,1,4,3,'2020-06-24');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,1,4,5,'2020-06-26');
-INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,1,5,1,'2020-06-29');
-
-insert into desire values(1001,2,'2020-07-27',1001,'2020-07-12');
-insert into desire values(1001,1,'2020-06-29',1001,'2020-06-11');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,1,1,'2020-06-01');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,1,3,'2020-06-03');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,1,5,'2020-06-05');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,2,2,1,'2020-06-08');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,2,2,3,'2020-06-10');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,2,5,'2020-06-12');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,3,1,'2020-06-15');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,3,3,'2020-06-17');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,2,3,5,'2020-06-19');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,2,4,1,'2020-06-22');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,4,3,'2020-06-24');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,4,5,'2020-06-26');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,5,1,'2020-06-29');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,1,1,1,'2020-06-01');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,1,1,3,'2020-06-03');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,1,1,5,'2020-06-05');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,1,2,1,'2020-06-08');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,1,2,3,'2020-06-10');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,1,2,5,'2020-06-12');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,1,3,1,'2020-06-15');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,1,3,3,'2020-06-17');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,1,3,5,'2020-06-19');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,1,4,1,'2020-06-22');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,1,4,3,'2020-06-24');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,1,4,5,'2020-06-26');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,1,5,1,'2020-06-29');
+--
+--insert into desire values(1001,2,'2020-07-27',1001,'2020-07-12');
+--insert into desire values(1001,1,'2020-06-29',1001,'2020-06-11');
 
 
 

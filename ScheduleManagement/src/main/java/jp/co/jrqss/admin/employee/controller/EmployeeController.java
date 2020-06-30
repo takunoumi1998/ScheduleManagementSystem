@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.jrqss.admin.employee.domain.model.Employee;
 //import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.service.EmployeeService;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 
 @Controller
@@ -33,6 +34,24 @@ public class EmployeeController {
 		return "admin/employee/list";
 	}
 
+
+	/**
+	 * 従業員情報を名前から検索するメソッド
+	 * @param model
+	 * @param searchForm 入力値が格納されている
+	 * @return 従業員リストのパス
+	 */
+	@PostMapping("/admin/employee/list")
+	public String postAdminEmployeeList(Model model , @ModelAttribute("selectForm") SearchForm searchForm) {
+
+		if(!(searchForm.getSearchName().equals(""))) {
+			List<Employee> employeeList = employeeService.findByName(searchForm);
+			model.addAttribute("employeeList",employeeList);
+			return "admin/employee/list";
+		}else {
+			return getAdminEmployeeList(model);
+		}
+	}
 
 	/*登録画面へ遷移*/
 	@GetMapping("/admin/employee/create/register")

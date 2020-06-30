@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"></meta>
+	<title>勤務表</title>
+	<link rel="stylesheet" type="text/css" th:href="@{css/employee/top.css}">
+	<script type="text/javascript">
+		function tblCalendar(yyyy, mm){
+			if(yyyy < 100) {
+				yyyy += 1900;
+			}
+			var wName = new Array();
+			wName[0] = "Sun";
+			wName[1] = "Mon";
+			wName[2] = "Tue";
+			wName[3] = "Wed";
+			wName[4] = "Thu";
+			wName[5] = "Fri";
+			wName[6] = "Sat";
+			var mDay = new Array();
+			mDay[0] = 0;
+			mDay[1] = 31;
+			mDay[2] = 28;
+			mDay[3] = 31;
+			mDay[4] = 30;
+			mDay[5] = 31;
+			mDay[6] = 30;
+			mDay[7] = 31;
+			mDay[8] = 31;
+			mDay[9] = 30;
+			mDay[10] = 31;
+			mDay[11] = 30;
+			mDay[12] = 31;
+			var	i;
+			var w;
+			var m;
+			var dtNow = new Date();
+			var dtyyyy = dtNow.getFullYear();
+			var dtmm = dtNow.getMonth() + 1;
+			var dtdd = dtNow.getDate();
+
+			document.write("<table border="1">");
+			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");
+			document.write("<tr>");
+			document.write("<th class='sun'>" + wName[0] + "</th>");
+			for(i = 1; i < 6; i++) {
+				document.write("<th class='day'>" + wName[i] + "</th>");
+			}
+			document.write("<th class='sat'>" + wName[6] + "</th>");
+			document.write("</tr>");
+
+			m = mDay[mm];
+			if(mm == 2 && yyyy % 4) {
+				m++;
+			}
+			w = GetWeekDay(yyyy, mm, 1);
+			for(i = 0; i < w; i++) {
+				document.write("<td class='other'>&nbsp;</td>");
+			}
+			for(i = 0; i < m; i++) {
+				if(w == 0) {
+					document.write("<tr>");
+				}
+
+				if(yyyy == dtyyyy && mm == dtmm && i + 1 == dtdd) {	// today?
+					document.write("<td class='today'>");
+				}
+				else if(w == 0) {
+					document.write("<td class='sun'>");
+				}
+				else if(w == 6) {
+					document.write("<td class='sat'>");
+				}
+				else {
+					document.write("<td class='day'>");
+				}
+				document.write(DayLink(yyyy, mm, i + 1) + "</td>");
+
+				if(w == 6) {
+					document.write("</tr>");
+				}
+
+				w = (w + 1) % 7;
+			}
+			for(i = 0; i < (7 - w) % 7; i++) {
+				document.write("<td class='other'>&nbsp;</td>");
+			}
+
+			document.write("</table>");
+
+			return;
+		}
+
+		function DayLink(yyyy, mm, dd){
+			var	hlk;
+
+			hlk = "<a th:href='";
+			hlk += yyyy;
+			if(mm < 10) {
+				hlk += "0" + mm;
+			}
+			else {
+				hlk += mm;
+			}
+			if(dd < 10) {
+				hlk += "0" + dd;
+			}
+			else {
+				hlk += dd;
+			}
+			hlk += ".html'>" + dd + "</a>";
+
+			return hlk;
+		}
+
+		function GetWeekDay(yyyy, mm, dd){
+			var ret;
+
+			if(mm < 3) {
+				yyyy--;
+				mm += 12;
+			}
+			ret = yyyy;
+			ret += Math.round((yyyy / 4) - 0.5);
+			ret -= Math.round((yyyy / 100) - 0.5);
+			ret += Math.round((yyyy / 400) - 0.5);
+			ret += Math.round((mm * 13 + 8) / 5 - 0.5);
+			ret += dd;
+			ret %= 7;
+
+			return ret;
+		}
+	</script>
+</head>
+
+<body>
+	<h1 align="center">清掃勤務表</h1>
+	<p><a th:href="@{employee/schedule/menu}">メニュー画面へ</a></p>
+	<hr>
+	<div class="calendar" align="center">
+
+	<div>
+	<script type="text/javascript">
+		var dtNow = new Date();
+		tblCalendar(dtNow.getFullYear(), dtNow.getMonth() + 1);
+	</script>
+	</div>
+
+	<div>
+	<script type="text/javascript">
+		var dtNow = new Date();
+		var yyyy;
+		var mm;
+
+		yyyy = dtNow.getFullYear();
+		mm = dtNow.getMonth() + 1;
+		if(mm < 12) {
+			mm += 1;
+		}
+		else {
+			mm = 1;
+			yyyy += 1;
+		}
+		tblCalendar(yyyy, mm);
+	</script>
+	</div>
+	</div>
+	<table align="center" style="font-size:24px">
+		<tr>
+			<td style="color: black">お知らせ</td>
+		</tr>
+		<tr>
+			<td style="color: black">・紙の勤務表は順次廃止します</td>
+		</tr>
+		<tr>
+			<td style="color: black">・当日の休暇希望（病気、忌引等）は以下のボタンからお電話ください</td>
+		</tr>
+	</table>
+
+	<button class="tel" style="font-size:30px"><a href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
+
+</body>
+</html>

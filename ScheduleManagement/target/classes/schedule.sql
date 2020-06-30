@@ -1,6 +1,7 @@
- --DROP TABLE work;
- --DROP TABLE employee;
- --DROP TABLE building;
+DROP TABLE desire;
+ DROP TABLE work;
+ DROP TABLE employee;
+ DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT PRIMARY KEY,
@@ -40,6 +41,8 @@ employee_address varchar(256),
 employee_phone_number varchar(256),
 employee_mail varchar(256),
 employee_bikou varchar(256),
+employee_password varchar(256),
+employee_role varchar(256) default 'ROLE_EMPLOYEE',
 PRIMARY KEY(employee_id)
 );
 

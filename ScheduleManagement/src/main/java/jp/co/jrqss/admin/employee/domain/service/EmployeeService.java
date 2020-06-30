@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
 import jp.co.jrqss.admin.employee.domain.repository.EmployeeDao;
+import jp.co.jrqss.admin.employee.form.SearchForm;
 
 @Service("EmployeeServiceEmployee")
 
@@ -16,6 +17,12 @@ public class EmployeeService{
 
 	@Autowired
 	EmployeeDao employeedao;
+
+
+
+	public List<Employee> findByName(SearchForm searchForm){
+		return employeedao.findByName(searchForm);
+	}
 
 
 	//全件取得
