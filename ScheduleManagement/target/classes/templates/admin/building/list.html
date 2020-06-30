@@ -39,8 +39,8 @@
 		<td>ビル名称</td>
 		<td>清掃曜日・頻度</td>
 		<td>清掃時間</td>
-		<td></td>
-		<td></td>
+		<td>詳細</td>
+		<td>削除</td>
 	</tr>
 
 	<tr th:each="building:${buildingList}">
@@ -54,6 +54,9 @@
 		<!-- 動的 URL -->
 		<a th:href="@{'/admin/building/change/change/'+${building.buildingId}}">詳細</a>
 	</td>
+
+
+	<td><a th:href="@{'/admin/building/delete/confirm/'+${building.buildingId}}">削除</a></td>
 	</tr>
 
 </table>

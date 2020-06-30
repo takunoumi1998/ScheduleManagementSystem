@@ -30,5 +30,8 @@ import jp.co.jrqss.admin.employee.form.SearchForm;
 	    //SQL取得結果をサーバーにCSVで保存する
 	    public void buildingCsvOut() throws DataAccessException;
 
+	    //1件削除
+		public int deleteOne(int buildingId) throws DataAccessException;
+
 		public List<Building> findByName(SearchForm searchForm);
 }
