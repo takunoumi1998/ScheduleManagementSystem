@@ -63,7 +63,7 @@ public class EmployeeController {
 	/*新規登録から確認画面*/
 	@RequestMapping("/admin/employee/create/confirm")
 	public String postAdminEmployeeCreateConfirm(
-			@RequestParam("employee_Id")int str1,
+			//@RequestParam("employee_Id")int str1,
 			@RequestParam("employee_Name")String str2,
 			@RequestParam("employee_Adana")String str3,
 			@RequestParam("employee_Ad_Number")String str4,
@@ -80,7 +80,7 @@ public class EmployeeController {
 			@RequestParam(value="employee_Saturday",required=false)boolean day6,
 			@RequestParam(value="employee_Sunday",required=false)boolean day7,
 			Model model){
-		model.addAttribute("employee_Id",str1);
+		//model.addAttribute("employee_Id",str1);
 		model.addAttribute("employee_Name",str2);
 		model.addAttribute("employee_Adana",str3);
 		model.addAttribute("employee_Ad_Number",str4);
