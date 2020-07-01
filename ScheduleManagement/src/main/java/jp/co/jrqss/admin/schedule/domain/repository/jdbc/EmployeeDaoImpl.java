@@ -35,6 +35,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				//Workのインスタンス生成（初期化）
 				Employee employee = new Employee();
 				employee.setEmployeeId((int)map.get("employee_id"));
+				//employee.setBuildingId((int)map.get("building_id"));
 				employee.setEmployeeName((String)map.get("employee_name"));
 				employee.setDesireDays((int)map.get("desire_days"));
 

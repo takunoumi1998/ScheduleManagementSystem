@@ -5,11 +5,8 @@
 <meta charset="UTF-8"></meta>
 	<title>勤務表</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/employee/top.css}">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
-
-		//コントローラからデータ受け取り
-		var workList =
-
+	<script type="text/javascript">
+	/*<![CDATA[*/
 		function tblCalendar(yyyy, mm){
 			if(yyyy < 100) {
 				yyyy += 1900;
@@ -164,8 +161,7 @@
 
 			return ret;
 		}
-
-		}
+	/*]]>*/
 	</script>
 </head>
 
