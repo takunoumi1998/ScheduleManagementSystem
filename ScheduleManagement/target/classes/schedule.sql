@@ -51,14 +51,14 @@ CREATE TABLE IF NOT EXISTS work(
 	FOREIGN KEY (building_id) REFERENCES building(building_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
-
-CREATE TABLE IF NOT EXISTS desire(
-	building_id INT ,
-	work_number INT ,
-	work_date DATE ,
-	employee_id INT ,
-	desire_date DATE ,
-	PRIMARY KEY (building_id , work_number , work_date),
-	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
-);
-
+/*
+CREATE TABLE IF NOT EXISTS calendar(
+	building_name VARCHAR(256),
+	building_time INT,
+	employee_id INT,
+	work_date DATE,
+	FOREIGN KEY(building_name) REFERENCES building(building_name),
+	FOREIGN KEY(building_time) REFERENCES building(building_time),
+	FOREIGN KEY(employee_id) REFERENCES employee(employee_id),
+	FOREIGN KEY(work_date) REFERENCES work(work_date)
+);	*/

@@ -5,7 +5,11 @@
 <meta charset="UTF-8"></meta>
 	<title>勤務表</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/employee/top.css}">
-	<script type="text/javascript">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+
+		//コントローラからデータ受け取り
+		var workList =
+
 		function tblCalendar(yyyy, mm){
 			if(yyyy < 100) {
 				yyyy += 1900;
@@ -95,8 +99,33 @@
 			return;
 		}
 
+			if(work_date == Empty){
+				document.write("<style='font-color:black'>");
+			}else{
+				function DayLink(yyyy, mm, dd){
+					var	hlk;
+
+					hlk = "<a href='";
+					hlk += yyyy;
+					if(mm < 10) {
+						hlk += "0" + mm;
+					}
+					else {
+						hlk += mm;
+					}
+					if(dd < 10) {
+						hlk += "0" + dd;
+					}
+					else {
+						hlk += dd;
+					}
+					hlk += ".html'>" + dd + "</a>";
+
+					return hlk;
+				}
+			}
 		//日付に埋め込むリンクの生成
-		function DayLink(yyyy, mm, dd){
+/*		function DayLink(yyyy, mm, dd){
 			var	hlk;
 
 			hlk = "<a th:href='";
@@ -117,7 +146,7 @@
 
 			return hlk;
 		}
-
+*/
 		function GetWeekDay(yyyy, mm, dd){
 			var ret;
 
@@ -134,6 +163,8 @@
 			ret %= 7;
 
 			return ret;
+		}
+
 		}
 	</script>
 </head>
@@ -181,7 +212,7 @@
 		</tr>
 	</table>
 
-	<button class="tel" style="font-size:30px"><a th:href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
+	<button class="tel" style="font-size:30px"><a href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
 
 </body>
 </html>

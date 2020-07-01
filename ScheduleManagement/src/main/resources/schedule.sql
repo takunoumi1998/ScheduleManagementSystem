@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS work(
 	FOREIGN KEY (building_id) REFERENCES building(building_id),
 	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
-
+/*
 CREATE TABLE IF NOT EXISTS calendar(
 	building_name VARCHAR(256),
 	building_time INT,
@@ -61,4 +61,4 @@ CREATE TABLE IF NOT EXISTS calendar(
 	FOREIGN KEY(building_time) REFERENCES building(building_time),
 	FOREIGN KEY(employee_id) REFERENCES employee(employee_id),
 	FOREIGN KEY(work_date) REFERENCES work(work_date)
-);
+);	*/

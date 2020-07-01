@@ -32,8 +32,7 @@ import jp.co.jrqss.admin.employee.form.SearchForm;
 
 	    //1件削除
 		public int deleteOne(int buildingId) throws DataAccessException;
-}
-	    public void buildingCsvOut() throws DataAccessException;
+
 
 		public List<Building> findByName(SearchForm searchForm);
 }
