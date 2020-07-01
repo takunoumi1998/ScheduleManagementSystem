@@ -1,6 +1,5 @@
 package jp.co.jrqss.admin.building.domain.repository.jdbc;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +48,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
-			building.setBuildingStart((Time)map.get("buildingStart"));
-			building.setBuildingEnd((Time)map.get("building_end"));
+			building.setBuildingStart((String)map.get("buildingStart"));
+			building.setBuildingEnd((String)map.get("building_end"));
 
 
 			// 結果返却用リストに返却
@@ -141,8 +140,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		building.setBuildingAddress((String)map.get("building_address"));
 		building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 		building.setBuildingMail((String)map.get("building_mail"));
-		building.setBuildingStart((Time)map.get("building_start"));
-		building.setBuildingEnd((Time)map.get("building_end"));
+		building.setBuildingStart((String)map.get("building_start"));
+		building.setBuildingEnd((String)map.get("building_end"));
 
 
 
@@ -178,8 +177,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
-			building.setBuildingStart((Time)map.get("building_start"));
-			building.setBuildingEnd((Time)map.get("building_end"));
+			building.setBuildingStart((String)map.get("building_start"));
+			building.setBuildingEnd((String)map.get("building_end"));
 
 
 

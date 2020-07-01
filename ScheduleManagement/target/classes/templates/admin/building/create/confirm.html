@@ -27,6 +27,8 @@
 			<h3>メールアドレス：<span th:text="*{buildingMail}"></span></h3>
 			<h3>必要人数：<span th:text="*{buildingNinzu}"></span></h3>
 			<h3>希望時間：<span th:text="*{buildingTime}"></span></h3>
+			<h3>希望開始時刻：<span th:text="*{buildingStart}"></span></h3>
+			<h3>希望終了時刻：<span th:text="*{buildingEnd}"></span></h3>
 
 
  			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
@@ -37,6 +39,8 @@
  			<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
  			<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
  			<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
+ 			<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+ 			<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
 
 
 			<h3>希望曜日</h3>
@@ -75,6 +79,8 @@
     	<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
     	<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
     	<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
+    	<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+    	<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
     	<input type="hidden" name="desireDays" id="desireDays" th:value="*{desireDays}">
     	<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
     	<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
@@ -87,6 +93,43 @@
     </form>
 
        </div>
+
+       <script>
+	var str = document.getElementById("buildingMonday").innerHTML;
+	str = str.replace(/true/g," 月曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingMonday").innerHTML = str;
+
+	var str = document.getElementById("buildingTuesday").innerHTML;
+	str = str.replace(/true/g," 火曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingTuesday").innerHTML = str;
+
+	var str = document.getElementById("buildingWednesday").innerHTML;
+	str = str.replace(/true/g,"水曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingWednesday").innerHTML = str;
+
+	var str = document.getElementById("buildingThursday").innerHTML;
+	str = str.replace(/true/g,"木曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingThursday").innerHTML = str;
+
+	var str = document.getElementById("buildingFriday").innerHTML;
+	str = str.replace(/true/g,"金曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingFriday").innerHTML = str;
+
+	var str = document.getElementById("buildingSaturday").innerHTML;
+	str = str.replace(/true/g,"土曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSaturday").innerHTML = str;
+
+	var str = document.getElementById("buildingSunday").innerHTML;
+	str = str.replace(/true/g,"日曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSunday").innerHTML = str;
+	</script>
 
    </body>
  </html>

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,6 +100,8 @@ public class BuildingController {
 			@RequestParam("buildingAddress")String str6,
 			@RequestParam("buildingPhoneNumber")String str7,
 			@RequestParam("buildingMail")String str8,
+			@RequestParam("buildingStart")String str9,
+			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
@@ -118,6 +119,8 @@ public class BuildingController {
 		model.addAttribute("buildingAddress",str6);
 		model.addAttribute("buildingPhoneNumber",str7);
 		model.addAttribute("buildingMail",str8);
+		model.addAttribute("buildingStart",str9);
+		model.addAttribute("buildingEnd",str10);
 
 			return "admin/building/create/confirm";
 	}
@@ -183,6 +186,8 @@ public class BuildingController {
 			@RequestParam("buildingAddress")String str6,
 			@RequestParam("buildingPhoneNumber")String str7,
 			@RequestParam("buildingMail")String str8,
+			@RequestParam("buildingStart")String str9,
+			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
@@ -200,6 +205,8 @@ public class BuildingController {
 		model.addAttribute("buildingAddress",str6);
 		model.addAttribute("buildingPhoneNumber",str7);
 		model.addAttribute("buildingMail",str8);
+		model.addAttribute("buildingStart",str9);
+		model.addAttribute("buildingEnd",str10);
 
 		return "admin/building/create/register";
 
@@ -259,6 +266,8 @@ public class BuildingController {
 		model.addAttribute("buildingAddress",building.getBuildingAddress());
 		model.addAttribute("buildingPhoneNumber",building.getBuildingPhoneNumber());
 		model.addAttribute("buildingMail",building.getBuildingMail());
+		model.addAttribute("buildingStart",building.getBuildingStart());
+		model.addAttribute("buildingEnd",building.getBuildingEnd());
 
 		// Modelに登録
 /*		model.addAttribute("buildingForm", form);
@@ -285,6 +294,8 @@ public class BuildingController {
 			@RequestParam("buildingAddress")String str6,
 			@RequestParam("buildingPhoneNumber")String str7,
 			@RequestParam("buildingMail")String str8,
+			@RequestParam("buildingStart")String str9,
+			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
 		Building building = new Building();
@@ -304,6 +315,8 @@ public class BuildingController {
 		building.setBuildingAddress(str6);
 		building.setBuildingPhoneNumber(str7);
 		building.setBuildingMail(str8);
+		building.setBuildingStart(str9);
+		building.setBuildingEnd(str10);
 
 		model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
@@ -320,6 +333,8 @@ public class BuildingController {
 		model.addAttribute("buildingAddress",str6);
 		model.addAttribute("buildingPhoneNumber",str7);
 		model.addAttribute("buildingMail",str8);
+		model.addAttribute("buildingStart",str9);
+		model.addAttribute("buildingEnd",str10);
 
 			return "admin/building/change/confirm";
 	}
@@ -343,6 +358,8 @@ public class BuildingController {
 			@RequestParam("buildingAddress")String str6,
 			@RequestParam("buildingPhoneNumber")String str7,
 			@RequestParam("buildingMail")String str8,
+			@RequestParam("buildingStart")String str9,
+			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
@@ -360,6 +377,9 @@ public class BuildingController {
 		model.addAttribute("buildingAddress",str6);
 		model.addAttribute("buildingPhoneNumber",str7);
 		model.addAttribute("buildingMail",str8);
+		model.addAttribute("buildingStart",str9);
+		model.addAttribute("buildingEnd",str10);
+
 
 		return "admin/building/change/change";
 	}

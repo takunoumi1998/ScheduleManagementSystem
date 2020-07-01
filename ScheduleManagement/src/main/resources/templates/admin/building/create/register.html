@@ -40,6 +40,9 @@ $(function(){
 			$('#buildingPhoneNumber').removeClass("inp_error");
 			$('#buildingNinzu').removeClass("inp_error");
 			$('#buildingTime').removeClass("inp_error");
+			$('#buildingStart').removeClass("inp_error");
+			$('#buildingEnd').removeClass("inp_error");
+			$('#desireDays').removeClass("inp_error");
 
 			// 入力エラー文をリセット
 			$("#Id_error").empty();
@@ -49,6 +52,11 @@ $(function(){
 			$("#PhoneNum_error").empty();
 			$("#Ninzu_error").empty();
 			$("#Time_error").empty();
+			$("#Start_error").empty();
+			$("#End_error").empty();
+			$("#Days_error").empty();
+
+
 
 			// 入力内容セット
 			var buildingId   = $("#buildingId").val();
@@ -58,6 +66,9 @@ $(function(){
 			var buildingPhoneNumber  = $("#buildingPhoneNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var buildingNinzu  = $("#buildingNinzu").val();
 			var buildingTime  = $("#buildingTime").val();
+			var buildingStart  = $("#buildingStart").val();
+			var buildingEnd  = $("#buildingEnd").val();
+			var desireDays  = $("#desireDays").val();
 
 			// 入力内容チェック
 			// ビルID
@@ -136,6 +147,43 @@ $(function(){
 				result = false;
 			}
 
+			// 希望開始時刻
+			if(buildingStart == ""){
+				$("#Start_error").html(" 必須項目です ");
+				$("#buildingStart").addClass("inp_error");
+				result = false;
+			}else if(buildingStart > buildingEnd){
+				$("#Start_error").html(" 正しい時刻を選択してください ");
+				$("#buildingStart").addClass("inp_error");
+				result = false;
+			}else if(buildingStart == buildingEnd){
+				$("#Start_error").html(" 開始と終了が同時刻です ");
+				$("#buildingStart").addClass("inp_error");
+				result = false;
+			}
+
+			// 希望終了時刻
+			if(buildingEnd == ""){
+				$("#End_error").html(" 必須項目です ");
+				$("#buildingEnd").addClass("inp_error");
+				result = false;
+			}
+
+			// チェックボックス一つ以上
+			var arr_checkboxes=document.getElementsByClassName("checkboxes");
+			var count=0;
+			for(var i=0;i<arr_checkboxes.length;i++){
+				if(arr_checkboxes[i].checked){
+
+					count++;
+				}
+			}
+			if(count<1){
+				$("#Days_error").html(" 希望曜日を1つ以上選んでください ");
+				$("#desireDays").addClass("inp_error");
+				return false;
+			}
+
 			return result;
 	}
 
@@ -210,24 +258,39 @@ $(function(){
  				name="buildingTime" th:value="*{buildingTime}"/>
  			<span id="Time_error" class="error_m"></span>
 
+ 			<!-- 希望開始時刻 -->
+ 			 <span class="req">必須</span>
+ 			<label for="buildingStart">希望開始時刻</label>
+ 			<input type="time" class="number" id="buildingStart"
+ 				name="buildingStart" min="00:00" max="23:59"  th:value="*{buildingStart}"/>
+			<span id="Start_error" class="error_m"></span>
+
+			<!-- 希望終了時刻 -->
+ 			<span class="req">必須</span>
+ 			<label for="buildingEnd">希望終了時刻</label>
+ 			<input type="time" class="number" id="buildingEnd"
+ 				name="buildingEnd" min="00:00" max="23:59"  th:value="*{buildingEnd}"/>
+			<span id="End_error" class="error_m"></span>
+
+
  			<!-- 希望曜日 -->
- 			<span class="any">任意</span>
+ 			<span class="req">必須</span>
  			<label for="desireDays">希望曜日にチェックを入れてください</label>
  			<span id="Days_error" class="error_m"></span>
 
- 				<h3>月曜日 <input type="checkbox" name="buildingMonday"
+ 				<h3>月曜日 <input class="checkboxes" type="checkbox" name="buildingMonday"
  								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
- 				<h3>火曜日 <input type="checkbox" name="buildingTuesday"
+ 				<h3>火曜日 <input class="checkboxes" type="checkbox" name="buildingTuesday"
  								th:checked="${buildingTuesday==true}" th:value="*{1}"></h3>
- 				<h3>水曜日 <input type="checkbox" name="buildingWednesday"
+ 				<h3>水曜日 <input class="checkboxes" type="checkbox" name="buildingWednesday"
  								th:checked="${buildingWednesday==true}" th:value="*{1}"></h3>
- 				<h3>木曜日 <input type="checkbox" name="buildingThursday"
+ 				<h3>木曜日 <input class="checkboxes" type="checkbox" name="buildingThursday"
 								th:checked="${buildingThursday==true}" th:value="*{1}"></h3>
- 				<h3>金曜日 <input type="checkbox" name="buildingFriday"
+ 				<h3>金曜日 <input class="checkboxes" type="checkbox" name="buildingFriday"
  								th:checked="${buildingFriday==true}" th:value="*{1}"></h3>
- 				<h3>土曜日 <input type="checkbox" name="buildingSaturday"
+ 				<h3>土曜日 <input class="checkboxes" type="checkbox" name="buildingSaturday"
  								th:checked="${buildingSaturday==true}" th:value="*{1}"></h3>
- 				<h3>日曜日 <input type="checkbox" name="buildingSunday"
+ 				<h3>日曜日 <input class="checkboxes" type="checkbox" name="buildingSunday"
  								th:checked="${buildingSunday==true}" th:value="*{1}"></h3>
 
  	<!-- 登録ボタン -->
