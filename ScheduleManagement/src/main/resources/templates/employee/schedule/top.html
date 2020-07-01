@@ -10,7 +10,7 @@
 			if(yyyy < 100) {
 				yyyy += 1900;
 			}
-			var wName = new Array();
+			var wName = new Array();	//曜日
 			wName[0] = "Sun";
 			wName[1] = "Mon";
 			wName[2] = "Tue";
@@ -18,7 +18,8 @@
 			wName[4] = "Thu";
 			wName[5] = "Fri";
 			wName[6] = "Sat";
-			var mDay = new Array();
+
+			var mDay = new Array();		//31日の月と28,29,30日の月を記述
 			mDay[0] = 0;
 			mDay[1] = 31;
 			mDay[2] = 28;
@@ -32,16 +33,17 @@
 			mDay[10] = 31;
 			mDay[11] = 30;
 			mDay[12] = 31;
+
 			var	i;
 			var w;
 			var m;
-			var dtNow = new Date();
+			var dtNow = new Date();		//今日の日付？
 			var dtyyyy = dtNow.getFullYear();
 			var dtmm = dtNow.getMonth() + 1;
 			var dtdd = dtNow.getDate();
 
 			document.write("<table border="1">");
-			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");
+			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");	//年月の表示（例：2020 - 7）
 			document.write("<tr>");
 			document.write("<th class='sun'>" + wName[0] + "</th>");
 			for(i = 1; i < 6; i++) {
@@ -50,10 +52,11 @@
 			document.write("<th class='sat'>" + wName[6] + "</th>");
 			document.write("</tr>");
 
-			m = mDay[mm];
+			m = mDay[mm];	//閏年対応
 			if(mm == 2 && yyyy % 4) {
 				m++;
 			}
+
 			w = GetWeekDay(yyyy, mm, 1);
 			for(i = 0; i < w; i++) {
 				document.write("<td class='other'>&nbsp;</td>");
@@ -63,7 +66,7 @@
 					document.write("<tr>");
 				}
 
-				if(yyyy == dtyyyy && mm == dtmm && i + 1 == dtdd) {	// today?
+				if(yyyy == dtyyyy && mm == dtmm && i + 1 == dtdd) {
 					document.write("<td class='today'>");
 				}
 				else if(w == 0) {
@@ -92,6 +95,7 @@
 			return;
 		}
 
+		//日付に埋め込むリンクの生成
 		function DayLink(yyyy, mm, dd){
 			var	hlk;
 
@@ -136,7 +140,6 @@
 
 <body>
 	<h1 align="center">清掃勤務表</h1>
-	<p><a th:href="@{employee/schedule/menu}">メニュー画面へ</a></p>
 	<hr>
 	<div class="calendar" align="center">
 
@@ -178,7 +181,7 @@
 		</tr>
 	</table>
 
-	<button class="tel" style="font-size:30px"><a href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
+	<button class="tel" style="font-size:30px"><a th:href="tel:00000000000">JMCビルメンテナンスへ電話</a></button>
 
 </body>
 </html>

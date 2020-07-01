@@ -10,7 +10,7 @@ import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.repository.WorkDao;
 
 @Service
-public class workService {
+public class WorkService {
 
 	@Autowired
 	@Qualifier("WorkDaoJdbcImpl")
@@ -20,7 +20,10 @@ public class workService {
 		return dao.selectMany();
 	}
 
-	public boolean deleteOne(int workDate) {
+
+
+/*	削除申請用メソッド(使わなければ削除)
+ * public boolean deleteOne(int workDate) {
 		int rowNumber = dao.deleteOne(workDate);
 		boolean result = false;
 		if(rowNumber > 0) {
@@ -28,5 +31,6 @@ public class workService {
 		}
 		return result;
 	}
-
+*/
 }
+

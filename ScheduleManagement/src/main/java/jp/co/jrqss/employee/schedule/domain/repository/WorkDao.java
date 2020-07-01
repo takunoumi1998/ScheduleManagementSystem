@@ -11,6 +11,4 @@ public interface WorkDao {
 	//workテーブルの日付データを取得
 	public List<Work> selectMany() throws DataAccessException;
 
-	public int deleteOne(int workDate);
-
 }
