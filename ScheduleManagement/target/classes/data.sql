@@ -12,11 +12,11 @@ INSERT INTO building VALUES(1005,'Eビル',4,30,1,0,1,0,1,0,0,'8120004','福岡�
 INSERT INTO building VALUES(1006,'Fビル',2,1200,1,1,1,1,1,1,1,'8120005','福岡市博多区本町1-6','092-666-666','ff@co.jp','11:00','23:00');
 
 -- 従業員
---INSERT INTO employee VALUES(1001,'Aさん','明石家さんま',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ');
---INSERT INTO employee VALUES(1002,'Bさん','中尾彬',15,0,0,0,0,0,0,0,'8160020','福岡市西区愛宕浜1-1-1','0928411000','atago@edu.cc.jp','毎月第4月曜日はだめ');
---INSERT INTO employee VALUES(1003,'Cさん','石原さとみ',20,0,0,0,0,0,0,0,'8160001','福岡市南区大橋1-1-1','0928419999','oohashi@edu.cc.jp','毎月第4月曜日はだめ');
---INSERT INTO employee VALUES(1004,'Dくん','Dくん',25,0,0,0,0,0,0,0,'8160002','福岡市中央区天神1-1-1','0928419999','tenjiin@edu.cc.jp','毎月第4火曜日はだめ');
---INSERT INTO employee VALUES(1005,'Eさん','太郎ちゃん',15,0,0,0,0,0,0,0,'8160003','福岡市東区香椎1-1-1','0928419899','dddd@edu.cc.jp','毎週金曜日は3時まで');
+INSERT INTO employee VALUES(1001,'Aさん','明石家さんま',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','1001','1001');
+INSERT INTO employee VALUES(1002,'Bさん','中尾彬',15,0,0,0,0,0,0,0,'8160020','福岡市西区愛宕浜1-1-1','0928411000','atago@edu.cc.jp','毎月第4月曜日はだめ','1002','1002');
+INSERT INTO employee VALUES(1003,'Cさん','石原さとみ',20,0,0,0,0,0,0,0,'8160001','福岡市南区大橋1-1-1','0928419999','oohashi@edu.cc.jp','毎月第4月曜日はだめ','1003','1003');
+INSERT INTO employee VALUES(1004,'Dくん','Dくん',25,0,0,0,0,0,0,0,'8160002','福岡市中央区天神1-1-1','0928419999','tenjiin@edu.cc.jp','毎月第4火曜日はだめ','1004','1004');
+INSERT INTO employee VALUES(1005,'Eさん','太郎ちゃん',15,0,0,0,0,0,0,0,'8160003','福岡市東区香椎1-1-1','0928419899','dddd@edu.cc.jp','毎週金曜日は3時まで','1005','1005');
 
 
 -- 勤務
@@ -241,14 +241,14 @@ INSERT INTO building VALUES(1006,'Fビル',2,1200,1,1,1,1,1,1,1,'8120005','福�
 --INSERT INTO work VALUES(6,1001,1012,1,4,3,'2020-05-25');
 --INSERT INTO work VALUES(7,1004,1012,1,5,1,'2020-05-30');
 
-CREATE TABLE IF NOT EXISTS work(
-	building_id INT ,
-	employee_id INT ,
-	work_number INT ,
-	work_week INT ,
-	work_day INT ,
-	work_date DATE ,
-	PRIMARY KEY(building_id,work_number,work_date),
-	FOREIGN KEY (building_id) REFERENCES building(building_id),
-	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
-);
+--CREATE TABLE IF NOT EXISTS work(
+--	building_id INT ,
+--	employee_id INT ,
+--	work_number INT ,
+--	work_week INT ,
+--	work_day INT ,
+--	work_date DATE ,
+--	PRIMARY KEY(building_id,work_number,work_date),
+--	FOREIGN KEY (building_id) REFERENCES building(building_id),
+--	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+--);

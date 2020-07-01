@@ -1,7 +1,7 @@
-DROP TABLE desire;
-DROP TABLE work;
-DROP TABLE employee;
-DROP TABLE building;
+--DROP TABLE desire;
+--DROP TABLE work;
+--DROP TABLE employee;
+--DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT not null auto_increment,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS building (
 );
 
 CREATE TABLE IF NOT EXISTS employee (
-employee_id INT,
+employee_id INT not null auto_increment,
 employee_name varchar(256),
 employee_adana varchar(256),
 desire_days int,
