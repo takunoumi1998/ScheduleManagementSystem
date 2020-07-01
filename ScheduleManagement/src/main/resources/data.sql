@@ -1,7 +1,7 @@
-delete from desire;
-delete from work;
-delete from employee;
-delete from building;
+--delete from desire;
+--delete from work;
+--delete from employee;
+--delete from building;
 
 -- ビル
 INSERT INTO building VALUES(1001,'Aビル',3,120,1,0,1,0,1,0,0,'8120000','福岡市博多区本町1-1','092-111-111','aa@co.jp','09:00','11:00');

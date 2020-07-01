@@ -74,7 +74,8 @@ public class BuildingController {
      * 【確認】
      */
 	@PostMapping("admin/building/create/confirm")
-	public String postAdminBuildingCreateConfirm(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingCreateConfirm(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -95,7 +96,7 @@ public class BuildingController {
 
 			Model model) {
 
-		model.addAttribute("buildingId",str1);
+		//model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
@@ -121,17 +122,17 @@ public class BuildingController {
      * 【完了】
      */
 	@PostMapping("admin/building/create/complete")
-	public String postAdminBuildingCreateComplete(@ModelAttribute BuildingForm form,Building building,
+	public String postAdminBuildingCreateComplete(Building building, BuildingForm form,
 			Model model) {
 
 		// formの中身をコンソールに出して確認
-/*				System.out.println(form);
+				//System.out.println(form);
 
 			// insert用変数
-					Building building = new Building();
+					//Building building = new Building();
 
-					building.setBuildingId(form.getBuildingId());
-					building.setBuildingName(form.getBuildingName());
+					//building.setBuildingId(form.getBuildingId());
+					/*building.setBuildingName(form.getBuildingName());
 					building.setBuildingNinzu(form.getBuildingNinzu());
 					building.setBuildingTime(form.getBuildingTime());
 					building.setBuildingMonday(form.isBuildingMonday());
@@ -144,9 +145,9 @@ public class BuildingController {
 					building.setBuildingAdNumber(form.getBuildingAdNumber());
 					building.setBuildingAddress(form.getBuildingAddress());
 					building.setBuildingPhoneNumber(form.getBuildingPhoneNumber());
-					building.setBuildingMail(form.getBuildingMail());
+					building.setBuildingMail(form.getBuildingMail());*/
 
-*/
+
 					// ビル登録処理
 					boolean result = buildingService.insert(building);
 
@@ -164,7 +165,8 @@ public class BuildingController {
      * 【登録】確認 → 修正
      */
 	@PostMapping("admin/building/create/backregister")
-	public String postAdminBuildingCreateBackregister(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingCreateBackregister(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -185,7 +187,7 @@ public class BuildingController {
 
 			Model model) {
 
-		model.addAttribute("buildingId",str1);
+		//model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);

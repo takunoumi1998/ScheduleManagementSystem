@@ -21,9 +21,9 @@
           <!-- ビル情報入力エリア -->
 
  			<!-- ビルID -->
- 			<label for="buildingId">ビルID</label>
+ 		<!--	<label for="buildingId">ビルID</label>
  			<p th:text="*{buildingId}"></p>
- 			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
+ 			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}"> -->
 
  			<!-- ビル名 -->
  			<label for="buildingName">ビル名</label>
@@ -123,7 +123,7 @@
     </form>
 
     <form method="post" action="/admin/building/create/backregister">
-    	<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
+    <!-- 	<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">   -->
     	<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
     	<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
     	<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">

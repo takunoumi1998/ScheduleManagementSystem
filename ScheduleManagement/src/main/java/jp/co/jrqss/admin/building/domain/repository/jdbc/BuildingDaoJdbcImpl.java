@@ -72,8 +72,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	@Override
 	public int insertOne(Building building)throws DataAccessException{
 
-		int rowNumber=jdbc.update("insert into building(building_id,"
-				+"building_name,"
+		int rowNumber=jdbc.update("insert into building(building_name,"
 				+"building_ninzu,"
 				+"building_time,"
 				+"building_monday,"
@@ -89,8 +88,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_mail,"
 				+"building_start,"
 				+"building_end)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-				,building.getBuildingId()
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				//,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
 				,building.getBuildingTime()
