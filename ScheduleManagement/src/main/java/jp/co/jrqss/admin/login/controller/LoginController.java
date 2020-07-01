@@ -39,10 +39,12 @@ public class LoginController {
 		String endTime = "21:00";
 
 		password = passwordEncoder.encode(password);
-
-		jdbc.update("DELETE FROM employee");
-		jdbc.update("DELETE FROM building");
-
+		try {
+			jdbc.update("DELETE FROM employee");
+			jdbc.update("DELETE FROM building");
+		}catch(Exception e) {
+			System.out.println("消去エラー");
+		}
 		for(int i = 1001; i <= 1100; i++) {
 			if(i > 1050) {
 				role = "ROLE_USER";

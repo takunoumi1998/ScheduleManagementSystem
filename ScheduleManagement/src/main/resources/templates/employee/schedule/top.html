@@ -5,12 +5,25 @@
 <meta charset="UTF-8"></meta>
 	<title>勤務表</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/employee/top.css}">
-	<script type="text/javascript">
+	<script type="text/javascript" th:inline="javascript">
 	/*<![CDATA[*/
+
+		var workList = /*[[${workList}]]*/
+
+		//引数に指定した年月日(yyyy,mm,dd)を文字列に変換
+		function DayLink(yyyy, mm, dd){
+			var	hlk = "";
+
+			hlk += yyyy+"-";
+			hlk += mm+"-";
+			hlk += dd;
+
+			return hlk;
+		}
+
+
 		function tblCalendar(yyyy, mm){
-			if(yyyy < 100) {
-				yyyy += 1900;
-			}
+
 			var wName = new Array();	//曜日
 			wName[0] = "Sun";
 			wName[1] = "Mon";
@@ -38,13 +51,15 @@
 			var	i;
 			var w;
 			var m;
-			var dtNow = new Date();		//今日の日付？
-			var dtyyyy = dtNow.getFullYear();
-			var dtmm = dtNow.getMonth() + 1;
-			var dtdd = dtNow.getDate();
+			var dtNow = new Date();		//現時点での年月日時分秒＋α
+			var dtyyyy = dtNow.getFullYear();	//今年
+			var dtmm = dtNow.getMonth() + 1;	//今月
+			var dtdd = dtNow.getDate();	//今日
 
-			document.write("<table border="1">");
+			document.write("<table border='1'>");
 			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");	//年月の表示（例：2020 - 7）
+
+			/*曜日の設定*/////////////////////////
 			document.write("<tr>");
 			document.write("<th class='sun'>" + wName[0] + "</th>");
 			for(i = 1; i < 6; i++) {
@@ -52,24 +67,36 @@
 			}
 			document.write("<th class='sat'>" + wName[6] + "</th>");
 			document.write("</tr>");
+			/////////////////////////////////////
 
-			m = mDay[mm];	//閏年対応
+
+			/*閏年1対応*/////////////////////////////
+			m = mDay[mm];
 			if(mm == 2 && yyyy % 4) {
 				m++;
 			}
-
 			w = GetWeekDay(yyyy, mm, 1);
+			//////////////////////////////////
+
+			/*灰色塗りの場所*////////////////////
 			for(i = 0; i < w; i++) {
 				document.write("<td class='other'>&nbsp;</td>");
 			}
+			////////////////////////////////////
+
+			/*今月の日数分ループ*/
 			for(i = 0; i < m; i++) {
+				//指定する日が日曜日の時は改行
 				if(w == 0) {
 					document.write("<tr>");
 				}
 
+				//指定した日付と本日の日付が一致するならclassにtodayを指定
 				if(yyyy == dtyyyy && mm == dtmm && i + 1 == dtdd) {
 					document.write("<td class='today'>");
 				}
+
+				//色付けのためのクラスを追加
 				else if(w == 0) {
 					document.write("<td class='sun'>");
 				}
@@ -79,7 +106,20 @@
 				else {
 					document.write("<td class='day'>");
 				}
-				document.write(DayLink(yyyy, mm, i + 1) + "</td>");
+
+				//指定日を文字列で取得（yyyy-mm-dd)
+				var dateStr1 = DayLink(yyyy, mm, i + 1);
+
+				//workListから全ての勤務日を取得
+				for(var work of workList){
+					var date1 = new Date(work.workDate);
+					var dateStr2 = date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
+					if(dateStr1 == dateStr2){
+						document.write( "<a href='employee/schedule/detail?date="+dateStr1+"' style='background-color:red'>"+(i+1) + "</td>");
+					}
+				}
+
+				document.write( (i+1) + "</td>");
 
 				if(w == 6) {
 					document.write("</tr>");
@@ -96,31 +136,6 @@
 			return;
 		}
 
-			if(work_date == Empty){
-				document.write("<style='font-color:black'>");
-			}else{
-				function DayLink(yyyy, mm, dd){
-					var	hlk;
-
-					hlk = "<a href='";
-					hlk += yyyy;
-					if(mm < 10) {
-						hlk += "0" + mm;
-					}
-					else {
-						hlk += mm;
-					}
-					if(dd < 10) {
-						hlk += "0" + dd;
-					}
-					else {
-						hlk += dd;
-					}
-					hlk += ".html'>" + dd + "</a>";
-
-					return hlk;
-				}
-			}
 		//日付に埋め込むリンクの生成
 /*		function DayLink(yyyy, mm, dd){
 			var	hlk;
@@ -144,6 +159,8 @@
 			return hlk;
 		}
 */
+
+		/*引数で指定した年月日*/
 		function GetWeekDay(yyyy, mm, dd){
 			var ret;
 
