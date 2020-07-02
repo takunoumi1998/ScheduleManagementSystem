@@ -33,7 +33,7 @@ $(function(){
 		var result = true;
 
 			// エラー用装飾のためのクラスリセット
-			$('#buildingId').removeClass("inp_error");
+			// $('#buildingId').removeClass("inp_error");
 			$('#buildingName').removeClass("inp_error");
 			$('#buildingAdNumber').removeClass("inp_error");
 			$('#buildingAddress').removeClass("inp_error");
@@ -43,9 +43,10 @@ $(function(){
 			$('#buildingStart').removeClass("inp_error");
 			$('#buildingEnd').removeClass("inp_error");
 			$('#desireDays').removeClass("inp_error");
+			$('#buildingMail').removeClass("inp_error");
 
 			// 入力エラー文をリセット
-			$("#Id_error").empty();
+			// $("#Id_error").empty();
 			$("#Name_error").empty();
 			$("#AdNum_error").empty();
 			$("#Ad_error").empty();
@@ -55,11 +56,12 @@ $(function(){
 			$("#Start_error").empty();
 			$("#End_error").empty();
 			$("#Days_error").empty();
+			$("#Mail_error").empty();
 
 
 
 			// 入力内容セット
-			var buildingId   = $("#buildingId").val().replace(/\s+/g,'');
+			// var buildingId   = $("#buildingId").val().replace(/\s+/g,'');
 			var buildingName  = $("#buildingName").val().replace(/\s+/g,"");
 			var buildingAdNumber = $("#buildingAdNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var buildingAddress  = $("#buildingAddress").val().replace(/\s+/g,"");
@@ -69,6 +71,7 @@ $(function(){
 			var buildingStart  = $("#buildingStart").val();
 			var buildingEnd  = $("#buildingEnd").val();
 			var desireDays  = $("#desireDays").val();
+			var buildingMail  = $("#buildingMail").val().replace(/\s+/g,"");
 
 			// 入力内容チェック
 
@@ -159,6 +162,13 @@ $(function(){
 				result = false;
 			}
 
+			// メールアドレス
+			if(!(buildingMail.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/))){
+				$("#Mail_error").html(" 正しいメールアドレスを入力してください ");
+				$("#buildingMail").addClass("inp_error");
+				result = false;
+			}
+
 			// チェックボックス一つ以上
 			var arr_checkboxes=document.getElementsByClassName("checkboxes");
 			var count=0;
@@ -177,8 +187,7 @@ $(function(){
 			return result;
 	}
 
-	</script>
-
+</script>
 
 
  </head>

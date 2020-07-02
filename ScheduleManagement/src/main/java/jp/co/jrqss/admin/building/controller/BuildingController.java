@@ -286,7 +286,8 @@ public class BuildingController {
      * 【変更 → 確認】
      */
 	@PostMapping("admin/building/change/confirm")
-	public String postAdminBuildingChangeeConfirm(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingChangeeConfirm(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -349,7 +350,8 @@ public class BuildingController {
      * 【変更】確認 → 修正
      */
 	@PostMapping("admin/building/change/backchange")
-	public String postAdminBuildingChangeBackchange(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingChangeBackchange(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -368,7 +370,7 @@ public class BuildingController {
 			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
-		model.addAttribute("buildingId",str1);
+	//	model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);

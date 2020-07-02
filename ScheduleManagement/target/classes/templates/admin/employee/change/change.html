@@ -34,6 +34,7 @@ $(function(){
 			$('#employee_Address').removeClass("inp_error");
 			$('#employee_Phone_number').removeClass("inp_error");
 			$('#desire_Days').removeClass("inp_error");
+			$('#employee_Mail').removeClass("inp_error");
 
 
 			// 入力エラー文をリセット
@@ -43,6 +44,7 @@ $(function(){
 			$("#Ad_error").empty();
 			$("#PhoneNum_error").empty();
 			$("#Days_error").empty();
+			$("#Mail_error").empty();
 
 
 			// 入力内容セット
@@ -52,6 +54,7 @@ $(function(){
 			var employee_Address  = $("#employee_Address").val();
 			var employee_Phone_Number  = $("#employee_Phone_Number").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var desire_Days   = $("#desire_Days").val();
+			var employee_Mail  = $("#employee_Mail").val();
 
 
 			// 入力内容チェック
@@ -120,7 +123,21 @@ $(function(){
 				result = false;
 			}
 
+			// メールアドレス
+			if(!(employee_Mail.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/))){
+				$("#Mail_error").html(" 正しいメールアドレスを入力してください ");
+				$("#employee_Mail").addClass("inp_error");
+				result = false;
+			}
+
 			return result;
+
+			$("html,body").animate({
+		        scrollTop : position
+		    }, {
+		        queue : false
+		    });
+
 	}
 
 	</script>
