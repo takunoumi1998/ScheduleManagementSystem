@@ -34,4 +34,9 @@ public class RegisterForm {
 
 	private boolean buildingSunday;
 
+	private String buildingAdNumber;
+	private String buildingAdress;
+	private String buildingPhoneNumber;
+	private String buildingMail;
+
 }

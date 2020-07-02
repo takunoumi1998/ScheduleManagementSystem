@@ -69,6 +69,17 @@ public class BuildingController {
 		return "admin/building/create/register";
 	}
 
+/**	@PostMapping("admin/building/create/register")
+	public String postAdminBuildingCreateRegister(@ModelAttribute @Validated BuildingForm form,
+			BindingResult bindingResult, Model model) {
+
+		if(bindingResult.hasErrors()) {
+			return getAdminBuildingCreateRegister(form,model);
+		}
+
+		return "admin/building/create/confirm";
+	}
+*/
 
 	/**
      * 【確認】
@@ -92,8 +103,6 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
-
-
 			Model model) {
 
 		//model.addAttribute("buildingId",str1);
@@ -183,8 +192,6 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
-
-
 			Model model) {
 
 		//model.addAttribute("buildingId",str1);
@@ -359,10 +366,6 @@ public class BuildingController {
 			@RequestParam("buildingAddress")String str6,
 			@RequestParam("buildingPhoneNumber")String str7,
 			@RequestParam("buildingMail")String str8,
-			@RequestParam("buildingStart")String str9,
-			@RequestParam("buildingEnd")String str10,
-
-
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
@@ -382,6 +385,7 @@ public class BuildingController {
 		model.addAttribute("buildingMail",str8);
 		model.addAttribute("buildingStart",str9);
 		model.addAttribute("buildingEnd",str10);
+
 
 		return "admin/building/change/change";
 	}
