@@ -50,5 +50,9 @@ public class BuildingForm {
 		@Email(message = "メールアドレスを入力してください")
 		private String buildingMail;
 
+		private String buildingStart;
+		private String buildingEnd;
+
+
 
 }

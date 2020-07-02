@@ -40,9 +40,12 @@ public class LoginController {
 
 		password = passwordEncoder.encode(password);
 
-		jdbc.update("DELETE FROM employee");
-		jdbc.update("DELETE FROM building");
+		try {
+			jdbc.update("DELETE FROM employee");
+			jdbc.update("DELETE FROM building");
+		}catch(Exception e) {
 
+		}
 		for(int i = 1001; i <= 1100; i++) {
 			if(i > 1050) {
 				role = "ROLE_USER";
