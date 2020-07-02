@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS building (
 	building_address VARCHAR(256),
 	building_phone_number VARCHAR(256),
 	building_mail VARCHAR(50),
-	building_start time ,
-	building_end time
+	building_start VARCHAR(50) ,
+	building_end VARCHAR(50)
 
 );
 

@@ -71,16 +71,6 @@ $(function(){
 			var desireDays  = $("#desireDays").val();
 
 			// 入力内容チェック
-			// ビルID
-			if(buildingId == ""){
-				$("#Id_error").html(" 必須項目です ");
-				$("#buildingId").addClass("inp_error");
-				result = false;
-			}else if(!(buildingId.match(/^[0-9]+$/))){
-				$("#Id_error").html(" 半角数字で入力してください ");
-				$("#buildingId").addClass("inp_error");
-				result = false;
-			}
 
 			// ビル名
 			if(buildingName == ""){
@@ -202,13 +192,6 @@ $(function(){
  		action="admin/building/create/confirm" th:action="@{/admin/building/create/confirm}">
 
  			<!-- ビル情報入力エリア -->
-
- 			<!-- ビルID -->
- 			<span class="req">必須</span>
- 			<label for="buildingId">ビルID</label>
- 			<input type="text" class="form-control" id="buildingId"
- 				name="buildingId" th:value="*{buildingId}"/>
- 			<span id="Id_error" class="error_m"></span>
 
  			<!-- ビル名 -->
  			<span class="req">必須</span>

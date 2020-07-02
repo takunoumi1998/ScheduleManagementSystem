@@ -307,7 +307,6 @@ public class BuildingController {
 
 		Building building = new Building();
 
-		building.setBuildingId(str1);
 		building.setBuildingName(str2);
 		building.setBuildingNinzu(str3);
 		building.setBuildingTime(str4);
@@ -326,7 +325,6 @@ public class BuildingController {
 		building.setBuildingEnd(str10);
 
 
-		model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
@@ -399,9 +397,6 @@ public class BuildingController {
 	@PostMapping("admin/building/change/complete")
 	public String postAdminBuildingChangeComplete(@ModelAttribute Building building,
 			Model model) {
-
-		System.out.println("更新ボタンの処理");
-
 
 		// 更新実行
 		boolean result = buildingService.updateOne(building);

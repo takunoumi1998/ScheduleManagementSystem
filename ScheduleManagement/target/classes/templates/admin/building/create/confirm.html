@@ -18,8 +18,6 @@
  			<form method="post" action="admin/building/create/complete"
  					th:action="@{/admin/building/create/complete}">
 
-
-			<h3>ビルID：<span th:text="*{buildingId}"></span></h3>
 			<h3>ビル名：<span th:text="*{buildingName}"></span></h3>
 			<h3>郵便番号：<span th:text="*{buildingAdNumber}"></span></h3>
 			<h3>住所：<span th:text="*{buildingAddress}"></span></h3>
@@ -31,7 +29,6 @@
 			<h3>希望終了時刻：<span th:text="*{buildingEnd}"></span></h3>
 
 
- 			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
  			<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
  			<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
  			<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">
@@ -71,7 +68,6 @@
     </form>
 
     <form method="post" action="/admin/building/create/backregister">
-    <!-- 	<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">   -->
     	<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
     	<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
     	<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">

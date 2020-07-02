@@ -28,7 +28,6 @@ $(function(){
 		var result = true;
 
 			// エラー用装飾のためのクラスリセット
-			$('#employee_Id').removeClass("inp_error");
 			$('#employee_Name').removeClass("inp_error");
 			$('#employee_Ad_Number').removeClass("inp_error");
 			$('#employee_Address').removeClass("inp_error");
@@ -46,7 +45,6 @@ $(function(){
 
 
 			// 入力内容セット
-			var employee_Id   = $("#employee_Id").val();
 			var employee_Name  = $("#employee_Name").val();
 			var employee_Ad_Number = $("#employee_Ad_Number").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var employee_Address  = $("#employee_Address").val();
@@ -55,16 +53,6 @@ $(function(){
 
 
 			// 入力内容チェック
-			// 従業員ID
-			if(employee_Id == ""){
-				$("#Id_error").html(" 必須項目です ");
-				$("#employee_Id").addClass("inp_error");
-				result = false;
-			}else if(!(employee_Id.match(/^[0-9]+$/))){
-				$("#Id_error").html(" 半角数字で入力してください ");
-				$("#employee_Id").addClass("inp_error");
-				result = false;
-			}
 
 			// 氏名
 			if(employee_Name == ""){
@@ -135,11 +123,6 @@ $(function(){
  			</div>
 
  			<form method="post"id="admin/employee/create/confirm" action="admin/employee/create/confirm"th:action="@{/admin/employee/create/confirm}">
-
-			<span class="req">必須</span>
-			<label for="employee_Id">従業員ID</label>
-			<input type="text" class="form-control" id="employee_Id" name="employee_Id" th:value="*{employee_Id}"/>
-			<span id="Id_error" class="error_m"></span>
 
 			<span class="req">必須</span>
 			<label for="employee_Name">氏名</label>
