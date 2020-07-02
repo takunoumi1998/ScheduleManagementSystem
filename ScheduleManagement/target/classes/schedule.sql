@@ -1,7 +1,7 @@
 --DROP TABLE desire;
---DROP TABLE work;
---DROP TABLE employee;
---DROP TABLE building;
+-- DROP TABLE work;
+-- DROP TABLE employee;
+-- DROP TABLE building;
 
 CREATE TABLE IF NOT EXISTS building (
 	building_id INT not null auto_increment,
@@ -19,9 +19,8 @@ CREATE TABLE IF NOT EXISTS building (
 	building_address VARCHAR(256),
 	building_phone_number VARCHAR(256),
 	building_mail VARCHAR(50),
-	building_start varchar(50) ,
-	building_end varchar(50),
-	primary key(building_Id)
+	building_start VARCHAR(50) ,
+	building_end VARCHAR(50)
 
 );
 

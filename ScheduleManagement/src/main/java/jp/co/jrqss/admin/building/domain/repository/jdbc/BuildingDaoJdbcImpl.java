@@ -48,8 +48,9 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
-			building.setBuildingStart((String)map.get("building_start"));
+			building.setBuildingStart((String)map.get("buildingStart"));
 			building.setBuildingEnd((String)map.get("building_end"));
+
 
 			// 結果返却用リストに返却
 			buildingList.add(building);
@@ -158,6 +159,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 
 		for(Map<String,Object>map:getList) {
 
+			System.out.println("start time : "+(String)map.get("building_start"));
+
 			Building building = new Building();
 
 			building.setBuildingId((int)map.get("building_id"));
@@ -239,7 +242,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	//SQL取得結果をサーバーにCSVで保存する
 	public void buildingCsvOut() throws DataAccessException {
 
-    }
+	}
 
 	//1件削除
 	@Override

@@ -19,7 +19,16 @@ table th{
 	height:80px;
 }
 button.button1{
-	background-color:aquamarine;
+	display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+  background-color:aquamarine;
 }
 button.button2{
 	background-color:lightsalmon;
