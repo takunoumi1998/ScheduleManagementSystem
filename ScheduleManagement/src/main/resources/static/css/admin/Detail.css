@@ -15,6 +15,13 @@ texture:focus {
     border: 1px solid #3498db;
 }
 
+input[type="time"]:focus,
+texture:focus {
+    box-shadow: 0 0 7px #3498db;
+    border: 1px solid #3498db;
+}
+
+
 label{
   display:block;
   position:relative;

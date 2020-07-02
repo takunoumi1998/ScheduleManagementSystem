@@ -60,5 +60,4 @@ public class BuildingForm {
 		private String buildingStart;
 		private String buildingEnd;
 
-
 }

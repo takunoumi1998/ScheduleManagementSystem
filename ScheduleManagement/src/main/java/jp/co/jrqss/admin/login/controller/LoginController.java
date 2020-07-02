@@ -2,6 +2,7 @@ package jp.co.jrqss.admin.login.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,20 @@ public class LoginController {
 	@Autowired
 	JdbcTemplate jdbc;
 
-	@GetMapping("/admin/login")
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	@GetMapping("accessdeniedpage")
+	public String postAccessdeniedpage() {
+		return "employee/error";
+	}
+
+	@PostMapping("/logout")
+	public String postLogout() {
+		return getLogin();
+	}
+
+	@GetMapping("/login")
 	public String getLogin() {
 		String yubin = "123-1234";
 		String jusho = "福岡市";
@@ -20,11 +34,24 @@ public class LoginController {
 		String mail = "abcd@co.jp";
 		String bikou = "備考";
 		String password = "password";
-		String role = "ROLE_ADMIN";
+		String role = "ROLE_USER";
+		String startTime = "17:00";
+		String endTime = "21:00";
 
-		jdbc.update("DELETE FROM employee");
+		password = passwordEncoder.encode(password);
 
-		for(int i = 1001; i <= 1100; i++) {
+//		try {
+//			jdbc.update("DELETE FROM employee");
+//			jdbc.update("DELETE FROM building");
+//		}catch(Exception e) {
+//
+//		}
+		for(int i = 1000; i <= 1010; i++) {
+			if(i == 1000) {
+				role = "ROLE_ADMIN";
+			}else {
+				role = "ROLE_USER";
+			}
 			try {
 				jdbc.update("INSERT INTO employee VALUES(?"	//ID
 						+ ",?"	//name
@@ -45,14 +72,39 @@ public class LoginController {
 						+ ",?"	//パスワード
 						+ ",?)"	//権限
 				,i,i+"氏",i+"さん",yubin,jusho,phone,mail,bikou,password,role);
+
+				System.out.println(role);
+
+				if(i <= 1005) {
+					jdbc.update("INSERT INTO building VALUES("
+							+ "?" //ID
+							+ ",?"	//名前
+							+ ",5"	//人数
+							+ ",120"	//勤務時間（分）
+							+ ",1"	//月
+							+ ",0"	//火
+							+ ",1"	//水
+							+ ",0"	//木
+							+ ",1"	//金
+							+ ",0"	//土
+							+ ",0"	//日
+							+ ",?"	//郵便番号
+							+ ",?"	//住所
+							+ ",?"	//電話番号
+							+ ",?"	//メールアドレス
+							+ ",?"	//開始時間
+							+ ",?)"	//終了時間
+							,i,i+"ビル",yubin,jusho,phone,mail,startTime,endTime);
+				}
 			}catch(Exception e) {
+				e.printStackTrace();
 				System.out.println("失敗");
 			}
 		}
 		return "admin/login/login";
 	}
 
-	@PostMapping("/admin/login")
+	@PostMapping("/login")
 	public String postLogin() {
 		return "admin/login/login";
 	}

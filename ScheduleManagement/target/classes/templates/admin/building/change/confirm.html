@@ -9,6 +9,14 @@
 	<title>ビル情報｜変更内容確認ページ</title>
 
  </head>
+
+
+
+
+
+
+
+
  <body>
  			<div class="col-sm-5">
  				<div class="page-header">
@@ -87,6 +95,8 @@
     	<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
     	<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
     	<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
+    	<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+    	<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
     	<input type="submit"value="修正する">
     </form>
 
@@ -130,4 +140,7 @@
 	</script>
 
    </body>
+
+
+
  </html>

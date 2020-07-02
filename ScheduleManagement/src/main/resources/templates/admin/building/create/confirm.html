@@ -18,8 +18,6 @@
  			<form method="post" action="admin/building/create/complete"
  					th:action="@{/admin/building/create/complete}">
 
-
-			<h3>ビルID：<span th:text="*{buildingId}"></span></h3>
 			<h3>ビル名：<span th:text="*{buildingName}"></span></h3>
 			<h3>郵便番号：<span th:text="*{buildingAdNumber}"></span></h3>
 			<h3>住所：<span th:text="*{buildingAddress}"></span></h3>
@@ -31,7 +29,6 @@
 			<h3>希望終了時刻：<span th:text="*{buildingEnd}"></span></h3>
 
 
- 			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
  			<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
  			<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
  			<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">
@@ -66,12 +63,11 @@
 
 		<p>この内容で確定しますか？</p>
 
-         <button type="submit" value="confirm">確定</button>
+         <button type="submit" value="confirm" >確定</button>
 
     </form>
 
     <form method="post" action="/admin/building/create/backregister">
-    	<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
     	<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
     	<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
     	<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">
@@ -89,6 +85,8 @@
     	<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
     	<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
     	<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
+    	<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+    	<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
     	<input type="submit"value="修正する">
     </form>
 
