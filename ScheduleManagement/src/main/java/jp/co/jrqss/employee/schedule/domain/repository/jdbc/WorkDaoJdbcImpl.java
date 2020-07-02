@@ -22,16 +22,19 @@ public class WorkDaoJdbcImpl implements WorkDao{
 	@Override
 	public List<Work> selectMany() throws DataAccessException{
 
-		//workテーブルから出勤日データのみを取得
-		List<Map<String,Object>> getList = jdbc.queryForList("SELECT work_date FROM work");;
-		//結果返却用の変数
-		List<Work> workList = new ArrayList<>();
+		List<Work> workList = new ArrayList<Work>();
 
-		for(Map<String, Object>map:getList) {
+		List<Map<String,Object>> getList = jdbc.queryForList("select * from work where employee_id = ?" );
 
+		for(Map map : getList) {
 			Work work = new Work();
-
+			work.setBuildingId((int)map.get("building_id"));
+			work.setEmployeeId((int)map.get("employee_id"));
 			work.setWorkDate((Date)map.get("work_date"));
+			work.setWorkDay((int)map.get("work_day"));
+			work.setWorkNumber((int)map.get("work_number"));
+			work.setWorkWeek((int)map.get("work_week"));
+			workList.add(work);
 
 			workList.add(work);
 		}

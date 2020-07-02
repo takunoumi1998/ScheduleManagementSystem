@@ -18,3 +18,4 @@ public class Work {
 	private Time buildingStart;
 	private Time buildingEnd;
 }
+

@@ -120,9 +120,10 @@ a{
 
 <script type="text/javascript" th:inline="javascript">
 /*<![CDATA[*/
+var work = /*[[${work}]]*/
 var date = new Date();
-var buildingName = "不明ビル";
-var workTime = "20:00 ~ 22:00";
+var buildingName = buildingName;
+var workTime = buildingStart;
 
 var dateTd = document.getElementById("dateTd");
 var buildingNameTd = document.getElementById("buildingNameTd");

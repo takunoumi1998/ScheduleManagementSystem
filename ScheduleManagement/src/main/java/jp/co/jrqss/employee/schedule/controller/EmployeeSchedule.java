@@ -80,6 +80,7 @@ public class EmployeeSchedule {
 	public String postEmployeeSchedule(Model model , @ModelAttribute("work") Work work ,Principal principal) {
 
 		//insert
+<<<<<<< Updated upstream
 		model.addAttribute("work",work);
 
 		return "redirect:/top";
