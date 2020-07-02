@@ -222,6 +222,9 @@ public class EmployeeController {
 			model.addAttribute("employee_Friday",day5);
 			model.addAttribute("employee_Saturday",day6);
 			model.addAttribute("employee_Sunday",day7);
+
+
+
 		return "admin/employee/change/confirm";
 	}
 
@@ -281,8 +284,8 @@ public class EmployeeController {
 
 		System.out.println(model);
 
-		return "admin/employee/change/complete";
-	}
+		return getAdminEmployeeList(model);
+		}
 
 	/*削除画面へ遷移*/
 	@GetMapping("/admin/employee/delete/confirm/{employee_Id:.+}")
