@@ -53,6 +53,29 @@ public class EmployeeController {
 		}
 	}
 
+	/**
+	 * 従業員情報を住所から検索
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/admin/employee/address")
+	public String postAdminEmployeeAddress(Model model,SearchForm searchForm) {
+
+		if(!(searchForm.getSearchAddress().equals(""))) {
+			List<Employee> employeeList = employeeService.findByAddress(searchForm);
+			model.addAttribute("employeeList",employeeList);
+			return "admin/employee/list";
+		}else {
+			return getAdminEmployeeList(model);
+		}
+
+
+
+
+	}
+
+
+
 	/*登録画面へ遷移*/
 	@GetMapping("/admin/employee/create/register")
 	public String getAdminEmployeeCreateRegister(Model model) {

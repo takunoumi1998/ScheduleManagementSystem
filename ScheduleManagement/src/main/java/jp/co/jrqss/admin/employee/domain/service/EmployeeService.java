@@ -25,6 +25,12 @@ public class EmployeeService{
 	}
 
 
+	public List<Employee> findByAddress(SearchForm searchForm){
+
+
+		return employeedao.findByAddress(searchForm);
+	}
+
 	//全件取得
 	public List<Employee>selectMany(){
 		return employeedao.selectMany();

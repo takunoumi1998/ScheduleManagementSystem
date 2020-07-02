@@ -24,6 +24,11 @@ public interface EmployeeDao {
 	//名前基準で検索
 	public List<Employee> findByName(SearchForm searchForm) throws DataAccessException;
 
+	//住所で検索
+	public List<Employee> findByAddress(SearchForm searchForm) throws DataAccessException;
+
 	//1件削除
 	public int deleteOne(int employee_Id) throws DataAccessException;
+
+
 }
