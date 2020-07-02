@@ -1,6 +1,24 @@
+<style type="text/css">
+	.calendarTbl{
+		width:100%;
+		height:30vh;
+		margin-bottom:2vh;
+		font-size:2.2em;
+	}
+
+	caption{
+	}
+</style>
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<script
+  src="http://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
 <head>
 <meta charset="UTF-8"></meta>
 	<title>勤務表</title>
@@ -56,7 +74,7 @@
 			var dtmm = dtNow.getMonth() + 1;	//今月
 			var dtdd = dtNow.getDate();	//今日
 
-			document.write("<table border='1'>");
+			document.write("<table border='1' class='calendarTbl'>");
 			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");	//年月の表示（例：2020 - 7）
 
 			/*曜日の設定*/////////////////////////
@@ -86,6 +104,9 @@
 
 			/*今月の日数分ループ*/
 			for(i = 0; i < m; i++) {
+				//指定日を文字列で取得（yyyy-mm-dd)
+				var dateStr1 = DayLink(yyyy, mm, i + 1);
+
 				//指定する日が日曜日の時は改行
 				if(w == 0) {
 					document.write("<tr>");
@@ -93,29 +114,28 @@
 
 				//指定した日付と本日の日付が一致するならclassにtodayを指定
 				if(yyyy == dtyyyy && mm == dtmm && i + 1 == dtdd) {
-					document.write("<td class='today'>");
+					document.write("<td class='today "+dateStr1+"'>");
 				}
 
 				//色付けのためのクラスを追加
 				else if(w == 0) {
-					document.write("<td class='sun'>");
+					document.write("<td class='sun "+dateStr1+"'>");
 				}
 				else if(w == 6) {
-					document.write("<td class='sat'>");
+					document.write("<td class='sat "+dateStr1+"'>");
 				}
 				else {
-					document.write("<td class='day'>");
+					document.write("<td class='day "+dateStr1+"'>");
 				}
-
-				//指定日を文字列で取得（yyyy-mm-dd)
-				var dateStr1 = DayLink(yyyy, mm, i + 1);
 
 				//workListから全ての勤務日を取得
 				for(var work of workList){
 					var date1 = new Date(work.workDate);
 					var dateStr2 = date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
 					if(dateStr1 == dateStr2){
-						document.write( "<a href='employee/schedule/detail?date="+dateStr1+"' style='background-color:red'>"+(i+1) + "</td>");
+						document.write( "<a style='display:block; color:black; text-decoration:none;' href='employee/schedule/detail?date="+dateStr1+"''>"+(i+1) + "</td>");
+						var td = document.getElementsByClassName(dateStr1);
+						td[0].style.backgroundColor="lightcoral";
 					}
 				}
 

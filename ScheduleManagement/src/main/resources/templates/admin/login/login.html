@@ -11,32 +11,34 @@
     <title>ログイン</title>
 </head>
 <body class="text-center">
-AAAA
 	<div align="center">
 
+<div style="font-size:3em;">
     <h1>ログイン</h1>
-    <form method="post" action="/login">
+  	<form method="post" action="/login">
+	    <table>
+	    	<tr><td>　</td></tr>
+	    	<tr>
+	    		<td><input style="border:solid 1px black" type="text" name="id" placeholder="ID"></td>
+	    	</tr>
+	    	<tr><td>　</td></tr>
+	    	<tr>
+	    		<td><input style="border:solid 1px black" type="password" name="password" placeholder="パスワード"></td>
+	    	</tr>
+	    	<tr><td>　</td></tr>
+	    	<tr>
+	    		<td><input style="visibility:hidden; margin:10px"type="checkbox" name="login_keep" checked="checked" ></td>
+	    	</tr>
+	    	<tr>
+	    		<td><input style="float:right; margin:10px"type="submit" value="ログイン"></td>
+	    	</tr>
 
-        <!-- ユーザーID -->
-        <label>管理者ID</label>
-        <input type="text" name="id" size="24"/><br/>
-        <br />
-
-        <!-- パスワード -->
-        <label>パスワード</label>
-        <input type="password" name="password" size="24"/><br/>
-        <br />
-
-		<input type="submit" value="ログイン">
-    </form>
-
-    <form action="/logout">
-    	<input type="submit" value="ログアウト">
-    </form>
-    <br/>
+	    </table>
+	</form>
+</div>
 
     <!-- ユーザー登録画面へのリンク -->
-    <a th:href="@{'/signup'}">従業員はこちら</a>
+   <!-- <a th:href="@{'/signup'}">従業員はこちら</a> -->
 
 
       <!--フッター -->

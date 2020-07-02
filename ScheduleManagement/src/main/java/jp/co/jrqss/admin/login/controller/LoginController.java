@@ -34,19 +34,22 @@ public class LoginController {
 		String mail = "abcd@co.jp";
 		String bikou = "備考";
 		String password = "password";
-		String role = "ROLE_ADMIN";
+		String role = "ROLE_USER";
 		String startTime = "17:00";
 		String endTime = "21:00";
 
 		password = passwordEncoder.encode(password);
-		try {
-			jdbc.update("DELETE FROM employee");
-			jdbc.update("DELETE FROM building");
-		}catch(Exception e) {
-			System.out.println("消去エラー");
-		}
-		for(int i = 1001; i <= 1100; i++) {
-			if(i > 1050) {
+
+//		try {
+//			jdbc.update("DELETE FROM employee");
+//			jdbc.update("DELETE FROM building");
+//		}catch(Exception e) {
+//
+//		}
+		for(int i = 1000; i <= 1010; i++) {
+			if(i == 1000) {
+				role = "ROLE_ADMIN";
+			}else {
 				role = "ROLE_USER";
 			}
 			try {
@@ -70,11 +73,13 @@ public class LoginController {
 						+ ",?)"	//権限
 				,i,i+"氏",i+"さん",yubin,jusho,phone,mail,bikou,password,role);
 
+				System.out.println(role);
+
 				if(i <= 1005) {
 					jdbc.update("INSERT INTO building VALUES("
 							+ "?" //ID
 							+ ",?"	//名前
-							+ ",2"	//人数
+							+ ",5"	//人数
 							+ ",120"	//勤務時間（分）
 							+ ",1"	//月
 							+ ",0"	//火

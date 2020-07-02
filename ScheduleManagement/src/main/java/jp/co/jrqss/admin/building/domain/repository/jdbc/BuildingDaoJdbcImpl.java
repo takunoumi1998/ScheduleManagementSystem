@@ -1,6 +1,5 @@
 package jp.co.jrqss.admin.building.domain.repository.jdbc;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +48,9 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
+			building.setBuildingStart((String)map.get("buildingStart"));
+			building.setBuildingEnd((String)map.get("building_end"));
+
 
 			// 結果返却用リストに返却
 			buildingList.add(building);
@@ -71,8 +73,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	@Override
 	public int insertOne(Building building)throws DataAccessException{
 
-		int rowNumber=jdbc.update("insert into building(building_id,"
-				+"building_name,"
+		int rowNumber=jdbc.update("insert into building(building_name,"
 				+"building_ninzu,"
 				+"building_time,"
 				+"building_monday,"
@@ -88,8 +89,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_mail,"
 				+"building_start,"
 				+"building_end)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-				,building.getBuildingId()
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				//,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
 				,building.getBuildingTime()
@@ -138,8 +139,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		building.setBuildingAddress((String)map.get("building_address"));
 		building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 		building.setBuildingMail((String)map.get("building_mail"));
-		building.setBuildingStart((Time)map.get("building_start"));
-		building.setBuildingEnd((Time)map.get("building_end"));
+		building.setBuildingStart((String)map.get("building_start"));
+		building.setBuildingEnd((String)map.get("building_end"));
 
 
 
@@ -158,6 +159,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 
 		for(Map<String,Object>map:getList) {
 
+			System.out.println("start time : "+(String)map.get("building_start"));
+
 			Building building = new Building();
 
 			building.setBuildingId((int)map.get("building_id"));
@@ -175,14 +178,14 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingAddress((String)map.get("building_address"));
 			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
 			building.setBuildingMail((String)map.get("building_mail"));
-			building.setBuildingStart((Time)map.get("building_start"));
-			building.setBuildingEnd((Time)map.get("building_end"));
+			building.setBuildingStart((String)map.get("building_start"));
+			building.setBuildingEnd((String)map.get("building_end"));
 
 
 
 			// 結果返却用リストに返却
 			buildingList.add(building);
-			//System.out.println(buildingList);
+			System.out.println(buildingList);
 		}
 
 		return buildingList;
@@ -193,25 +196,25 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	@Override
 	public int updateOne(Building building)throws DataAccessException{
 
-		int rowNumber=jdbc.update("update building set(building_id,"
-				+"building_name,"
-				+"building_ninzu,"
-				+"building_time,"
-				+"building_monday,"
-				+"building_tuesday,"
-				+"building_wednesday,"
-				+"building_thursday,"
-				+"building_friday,"
-				+"building_saturday,"
-				+"building_sunday,"
-				+"building_ad_number,"
-				+"building_address,"
-				+"building_phone_number,"
-				+"building_mail"
-				+"building_start"
-				+"building_end)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-				,building.getBuildingId()
+		int rowNumber=jdbc.update("update building"
+				+" set "
+				+" building_name=?, "
+				+"building_ninzu=?,"
+				+"building_time=?,"
+				+"building_monday=?,"
+				+"building_tuesday=?,"
+				+"building_wednesday=?,"
+				+"building_thursday=?,"
+				+"building_friday=?,"
+				+"building_saturday=?,"
+				+"building_sunday=?,"
+				+"building_ad_number=?,"
+				+"building_address=?,"
+				+"building_phone_number=?,"
+				+"building_mail=?,"
+				+"building_start=?,"
+				+"building_end=?"
+				+" where building_id=?"
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
 				,building.getBuildingTime()
@@ -228,7 +231,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingMail()
 				,building.getBuildingStart()
 				,building.getBuildingEnd()
-
+				,building.getBuildingId()
 				);
 
 		return rowNumber;
@@ -239,7 +242,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 	//SQL取得結果をサーバーにCSVで保存する
 	public void buildingCsvOut() throws DataAccessException {
 
-    }
+	}
 
 	//1件削除
 	@Override

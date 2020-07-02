@@ -25,8 +25,10 @@
 <form method="get" action="/admin/building/create/register">
 <!-- <form method="get" th:href="@{'/admin/building/create/register'}"> -->
 <button class="button1" type="submit" name="newinfo" >新規登録</button></form>
-<form method="post" action="/admin/building/delete/confirm">
-<button class="button2" type="submit" name="delite">チェックしたビルを削除</button></form>
+
+<!-- <form method="post" action="/admin/building/delete/confirm">
+<button class="button2" type="submit" name="delite">チェックしたビルを削除</button></form> -->
+
 </div>
 <form action="/admin/top">
 	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
@@ -34,7 +36,7 @@
 </p>
 <table border="1">
 	<tr>
-		<td></td>
+		<!-- <td></td> -->
 		<td>ビルID</td>
 		<td>ビル名称</td>
 		<td>清掃曜日・頻度</td>
@@ -44,7 +46,7 @@
 	</tr>
 
 	<tr th:each="building:${buildingList}">
-		<td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td>
+		<!-- <td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td> -->
 		<td th:text="${building.buildingId}"></td>
 		<td th:text="${building.buildingName}"></td>
 		<td th:text="${building.buildingNinzu}"></td>

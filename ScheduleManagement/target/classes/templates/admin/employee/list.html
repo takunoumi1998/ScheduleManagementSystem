@@ -17,9 +17,11 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <p>
 <form method="get" action="/admin/employee/create/register">
 <button style="margin-bottom:3vw; float: right;" class="button1" type="submit" name="newinfo">新規登録</button></form>
-<form method="post" action="/admin/employee/delete/confirm/ + {delete==true} + ${employee.employee_Id}}">
+
+<!-- <form method="post" action="/admin/employee/delete/confirm/ + {delete==true} + ${employee.employee_Id}}">
 <button style="margin-bottom:3vw; float: right;" class="button2" type="submit" name="delite">チェックした従業員を削除</button>
 </form>
+-->
 <form action="/admin/top">
 	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
 </form>
@@ -31,7 +33,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <table border="1">
 	<tr>
-		<td></td>
+		<!-- <td></td> -->
 		<td>従業員ID</td>
 		<td>従業員氏名</td>
 		<td>住所</td>
@@ -43,7 +45,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <!-- 詳細ページへはgetメソッドのみ飛べる コントローラーにgetを作っておく-->
 	<tr th:each="employee : ${employeeList}">
-		<td><input type="checkbox" name="delete" value="1"></td>
+		<!-- <td><input type="checkbox" name="delete" value="1"></td> -->
 		<td th:text="${employee.employee_Id}"></td>
 		<td th:text="${employee.employee_Name}"></td>
 		<td th:text="${employee.employee_Address}"></td>

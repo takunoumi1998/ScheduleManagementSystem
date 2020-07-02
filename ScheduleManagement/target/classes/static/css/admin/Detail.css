@@ -15,6 +15,13 @@ texture:focus {
     border: 1px solid #3498db;
 }
 
+input[type="time"]:focus,
+texture:focus {
+    box-shadow: 0 0 7px #3498db;
+    border: 1px solid #3498db;
+}
+
+
 label{
   display:block;
   position:relative;
@@ -28,4 +35,40 @@ label input{
   bottom:0;
   left:0;
   margin:auto;
+}
+
+span.req {
+	float: left;
+	font-size: 14px;
+	margin: 0 10px 0 0;
+	display: inline;
+	line-height: 20px;
+	padding: 3px 10px;
+	color: #ffffff;
+	height: 18px;
+	border-radius: 4px;
+	background: #FF1515;
+}
+span.any {
+	float: left;
+	font-size: 14px;
+	margin: 0 10px 0 0;
+	display: inline;
+	line-height: 20px;
+	padding: 3px 10px;
+	color: #ffffff;
+	height: 18px;
+	border-radius: 4px;
+	background: #cccccc;
+}
+input[type="text"].inp_error {
+    border: 1px solid #F88A8A;
+    background: #F4D4D4;
+}
+span.error_m {
+	font-size: 15px;
+	font-weight: normal;
+	color: #FF4040;
+	display: block;
+	margin: 0;
 }
