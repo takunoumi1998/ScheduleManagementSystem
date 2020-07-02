@@ -53,6 +53,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	}
 
 
+	//1件登録
 	@Override
 	public int insertOne(Employee employee)throws DataAccessException{
 
@@ -89,6 +90,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				,employee.getEmployee_Mail()
 				,employee.getEmployee_Bikou());
 
+		//System.out.println("DaoImplからのすうちは"+rowNumber+"です");
 		return rowNumber;
 	}
 

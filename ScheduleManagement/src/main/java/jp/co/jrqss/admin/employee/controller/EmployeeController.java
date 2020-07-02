@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
@@ -42,7 +41,8 @@ public class EmployeeController {
 	 * @return 従業員リストのパス
 	 */
 	@PostMapping("/admin/employee/list")
-	public String postAdminEmployeeList(Model model , @ModelAttribute("selectForm") SearchForm searchForm) {
+	public String postAdminEmployeeList(Model model , @ModelAttribute("selectForm")
+	SearchForm searchForm) {
 
 		if(!(searchForm.getSearchName().equals(""))) {
 			List<Employee> employeeList = employeeService.findByName(searchForm);
@@ -61,7 +61,7 @@ public class EmployeeController {
 	}
 
 	/*新規登録から確認画面*/
-	@RequestMapping("/admin/employee/create/confirm")
+	@PostMapping("/admin/employee/create/confirm")
 	public String postAdminEmployeeCreateConfirm(
 			//@RequestParam("employee_Id")int str1,
 			@RequestParam("employee_Name")String str2,
@@ -104,8 +104,8 @@ public class EmployeeController {
 	public String postAdminEmployeeCreateComplete(@ModelAttribute Employee employee
 		) {
 
-		int result=employeeService.insertOne(employee);
-		if(result==1) {
+		boolean result=employeeService.insertOne(employee);
+		if(result==true) {
 			System.out.println("成功");
 		}else {
 			System.out.println("失敗");
@@ -117,7 +117,7 @@ public class EmployeeController {
 	@PostMapping("/admin/employee/create/backregister")
 	public String postAdminEmployeeCreateBackregister(
 
-		@RequestParam("employee_Id")int str1,
+		//@RequestParam("employee_Id")int str1,
 		@RequestParam("employee_Name")String str2,
 		@RequestParam("employee_Adana")String str3,
 		@RequestParam("employee_Ad_Number")String str4,
@@ -134,7 +134,7 @@ public class EmployeeController {
 		@RequestParam(value="employee_Saturday",required=false)boolean day6,
 		@RequestParam(value="employee_Sunday",required=false)boolean day7,
 		Model model){
-		model.addAttribute("employee_Id",str1);
+		//model.addAttribute("employee_Id",str1);
 		model.addAttribute("employee_Name",str2);
 		model.addAttribute("employee_Adana",str3);
 		model.addAttribute("employee_Ad_Number",str4);
@@ -279,7 +279,7 @@ public class EmployeeController {
 			model.addAttribute("更新失敗",result);
 		}
 
-		System.out.println(result);
+		System.out.println(model);
 
 		return "admin/employee/change/complete";
 	}

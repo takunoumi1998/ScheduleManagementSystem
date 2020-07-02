@@ -35,17 +35,22 @@ public class EmployeeService{
 
 
 	//insert用　一件登録
-	public int insertOne(Employee employee) {
+	public boolean insertOne(Employee employee) {
 
 		int rowNumber=employeedao.insertOne(employee);
-		//boolean result=false;
 
-		/*if(rowNumber>0) {
+		boolean result=false;
+
+		if(rowNumber>0) {
 
 			result=true;
-		}*/
 
-		return rowNumber;
+
+		}
+
+		return result;
+
+
 
 	}
 
