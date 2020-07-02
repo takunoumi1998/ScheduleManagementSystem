@@ -366,6 +366,8 @@ public class BuildingController {
 			@RequestParam("buildingAddress")String str6,
 			@RequestParam("buildingPhoneNumber")String str7,
 			@RequestParam("buildingMail")String str8,
+			@RequestParam("buildingStart")String str9,
+			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
