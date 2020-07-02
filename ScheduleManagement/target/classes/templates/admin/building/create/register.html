@@ -59,13 +59,13 @@ $(function(){
 
 
 			// 入力内容セット
-			var buildingId   = $("#buildingId").val();
-			var buildingName  = $("#buildingName").val();
+			var buildingId   = $("#buildingId").val().replace(/\s+/g,'');
+			var buildingName  = $("#buildingName").val().replace(/\s+/g,"");
 			var buildingAdNumber = $("#buildingAdNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
-			var buildingAddress  = $("#buildingAddress").val();
+			var buildingAddress  = $("#buildingAddress").val().replace(/\s+/g,"");
 			var buildingPhoneNumber  = $("#buildingPhoneNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
-			var buildingNinzu  = $("#buildingNinzu").val();
-			var buildingTime  = $("#buildingTime").val();
+			var buildingNinzu  = $("#buildingNinzu").val().replace(/\s+/g,"");
+			var buildingTime  = $("#buildingTime").val().replace(/\s+/g,"");
 			var buildingStart  = $("#buildingStart").val();
 			var buildingEnd  = $("#buildingEnd").val();
 			var desireDays  = $("#desireDays").val();
