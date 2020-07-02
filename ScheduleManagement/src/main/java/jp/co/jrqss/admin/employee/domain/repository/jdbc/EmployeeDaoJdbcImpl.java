@@ -56,8 +56,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	@Override
 	public int insertOne(Employee employee)throws DataAccessException{
 
-		int rowNumber=jdbc.update("insert into employee(employee_id,"
-				+"employee_name,"
+		int rowNumber=jdbc.update("insert into employee(employee_name,"
+
 				+"employee_adana,"
 				+"desire_days,"
 				+"employee_monday,"
@@ -71,9 +71,8 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				+"employee_address,"
 				+"employee_phone_number,"
 				+"employee_mail,"
-				+ "employee_bikou)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-				,employee.getEmployee_Id()
+				+"employee_bikou)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				,employee.getEmployee_Name()
 				,employee.getEmployee_Adana()
 				,employee.getDesire_Days()
