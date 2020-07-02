@@ -6,6 +6,7 @@
 	<title>勤務表</title>
 	<link rel="stylesheet" type="text/css" th:href="@{css/employee/top.css}">
 	<script type="text/javascript">
+	/*<![CDATA[*/
 		function tblCalendar(yyyy, mm){
 			if(yyyy < 100) {
 				yyyy += 1900;
@@ -40,7 +41,7 @@
 			var dtmm = dtNow.getMonth() + 1;
 			var dtdd = dtNow.getDate();
 
-			document.write("<table border="1">");
+			document.write("<table border='1'>");
 			document.write("<caption><strong>" + yyyy + " - " + mm + "</strong></caption>");
 			document.write("<tr>");
 			document.write("<th class='sun'>" + wName[0] + "</th>");
@@ -131,6 +132,7 @@
 
 			return ret;
 		}
+	/*]]>*/
 	</script>
 </head>
 
