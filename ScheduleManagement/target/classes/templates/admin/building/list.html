@@ -16,10 +16,20 @@
 <div th:fragment="list_contents">
 <h1>ビル情報</h1>
 <form  method="post" action="/admin/building/list">
-  <p>検索したいビル名を入力してください。</p>
-  <input type="search" name="searchName" placeholder="名前を入力">
+  <p>ビル名で検索</p>
+  <input type="search" name="searchName" placeholder="ビル名を入力">
   <input type="submit" name="submit" value="検索">
 </form><br>
+<form  action="/admin/building/address" method="post">
+  <p>住所で検索</p>
+  <input type="search" name="searchAddress" placeholder="住所を入力">
+  <input type="submit" name="submit"value="検索">
+</form>
+
+
+
+
+
 <p>
 <div style="margin-bottom:3vw; float: right;">
 <form method="get" action="/admin/building/create/register">

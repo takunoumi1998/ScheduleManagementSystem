@@ -60,6 +60,24 @@ public class BuildingController {
 		}
 	}
 
+	/*
+	 * ビル住所から検索
+	 */
+
+	@PostMapping("admin/building/address")
+	public String postAdminBuildingAddress(Model model , @ModelAttribute("SearchForm") SearchForm searchForm) {
+		if(!(searchForm.getSearchAddress().equals(""))) {
+			List<Building> buildingList = buildingService.findByAddress(searchForm);
+			model.addAttribute("buildingList",buildingList);
+			return "admin/building/list";
+		}else {
+			return getAdminBuildingList(model);
+		}
+	}
+
+
+
+
 	/**
      * 【新規登録】
      */
