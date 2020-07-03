@@ -42,11 +42,12 @@ a{
 
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <!-- CSS -->
-<link rel="stylesheet">
+<!--  <link rel="stylesheet">	-->
 
 <!-- JQuery -->
 <script
@@ -72,7 +73,8 @@ a{
 	</header>
 -->
 	<main>
-		<form th:action="@{/employee/schedule/detail}" method="post">
+
+ 	<form  th:action="@{/employee/schedule/detail}" method="get">
 		<div style="text-align:center; font-size:5em; margin-top:5vh;">
 	    	<p style="margin:0;">スケジュール詳細</p>
 	    </div>
@@ -81,16 +83,28 @@ a{
 	    	<p style="margin:0; margin-top:5vh;">勤務時間</p>
 	    </div>
 	    <div>
-	    	<table border="1"style="font-size:4em; margin:auto;width:100%;">
+	    	<table border="1" style="font-size:4em; margin:auto; width:100%;">
 	    		<tr style=" background-color:lightgoldenrodyellow">
-	    			<td id="dateTd">日付</td>
+	    			<td>
+	    				<p th:text="${workDate}">日付</p>
+	    			</td>
+	    		</tr>
+		   		<tr>
+	    			<td>
+	    				<p th:text="${buildingName}">ビル</p>
+	    			</td>
 	    		</tr>
 	    		<tr>
-	    			<td id="buildingNameTd">ビル名</td>
+	    			<td>
+	    				<p th:text="${buildingStart}">清掃開始時間</p>
+	    			</td>
 	    		</tr>
 	    		<tr>
-	    			<td id="workTimeTd">勤務時間</td>
+	    			<td>
+	    				<p th:text="${buildingEnd}">清掃終了時間</p>
+	    			</td>
 	    		</tr>
+
 	    	</table>
 	    </div>
 	    <div style="height:5vh;"></div>
@@ -117,21 +131,10 @@ a{
 </body>
 </html>
 
-
 <script type="text/javascript" th:inline="javascript">
+
 /*<![CDATA[*/
-var work = /*[[${work}]]*/
-var date = new Date();
-var buildingName = buildingName;
-var workTime = buildingStart;
-
-var dateTd = document.getElementById("dateTd");
-var buildingNameTd = document.getElementById("buildingNameTd");
-var workTimeTd = document.getElementById("workTimeTd");
-
-dateTd.textContent=date.getMonth()+"月"+date.getDate()+"日"
-buildingNameTd.textContent=buildingName;
-workTimeTd.textContent=workTime
+	console.log(/*[[${work}]]*/);
 
 $(function() {
     $(".nav").css("display","none");
@@ -142,10 +145,9 @@ $(function() {
 
 function redirect(){
 	if(confirm("勤務の変更依頼を出しますか？")){
-
-		alert("変更を依頼しました。\nスケジュールに戻ります")
-
-		return true;
+	alert("変更を依頼しました。\nスケジュールに戻ります")
+	window.location.href = '/employee/schedule/top';
+//		return true;
 	}else{
 		return false;
 	}
@@ -154,4 +156,4 @@ function redirect(){
 /*]]>*/
 </script>
 
-
+<!--    -->

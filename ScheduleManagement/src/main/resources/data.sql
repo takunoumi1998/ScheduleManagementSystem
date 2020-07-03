@@ -4,9 +4,9 @@
 --delete from building;
 
 --sample
-insert into building values (1001,'Aビル',1,120,0,0,0,1,0,1,1,'郵便番号','住所','電話番号','メールアドレス','勤務開始時間','勤務終了時間');
-INSERT INTO employee VALUES(1005,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_USER');
-
+insert into building values (1001,'Aビル',1,120,0,0,0,1,0,1,1,'郵便番号','住所','電話番号','メールアドレス','09:00','11:00');
+INSERT INTO employee VALUES(1001,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_USER');
+INSERT INTO work values(1001,1001,1,1,6,'2020-8-1');
 
 
 
@@ -27,7 +27,7 @@ INSERT INTO employee VALUES(1005,'サンプル','サンプルさん',10,0,0,0,0,
 
 
 -- 勤務
---INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1001,2,1,1,'2020-06-01');
+--INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1005,2,1,1,'2020-07-16');
 --INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1002,2,1,3,'2020-06-03');
 --INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1003,2,1,5,'2020-06-05');
 --INSERT INTO work(building_id,employee_id,work_number,work_week,work_day,work_date) VALUES(1001,1004,2,2,1,'2020-06-08');
@@ -248,14 +248,14 @@ INSERT INTO employee VALUES(1005,'サンプル','サンプルさん',10,0,0,0,0,
 --INSERT INTO work VALUES(6,1001,1012,1,4,3,'2020-05-25');
 --INSERT INTO work VALUES(7,1004,1012,1,5,1,'2020-05-30');
 
---CREATE TABLE IF NOT EXISTS work(
---	building_id INT ,
---	employee_id INT ,
---	work_number INT ,
---	work_week INT ,
---	work_day INT ,
---	work_date DATE ,
---	PRIMARY KEY(building_id,work_number,work_date),
---	FOREIGN KEY (building_id) REFERENCES building(building_id),
---	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
---);
+CREATE TABLE IF NOT EXISTS work(
+	building_id INT ,
+	employee_id INT ,
+	work_number INT ,
+	work_week INT ,
+	work_day INT ,
+	work_date DATE ,
+	PRIMARY KEY(building_id,work_number,work_date),
+	FOREIGN KEY (building_id) REFERENCES building(building_id),
+	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+);

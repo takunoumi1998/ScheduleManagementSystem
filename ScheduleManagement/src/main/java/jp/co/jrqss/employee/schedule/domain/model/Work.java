@@ -1,6 +1,5 @@
 package jp.co.jrqss.employee.schedule.domain.model;
 
-import java.sql.Time;
 import java.util.Date;
 
 import lombok.Data;
@@ -15,7 +14,7 @@ public class Work {
 	private Date workDate;
 
 	private String buildingName;
-	private Time buildingStart;
-	private Time buildingEnd;
+	private String buildingStart;
+	private String buildingEnd;
 }
 

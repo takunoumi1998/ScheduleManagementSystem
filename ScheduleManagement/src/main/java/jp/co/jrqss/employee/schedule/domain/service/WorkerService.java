@@ -6,23 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jp.co.jrqss.employee.schedule.domain.model.Work;
-import jp.co.jrqss.employee.schedule.domain.repository.jdbc.WorkDaoJdbcImpl;
+import jp.co.jrqss.employee.schedule.domain.repository.WorkDao;
 
 @Service
 public class WorkerService {
 
 	@Autowired
-	WorkDaoJdbcImpl workDaoJdbcImpl;
+	WorkDao workdao;
 
-
-	public List<Work> getWorkInfo() {
-		return workDaoJdbcImpl.selectMany();
+	//全件取得
+	public List<Work> selectMany() {
+		return workdao.selectMany();
 	}
 
-
-	public List<Work> selectMany() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	//1件取得
+	public Work selectOne(String workDate) {
+		return workdao.selectOne(workDate);
 	}
 
 }
