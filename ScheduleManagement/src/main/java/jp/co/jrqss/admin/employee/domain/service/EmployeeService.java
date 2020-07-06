@@ -25,6 +25,12 @@ public class EmployeeService{
 	}
 
 
+	public List<Employee> findByAddress(SearchForm searchForm){
+
+
+		return employeedao.findByAddress(searchForm);
+	}
+
 	//全件取得
 	public List<Employee>selectMany(){
 		return employeedao.selectMany();
@@ -35,17 +41,22 @@ public class EmployeeService{
 
 
 	//insert用　一件登録
-	public int insertOne(Employee employee) {
+	public boolean insertOne(Employee employee) {
 
 		int rowNumber=employeedao.insertOne(employee);
-		//boolean result=false;
 
-		/*if(rowNumber>0) {
+		boolean result=false;
+
+		if(rowNumber>0) {
 
 			result=true;
-		}*/
 
-		return rowNumber;
+
+		}
+
+		return result;
+
+
 
 	}
 

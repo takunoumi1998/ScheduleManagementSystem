@@ -26,107 +26,53 @@
  			<form method="post" action="admin/building/change/complete"
  					th:action="@{/admin/building/change/complete}">
 
-          <!-- ビル情報入力エリア -->
+			<h3>ビルID：<span th:text="*{buildingId}"></span></h3>
+			<h3>ビル名：<span th:text="*{buildingName}"></span></h3>
+			<h3>郵便番号：<span th:text="*{buildingAdNumber}"></span></h3>
+			<h3>住所：<span th:text="*{buildingAddress}"></span></h3>
+			<h3>電話番号：<span th:text="*{buildingPhoneNumber}"></span></h3>
+			<h3>メールアドレス：<span th:text="*{buildingMail}"></span></h3>
+			<h3>必要人数：<span th:text="*{buildingNinzu}"></span></h3>
+			<h3>希望時間：<span th:text="*{buildingTime}"></span></h3>
+			<h3>希望開始時刻：<span th:text="*{buildingStart}"></span></h3>
+			<h3>希望終了時刻：<span th:text="*{buildingEnd}"></span></h3>
 
- 			<!-- ビルID -->
- 			<label for="buildingId">ビルID</label>
- 			<span th:text="*{buildingId}"></span>
+
  			<input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
-
- 			<!-- ビル名 -->
- 			<label for="buildingName">ビル名</label>
- 			<span th:text="*{buildingName}"></span>
  			<input type="hidden" name="buildingName" id="buildingName" th:value="*{buildingName}">
-
- 			<!-- 郵便番号 -->
- 			<label for="buildingAdNumber">郵便番号</label>
- 			<span th:text="*{buildingAdNumber}"></span>
  			<input type="hidden" name="buildingAdNumber" id="buildingAdNumber" th:value="*{buildingAdNumber}">
-
- 			<!-- 住所 -->
- 			<label for="buildingAddress">住所</label>
- 			<span th:text="*{buildingAddress}"></span>
  			<input type="hidden" name="buildingAddress" id="buildingAddress" th:value="*{buildingAddress}">
-
- 			<!-- 電話番号 -->
- 			<label for="buildingPhoneNumber">電話番号</label>
- 			<span th:text="*{buildingPhoneNumber}"></span>
  			<input type="hidden" name="buildingPhoneNumber" id="buildingPhoneNUmber" th:value="*{buildingPhoneNumber}">
-
- 			<!-- メールアドレス -->
- 			<label for="buildingMail">メールアドレス</label>
- 			<span th:text="*{buildingMail}"></span>
  			<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
-
- 				<!-- 必要人数 -->
- 			<label for="buildingNinzu">必要人数</label>
- 			<span th:text="*{buildingNinzu}"></span>
  			<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
-
- 			<!-- 希望時間 -->
- 			<label for="buildingTime">希望時間</label>
- 			<span th:text="*{buildingTime}"></span>
  			<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
-
-
- 			<!-- 希望開始時刻 -->
- 			<label for="buildingStart">希望開始時刻</label>
- 			<p th:text="*{buildingStart}"></p>
  			<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
-
- 			<!-- 希望終了時刻 -->
- 			<label for="buildingEnd">希望終了時刻</label>
- 			<p th:text="*{buildingEnd}"></p>
  			<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
 
 
- 			<!-- 希望曜日 -->
- 			<h3>希望曜日</h3>
- 			<div id="buildingMonday">
 
- 			<span th:text="*{buildingMonday}"></span>
- 			</div>
+			<h3>希望曜日</h3>
+
+			<span id="buildingMonday" th:text="*{buildingMonday}"></span>
+			<span id="buildingTuesday" th:text="*{buildingTuesday}"></span>
+			<span id="buildingWednesday" th:text="*{buildingWednesday}"></span>
+			<span id="buildingThursday" th:text="*{buildingThursday}"></span>
+			<span id="buildingFriday" th:text="*{buildingFriday}"></span>
+			<span id="buildingSaturday" th:text="*{buildingSaturday}"></span>
+			<span id="buildingSunday" th:text="*{buildingSunday}"></span>
+
  			<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
-
- 			<div id="buildingTuesday">
-
- 			<span th:text="*{buildingTuesday}"></span>
- 			</div>
  			<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
-
- 			<div id="buildingWednesday">
-
- 			<span th:text="*{buildingWednesday}"></span>
- 			</div>
  			<input type="hidden" name="buildingWednesday" id="buildingWednesday" th:value="*{buildingWednesday}">
-
- 			<div id="buildingThursday">
-
- 			<span th:text="*{buildingThursday}"></span>
- 			</div>
  			<input type="hidden" name="buildingThursday" id="buildingThursday" th:value="*{buildingThursday}">
-
- 			<div id="buildingFriday">
-
- 			<span th:text="*{buildingFriday}"></span>
- 			</div>
  			<input type="hidden" name="buildingFriday" id="buildingFriday" th:value="*{buildingFriday}">
-
- 			<div id="buildingSaturday">
-
- 			<span th:text="*{buildingSaturday}"></span>
- 			</div>
  			<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
-
- 			<div id="buildingSunday">
-
- 			<span th:text="*{buildingSunday}"></span>
- 			</div>
  			<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
+
 
 		<p>この内容で確定しますか？</p>
 
-         <button type="submit" value="confirm">確定</button>
+         <button type="submit" value="confirm">確定(一覧画面に戻ります)</button>
 
          </form>
 
@@ -139,6 +85,8 @@
     	<input type="hidden" name="buildingMail" id="buildingMail" th:value="*{buildingMail}">
     	<input type="hidden" name="buildingNinzu" id="buildingNinzu" th:value="*{buildingNinzu}">
     	<input type="hidden" name="buildingTime" id="buildingTime" th:value="*{buildingTime}">
+    	<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
+    	<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
     	<input type="hidden" name="desireDays" id="desireDays" th:value="*{desireDays}">
     	<input type="hidden" name="buildingMonday" id="buildingMonday" th:value="*{buildingMonday}">
     	<input type="hidden" name="buildingTuesday" id="buildingTuesday" th:value="*{buildingTuesday}">
@@ -153,8 +101,6 @@
     </form>
 
 	</div>
-
-
 
 	<script>
 	var str = document.getElementById("buildingMonday").innerHTML;
@@ -192,6 +138,7 @@
 	str = str.replace(/false/g,"");
 	document.getElementById("buildingSunday").innerHTML = str;
 	</script>
+
    </body>
 
 
