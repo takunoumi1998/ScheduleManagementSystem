@@ -1,7 +1,6 @@
 package jp.co.jrqss.employee.schedule.controller;
 
 import java.security.Principal;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.top.controller.TopController;
-import jp.co.jrqss.employee.schedule.domain.model.Desire;
 import jp.co.jrqss.employee.schedule.domain.model.DesireForm;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.service.WorkerService;
@@ -51,31 +49,32 @@ public class EmployeeSchedule {
 		Work work = workerService.selectOne(workDate);
 
 		System.out.println(work);
-		model.addAttribute("workDate",work.getWorkDate());
-		model.addAttribute("buildingName",work.getBuildingName());
-		model.addAttribute("buildingStart",work.getBuildingStart());
-		model.addAttribute("buildingEnd",work.getBuildingEnd());
+//		model.addAttribute("workDate",work.getWorkDate());
+//		model.addAttribute("buildingName",work.getBuildingName());
+//		model.addAttribute("buildingStart",work.getBuildingStart());
+//		model.addAttribute("buildingEnd",work.getBuildingEnd());
+		model.addAttribute("work", work);
 		return "employee/schedule/detail";
 	}
 
 	//変更希望依頼をDesireテーブルへ
 	@PostMapping("/employee/schedule/top")
-	public String postEmployeeScheduleTop(@RequestParam("change")Date date1, DesireForm form,Model model ) {
+	public String postEmployeeScheduleTop( DesireForm form,Model model ) {
 
 		// insert用変数
-		Desire desire = new Desire();
-
-		desire.setWorkDate(date1);
-
-		model.addAttribute("workDate", date1);
+//		Desire desire = new Desire();
+//
+//		desire.setWorkDate(date1);
+//
+//		model.addAttribute("workDate", date1);
 
 		System.out.println("-----------------------------");
-		boolean result = workerService.insert(desire);
-		if(result == true) {
-			System.out.println("insert成功");
-		}else {
-			System.out.println("しっぱい");
-		}
+//		boolean result = workerService.insert(desire);
+//		if(result == true) {
+//			System.out.println("insert成功");
+//		}else {
+//			System.out.println("しっぱい");
+//		}
 		System.out.println("-------------"+form);
 		return "employee/schedule/top";
 	}

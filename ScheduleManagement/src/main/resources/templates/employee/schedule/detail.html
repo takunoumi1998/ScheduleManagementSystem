@@ -78,6 +78,7 @@ a{
 		<div style="text-align:center; font-size:5em; margin-top:5vh;">
 	    	<p style="margin:0;">スケジュール詳細</p>
 	    </div>
+	</form>
 	    <hr>
 	    <div style="font-size:5em;">
 	    	<p style="margin:0; margin-top:5vh;">勤務時間</p>
@@ -86,22 +87,22 @@ a{
 	    	<table border="1" style="font-size:4em; margin:auto; width:100%;">
 	    		<tr style=" background-color:lightgoldenrodyellow">
 	    			<td>
-	    				<p th:text="${workDate}">日付</p>
+	    				<p th:text="${work.workDate}">日付</p>
 	    			</td>
 	    		</tr>
 		   		<tr>
 	    			<td>
-	    				<p th:text="${buildingName}">ビル</p>
+	    				<p th:text="${work.buildingName}">ビル</p>
 	    			</td>
 	    		</tr>
 	    		<tr>
 	    			<td>
-	    				<p th:text="${buildingStart}">清掃開始時間</p>
+	    				<p th:text="${work.buildingStart}">清掃開始時間</p>
 	    			</td>
 	    		</tr>
 	    		<tr>
 	    			<td>
-	    				<p th:text="${buildingEnd}">清掃終了時間</p>
+	    				<p th:text="${work.buildingEnd}">清掃終了時間</p>
 	    			</td>
 	    		</tr>
 
@@ -124,40 +125,36 @@ a{
 	    <div style="height:5vh;">
 	    </div>
 	    <div style="text-align:center; height:5vh;">
-	    <form method="POST" name="change" action="employee/schedule/top">
-	    	<input type="submit" value="変更を依頼する"  onclick="return check()" style="width:50%; font-size:3em; height:5vh; color:white; background-color:red;">
-		 </form>
+	    	<button onclick="return check()" style="width:50%; font-size:3em; height:5vh; color:white; background-color:red;">
+	    	変更を依頼する
+	    	</button>
 		 </div>
-		</main>
-</body>
-</html>
-
+<form id="change" name="change" method="post">
+	<input type="hidden" name="buildingId" th:value="${work.buildingId}">
+	<input type="hidden" name="workNumber" th:value="${work.workNumber}">
+	<input type="hidden" name="workDate" th:value="${work.workDate}">
+	<input type="hidden" name="employeeId" th:value="${work.employeeId}">
+	<input id="desire" type="hidden" name="desireDate">
+</form>
 <script type="text/javascript" th:inline="javascript">
 
 /*<![CDATA[*/
-//	console.log(/*[[${work}]]*/);
+	console.log(/*[[${work}]]*/);
+
+	//本日の日付を文字列で取得
+	var date = new Date();
+	var dateStr = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+	console.log(dateStr);
+	var desire = document.getElementById("desire");
+	desire.setAttribute("value",dateStr);
 
 function check(){
-	var checked = confirm("勤務の変更依頼を出しますか？")
-	if(checked == true){
+	var flag = confirm("勤務の変更依頼を出しますか？");
+	if(flag == true){
 		alert("変更を依頼しました。\nスケジュールに戻ります。")
-	}else{
-		return false;
-	}
-}
-/*$(function() {
-    $(".nav").css("display","none");
-    $(".menu_button").on("click", function() {
-        $(".nav").slideToggle();
-    });
-});*/
-
-/*var desire = /*[[${desire}]]*/
-/*	function redirect(){
-	if(confirm("勤務の変更依頼を出しますか？")){
-	alert("変更を依頼しました。\nスケジュールに戻ります")
-//	location.href = '/employee/schedule/top';
-//		return true;
+		var fm = document.getElementById("change");
+		fm.action = "/employee/schedule/top";
+		fm.submit();
 	}else{
 		return false;
 	}
@@ -166,4 +163,7 @@ function check(){
 /*]]>*/
 </script>
 
+</main>
+</body>
+</html>
 <!--    -->

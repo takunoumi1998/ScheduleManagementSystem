@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS work(
 );
 
 CREATE TABLE IF NOT EXISTS desire(
---	building_id INT ,
---	work_number INT ,
+	building_id INT ,
+	work_number INT ,
 	work_date DATE ,
---	employee_id INT ,
---	desire_date DATE ,
-	PRIMARY KEY (work_date)
---	FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
---	FOREIGN KEY (building_id) REFERENCES building(building_id)
+	employee_id INT ,
+	desire_date DATE ,
+	PRIMARY KEY (building_id , work_number ,work_date),
+	FOREIGN KEY (employee_id) REFERENCES employee(employee_id),
+	FOREIGN KEY (building_id) REFERENCES building(building_id)
 );
---building_id , work_number ,
+
