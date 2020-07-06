@@ -15,7 +15,7 @@
 <!-- 削除ボタン　隠しデータとしてbuildingIdを送る。 -->
 <form action="/admin/building/delete/complete" method="post">
 <input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
-<button class="button4" type="submit">削除する</button>
+<button class="button4" type="submit" onclick="return kakunin()">削除する</button>
 </form>
 
 
@@ -24,5 +24,17 @@
 </form>
 
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
+
+<script type="text/javascript" >
+function kakunin(){
+	if(window.confirm("本当に[[*{buildingName}]]を削除しますか？削除すると元に戻せません。")){
+		return true;
+	}else{
+		return false;
+	}
+
+}
+
+</script>
 </body>
 </html>

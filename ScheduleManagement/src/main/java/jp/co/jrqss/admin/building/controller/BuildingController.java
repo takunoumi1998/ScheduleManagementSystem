@@ -60,6 +60,24 @@ public class BuildingController {
 		}
 	}
 
+	/*
+	 * ビル住所から検索
+	 */
+
+	@PostMapping("admin/building/address")
+	public String postAdminBuildingAddress(Model model , @ModelAttribute("SearchForm") SearchForm searchForm) {
+		if(!(searchForm.getSearchAddress().equals(""))) {
+			List<Building> buildingList = buildingService.findByAddress(searchForm);
+			model.addAttribute("buildingList",buildingList);
+			return "admin/building/list";
+		}else {
+			return getAdminBuildingList(model);
+		}
+	}
+
+
+
+
 	/**
      * 【新規登録】
      */
@@ -69,6 +87,17 @@ public class BuildingController {
 		return "admin/building/create/register";
 	}
 
+/**	@PostMapping("admin/building/create/register")
+	public String postAdminBuildingCreateRegister(@ModelAttribute @Validated BuildingForm form,
+			BindingResult bindingResult, Model model) {
+
+		if(bindingResult.hasErrors()) {
+			return getAdminBuildingCreateRegister(form,model);
+		}
+
+		return "admin/building/create/confirm";
+	}
+*/
 
 	/**
      * 【確認】
@@ -92,8 +121,6 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
-
-
 			Model model) {
 
 		//model.addAttribute("buildingId",str1);
@@ -183,8 +210,6 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
-
-
 			Model model) {
 
 		//model.addAttribute("buildingId",str1);
@@ -298,9 +323,8 @@ public class BuildingController {
 			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
-		Building building = new Building();
+		/*Building building = new Building();
 
-		building.setBuildingId(str1);
 		building.setBuildingName(str2);
 		building.setBuildingNinzu(str3);
 		building.setBuildingTime(str4);
@@ -317,8 +341,7 @@ public class BuildingController {
 		building.setBuildingMail(str8);
 		building.setBuildingStart(str9);
 		building.setBuildingEnd(str10);
-
-
+*/
 		model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
@@ -361,8 +384,6 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
-
-
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
@@ -383,6 +404,7 @@ public class BuildingController {
 		model.addAttribute("buildingStart",str9);
 		model.addAttribute("buildingEnd",str10);
 
+
 		return "admin/building/change/change";
 	}
 
@@ -394,9 +416,6 @@ public class BuildingController {
 	public String postAdminBuildingChangeComplete(@ModelAttribute Building building,
 			Model model) {
 
-		System.out.println("更新ボタンの処理");
-
-
 		// 更新実行
 		boolean result = buildingService.updateOne(building);
 
@@ -406,7 +425,7 @@ public class BuildingController {
 					model.addAttribute("result", "更新失敗");
 				}
 
-				return "admin/building/change/complete";
+				return getAdminBuildingList(model);
 
 }
 

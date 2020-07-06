@@ -25,6 +25,14 @@ td{
 	left: 0;
 	background-color:lightblue;
 	border-bottom:solid 0.1px black;
+	z-index:1;
+}
+.out-of-table-fixed2{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	background-color:lightblue;
+	border-bottom:solid 0.1px black;
 }
 
 tr{

@@ -19,6 +19,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 	@Autowired
 	JdbcTemplate jdbc;
 
+	//名前検索
 	@Override
 	public List<Employee> findByName(SearchForm searchForm){
 		//employeeテーブルからデータを取得
@@ -52,7 +53,40 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				return employeeList;
 	}
 
+	//住所検索
+	public List<Employee> findByAddress(SearchForm searchForm){
 
+		List<Map<String,Object>>getList=jdbc.queryForList("select * from employee where employee_address like ?","%"+searchForm.getSearchAddress()+"%");
+
+		List<Employee>employeeList=new ArrayList<>();
+
+		for(Map<String,Object>map:getList) {
+
+			Employee employee=new Employee();
+
+			employee.setEmployee_Id((int)map.get("employee_id"));
+			employee.setEmployee_Name((String)map.get("employee_name"));
+			employee.setDesire_Days((int)map.get("desire_days"));
+			employee.setEmployee_Monday((boolean)map.get("employee_monday"));
+			employee.setEmployee_Tuesday((boolean)map.get("employee_tuesday"));
+			employee.setEmployee_Wednesday((boolean)map.get("employee_wednesday"));
+			employee.setEmployee_Thursday((boolean)map.get("employee_thursday"));
+			employee.setEmployee_Friday((boolean)map.get("employee_friday"));
+			employee.setEmployee_Saturday((boolean)map.get("employee_saturday"));
+			employee.setEmployee_Sunday((boolean)map.get("employee_sunday"));
+			employee.setEmployee_Ad_Number((String)map.get("employee_ad_number"));
+			employee.setEmployee_Address((String)map.get("employee_address"));
+			employee.setEmployee_Phone_Number((String)map.get("employee_phone_number"));
+			employee.setEmployee_Mail((String)map.get("employee_mail"));
+
+			//結果返却用のリストに返却
+			employeeList.add(employee);
+		}
+
+		return employeeList;
+	}
+
+	//1件登録
 	@Override
 	public int insertOne(Employee employee)throws DataAccessException{
 
@@ -89,6 +123,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 				,employee.getEmployee_Mail()
 				,employee.getEmployee_Bikou());
 
+		//System.out.println("DaoImplからのすうちは"+rowNumber+"です");
 		return rowNumber;
 	}
 
