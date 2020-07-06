@@ -12,7 +12,7 @@
  <body>
  			<div class="col-sm-5">
  				<div class="page-header">
- 				<h1>入力内容確認</h1>
+ 				<h1 class="lead-form">登録内容確認</h1>
  			</div>
 
  			<form method="post" action="admin/building/create/complete"
@@ -59,12 +59,15 @@
  			<input type="hidden" name="buildingSaturday" id="buildingSaturday" th:value="*{buildingSaturday}">
  			<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
 
+			<h4>備考</h4>
+			<p th:text ="*{employee_Bikou}"/>
+			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 
 
 		<p>この内容で確定しますか？</p>
-
-         <button type="submit" value="confirm" >確定</button>
-
+	<div class="btn_a">
+         <button class="button_1" type="submit" value="confirm" >確定</button>
+	</div>
     </form>
 
     <form method="post" action="/admin/building/create/backregister">
@@ -87,7 +90,9 @@
     	<input type="hidden" name="buildingSunday" id="buildingSunday" th:value="*{buildingSunday}">
     	<input type="hidden" name="buildingStart" id="buildingStart" th:value="*{buildingStart}">
     	<input type="hidden" name="buildingEnd" id="buildingEnd" th:value="*{buildingEnd}">
-    	<input type="submit"value="修正する">
+    <div class="btn_b">
+         <button class="button_2" type="submit" value="confirm">修正する</button></div>
+
     </form>
 
        </div>
