@@ -140,8 +140,8 @@ public class BuildingController {
 			// insert用変数
 					//Building building = new Building();
 
-					//building.setBuildingId(form.getBuildingId());
-					/*building.setBuildingName(form.getBuildingName());
+					/*building.setBuildingId(form.getBuildingId());
+					building.setBuildingName(form.getBuildingName());
 					building.setBuildingNinzu(form.getBuildingNinzu());
 					building.setBuildingTime(form.getBuildingTime());
 					building.setBuildingMonday(form.isBuildingMonday());

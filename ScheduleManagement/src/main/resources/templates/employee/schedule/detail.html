@@ -124,29 +124,39 @@ a{
 	    <div style="height:5vh;">
 	    </div>
 	    <div style="text-align:center; height:5vh;">
-	    	<input type="submit" value="変更を依頼する"  onclick="return redirect()" style="width:50%; font-size:3em; height:5vh; color:white; background-color:red;">
-	    </div>
-	    </form>
-	</main>
+	    <form method="POST" name="change" action="employee/schedule/top">
+	    	<input type="submit" value="変更を依頼する"  onclick="return check()" style="width:50%; font-size:3em; height:5vh; color:white; background-color:red;">
+		 </form>
+		 </div>
+		</main>
 </body>
 </html>
 
 <script type="text/javascript" th:inline="javascript">
 
 /*<![CDATA[*/
-	console.log(/*[[${work}]]*/);
+//	console.log(/*[[${work}]]*/);
 
-$(function() {
+function check(){
+	var checked = confirm("勤務の変更依頼を出しますか？")
+	if(checked == true){
+		alert("変更を依頼しました。\nスケジュールに戻ります。")
+	}else{
+		return false;
+	}
+}
+/*$(function() {
     $(".nav").css("display","none");
     $(".menu_button").on("click", function() {
         $(".nav").slideToggle();
     });
-});
+});*/
 
-function redirect(){
+/*var desire = /*[[${desire}]]*/
+/*	function redirect(){
 	if(confirm("勤務の変更依頼を出しますか？")){
 	alert("変更を依頼しました。\nスケジュールに戻ります")
-	window.location.href = '/employee/schedule/top';
+//	location.href = '/employee/schedule/top';
 //		return true;
 	}else{
 		return false;

@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import jp.co.jrqss.employee.schedule.domain.model.Desire;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.repository.WorkDao;
 
@@ -66,6 +67,31 @@ public class WorkDaoJdbcImpl implements WorkDao{
 		return null;
 	}
 
+	//1件insert
+	@Override
+	public int insertOne(Desire desire) throws DataAccessException{
 
+		int rowNumber = jdbc.update("insert into desire(work_date"
+				+"values(?)"
+				,desire.getWorkDate()
+				//,desire.getEmployeeId()
+				//,desire.getDesireDate()
+				);
+
+/*		int rowNumber = jdbc.update("insert into desire(building_id,"
+				+"work_number,"
+				+"work_date,"
+				+"employee_id,"
+				//+"desire_date,"
+				+"values(?,?,?,?)"
+				,desire.getBuildingId()
+				,desire.getWorkNumber()
+				,desire.getWorkDate()
+				,desire.getEmployeeId()
+				//,desire.getDesireDate()
+				);*/
+
+		return rowNumber;
+	}
 
 }

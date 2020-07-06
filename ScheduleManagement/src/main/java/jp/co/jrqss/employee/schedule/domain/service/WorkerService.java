@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.co.jrqss.employee.schedule.domain.model.Desire;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.repository.WorkDao;
 
@@ -22,6 +23,18 @@ public class WorkerService {
 	//1件取得
 	public Work selectOne(String workDate) {
 		return workdao.selectOne(workDate);
+	}
+
+	//1件insert
+	public boolean insert(Desire desire) {
+		int rowNumber = workdao.insertOne(desire);
+		boolean result = false;
+		if(rowNumber>0) {
+			result = true;
+		}
+
+		return result;
+
 	}
 
 }

@@ -1,6 +1,7 @@
 package jp.co.jrqss.employee.schedule.controller;
 
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.top.controller.TopController;
+import jp.co.jrqss.employee.schedule.domain.model.Desire;
+import jp.co.jrqss.employee.schedule.domain.model.DesireForm;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.service.WorkerService;
 
@@ -53,14 +55,28 @@ public class EmployeeSchedule {
 		model.addAttribute("buildingName",work.getBuildingName());
 		model.addAttribute("buildingStart",work.getBuildingStart());
 		model.addAttribute("buildingEnd",work.getBuildingEnd());
-//.getBuildingEnd()
 		return "employee/schedule/detail";
 	}
 
 	//変更希望依頼をDesireテーブルへ
-	@PostMapping("/employee/schedule/detail")
-	public String postEmployeeScheduleDetail(@ModelAttribute Model model ) {
+	@PostMapping("/employee/schedule/top")
+	public String postEmployeeScheduleTop(@RequestParam("change")Date date1, DesireForm form,Model model ) {
 
-		return "redirect:top";
+		// insert用変数
+		Desire desire = new Desire();
+
+		desire.setWorkDate(date1);
+
+		model.addAttribute("workDate", date1);
+
+		System.out.println("-----------------------------");
+		boolean result = workerService.insert(desire);
+		if(result == true) {
+			System.out.println("insert成功");
+		}else {
+			System.out.println("しっぱい");
+		}
+		System.out.println("-------------"+form);
+		return "employee/schedule/top";
 	}
 }

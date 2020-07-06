@@ -8,8 +8,6 @@ insert into building values (1001,'Aビル',1,120,0,0,0,1,0,1,1,'郵便番号','
 INSERT INTO employee VALUES(1001,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_USER');
 INSERT INTO work values(1001,1001,1,1,6,'2020-8-1');
 
-
-
 -- ビル
 --INSERT INTO building VALUES(1001,'Aビル',3,120,1,0,1,0,1,0,0,'8120000','福岡市博多区本町1-1','092-111-111','aa@co.jp','09:00','11:00');
 --INSERT INTO building VALUES(1002,'Bビル',2,150,0,1,0,1,0,0,0,'8120001','福岡市博多区本町1-2','092-222-222','bb@co.jp','11:30','14:00');
@@ -248,14 +246,14 @@ INSERT INTO work values(1001,1001,1,1,6,'2020-8-1');
 --INSERT INTO work VALUES(6,1001,1012,1,4,3,'2020-05-25');
 --INSERT INTO work VALUES(7,1004,1012,1,5,1,'2020-05-30');
 
-CREATE TABLE IF NOT EXISTS work(
-	building_id INT ,
-	employee_id INT ,
-	work_number INT ,
-	work_week INT ,
-	work_day INT ,
-	work_date DATE ,
-	PRIMARY KEY(building_id,work_number,work_date),
-	FOREIGN KEY (building_id) REFERENCES building(building_id),
-	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
-);
+--CREATE TABLE IF NOT EXISTS work(
+--	building_id INT ,
+--	employee_id INT ,
+--	work_number INT ,
+--	work_week INT ,
+--	work_day INT ,
+--	work_date DATE ,
+--	PRIMARY KEY(building_id,work_number,work_date),
+--	FOREIGN KEY (building_id) REFERENCES building(building_id),
+--	FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
+--);
