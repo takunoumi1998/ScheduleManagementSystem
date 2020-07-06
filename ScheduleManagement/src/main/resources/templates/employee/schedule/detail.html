@@ -60,6 +60,7 @@ a{
 <title>勤務関係</title>
 </head>
 <body>
+<!--
 	<header>
 	    <div class="menu_button"><span>MENU</span></div>
 	    <nav class="nav">
@@ -69,11 +70,13 @@ a{
 	        </ul>
 	    </nav>
 	</header>
+-->
 	<main>
-		<form method="get">
+		<form th:action="@{/employee/schedule/detail}" method="post">
 		<div style="text-align:center; font-size:5em; margin-top:5vh;">
 	    	<p style="margin:0;">スケジュール詳細</p>
 	    </div>
+	    <hr>
 	    <div style="font-size:5em;">
 	    	<p style="margin:0; margin-top:5vh;">勤務時間</p>
 	    </div>

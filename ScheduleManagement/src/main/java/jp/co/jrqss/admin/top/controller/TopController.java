@@ -10,11 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import jp.co.jrqss.employee.schedule.controller.EmployeeSchedule;
+
 @Controller
 public class TopController {
 
 	@Autowired
 	JdbcTemplate jdbc;
+
+	@Autowired
+	EmployeeSchedule employeeSchedule;
 
 	@GetMapping("admin/top")
 	public String getAdminBuildingList(Model model , Principal principal) {
@@ -37,10 +42,10 @@ public class TopController {
 			System.out.println(role);
 
 			if(role.equals("ROLE_ADMIN")) {
-				url = "admin/top";
+				return "admin/top";
 			}
 		}catch(Exception e) {
 		}
-		return url;
+		return employeeSchedule.getEmployeeSchedule(model , principal);
 	}
 }

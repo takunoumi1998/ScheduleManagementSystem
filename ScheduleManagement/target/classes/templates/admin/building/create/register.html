@@ -13,103 +13,171 @@
 
 	<title>ビル情報｜新規登録</title>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+$(function(){
+	$('#button01').on('click', function() {
+		var result = true;
 
-	<!-- 必須項目欄チェック -->
-function checkRegister(){
+		if(!input_check()){
+			result = false;
+		}
+		return result;
+	});
+});
 
-	var flag = 0;
-    if(document.register.buildingId.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingName.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingAdNumber.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingAddress.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingPhoneNumber.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingNinzu.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingTime.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingStart.value == ""){
-    	flag = 1;
-    }else if(document.register.buildingEnd.value == ""){
-    	flag = 1;
-    }
-    if(flag){
-        window.alert("必須項目を入力して下さい。");
-		return false;
+	// 入力内容チェックのための関数
+	function input_check(){
 
-    }else{
+		var result = true;
 
-    	<!-- チェックボックス選択していないとき -->
-    	var arr_checkboxes=document.getElementsByClassName("checkboxes");
-		var count=0;
-		for(var i=0;i<arr_checkboxes.length;i++){
-			if(arr_checkboxes[i].checked){
+			// エラー用装飾のためのクラスリセット
+			$('#buildingId').removeClass("inp_error");
+			$('#buildingName').removeClass("inp_error");
+			$('#buildingAdNumber').removeClass("inp_error");
+			$('#buildingAddress').removeClass("inp_error");
+			$('#buildingPhoneNumber').removeClass("inp_error");
+			$('#buildingNinzu').removeClass("inp_error");
+			$('#buildingTime').removeClass("inp_error");
+			$('#buildingStart').removeClass("inp_error");
+			$('#buildingEnd').removeClass("inp_error");
+			$('#desireDays').removeClass("inp_error");
 
-				count++;
+			// 入力エラー文をリセット
+			$("#Id_error").empty();
+			$("#Name_error").empty();
+			$("#AdNum_error").empty();
+			$("#Ad_error").empty();
+			$("#PhoneNum_error").empty();
+			$("#Ninzu_error").empty();
+			$("#Time_error").empty();
+			$("#Start_error").empty();
+			$("#End_error").empty();
+			$("#Days_error").empty();
+
+
+
+			// 入力内容セット
+			var buildingId   = $("#buildingId").val();
+			var buildingName  = $("#buildingName").val();
+			var buildingAdNumber = $("#buildingAdNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
+			var buildingAddress  = $("#buildingAddress").val();
+			var buildingPhoneNumber  = $("#buildingPhoneNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
+			var buildingNinzu  = $("#buildingNinzu").val();
+			var buildingTime  = $("#buildingTime").val();
+			var buildingStart  = $("#buildingStart").val();
+			var buildingEnd  = $("#buildingEnd").val();
+			var desireDays  = $("#desireDays").val();
+
+			// 入力内容チェック
+
+			// ビル名
+			if(buildingName == ""){
+				$("#Name_error").html(" 必須項目です ");
+				$("#buildingName").addClass("inp_error");
+				result = false;
 			}
-		}
-		if(count<1){
-			alert("希望曜日を1つ以上選んでください");
-			return false;
-		}
-    	// ほかにもやりたいことを記述
 
-
-    	<!-- 時間逆の確認 -->
-    	var buildingStart=document.register.buildingStart.value;
-    	var buildingEnd=document.register.buildingEnd.value;
-
-    	if(buildingStart>buildingEnd){
-    		alert("時間が逆になっています。修正してください。");
-    		return false;
-    	}else if(buildingStart == buildingEnd){
-    		alert("時間が同じです。修正してください。");
-    		return false;
-    	}
-
-		<!-- 半角数字のみ -->
-
-    	var flag = 0;
-    	if(document.register.buildingId.value.match(/[^0-9]+/g)){
-    		flag = 1;
-    	}else if(document.register.buildingAdNumber.value.match(/[^0-9]+/g)){
-    		flag = 1;
-    	}else if(document.register.buildingPhoneNumber.value.match(/[^0-9]+/g)){
-    		flag = 1;
-    	}else if(document.register.buildingNinzu.value.match(/[^0-9]+/g)){
-    		flag = 1;
-    	}else if(document.register.buildingTime.value.match(/[^0-9]+/g)){
-    		flag = 1;
-    	}
-    		if(flag){
-    			alert("半角数字で入力してください")
-    			return false;
-		}else{
-
-			<!-- 文字制限 -->
-
-			var getText = document.register.buildingAdNumber.value;
-            if (getText.length > 7) {
-                alert("正しくない形式の郵便番号です");
-                return false;
-            }else if(document.register.buildingAdNumber.value.length == 10){
-            	alert("正しくない形式の電話番号です")
-            	return false;
-
-			}else{
-	    			return true;
+			// ビル郵便番号
+			if(buildingAdNumber == ""){
+				$("#AdNum_error").html(" 必須項目です ");
+				$("#buildingAdNumber").addClass("inp_error");
+				result = false;
+			}else if(!(buildingAdNumber.match(/^[0-9]+$/))){
+				$("#AdNum_error").html(" 半角数字で入力してください ");
+				$("#buildingAdNumber").addClass("inp_error");
+				result = false;
+			}else if(!(buildingAdNumber.length == 7)){
+				$("#AdNum_error").html(" 正しい郵便番号を入力してください ");
+				$("#buildingAdNumber").addClass("inp_error");
+				result = false;
 			}
-		}
+
+			// ビル住所
+			if(buildingAddress == ""){
+				$("#Ad_error").html(" 必須項目です ");
+				$("#buildingAddress").addClass("inp_error");
+			}
+
+			// ビル電話
+			if(buildingPhoneNumber == ""){
+				$("#PhoneNum_error").html(" 必須項目です ");
+				$("#buildingPhoneNumber").addClass("inp_error");
+				result = false;
+			}else if(!(buildingPhoneNumber.match(/^[0-9]+$/))){
+				$("#PhoneNum_error").html(" 半角数字で入力してください ");
+				$("#buildingPhoneNumber").addClass("inp_error");
+				result = false;
+			}else if(buildingPhoneNumber.length < 10){
+				$("#PhoneNum_error").html(" 正しい電話番号を入力してください ");
+				$("#buildingPhoneNumber").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル希望人数
+			if(buildingNinzu == ""){
+				$("#Ninzu_error").html(" 必須項目です ");
+				$("#buildingNinzu").addClass("inp_error");
+				result = false;
+			}else if(!(buildingNinzu.match(/^[0-9]+$/))){
+				$("#Ninzu_error").html(" 半角数字で入力してください ");
+				$("#buildingNinzu").addClass("inp_error");
+				result = false;
+			}
+
+			// ビル希望時間
+			if(buildingTime == ""){
+				$("#Time_error").html(" 必須項目です ");
+				$("#buildingTime").addClass("inp_error");
+				result = false;
+			}else if(!(buildingTime.match(/^[0-9]+$/))){
+				$("#Time_error").html(" 半角数字で入力してください ");
+				$("#buildingTime").addClass("inp_error");
+				result = false;
+			}
+
+			// 希望開始時刻
+			if(buildingStart == ""){
+				$("#Start_error").html(" 必須項目です ");
+				$("#buildingStart").addClass("inp_error");
+				result = false;
+			}else if(buildingStart > buildingEnd){
+				$("#Start_error").html(" 正しい時刻を選択してください ");
+				$("#buildingStart").addClass("inp_error");
+				result = false;
+			}else if(buildingStart == buildingEnd){
+				$("#Start_error").html(" 開始と終了が同時刻です ");
+				$("#buildingStart").addClass("inp_error");
+				result = false;
+			}
+
+			// 希望終了時刻
+			if(buildingEnd == ""){
+				$("#End_error").html(" 必須項目です ");
+				$("#buildingEnd").addClass("inp_error");
+				result = false;
+			}
+
+			// チェックボックス一つ以上
+			var arr_checkboxes=document.getElementsByClassName("checkboxes");
+			var count=0;
+			for(var i=0;i<arr_checkboxes.length;i++){
+				if(arr_checkboxes[i].checked){
+
+					count++;
+				}
+			}
+			if(count<1){
+				$("#Days_error").html(" 希望曜日を1つ以上選んでください ");
+				$("#desireDays").addClass("inp_error");
+				return false;
+			}
+
+			return result;
 	}
-}
-</script>
 
+	</script>
 
 
 
@@ -125,72 +193,75 @@ function checkRegister(){
 
  			<!-- ビル情報入力エリア -->
 
-		<h3>*は必須項目です</h3>
- 			<!-- ビルID -->
- 			<label for="buildingId">ビルID:自動生成</label>
- 	<!-- 		<input type="text" class="number" id="buildingId"
- 				name="buildingId" th:value="*{buildingId}"/>
- 			<span class="number"></span>   -->
-
  			<!-- ビル名 -->
- 			<label for="buildingName">ビル名 *</label>
+ 			<span class="req">必須</span>
+ 			<label for="buildingName">ビル名</label>
  			<input type="text" class="form-control" id="buildingName"
  				name="buildingName" th:value="*{buildingName}"/>
- 			<span class="alertarea"></span>
+ 			<span id="Name_error" class="error_m"></span>
 
  			<!-- 郵便番号 -->
- 			<label for="buildingAdNumber">郵便番号 (半角数字) *</label>
- 			<input type="text" class="number" id="buildingAdNumber"
+ 			<span class="req">必須</span>
+ 			<label for="buildingAdNumber">郵便番号</label>
+ 			<input type="text" class="form-control" id="buildingAdNumber"
  				name="buildingAdNumber" th:value="*{buildingAdNumber}"/>
+ 			<span id="AdNum_error" class="error_m"></span>
 
 
  			<!-- 住所 -->
- 			<label for="buildingAddress">住所 *</label>
- 			<input type="text" class="form-control" id="buildingAdress"
+ 			<span class="req">必須</span>
+ 			<label for="buildingAddress">住所</label>
+ 			<input type="text" class="form-control" id="buildingAddress"
  				name="buildingAddress" th:value="*{buildingAddress}"/>
- 			<span class="alertarea"></span>
+ 			<span id="Ad_error" class="error_m"></span>
 
  			<!-- 電話番号 -->
- 			<label for="buildingPhoneNumber">電話番号 (半角数字) *</label>
- 			<input type="text" class="number" id="buildingPhoneNumber"
+ 			<span class="req">必須</span>
+ 			<label for="buildingPhoneNumber">電話番号</label>
+ 			<input type="text" class="form-control" id="buildingPhoneNumber"
  				name="buildingPhoneNumber" th:value="*{buildingPhoneNumber}"/>
- 			<span class="number"></span>
+ 			<span id="PhoneNum_error" class="error_m"></span>
 
  			<!-- メールアドレス -->
+ 			<span class="any">任意</span>
  			<label for="buildingMail">メールアドレス</label>
  			<input type="text" class="form-control" id="buildingMail"
  				name="buildingMail" th:value="*{buildingMail}"/>
- 			<span class="alertarea"></span>
+ 			<span id="Mail_error" class="error_m"></span>
 
  			<!-- 必要人数 -->
- 			<label for="buildingNinzu">必要人数 (半角数字) *</label>
- 			<input type="text" class="number" id="buildingNinzu"
+ 			<span class="req">必須</span>
+ 			<label for="buildingNinzu">必要人数</label>
+ 			<input type="text" class="form-control" id="buildingNinzu"
  				name="buildingNinzu" th:value="*{buildingNinzu}"/>
- 			<span class="number"></span>
+ 			<span id="Ninzu_error" class="error_m"></span>
 
  			<!-- 希望時間 -->
- 			<label for="buildingTime">希望時間 (半角数字) *</label>
- 			<input type="text" class="number" id="buildingTime"
+ 			<span class="req">必須</span>
+ 			<label for="buildingTime">希望時間</label>
+ 			<input type="text" class="form-control" id="buildingTime"
  				name="buildingTime" th:value="*{buildingTime}"/>
- 			<span class="number"></span>
+ 			<span id="Time_error" class="error_m"></span>
 
  			<!-- 希望開始時刻 -->
- 			<label for="buildingStart">希望開始時刻 （選択して✓を押してください） *</label>
+ 			 <span class="req">必須</span>
+ 			<label for="buildingStart">希望開始時刻</label>
  			<input type="time" class="number" id="buildingStart"
  				name="buildingStart" min="00:00" max="23:59"  th:value="*{buildingStart}"/>
-			<span class="number"></span>
+			<span id="Start_error" class="error_m"></span>
 
 			<!-- 希望終了時刻 -->
-			<label for="buildingEnd">希望終了時刻 (選択して✓を押してください) *</label>
+ 			<span class="req">必須</span>
+ 			<label for="buildingEnd">希望終了時刻</label>
  			<input type="time" class="number" id="buildingEnd"
  				name="buildingEnd" min="00:00" max="23:59"  th:value="*{buildingEnd}"/>
-			<span class="number"></span>
-
+			<span id="End_error" class="error_m"></span>
 
 
  			<!-- 希望曜日 -->
+ 			<span class="req">必須</span>
  			<label for="desireDays">希望曜日にチェックを入れてください</label>
- 			<span class="alertarea"></span>
+ 			<span id="Days_error" class="error_m"></span>
 
  				<h3>月曜日 <input class="checkboxes" type="checkbox" name="buildingMonday"
  								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
@@ -209,7 +280,7 @@ function checkRegister(){
 
  	<!-- 登録ボタン -->
  			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit" name="register" onclick="return checkRegister();">登録</button>
+ 				type="submit" name="register" id="button01">登録</button>
  	</form>
 
 		<form method="get" action="/admin/building/list">

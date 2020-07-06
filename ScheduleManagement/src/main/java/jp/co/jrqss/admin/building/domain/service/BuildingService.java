@@ -97,4 +97,8 @@ public class BuildingService {
 	public List<Building> findByName(SearchForm searchForm) {
 		return buildingdao.findByName(searchForm);
 	}
+
+	public List<Building> findByAddress(SearchForm searchForm) {
+		return buildingdao.findByAddress(searchForm);
+	}
 }

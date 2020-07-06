@@ -74,27 +74,25 @@
 	//固定要素
 	for(var i = 0; i < items.length; i++){
 		var th = document.createElement('th');
+		th.setAttribute("class","out-of-table-fixed2");
 		if(i == 0 ){th.setAttribute("class","out-of-table-fixed");}
 		th.textContent = items[i];
-		th.setAttribute("rowspan","2");
 		tr.appendChild(th)
 	}
 
 	//曜日
 	for(var i = DAY_OF_THE_WEEK; i < (DAY_OF_MONTH+DAY_OF_THE_WEEK); i++){
 		var th = document.createElement('th');
-		th.textContent = week[i%7];
+		var p = document.createElement('div');
+		th.setAttribute("class","out-of-table-fixed2");
+		p.textContent = (i-DAY_OF_THE_WEEK+1);
+		th.appendChild(p);
+		p = document.createElement('p');
+		p.textContent = week[i%7];
+		th.appendChild(p);
 		tr.appendChild(th);
 	}
-	scheduleTable.appendChild(tr);
 
-	//日付
-	var tr = document.createElement('tr');
-	for(var i = 1; i <= DAY_OF_MONTH; i++){
-		var th = document.createElement('th');
-		th.textContent = i;
-		tr.appendChild(th);
-	}
 	scheduleTable.appendChild(tr);
 	////////////////////////////////////////////////////////
 

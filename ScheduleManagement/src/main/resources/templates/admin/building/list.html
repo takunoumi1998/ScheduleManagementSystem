@@ -16,17 +16,29 @@
 <div th:fragment="list_contents">
 <h1>ビル情報</h1>
 <form  method="post" action="/admin/building/list">
-  <p>検索したいビル名を入力してください。</p>
-  <input type="search" name="searchName" placeholder="名前を入力">
+  <p>ビル名で検索</p>
+  <input type="search" name="searchName" placeholder="ビル名を入力">
   <input type="submit" name="submit" value="検索">
 </form><br>
+<form  action="/admin/building/address" method="post">
+  <p>住所で検索</p>
+  <input type="search" name="searchAddress" placeholder="住所を入力">
+  <input type="submit" name="submit"value="検索">
+</form>
+
+
+
+
+
 <p>
 <div style="margin-bottom:3vw; float: right;">
 <form method="get" action="/admin/building/create/register">
 <!-- <form method="get" th:href="@{'/admin/building/create/register'}"> -->
 <button class="button1" type="submit" name="newinfo" >新規登録</button></form>
-<form method="post" action="/admin/building/delete/confirm">
-<button class="button2" type="submit" name="delite">チェックしたビルを削除</button></form>
+
+<!-- <form method="post" action="/admin/building/delete/confirm">
+<button class="button2" type="submit" name="delite">チェックしたビルを削除</button></form> -->
+
 </div>
 <form action="/admin/top">
 	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
@@ -34,7 +46,7 @@
 </p>
 <table border="1">
 	<tr>
-		<td></td>
+		<!-- <td></td> -->
 		<td>ビルID</td>
 		<td>ビル名称</td>
 		<td>清掃曜日・頻度</td>
@@ -44,10 +56,11 @@
 	</tr>
 
 	<tr th:each="building:${buildingList}">
-		<td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td>
+		<!-- <td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td> -->
 		<td th:text="${building.buildingId}"></td>
 		<td th:text="${building.buildingName}"></td>
-		<td th:text="${building.buildingNinzu}"></td>
+<!-- 		<td th:text="${building.buildingNinzu}"></td>-->
+		 <td th:text="${building.buildingMonday}+' '+${building.buildingTuesday}+' '+${building.buildingWednesday}+' '+${building.buildingThursday}+' '+${building.buildingFriday}+' '+${building.buildingSaturday}+' '+${building.buildingSunday}"></td>
 		<td th:text="${building.buildingTime}"></td>
 
 		<td>
@@ -63,5 +76,41 @@
 
 </div>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
+<script>
+	var str = document.getElement("building.buildingMonday").innerHTML;
+	str = str.replace(/true/g," 月曜日");
+	str = str.replace(/false/g,"");
+	document.getElement("building.buildingMonday").innerHTML = str;
+
+	var str = document.getElementById("buildingTuesday").innerHTML;
+	str = str.replace(/true/g," 火曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingTuesday").innerHTML = str;
+
+	var str = document.getElementById("buildingWednesday").innerHTML;
+	str = str.replace(/true/g,"水曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingWednesday").innerHTML = str;
+
+	var str = document.getElementById("buildingThursday").innerHTML;
+	str = str.replace(/true/g,"木曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingThursday").innerHTML = str;
+
+	var str = document.getElementById("buildingFriday").innerHTML;
+	str = str.replace(/true/g,"金曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingFriday").innerHTML = str;
+
+	var str = document.getElementById("buildingSaturday").innerHTML;
+	str = str.replace(/true/g,"土曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSaturday").innerHTML = str;
+
+	var str = document.getElementById("buildingSunday").innerHTML;
+	str = str.replace(/true/g,"日曜日");
+	str = str.replace(/false/g,"");
+	document.getElementById("buildingSunday").innerHTML = str;
+</script>
 </body>
 </html>
