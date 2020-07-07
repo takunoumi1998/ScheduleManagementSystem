@@ -61,6 +61,7 @@ public class WorkDaoJdbcImpl implements WorkDao{
 			work.setBuildingId((Integer)map.get("building_id"));
 			work.setWorkNumber((Integer)map.get("work_number"));
 			work.setEmployeeId((Integer)map.get("employee_id"));
+			work.setBuildingAddress((String)map.get("building_address"));
 
 			return work;
 

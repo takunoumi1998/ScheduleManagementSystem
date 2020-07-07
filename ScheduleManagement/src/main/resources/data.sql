@@ -1,12 +1,12 @@
---delete from desire;
+delete from desire;
 --delete from work;
 --delete from employee;
 --delete from building;
 
 --sample
-insert into building values (1001,'Aビル',1,120,0,0,0,1,0,1,1,'郵便番号','住所','電話番号','メールアドレス','09:00','11:00');
-INSERT INTO employee VALUES(1001,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_USER');
-INSERT INTO work values(1001,1001,1,1,6,'2020-8-1');
+--insert into building values (1100,'Aビル',1,120,0,0,0,1,0,1,1,'郵便番号','住所','電話番号','メールアドレス','09:00','11:00');
+--INSERT INTO employee VALUES(1100,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_USER');
+--INSERT INTO work values(1100,1100,1,1,6,'2020-8-1');
 
 -- ビル
 --INSERT INTO building VALUES(1001,'Aビル',3,120,1,0,1,0,1,0,0,'8120000','福岡市博多区本町1-1','092-111-111','aa@co.jp','09:00','11:00');

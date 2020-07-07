@@ -128,8 +128,11 @@
 					document.write("<td class='day "+dateStr1+"'>");
 				}
 
+				var flg = 0;
+
 				//workListから全ての勤務日を取得
 				for(var work of workList){
+					flg = 1;
 					var date1 = new Date(work.workDate);
 					var dateStr2 = date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
 					var td = document.getElementsByClassName(dateStr1);
@@ -138,8 +141,13 @@
 						td[0].innerHTML =  "<a href='/employee/schedule/detail?date="+dateStr1+"' style='background-color:salmonpink'>"+(i+1) + "</td>";
 						break;
 					}else{
+						console.log("通過");
 						td[0].innerHTML =  (i+1) + "</td>"
 					}
+				}
+
+				if(flg == 0){
+					document.write((i+1) + "</td>")
 				}
 
 				if(w == 6) {
