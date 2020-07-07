@@ -60,6 +60,24 @@ public class BuildingController {
 		}
 	}
 
+	/*
+	 * ビル住所から検索
+	 */
+
+	@PostMapping("admin/building/address")
+	public String postAdminBuildingAddress(Model model , @ModelAttribute("SearchForm") SearchForm searchForm) {
+		if(!(searchForm.getSearchAddress().equals(""))) {
+			List<Building> buildingList = buildingService.findByAddress(searchForm);
+			model.addAttribute("buildingList",buildingList);
+			return "admin/building/list";
+		}else {
+			return getAdminBuildingList(model);
+		}
+	}
+
+
+
+
 	/**
      * 【新規登録】
      */
@@ -305,7 +323,7 @@ public class BuildingController {
 			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
-		Building building = new Building();
+		/*Building building = new Building();
 
 		building.setBuildingName(str2);
 		building.setBuildingNinzu(str3);
@@ -323,8 +341,8 @@ public class BuildingController {
 		building.setBuildingMail(str8);
 		building.setBuildingStart(str9);
 		building.setBuildingEnd(str10);
-
-
+*/
+		model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
@@ -407,7 +425,7 @@ public class BuildingController {
 					model.addAttribute("result", "更新失敗");
 				}
 
-				return "admin/building/change/complete";
+				return getAdminBuildingList(model);
 
 }
 
