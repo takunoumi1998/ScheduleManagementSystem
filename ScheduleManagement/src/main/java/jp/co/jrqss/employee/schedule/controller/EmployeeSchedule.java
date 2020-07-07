@@ -38,22 +38,17 @@ public class EmployeeSchedule {
 
 		return "employee/schedule/top";
 	}
-//{workDate:.+}
+
 	//勤務詳細取得
 	@GetMapping("/employee/schedule/detail")
-	public String getEmployeeScheduleDetail(//@ModelAttribute Principal principal,
-			@RequestParam("date")String workDate, Model model) {
-//		String employeeId = principal.getName();
-		//select
+	public String getEmployeeScheduleDetail(@RequestParam("date")String workDate, Model model) {
 		//1件取得の時はListを使わない
 		Work work = workerService.selectOne(workDate);
 
 		System.out.println(work);
-//		model.addAttribute("workDate",work.getWorkDate());
-//		model.addAttribute("buildingName",work.getBuildingName());
-//		model.addAttribute("buildingStart",work.getBuildingStart());
-//		model.addAttribute("buildingEnd",work.getBuildingEnd());
+
 		model.addAttribute("work", work);
+
 		return "employee/schedule/detail";
 	}
 
@@ -61,15 +56,15 @@ public class EmployeeSchedule {
 	@PostMapping("/employee/schedule/top")
 	public String postEmployeeScheduleTop( DesireForm form,Model model ) {
 
-
-		System.out.println("-----------------------------");
 		boolean result = workerService.insert(form);
 		if(result == true) {
 			System.out.println("insert成功");
 		}else {
 			System.out.println("しっぱい");
 		}
-		System.out.println("-------------"+form);
+
+		System.out.println(form);
+
 		return "redirect:/top";
 	}
 }

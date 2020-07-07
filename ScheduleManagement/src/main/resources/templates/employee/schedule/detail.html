@@ -46,9 +46,6 @@ a{
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<!-- CSS -->
-<!--  <link rel="stylesheet">	-->
-
 <!-- JQuery -->
 <script
   src="http://code.jquery.com/jquery-3.5.1.js"
@@ -61,17 +58,6 @@ a{
 <title>勤務関係</title>
 </head>
 <body>
-<!--
-	<header>
-	    <div class="menu_button"><span>MENU</span></div>
-	    <nav class="nav">
-	        <ul>
-	            <a href=""><li>スケジュール一覧</li></a>
-	            <a href=""><li>給与一覧</li></a>
-	        </ul>
-	    </nav>
-	</header>
--->
 	<main>
 
  	<form  th:action="@{/employee/schedule/detail}" method="get">
@@ -148,7 +134,7 @@ a{
 	var desire = document.getElementById("desire");
 	desire.setAttribute("value",dateStr);
 
-	//onclick=return checkから飛んでくる
+	//onclick=return checkから飛んでくる関数の部分
 function check(){
 	var flag = confirm("勤務の変更依頼を出しますか？");
 	if(flag == true){
