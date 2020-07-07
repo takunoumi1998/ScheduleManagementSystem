@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.co.jrqss.employee.schedule.domain.model.Desire;
+import jp.co.jrqss.employee.schedule.domain.model.DesireForm;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.repository.WorkDao;
 
@@ -26,8 +26,8 @@ public class WorkerService {
 	}
 
 	//1件insert
-	public boolean insert(Desire desire) {
-		int rowNumber = workdao.insertOne(desire);
+	public boolean insert(DesireForm form) {
+		int rowNumber = workdao.insertOne(form);
 		boolean result = false;
 		if(rowNumber>0) {
 			result = true;

@@ -61,20 +61,14 @@ public class EmployeeSchedule {
 	@PostMapping("/employee/schedule/top")
 	public String postEmployeeScheduleTop( DesireForm form,Model model ) {
 
-		// insert用変数
-//		Desire desire = new Desire();
-//
-//		desire.setWorkDate(date1);
-//
-//		model.addAttribute("workDate", date1);
 
 		System.out.println("-----------------------------");
-//		boolean result = workerService.insert(desire);
-//		if(result == true) {
-//			System.out.println("insert成功");
-//		}else {
-//			System.out.println("しっぱい");
-//		}
+		boolean result = workerService.insert(form);
+		if(result == true) {
+			System.out.println("insert成功");
+		}else {
+			System.out.println("しっぱい");
+		}
 		System.out.println("-------------"+form);
 		return "employee/schedule/top";
 	}

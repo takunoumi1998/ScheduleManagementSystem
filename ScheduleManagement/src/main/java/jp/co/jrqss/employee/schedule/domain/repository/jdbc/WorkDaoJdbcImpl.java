@@ -10,7 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import jp.co.jrqss.employee.schedule.domain.model.Desire;
+import jp.co.jrqss.employee.schedule.domain.model.DesireForm;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.repository.WorkDao;
 
@@ -50,7 +50,7 @@ public class WorkDaoJdbcImpl implements WorkDao{
 	@Override
 	public Work selectOne(String workDate)throws DataAccessException{
 		try {
-			Map<String,Object>  map = jdbc.queryForMap("SELECT work_date,building_name,building_start,building_end FROM work,building WHERE building.building_id = work.building_id AND work_date = ?" ,workDate);
+			Map<String,Object>  map = jdbc.queryForMap("SELECT * FROM work,building WHERE building.building_id = work.building_id AND work_date = ?" ,workDate);
 
 			Work work = new Work();
 
@@ -58,6 +58,9 @@ public class WorkDaoJdbcImpl implements WorkDao{
 			work.setBuildingName((String)map.get("building_name"));
 			work.setBuildingStart((String)map.get("building_start"));
 			work.setBuildingEnd((String)map.get("building_end"));
+			work.setBuildingId((Integer)map.get("building_id"));
+			work.setWorkNumber((Integer)map.get("work_number"));
+			work.setEmployeeId((Integer)map.get("employee_id"));
 
 			return work;
 
@@ -69,27 +72,16 @@ public class WorkDaoJdbcImpl implements WorkDao{
 
 	//1件insert
 	@Override
-	public int insertOne(Desire desire) throws DataAccessException{
+	public int insertOne(DesireForm form) throws DataAccessException{
 
-		int rowNumber = jdbc.update("insert into desire(work_date"
-				+"values(?)"
-				,desire.getWorkDate()
-				//,desire.getEmployeeId()
-				//,desire.getDesireDate()
+
+		int rowNumber = jdbc.update("insert into desire values(?,?,?,?,?)"
+				,form.getBuildingId()
+				,form.getWorkNumber()
+				,form.getWorkDate()
+				,form.getEmployeeId()
+				,form.getDesireDate()
 				);
-
-/*		int rowNumber = jdbc.update("insert into desire(building_id,"
-				+"work_number,"
-				+"work_date,"
-				+"employee_id,"
-				//+"desire_date,"
-				+"values(?,?,?,?)"
-				,desire.getBuildingId()
-				,desire.getWorkNumber()
-				,desire.getWorkDate()
-				,desire.getEmployeeId()
-				//,desire.getDesireDate()
-				);*/
 
 		return rowNumber;
 	}
