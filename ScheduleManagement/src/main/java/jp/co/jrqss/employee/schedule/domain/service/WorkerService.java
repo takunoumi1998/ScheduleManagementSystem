@@ -16,8 +16,8 @@ public class WorkerService {
 	WorkDao workdao;
 
 	//全件取得
-	public List<Work> selectMany() {
-		return workdao.selectMany();
+	public List<Work> selectMany(int employeeId) {
+		return workdao.selectMany(employeeId);
 	}
 
 	//1件取得

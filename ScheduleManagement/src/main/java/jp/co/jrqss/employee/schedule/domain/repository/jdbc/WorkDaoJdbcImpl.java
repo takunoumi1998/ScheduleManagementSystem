@@ -23,11 +23,11 @@ public class WorkDaoJdbcImpl implements WorkDao{
 
 	//全件取得メソッド
 	@Override
-	public List<Work> selectMany() throws DataAccessException{
+	public List<Work> selectMany(int employeeId) throws DataAccessException{
 
 		List<Work> workList = new ArrayList<Work>();
 
-		List<Map<String,Object>> getList = jdbc.queryForList("select * from work where employee_id" );
+		List<Map<String,Object>> getList = jdbc.queryForList("select * from work where employee_id=?",employeeId );
 
 		for(Map map : getList) {
 			Work work = new Work();
