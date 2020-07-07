@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
-	<title>従業員｜入力内容確認</title>
+	<title>従業員｜変更内容確認</title>
 
  </head>
  <body>
@@ -19,7 +19,7 @@
  			<form method="post" action="/admin/employee/change/complete" th:action="@{/admin/employee/change/complete}">
 
 
- 			<h3>従業員ID：<span th:text="*{employee_Id}"></span></h3>
+ 			<!-- <h3>従業員ID：<span th:text="*{employee_Id}"></span></h3> -->
  			<h3>氏名：<span th:text="*{employee_Name}"></span></h3>
  			<h3>呼び名（勤務表に表示される名前）：<span th:text="*{employee_Adana}"></span></h3>
  			<h3>郵便番号：<span th:text="*{employee_Ad_Number}"></span></h3>
@@ -28,7 +28,7 @@
  			<h3>メールアドレス：<span th:text="*{employee_Mail}"></span></h3>
  			<h3>希望日数：<span th:text="*{desire_Days}"></span></h3>
 
-			<input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}">
+			<!-- <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}"> -->
 			<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
 			<input type="hidden" name="employee_Adana" id="employee_Adana" th:value="*{employee_Adana}">
 			<input type="hidden" name="employee_Ad_Number" id="employee_Ad_Number" th:value="*{employee_Ad_Number}">
@@ -37,7 +37,7 @@
 			<input type="hidden" name="employee_Mail" id="employee_Mail" th:value="*{employee_Mail}">
 			<input type="hidden" name="desire_Days" id="desire_Days" th:value="*{desire_Days}">
 
-			<h2>希望曜日</h2>
+			<h3>希望曜日</h3>
 
 			<span id="employee_Monday" th:text="*{employee_Monday}"></span>
 			<span id="employee_Tuesday" th:text="*{employee_Tuesday}"></span>
@@ -70,7 +70,7 @@
 
          </form>
 			<form method="post" action="/admin/employee/change/backchange">
-			<input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}">
+		<!-- <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}"> -->
 			<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
 			<input type="hidden" name="employee_Adana" id="employee_Adana" th:value="*{employee_Adana}">
 			<input type="hidden" name="employee_Ad_Number" id="employee_Ad_Number" th:value="*{employee_Ad_Number}">
@@ -88,6 +88,7 @@
 			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 	<div class="btn_b">
          <button class="button_2" type="submit" value="confirm">修正する</button></div>
+
          </form>
 
 

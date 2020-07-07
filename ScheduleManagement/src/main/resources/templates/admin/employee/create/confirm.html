@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="@{/css/admin/Detail.css}">
+<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
 
 	<title>従業員｜登録内容確認</title>
 
@@ -20,76 +20,34 @@
  			<form method="post" action="/admin/employee/create/complete" th:action="@{/admin/employee/create/complete}">
 
 
- 			<!--  <label for="employee_Id">従業員ID　</label>
-			<span th:text="*{employee_Id}"></span>
-			<input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}"> -->
-<p></p>
-			<h2>氏名　</h2>
-			<span th:text="*{employee_Name}"></span>
+ 			<!-- <h3>従業員ID：<span th:text="*{employee_Id}"></span></h3> -->
+ 			<h3>氏名：<span th:text="*{employee_Name}"></span></h3>
+ 			<h3>呼び名（勤務表に表示される名前）：<span th:text="*{employee_Adana}"></span></h3>
+ 			<h3>郵便番号：<span th:text="*{employee_Ad_Number}"></span></h3>
+ 			<h3>住所：<span th:text="*{employee_Address}"></span></h3>
+ 			<h3>電話番号：<span th:text="*{employee_Phone_Number}"></span></h3>
+ 			<h3>メールアドレス：<span th:text="*{employee_Mail}"></span></h3>
+ 			<h3>希望日数：<span th:text="*{desire_Days}"></span></h3>
+
+			<!-- <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}"> -->
 			<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
-<p></p>
-			<h2>呼び名（勤務表に表示される名前）　</h2>
-			<span th:text="*{employee_Adana}"></span>
 			<input type="hidden" name="employee_Adana" id="employee_Adana" th:value="*{employee_Adana}">
-<p></p>
-			<h2>郵便番号　</h2>
-			<span th:text="*{employee_Ad_Number}"></span>
 			<input type="hidden" name="employee_Ad_Number" id="employee_Ad_Number" th:value="*{employee_Ad_Number}">
-<p></p>
-			<h2>住所　</h2>
-			<span th:text="*{employee_Address}"></span>
 			<input type="hidden" name="employee_Address" id="employee_Address" th:value="*{employee_Address}">
-<p></p>
-			<h2>電話番号　</h2>
-			<span th:text="*{employee_Phone_Number}"></span>
 			<input type="hidden" name="employee_Phone_Number" id="employee_Phone_Number" th:value="*{employee_Phone_Number}">
-<p></p>
-			<h2>メールアドレス　</h2>
-			<span th:text="*{employee_Mail}"></span>
 			<input type="hidden" name="employee_Mail" id="employee_Mail" th:value="*{employee_Mail}">
-<p></p>
-			<h2>希望日数　</h2>
-			<span th:text="*{desire_Days}"></span>
 			<input type="hidden" name="desire_Days" id="desire_Days" th:value="*{desire_Days}">
-<p></p>
-<p></p>
+
 			<h3>希望曜日</h3>
-			<div id="employee_Monday">
 
-			<span th:text="*{employee_Monday}"></span>
-			</div>
+			<span id="employee_Monday" th:text="*{employee_Monday}"></span>
+			<span id="employee_Tuesday" th:text="*{employee_Tuesday}"></span>
+			<span id="employee_Wednesday" th:text="*{employee_Wednesday}"></span>
+			<span id="employee_Thursday" th:text="*{employee_Thursday}"></span>
+			<span id="employee_Friday" th:text="*{employee_Friday}"></span>
+			<span id="employee_Saturday" th:text="*{employee_Saturday}"></span>
+			<span id="employee_Sunday" th:text="*{employee_Sunday}"></span>
 
-			<div id="employee_Tuesday">
-			<span th:text="*{employee_Tuesday}"></span>
-			</div>
-
-			<div id="employee_Wednesday">
-			<span th:text="*{employee_Wednesday}"></span>
-			</div>
-
-
-			<div id="employee_Thursday">
-			<span th:text="*{employee_Thursday}"></span>
-			</div>
-
-
-			<div id="employee_Friday">
-			<span th:text="*{employee_Friday}"></span>
-			</div>
-
-			<div id="employee_Saturday">
-			<span th:text="*{employee_Saturday}"></span>
-			</div>
-
-			<div id="employee_Sunday">
-			<span th:text="*{employee_Sunday}"></span>
-			</div>
-
-
-			<h2>備考</h2>
- 			<span th:text="*{employee_Bikou}"></span>
-
-			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 
 
 			<input type="hidden" name="employee_Monday" id="employee_Monday" th:value="*{employee_Monday}">
@@ -100,9 +58,9 @@
 			<input type="hidden" name="employee_Saturday" id="employee_Saturday" th:value="*{employee_Saturday}">
 			<input type="hidden" name="employee_Sunday" id="employee_Sunday" th:value="*{employee_Sunday}">
 
-
-
-
+           <h4>備考</h4>
+			<p th:text ="*{employee_Bikou}"/>
+			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 
 
  	<p>この内容で確定しますか？</p>
