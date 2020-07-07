@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+lang="ja">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/admin/Emp_Build_info.css}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <title>従業員一覧</title>
+
+<script>
+$(function() {
+  var page = 0;
+  function draw() {
+	$('#lastpage').html(Math.ceil(($('tr').size()-1)/10));
+    $('#page').html(page + 1);
+    $('tr').hide();
+    $('tr:first,tr:gt(' + page * 10 + '):lt(10)').show();
+  }
+  $('#prev').click(function() {
+    if (page > 0) {
+      page--;
+      draw();
+    }
+  });
+  $('#next').click(function() {
+    if (page < ($('tr').size() - 1) / 10 - 1) {
+      page++;
+      draw();
+    }
+  });
+  draw();
+});
+</script>
+<style>
+td, th {
+  border: 1px solid black;
+  padding: 2px;
+}
+#prev, #next {
+  color: black;
+  cursor: pointer;
+}
+</style>
+
 </head>
 <body>
 
@@ -67,6 +105,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	</tr>
 </table>
 
+<button id="prev">＜</button>　<span id="page"></span>/<span id="lastpage"></span>　<button id="next">＞</button>
 
 <script TYPE="text/javascript">
 
