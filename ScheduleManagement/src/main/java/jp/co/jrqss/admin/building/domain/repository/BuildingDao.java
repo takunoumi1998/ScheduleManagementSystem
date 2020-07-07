@@ -33,6 +33,9 @@ import jp.co.jrqss.admin.employee.form.SearchForm;
 	    //1件削除
 		public int deleteOne(int buildingId) throws DataAccessException;
 
-
+		//1件検索　ビル名
 		public List<Building> findByName(SearchForm searchForm);
+
+		//1件検索　ビル住所
+		public List<Building> findByAddress(SearchForm searchForm);
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.employee.domain.model.Employee;
@@ -42,7 +41,8 @@ public class EmployeeController {
 	 * @return 従業員リストのパス
 	 */
 	@PostMapping("/admin/employee/list")
-	public String postAdminEmployeeList(Model model , @ModelAttribute("selectForm") SearchForm searchForm) {
+	public String postAdminEmployeeList(Model model , @ModelAttribute("selectForm")
+	SearchForm searchForm) {
 
 		if(!(searchForm.getSearchName().equals(""))) {
 			List<Employee> employeeList = employeeService.findByName(searchForm);
@@ -53,6 +53,29 @@ public class EmployeeController {
 		}
 	}
 
+	/**
+	 * 従業員情報を住所から検索
+	 * @param model
+	 * @return
+	 */
+	@PostMapping("/admin/employee/address")
+	public String postAdminEmployeeAddress(Model model,SearchForm searchForm) {
+
+		if(!(searchForm.getSearchAddress().equals(""))) {
+			List<Employee> employeeList = employeeService.findByAddress(searchForm);
+			model.addAttribute("employeeList",employeeList);
+			return "admin/employee/list";
+		}else {
+			return getAdminEmployeeList(model);
+		}
+
+
+
+
+	}
+
+
+
 	/*登録画面へ遷移*/
 	@GetMapping("/admin/employee/create/register")
 	public String getAdminEmployeeCreateRegister(Model model) {
@@ -61,7 +84,7 @@ public class EmployeeController {
 	}
 
 	/*新規登録から確認画面*/
-	@RequestMapping("/admin/employee/create/confirm")
+	@PostMapping("/admin/employee/create/confirm")
 	public String postAdminEmployeeCreateConfirm(
 			//@RequestParam("employee_Id")int str1,
 			@RequestParam("employee_Name")String str2,
@@ -104,8 +127,8 @@ public class EmployeeController {
 	public String postAdminEmployeeCreateComplete(@ModelAttribute Employee employee
 		) {
 
-		int result=employeeService.insertOne(employee);
-		if(result==1) {
+		boolean result=employeeService.insertOne(employee);
+		if(result==true) {
 			System.out.println("成功");
 		}else {
 			System.out.println("失敗");
@@ -222,6 +245,9 @@ public class EmployeeController {
 			model.addAttribute("employee_Friday",day5);
 			model.addAttribute("employee_Saturday",day6);
 			model.addAttribute("employee_Sunday",day7);
+
+
+
 		return "admin/employee/change/confirm";
 	}
 
@@ -279,10 +305,10 @@ public class EmployeeController {
 			model.addAttribute("更新失敗",result);
 		}
 
-		System.out.println(result);
+		System.out.println(model);
 
-		return "admin/employee/change/complete";
-	}
+		return getAdminEmployeeList(model);
+		}
 
 	/*削除画面へ遷移*/
 	@GetMapping("/admin/employee/delete/confirm/{employee_Id:.+}")

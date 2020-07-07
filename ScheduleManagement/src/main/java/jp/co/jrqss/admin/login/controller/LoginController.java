@@ -97,8 +97,6 @@ public class LoginController {
 							,i,i+"ビル",yubin,jusho,phone,mail,startTime,endTime);
 				}
 			}catch(Exception e) {
-				e.printStackTrace();
-				System.out.println("失敗");
 			}
 		}
 		return "admin/login/login";

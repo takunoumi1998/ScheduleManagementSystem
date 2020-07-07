@@ -88,7 +88,7 @@
 			/////////////////////////////////////
 
 
-			/*閏年1対応*/////////////////////////////
+			/*閏年対応*/////////////////////////////
 			m = mDay[mm];
 			if(mm == 2 && yyyy % 4) {
 				m++;
@@ -96,7 +96,7 @@
 			w = GetWeekDay(yyyy, mm, 1);
 			//////////////////////////////////
 
-			/*灰色塗りの場所*////////////////////
+			/*前月最終週、次月1週目*////////////////////
 			for(i = 0; i < w; i++) {
 				document.write("<td class='other'>&nbsp;</td>");
 			}
@@ -132,14 +132,15 @@
 				for(var work of workList){
 					var date1 = new Date(work.workDate);
 					var dateStr2 = date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
+					var td = document.getElementsByClassName(dateStr1);
 					if(dateStr1 == dateStr2){
-						document.write( "<a style='display:block; color:black; text-decoration:none;' href='employee/schedule/detail?date="+dateStr1+"''>"+(i+1) + "</td>");
-						var td = document.getElementsByClassName(dateStr1);
 						td[0].style.backgroundColor="lightcoral";
+						td[0].innerHTML =  "<a href='/employee/schedule/detail?date="+dateStr1+"' style='background-color:salmonpink'>"+(i+1) + "</td>";
+						break;
+					}else{
+						td[0].innerHTML =  (i+1) + "</td>"
 					}
 				}
-
-				document.write( (i+1) + "</td>");
 
 				if(w == 6) {
 					document.write("</tr>");
@@ -155,30 +156,6 @@
 
 			return;
 		}
-
-		//日付に埋め込むリンクの生成
-/*		function DayLink(yyyy, mm, dd){
-			var	hlk;
-
-			hlk = "<a th:href='";
-			hlk += yyyy;
-			if(mm < 10) {
-				hlk += "0" + mm;
-			}
-			else {
-				hlk += mm;
-			}
-			if(dd < 10) {
-				hlk += "0" + dd;
-			}
-			else {
-				hlk += dd;
-			}
-			hlk += ".html'>" + dd + "</a>";
-
-			return hlk;
-		}
-*/
 
 		/*引数で指定した年月日*/
 		function GetWeekDay(yyyy, mm, dd){

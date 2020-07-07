@@ -19,7 +19,7 @@
 <!-- 削除ボタン　隠しデータとしてemployee_Idを送る。 -->
 <form action="/admin/employee/delete/complete" method="post">
 <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}">
-		<button class="button_1" type="submit">削除する</button></div>
+<input type="submit" class="button4" value="削除する" onclick="return kakunin()"/>
 </form>
 
 
@@ -27,9 +27,18 @@
 <form method="get" action="/admin/employee/list">
 		<button class="button_2" type="submit" >戻る</button>
 </form>
+<small>Copyright(c)チーム北岡 All Rights Reserved.</small>
 
-	<footer>
-		<small>Copyright(c)チーム北岡 All Rights Reserved.</small>
-	</footer>
+<script type="text/javascript" >
+function kakunin(){
+	if(window.confirm("本当に[[*{employee_Name}]]さんを削除しますか？")){
+		return true;
+	}else{
+		return false;
+	}
+
+}
+
+</script>
 </body>
 </html>

@@ -59,6 +59,45 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		return buildingList;
 	}
 
+
+	@Override
+	public List<Building> findByAddress(SearchForm searchForm) {
+		/// buildingテーブルからデータを全件取得
+		List<Map<String,Object>>getList=jdbc.queryForList("select * from building where building_address like ?","%"+searchForm.getSearchAddress()+"%");
+
+		// 結果返却用の変数
+		List<Building>buildingList=new ArrayList<>();
+
+		for(Map<String,Object>map:getList) {
+
+			Building building = new Building();
+
+			building.setBuildingId((int)map.get("building_id"));
+			building.setBuildingName((String)map.get("building_name"));
+			building.setBuildingNinzu((int)map.get("building_ninzu"));
+			building.setBuildingTime((int)map.get("building_time"));
+			building.setBuildingMonday((boolean)map.get("building_monday"));
+			building.setBuildingTuesday((boolean)map.get("building_tuesday"));
+			building.setBuildingWednesday((boolean)map.get("building_wednesday"));
+			building.setBuildingThursday((boolean)map.get("building_thursday"));
+			building.setBuildingFriday((boolean)map.get("building_friday"));
+			building.setBuildingSaturday((boolean)map.get("building_saturday"));
+			building.setBuildingSunday((boolean)map.get("building_sunday"));
+			building.setBuildingAdNumber((String)map.get("building_ad_number"));
+			building.setBuildingAddress((String)map.get("building_address"));
+			building.setBuildingPhoneNumber((String)map.get("building_phone_number"));
+			building.setBuildingMail((String)map.get("building_mail"));
+			building.setBuildingStart((String)map.get("buildingStart"));
+			building.setBuildingEnd((String)map.get("building_end"));
+
+
+			// 結果返却用リストに返却
+			buildingList.add(building);
+		}
+
+		return buildingList;
+	}
+
 	// テーブルの件数を取得
 	@Override
 	public int count() throws DataAccessException {
