@@ -188,7 +188,7 @@ public class EmployeeController {
 		//employee_Idのチェック
 		Employee employee=employeeService.selectOne(employee_Id);
 
-		model.addAttribute("employee_Id",employee.getEmployee_Id());
+		//model.addAttribute("employee_Id",employee.getEmployee_Id());
 		model.addAttribute("employee_Name",employee.getEmployee_Name());
 		model.addAttribute("employee_Adana",employee.getEmployee_Adana());
 		model.addAttribute("employee_Ad_Number",employee.getEmployee_Ad_Number());
@@ -212,7 +212,7 @@ public class EmployeeController {
 	/*従業員詳細変更から確認*/
 	@PostMapping("/admin/employee/change/confirm")
 	public String postAdminEmployeeChangeConfirm(
-			@RequestParam("employee_Id")int str1,
+			//@RequestParam("employee_Id")int str1,
 			@RequestParam("employee_Name")String str2,
 			@RequestParam("employee_Adana")String str3,
 			@RequestParam("employee_Ad_Number")String str4,
@@ -229,7 +229,7 @@ public class EmployeeController {
 			@RequestParam(value="employee_Saturday",required=false)boolean day6,
 			@RequestParam(value="employee_Sunday",required=false)boolean day7,
 			Model model) {
-			model.addAttribute("employee_Id",str1);
+			//model.addAttribute("employee_Id",str1);
 			model.addAttribute("employee_Name",str2);
 			model.addAttribute("employee_Adana",str3);
 			model.addAttribute("employee_Ad_Number",str4);
@@ -256,7 +256,7 @@ public class EmployeeController {
 	@PostMapping("/admin/employee/change/backchange")
 	public String postAdminEmployeeChangeBackchange(
 
-		@RequestParam("employee_Id")int str1,
+		//@RequestParam("employee_Id")int str1,
 		@RequestParam("employee_Name")String str2,
 		@RequestParam("employee_Adana")String str3,
 		@RequestParam("employee_Ad_Number")String str4,
@@ -274,7 +274,7 @@ public class EmployeeController {
 		@RequestParam(value="employee_Sunday",required=false)boolean day7,
 		Model model){
 
-		model.addAttribute("employee_Id",str1);
+		//model.addAttribute("employee_Id",str1);
 		model.addAttribute("employee_Name",str2);
 		model.addAttribute("employee_Adana",str3);
 		model.addAttribute("employee_Ad_Number",str4);
@@ -317,7 +317,7 @@ public class EmployeeController {
 
 		Employee employee=employeeService.selectOne(employee_Id);
 
-		model.addAttribute("employee_Id",employee.getEmployee_Id());
+		//model.addAttribute("employee_Id",employee.getEmployee_Id());
 		model.addAttribute("employee_Name",employee.getEmployee_Name());
 		model.addAttribute("employee_Adana",employee.getEmployee_Adana());
 

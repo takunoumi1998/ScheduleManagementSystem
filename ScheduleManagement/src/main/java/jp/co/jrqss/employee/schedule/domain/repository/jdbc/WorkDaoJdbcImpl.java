@@ -22,6 +22,10 @@ public class WorkDaoJdbcImpl implements WorkDao{
 
 
 	//全件取得メソッド
+	/*
+	 * IDなどに対応したデータを取得するときはselectManyの引数に記載（今回ならemployee_id）
+	 * SQL文でも最後に引数と同じものを（そこにはデータ型は不要）
+	 */
 	@Override
 	public List<Work> selectMany(int employeeId) throws DataAccessException{
 
@@ -47,6 +51,10 @@ public class WorkDaoJdbcImpl implements WorkDao{
 	}
 
 	//1件（詳細）取得
+	/*
+	 * IDなどに対応したデータを取得するときはselectManyの引数に記載（今回ならwork_date）
+	 * SQL文でも最後に引数と同じものを（そこにはデータ型は不要）
+	 */
 	@Override
 	public Work selectOne(String workDate)throws DataAccessException{
 		try {
@@ -61,6 +69,7 @@ public class WorkDaoJdbcImpl implements WorkDao{
 			work.setBuildingId((Integer)map.get("building_id"));
 			work.setWorkNumber((Integer)map.get("work_number"));
 			work.setEmployeeId((Integer)map.get("employee_id"));
+			work.setBuildingAddress((String)map.get("building_address"));
 
 			return work;
 
@@ -73,16 +82,18 @@ public class WorkDaoJdbcImpl implements WorkDao{
 	//1件insert
 	@Override
 	public int insertOne(DesireForm form) throws DataAccessException{
+		int rowNumber = 0;
 
-
-		int rowNumber = jdbc.update("insert into desire values(?,?,?,?,?)"
+		try {
+		rowNumber = jdbc.update("insert into desire values(?,?,?,?,?)"
 				,form.getBuildingId()
 				,form.getWorkNumber()
 				,form.getWorkDate()
 				,form.getEmployeeId()
 				,form.getDesireDate()
 				);
-
+		}catch(Exception e) {
+		}
 		return rowNumber;
 	}
 
