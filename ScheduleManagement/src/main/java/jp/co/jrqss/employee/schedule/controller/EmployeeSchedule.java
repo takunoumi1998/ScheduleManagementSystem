@@ -70,6 +70,6 @@ public class EmployeeSchedule {
 			System.out.println("しっぱい");
 		}
 		System.out.println("-------------"+form);
-		return "employee/schedule/top";
+		return "redirect:/top";
 	}
 }
