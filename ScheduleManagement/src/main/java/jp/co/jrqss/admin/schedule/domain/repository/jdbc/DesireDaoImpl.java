@@ -31,14 +31,16 @@ public class DesireDaoImpl implements DesireDao {
 		//
 		Calendar calendar = Calendar.getInstance();
 
-		//カレンダーに今月に2を足した月の初日を設定
-		calendar.set(calendar.get(Calendar.YEAR),(calendar.get(Calendar.MONTH)+2),1);
-		//2か月後の初日から1を引いて1か月後の末日を設定
+		//月末日の取得
+		calendar.set(calendar.get(Calendar.YEAR),(calendar.get(Calendar.MONTH)+1),1);
 		calendar.add(Calendar.DATE, -1);
 
 		//次月の末日と初日をString変数に格納する
 		String desireLimitFirst = calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+"01";
-		String desireLimitLast = calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+15;
+		String desireLimitLast = calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.DATE);
+
+		System.out.println("月初："+desireLimitFirst);
+		System.out.println("月末："+desireLimitLast);
 
 		try {
 			//SQL発行
