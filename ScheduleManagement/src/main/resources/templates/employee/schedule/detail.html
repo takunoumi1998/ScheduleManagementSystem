@@ -36,7 +36,6 @@ li{
 
 a{
 	text-decoration:none;
-	color:white;
 }
 </style>
 
@@ -78,17 +77,15 @@ a{
 	    		</tr>
 		   		<tr>
 	    			<td>
-	    				<p th:text="${work.buildingName}">ビル</p>
+	    				<nobr th:text="${work.buildingName}">ビル</nobr>
+	    				<nobr id="map"></nobr>
 	    			</td>
 	    		</tr>
 	    		<tr>
 	    			<td>
-	    				<p th:text="${work.buildingStart}">清掃開始時間</p>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<p th:text="${work.buildingEnd}">清掃終了時間</p>
+	    				<nobr th:text="${work.buildingStart}">清掃開始時間</nobr>
+	    				～
+	    				<nobr th:text="${work.buildingEnd}">清掃終了時間</nobr>
 	    			</td>
 	    		</tr>
 
@@ -125,7 +122,11 @@ a{
 <script type="text/javascript" th:inline="javascript">
 
 /*<![CDATA[*/
-	console.log(/*[[${work}]]*/);
+	var work = /*[[${work}]]*/;
+
+	var map = document.getElementById("map");
+	console.log(map);
+	map.innerHTML="(<a href='https://www.google.com/maps/search/"+work.buildingAddress+"/'>地図</a>)";
 
 	//本日の日付を文字列で取得
 	var date = new Date();
