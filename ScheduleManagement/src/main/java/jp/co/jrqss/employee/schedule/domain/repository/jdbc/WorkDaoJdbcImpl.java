@@ -73,16 +73,18 @@ public class WorkDaoJdbcImpl implements WorkDao{
 	//1件insert
 	@Override
 	public int insertOne(DesireForm form) throws DataAccessException{
+		int rowNumber = 0;
 
-
-		int rowNumber = jdbc.update("insert into desire values(?,?,?,?,?)"
+		try {
+		rowNumber = jdbc.update("insert into desire values(?,?,?,?,?)"
 				,form.getBuildingId()
 				,form.getWorkNumber()
 				,form.getWorkDate()
 				,form.getEmployeeId()
 				,form.getDesireDate()
 				);
-
+		}catch(Exception e) {
+		}
 		return rowNumber;
 	}
 
