@@ -32,7 +32,7 @@ public class EmployeeSchedule {
 	public String getEmployeeSchedule(Model model , Principal principal) {
 		String employeeId = principal.getName();
 
-		List<Work> workList = workerService.selectMany();
+		List<Work> workList = workerService.selectMany(Integer.parseInt(employeeId));
 
 		model.addAttribute("workList",workList);
 
