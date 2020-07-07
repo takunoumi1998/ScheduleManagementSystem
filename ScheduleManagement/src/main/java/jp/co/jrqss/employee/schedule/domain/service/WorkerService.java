@@ -16,11 +16,19 @@ public class WorkerService {
 	WorkDao workdao;
 
 	//全件取得
+	/*
+	 * IDなどに対応したデータを取得するときはselectManyの引数に記載（今回ならemployee_id）
+	 * 戻り値でも最後に引数と同じものを（そこにはデータ型は不要）
+	 */
 	public List<Work> selectMany(int employeeId) {
 		return workdao.selectMany(employeeId);
 	}
 
 	//1件取得
+	/*
+	 * IDなどに対応したデータを取得するときはselectManyの引数に記載（今回ならwork_date）
+	 * 戻り値でも最後に引数と同じものを（そこにはデータ型は不要）
+	 */
 	public Work selectOne(String workDate) {
 		return workdao.selectOne(workDate);
 	}
