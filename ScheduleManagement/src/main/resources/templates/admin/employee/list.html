@@ -12,6 +12,7 @@ lang="ja">
 $(function() {
   var page = 0;
   function draw() {
+	$('#lastpage').html(Math.ceil(($('tr').size()-1)/10));
     $('#page').html(page + 1);
     $('tr').hide();
     $('tr:first,tr:gt(' + page * 10 + '):lt(10)').show();
@@ -37,7 +38,7 @@ td, th {
   padding: 2px;
 }
 #prev, #next {
-  color: red;
+  color: black;
   cursor: pointer;
 }
 </style>
@@ -104,7 +105,7 @@ td, th {
 	</tr>
 </table>
 
-<span id="prev">＜</span>　<span id="page"></span>　<span id="next">＞</span>
+<button id="prev">＜</button>　<span id="page"></span>/<span id="lastpage"></span>　<button id="next">＞</button>
 
 <script TYPE="text/javascript">
 

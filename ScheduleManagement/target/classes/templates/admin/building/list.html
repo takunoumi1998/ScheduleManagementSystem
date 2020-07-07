@@ -11,6 +11,40 @@
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
 <title>ビル一覧</title>
+<script>
+$(function() {
+  var page = 0;
+  function draw() {
+	$('#lastpage').html(Math.ceil(($('tr').size()-1)/10));
+    $('#page').html(page + 1);
+    $('tr').hide();
+    $('tr:first,tr:gt(' + page * 10 + '):lt(10)').show();
+  }
+  $('#prev').click(function() {
+    if (page > 0) {
+      page--;
+      draw();
+    }
+  });
+  $('#next').click(function() {
+    if (page < ($('tr').size() - 1) / 10 - 1) {
+      page++;
+      draw();
+    }
+  });
+  draw();
+});
+</script>
+<style>
+td, th {
+  border: 1px solid black;
+  padding: 2px;
+}
+#prev, #next {
+  color: black;
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
 <div th:fragment="list_contents">
@@ -44,7 +78,7 @@
 	<input type="submit" value="トップに戻る" class="right" style="margin-bottom:3vw; float: left;">
 </form>
 </p>
-<table border="1">
+<table border="1" id="tbl1">
 	<tr>
 		<!-- <td></td> -->
 		<td>ビルID</td>
@@ -59,8 +93,8 @@
 		<!-- <td><input type="checkbox" name="checkboxForm" th:value="${building.buildingId}"></td> -->
 		<td th:text="${building.buildingId}"></td>
 		<td th:text="${building.buildingName}"></td>
-<!-- 		<td th:text="${building.buildingNinzu}"></td>-->
-		 <td th:text="${building.buildingMonday}+' '+${building.buildingTuesday}+' '+${building.buildingWednesday}+' '+${building.buildingThursday}+' '+${building.buildingFriday}+' '+${building.buildingSaturday}+' '+${building.buildingSunday}"></td>
+		<td th:text="${building.buildingNinzu}"></td>
+
 		<td th:text="${building.buildingTime}"></td>
 
 		<td>
@@ -74,43 +108,19 @@
 
 </table>
 
+<button id="prev">＜</button>　<span id="page"></span>/<span id="lastpage"></span>　<button id="next">＞</button>
+
+<script TYPE="text/javascript">
+
+  //行数取得
+  var row = tbl1.rows.length-1;
+  //結果表示
+  document.write("ビル件数："+row+"件");
+
+</script>
 </div>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
-<script>
-	var str = document.getElement("building.buildingMonday").innerHTML;
-	str = str.replace(/true/g," 月曜日");
-	str = str.replace(/false/g,"");
-	document.getElement("building.buildingMonday").innerHTML = str;
 
-	var str = document.getElementById("buildingTuesday").innerHTML;
-	str = str.replace(/true/g," 火曜日");
-	str = str.replace(/false/g,"");
-	document.getElementById("buildingTuesday").innerHTML = str;
 
-	var str = document.getElementById("buildingWednesday").innerHTML;
-	str = str.replace(/true/g,"水曜日");
-	str = str.replace(/false/g,"");
-	document.getElementById("buildingWednesday").innerHTML = str;
-
-	var str = document.getElementById("buildingThursday").innerHTML;
-	str = str.replace(/true/g,"木曜日");
-	str = str.replace(/false/g,"");
-	document.getElementById("buildingThursday").innerHTML = str;
-
-	var str = document.getElementById("buildingFriday").innerHTML;
-	str = str.replace(/true/g,"金曜日");
-	str = str.replace(/false/g,"");
-	document.getElementById("buildingFriday").innerHTML = str;
-
-	var str = document.getElementById("buildingSaturday").innerHTML;
-	str = str.replace(/true/g,"土曜日");
-	str = str.replace(/false/g,"");
-	document.getElementById("buildingSaturday").innerHTML = str;
-
-	var str = document.getElementById("buildingSunday").innerHTML;
-	str = str.replace(/true/g,"日曜日");
-	str = str.replace(/false/g,"");
-	document.getElementById("buildingSunday").innerHTML = str;
-</script>
 </body>
 </html>
