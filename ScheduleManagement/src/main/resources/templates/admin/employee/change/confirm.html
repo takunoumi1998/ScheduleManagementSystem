@@ -4,8 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
-
+<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
 	<title>従業員｜入力内容確認ページ</title>
 
  </head>
@@ -63,23 +62,11 @@
 			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 
 
+ 	<p>この内容で確定しますか？</p>
 
-
-<br>
-<br>
- 	<h2>この内容で確定しますか？</h2>
-
-
-         <!--<input type="hidden" name="q" value="1">-->
-         <!--実際は入力ページから受け取ったデータを隠し持っておく-->
-         <!--その情報を送るなら”確定”、訂正なら”リダイレクト？”で戻る-->
-<<<<<<< HEAD
     <div class="btn_a">
 		<button class="button_1" type="submit" value="confirm">確定</button>
 	</div>
-=======
-		<button type="submit" value="confirm">確定(一覧に戻ります)</button>
->>>>>>> marge
 
          </form>
 			<form method="post" action="/admin/employee/change/backchange">

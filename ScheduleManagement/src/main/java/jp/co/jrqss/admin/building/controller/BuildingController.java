@@ -343,7 +343,7 @@ public class BuildingController {
 		building.setBuildingStart(str9);
 		building.setBuildingEnd(str10);
 */
-		model.addAttribute("buildingId",str1);
+		//model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
