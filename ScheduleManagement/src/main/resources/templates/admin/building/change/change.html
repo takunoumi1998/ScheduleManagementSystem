@@ -57,7 +57,7 @@ function input_check(){
 
 		// 入力内容セット
 		// var buildingId   = $("#buildingId").val().replace(/\s+/g,'');
-		var buildingName  = $("#buildingName").val();
+		var buildingName  = $("#buildingName").replace(/\s+/g,'');
 		var buildingAdNumber = $("#buildingAdNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 		var buildingAddress  = $("#buildingAddress").val().replace(/\s+/g,"");
 		var buildingPhoneNumber  = $("#buildingPhoneNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
