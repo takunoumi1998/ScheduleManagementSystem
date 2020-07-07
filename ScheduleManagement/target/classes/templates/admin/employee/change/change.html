@@ -34,6 +34,8 @@ $(function(){
 			$('#employee_Address').removeClass("inp_error");
 			$('#employee_Phone_number').removeClass("inp_error");
 			$('#desire_Days').removeClass("inp_error");
+			$('#employee_Mail').removeClass("inp_error");
+			$('#desire_Youbi').removeClass("inp_error");
 
 
 			// 入力エラー文をリセット
@@ -43,6 +45,8 @@ $(function(){
 			$("#Ad_error").empty();
 			$("#PhoneNum_error").empty();
 			$("#Days_error").empty();
+			$("#Mail_error").empty();
+			$("#Youbi_error").empty();
 
 
 			// 入力内容セット
@@ -52,6 +56,8 @@ $(function(){
 			var employee_Address  = $("#employee_Address").val();
 			var employee_Phone_Number  = $("#employee_Phone_Number").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var desire_Days   = $("#desire_Days").val();
+			var employee_Mail  = $("#employee_Mail").val();
+			var desire_Youbi   = $("#desire_Youbi").val();
 
 
 			// 入力内容チェック
@@ -120,7 +126,34 @@ $(function(){
 				result = false;
 			}
 
+			// メールアドレス
+			if((!(employee_Mail.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/))) && (!employee_Mail == "")){
+				$("#Mail_error").html(" 正しいメールアドレスを入力してください ");
+				$("#employee_Mail").addClass("inp_error");
+				result = false;
+			}
+
+			// チェックボックス一つ以上
+			var arr_checkboxes=document.getElementsByClassName("checkboxes");
+			var count=0;
+			for(var i=0;i<arr_checkboxes.length;i++){
+				if(arr_checkboxes[i].checked){
+
+					count++;
+				}
+			}
+			if(count<1){
+				$("#Youbi_error").html(" 希望曜日を1つ以上選んでください ");
+				$("#desire_Youbi").addClass("inp_error");
+				return false;
+			}
+
 			return result;
+
+
+
+
+
 	}
 
 	</script>
@@ -128,84 +161,91 @@ $(function(){
  </head>
  <body>
 
- <h1>従業員詳細</h1>
- <h2>変更箇所を入力しなおしてください</h2>
+ <h1 class="lead-form">従業員詳細</h1>
+ <h2 class="lead-form">変更箇所を入力してください</h2>
 <form method="post"id="admin/employee/change/complete" action="admin/employee/change/confirm"th:action="@{/admin/employee/change/confirm}">
 
-			<span class="any">入力不可</span>
+<!-- 			<span class="any">入力不可</span>
 			<label for="employee_Id">従業員ID</label>
 			<input type="text" class="form-control" id="employee_Id" name="employee_Id" th:value="${employee_Id}" readonly="readonly" />
 			<span id="Id_error" class="error_m"></span>
-
+-->
+	<div class="form-group">
 			<span class="req">必須</span>
-			<label for="employee_Name">氏名</label>
+			<label class="label" for="employee_Name">氏名</label>
 			<input type="text" class="form-control" id="employee_Name"name="employee_Name"th:value="${employee_Name}"/>
 			<span id="Name_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<span class="any">任意</span>
-			<label for="employee_Adana">呼び名（勤務表に表示される名前）</label>
+			<label class="label" for="employee_Adana">呼び名（勤務表に表示される名前）</label>
 			<input type="text" class="form-control" id="employee_Adana" name="employee_Adana" th:value="*{employee_Adana}"/>
 			<span id="Adana_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<span class="req">必須</span>
- 			<label for="employee_Ad_Number">郵便番号</label>
+ 			<label class="label" for="employee_Ad_Number">郵便番号</label>
 			<input type="text" class="form-control" id="employee_Ad_Number"name="employee_Ad_Number"th:value="*{employee_Ad_Number}"/>
 			<span id="AdNum_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<span class="req">必須</span>
- 			<label for="employee_Address">住所</label>
+ 			<label class="label" for="employee_Address">住所</label>
  			<input type="text" class="form-control" id="employee_Address"name="employee_Address"th:value="*{employee_Address}"/>
 			<span id="Ad_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<span class="req">必須</span>
- 			<label for="employee_Phone_Number">電話番号</label>
+ 			<label class="label" for="employee_Phone_Number">電話番号</label>
  			<input type="text" class="form-control" id="employee_Phone_Number"name="employee_Phone_Number"th:value="*{employee_Phone_Number}"/>
 			<span id="PhoneNum_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<span class="any">任意</span>
- 			<label for="employee_Mail">メールアドレス</label>
+ 			<label class="label" for="employee_Mail">メールアドレス</label>
  			<input type="text" class="form-control"  id="employee_Mail" name="employee_Mail"th:value="*{employee_Mail}"/>
 			<span id="Mail_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<span class="req">必須</span>
- 			<label for="desire_Days">希望日数</label>
+ 			<label class="label" for="desire_Days">希望日数</label>
  			<input type="text" class="form-control" id="desire_Days"name="desire_Days"th:value="*{desire_Days}"/>
 			<span id="Days_error" class="error_m"></span>
-
-
-
-<br>
-				<span class="any">任意</span>
+	</div>
+	<div class="form-group">
+				<span class="req">必須</span>
               <label for="desire_Days">希望曜日にチェックしてください</label>
-
- 				<h3>月曜日　<input type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="*{1}"></h3>
- 				<h3>火曜日　<input type="checkbox" name="employee_Tuesday" th:checked="${employee_Tuesday==true}"th:value="*{1}"></h3>
- 				<h3>水曜日　<input type="checkbox" name="employee_Wednesday"th:checked="${employee_Wednesday==true}" th:value="*{1}"></h3>
- 				<h3>木曜日　<input type="checkbox" name="employee_Thursday" th:checked="${employee_Thursday==true}"th:value="*{1}"></h3>
- 				<h3>金曜日　<input type="checkbox" name="employee_Friday" th:checked="${employee_Friday==true}"th:value="*{1}"></h3>
- 				<h3>土曜日　<input type="checkbox" name="employee_Saturday"th:checked="${employee_Saturday==true}" th:value="*{1}"></h3>
- 				<h3>日曜日　<input type="checkbox" name="employee_Sunday" th:checked="${employee_Sunday==true}"th:value="*{1}"></h3>
-
+              <span id="Days_error" class="error_m"></span>
 <br/>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="*{1}">月曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Tuesday" th:checked="${employee_Tuesday==true}"th:value="*{1}">火曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Wednesday"th:checked="${employee_Wednesday==true}" th:value="*{1}">水曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Thursday" th:checked="${employee_Thursday==true}"th:value="*{1}">木曜日</label><br/>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Friday" th:checked="${employee_Friday==true}"th:value="*{1}">金曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Saturday"th:checked="${employee_Saturday==true}" th:value="*{1}">土曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Sunday" th:checked="${employee_Sunday==true}"th:value="*{1}">日曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="employee_Sonota" th:checked="${employee_Sonota==true}"th:value="*{1}">その他</label>
+	</div>
+	<div class="form-group">
 			<span class="any">任意</span>
-			<label for="employee_Bikou">備考</label>
-			<input type="text" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}"/>
-
+			<label class="label" for="employee_Bikou">備考</label>
+			<textarea name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}"/></textarea>
+	</div>
 <br>
-
-
- 			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit" name="register" id="button01">変更する</button>
-
- 			</form>
+	<div class="btn_a">
+ 			<button class="button_1"
+ 				type="submit" name="register" id="button01">変更する</button></div>
+ </form>
+	<div class="btn_b">
  			<form action="/admin/employee/list" method="get">
- 			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit"
- 				name="register">
+ 			<button class="button_2" type="submit" name="register">
+ 				従業員一覧へ戻る</button></form></div>
 
- 				従業員一覧へ戻る
- 				</button></form>
+ 	<!--フッター -->
+  <footer>
+    <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
+  </footer>
 
-
+ 		</div>
  </body>
  </html>
