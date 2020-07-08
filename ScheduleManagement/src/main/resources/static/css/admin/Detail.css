@@ -134,3 +134,26 @@ input[type="text"].inp_error {
   padding: 10px 10px;
   margin: 0 50px;
 }
+.btn_c,
+.btn_d {
+    float:left;
+    width:10%;
+}
+.button_3{
+  background: #03A9F4;
+  border: none;
+  color: white;
+  font-size:13px;
+  font-weight:bold;
+  padding: 10px 20px;
+  margin: 0 0px;
+}
+.button_4{
+  background: #aaa;
+  border: none;
+  color: white;
+  font-size:13px;
+  font-weight:bold;
+  padding: 10px 25px;
+  margin: 0 10px;
+}
