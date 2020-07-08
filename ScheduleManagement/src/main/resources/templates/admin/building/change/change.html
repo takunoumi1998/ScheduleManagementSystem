@@ -201,12 +201,14 @@ function input_check(){
  			<!-- ビル情報入力エリア -->
 
  			<!-- ビルID -->
- <!-- 		<span class="any">入力不可</span>
- 			<label for="buildingId">ビルID</label>
+ 	<div class="form-group">
+  		<span class="any">入力不可</span>
+ 			<label for="buildingId"class="label">ビルID</label>
 				<input type="text" class="form-control" id="buildingId"
  					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
  				<span id="Id_error" class="error_m"></span>
--->
+	</div>
+
  			<!-- ビル名 -->
  	<div class="form-group">
  			<span class="req">必須</span>
