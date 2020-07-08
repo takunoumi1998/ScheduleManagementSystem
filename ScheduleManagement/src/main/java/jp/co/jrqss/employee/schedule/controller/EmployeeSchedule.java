@@ -1,21 +1,18 @@
 package jp.co.jrqss.employee.schedule.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.jrqss.admin.top.controller.TopController;
+import jp.co.jrqss.employee.schedule.domain.model.DesireForm;
 import jp.co.jrqss.employee.schedule.domain.model.Work;
 import jp.co.jrqss.employee.schedule.domain.service.WorkerService;
 
@@ -35,52 +32,38 @@ public class EmployeeSchedule {
 	public String getEmployeeSchedule(Model model , Principal principal) {
 		String employeeId = principal.getName();
 
-		List<Work> workList = new ArrayList<Work>();
-		List<Map<String,Object>> getList = jdbc.queryForList("select * from work where employee_id = ?" , employeeId);
-
-		for(Map map : getList) {
-			Work work = new Work();
-			work.setBuildingId((int)map.get("building_id"));
-			work.setEmployeeId((int)map.get("employee_id"));
-			work.setWorkDate((Date)map.get("work_date"));
-			work.setWorkDay((int)map.get("work_day"));
-			work.setWorkNumber((int)map.get("work_number"));
-			work.setWorkWeek((int)map.get("work_week"));
-			workList.add(work);
-		}
+		List<Work> workList = workerService.selectMany(Integer.parseInt(employeeId));
 
 		model.addAttribute("workList",workList);
-
-		System.out.println(workList);
 
 		return "employee/schedule/top";
 	}
 
+	//勤務詳細取得
 	@GetMapping("/employee/schedule/detail")
-	public String getEmployeeSchedule(@RequestParam("date")String date,Principal principal) {
-//		String employeeId = principal.getName();
-//		//select
-//		List<Work> workList = new ArrayList<Work>();
-//		List<Map<String,Object>> getList = jdbc.queryForList("SELECT work_date,building_name,building_start,building_end FROM building,work WHERE building.building_id = work.building_id" , employeeId);
-//
-//		for(Map map : getList) {
-//			Work work = new Work();
-//			work.setWorkDate((Date)map.get("work_date"));
-//			work.setBuildingName((String)map.get("building_name"));
-//			work.setBuildingStart((Time)map.get("building_start"));
-//			work.setBuildingEnd((Time)map.get("building_end"));
-//
-//			workList.add(work);
-//
-//		}
+	public String getEmployeeScheduleDetail(@RequestParam("date")String workDate, Model model) {
+		//1件取得の時はListを使わない
+		Work work = workerService.selectOne(workDate);
+
+		System.out.println(work);
+
+		model.addAttribute("work", work);
+
 		return "employee/schedule/detail";
 	}
 
-	@PostMapping("/employee/schedule/detail")
-	public String postEmployeeSchedule(Model model , @ModelAttribute("work") Work work ,Principal principal) {
+	//変更希望依頼をDesireテーブルへ
+	@PostMapping("/employee/schedule/top")
+	public String postEmployeeScheduleTop( DesireForm form,Model model ) {
 
-		//insert
-		model.addAttribute("work",work);
+		boolean result = workerService.insert(form);
+		if(result == true) {
+			System.out.println("insert成功");
+		}else {
+			System.out.println("しっぱい");
+		}
+
+		System.out.println(form);
 
 		return "redirect:/top";
 	}

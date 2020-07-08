@@ -33,7 +33,7 @@ $(function(){
 		var result = true;
 
 			// エラー用装飾のためのクラスリセット
-			$('#buildingId').removeClass("inp_error");
+			// $('#buildingId').removeClass("inp_error");
 			$('#buildingName').removeClass("inp_error");
 			$('#buildingAdNumber').removeClass("inp_error");
 			$('#buildingAddress').removeClass("inp_error");
@@ -43,9 +43,10 @@ $(function(){
 			$('#buildingStart').removeClass("inp_error");
 			$('#buildingEnd').removeClass("inp_error");
 			$('#desireDays').removeClass("inp_error");
+			$('#buildingMail').removeClass("inp_error");
 
 			// 入力エラー文をリセット
-			$("#Id_error").empty();
+			// $("#Id_error").empty();
 			$("#Name_error").empty();
 			$("#AdNum_error").empty();
 			$("#Ad_error").empty();
@@ -55,20 +56,22 @@ $(function(){
 			$("#Start_error").empty();
 			$("#End_error").empty();
 			$("#Days_error").empty();
+			$("#Mail_error").empty();
 
 
 
 			// 入力内容セット
-			var buildingId   = $("#buildingId").val();
-			var buildingName  = $("#buildingName").val();
+			// var buildingId   = $("#buildingId").val().replace(/\s+/g,'');
+			var buildingName  = $("#buildingName").val().replace(/\s+/g,"");
 			var buildingAdNumber = $("#buildingAdNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
-			var buildingAddress  = $("#buildingAddress").val();
+			var buildingAddress  = $("#buildingAddress").val().replace(/\s+/g,"");
 			var buildingPhoneNumber  = $("#buildingPhoneNumber").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
-			var buildingNinzu  = $("#buildingNinzu").val();
-			var buildingTime  = $("#buildingTime").val();
+			var buildingNinzu  = $("#buildingNinzu").val().replace(/\s+/g,"");
+			var buildingTime  = $("#buildingTime").val().replace(/\s+/g,"");
 			var buildingStart  = $("#buildingStart").val();
 			var buildingEnd  = $("#buildingEnd").val();
 			var desireDays  = $("#desireDays").val();
+			var buildingMail  = $("#buildingMail").val().replace(/\s+/g,"");
 
 			// 入力内容チェック
 
@@ -159,6 +162,13 @@ $(function(){
 				result = false;
 			}
 
+			// メールアドレス
+			if((!(buildingMail.match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/))) && (!buildingMail == "")){
+				$("#Mail_error").html(" 正しいメールアドレスを入力してください ");
+				$("#buildingMail").addClass("inp_error");
+				result = false;
+			}
+
 			// チェックボックス一つ以上
 			var arr_checkboxes=document.getElementsByClassName("checkboxes");
 			var count=0;
@@ -177,15 +187,14 @@ $(function(){
 			return result;
 	}
 
-	</script>
-
+</script>
 
 
  </head>
  <body>
  			<div class="col-sm-5">
  				<div class="page-header">
- 				<h1>新規登録</h1>
+ 		<h2 class="lead-form">新規登録</h2>
  			</div>
 
  	<form method="post" name="register" id="admin/building/create/complete"
@@ -194,98 +203,118 @@ $(function(){
  			<!-- ビル情報入力エリア -->
 
  			<!-- ビル名 -->
+ 	<div class="form-group">
  			<span class="req">必須</span>
- 			<label for="buildingName">ビル名</label>
+ 			<label class="label" for="buildingName">ビル名</label>
  			<input type="text" class="form-control" id="buildingName"
  				name="buildingName" th:value="*{buildingName}"/>
  			<span id="Name_error" class="error_m"></span>
-
+ 	</div>
+	<div class="form-group">
  			<!-- 郵便番号 -->
  			<span class="req">必須</span>
- 			<label for="buildingAdNumber">郵便番号</label>
+ 			<label class="label" for="buildingAdNumber">郵便番号</label>
  			<input type="text" class="form-control" id="buildingAdNumber"
  				name="buildingAdNumber" th:value="*{buildingAdNumber}"/>
  			<span id="AdNum_error" class="error_m"></span>
 
-
+	</div>
+	<div class="form-group">
  			<!-- 住所 -->
  			<span class="req">必須</span>
- 			<label for="buildingAddress">住所</label>
+ 			<label class="label" for="buildingAddress">住所</label>
  			<input type="text" class="form-control" id="buildingAddress"
  				name="buildingAddress" th:value="*{buildingAddress}"/>
  			<span id="Ad_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
  			<!-- 電話番号 -->
  			<span class="req">必須</span>
- 			<label for="buildingPhoneNumber">電話番号</label>
+ 			<label class="label" for="buildingPhoneNumber">電話番号</label>
  			<input type="text" class="form-control" id="buildingPhoneNumber"
  				name="buildingPhoneNumber" th:value="*{buildingPhoneNumber}"/>
  			<span id="PhoneNum_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
  			<!-- メールアドレス -->
  			<span class="any">任意</span>
- 			<label for="buildingMail">メールアドレス</label>
+ 			<label class="label" for="buildingMail">メールアドレス</label>
  			<input type="text" class="form-control" id="buildingMail"
  				name="buildingMail" th:value="*{buildingMail}"/>
  			<span id="Mail_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
  			<!-- 必要人数 -->
  			<span class="req">必須</span>
- 			<label for="buildingNinzu">必要人数</label>
+ 			<label class="label" for="buildingNinzu">必要人数</label>
  			<input type="text" class="form-control" id="buildingNinzu"
  				name="buildingNinzu" th:value="*{buildingNinzu}"/>
  			<span id="Ninzu_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
  			<!-- 希望時間 -->
  			<span class="req">必須</span>
- 			<label for="buildingTime">希望時間</label>
+ 			<label class="label" for="buildingTime">希望時間</label>
  			<input type="text" class="form-control" id="buildingTime"
  				name="buildingTime" th:value="*{buildingTime}"/>
  			<span id="Time_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
  			<!-- 希望開始時刻 -->
  			 <span class="req">必須</span>
- 			<label for="buildingStart">希望開始時刻</label>
- 			<input type="time" class="number" id="buildingStart"
+ 			<label class="label" for="buildingStart">希望開始時刻</label>
+ 			<input type="time" class="form-control" id="buildingStart"
  				name="buildingStart" min="00:00" max="23:59"  th:value="*{buildingStart}"/>
 			<span id="Start_error" class="error_m"></span>
-
+	</div>
+	<div class="form-group">
 			<!-- 希望終了時刻 -->
  			<span class="req">必須</span>
- 			<label for="buildingEnd">希望終了時刻</label>
- 			<input type="time" class="number" id="buildingEnd"
+ 			<label class="label" for="buildingEnd">希望終了時刻</label>
+ 			<input type="time" class="form-control" id="buildingEnd"
  				name="buildingEnd" min="00:00" max="23:59"  th:value="*{buildingEnd}"/>
 			<span id="End_error" class="error_m"></span>
-
-
+	</div>
+	<div class="form-group">
  			<!-- 希望曜日 -->
  			<span class="req">必須</span>
  			<label for="desireDays">希望曜日にチェックを入れてください</label>
  			<span id="Days_error" class="error_m"></span>
-
- 				<h3>月曜日 <input class="checkboxes" type="checkbox" name="buildingMonday"
- 								th:checked="${buildingMonday==true}" th:value="*{1}"></h3>
- 				<h3>火曜日 <input class="checkboxes" type="checkbox" name="buildingTuesday"
- 								th:checked="${buildingTuesday==true}" th:value="*{1}"></h3>
- 				<h3>水曜日 <input class="checkboxes" type="checkbox" name="buildingWednesday"
- 								th:checked="${buildingWednesday==true}" th:value="*{1}"></h3>
- 				<h3>木曜日 <input class="checkboxes" type="checkbox" name="buildingThursday"
-								th:checked="${buildingThursday==true}" th:value="*{1}"></h3>
- 				<h3>金曜日 <input class="checkboxes" type="checkbox" name="buildingFriday"
- 								th:checked="${buildingFriday==true}" th:value="*{1}"></h3>
- 				<h3>土曜日 <input class="checkboxes" type="checkbox" name="buildingSaturday"
- 								th:checked="${buildingSaturday==true}" th:value="*{1}"></h3>
- 				<h3>日曜日 <input class="checkboxes" type="checkbox" name="buildingSunday"
- 								th:checked="${buildingSunday==true}" th:value="*{1}"></h3>
+<br/>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingMonday"
+ 								th:checked="${buildingMonday==true}" th:value="*{1}">月曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingTuesday"
+ 								th:checked="${buildingTuesday==true}" th:value="*{1}">火曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingWednesday"
+ 								th:checked="${buildingWednesday==true}" th:value="*{1}">水曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingThursday"
+								th:checked="${buildingThursday==true}" th:value="*{1}">木曜日</label>
+<br/>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingFriday"
+ 								th:checked="${buildingFriday==true}" th:value="*{1}">金曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingSaturday"
+ 								th:checked="${buildingSaturday==true}" th:value="*{1}">土曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingSunday"
+ 								th:checked="${buildingSunday==true}" th:value="*{1}">日曜日</label>
+ 				<label><input class="checkboxes" type="checkbox" name="buildingSonota"
+ 								th:checked="${buildingSonota==true}" th:value="*{1}">その他</label>
+	</div>
+	<div class="form-group">
+			<span class="any">任意</span>
+			<label class="label" for="desire_Days">備考</label>
+ 			<textarea class="form-control" id="employee_Bikou"name="employee_Bikou"
+ 			 th:value="*{employee_Bikou}"/></textarea>
+ 	</div>
 
  	<!-- 登録ボタン -->
- 			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit" name="register" id="button01">登録</button>
- 	</form>
-
+ 	<div class="btn_a">
+ 			<button class="button_1"
+ 				type="submit" name="register" id="button01">登録</button></div>
+ </form>
+	<div class="btn_b">
 		<form method="get" action="/admin/building/list">
- 			<button class="btn btn-primary btn-lg pull-right"
- 				type="submit" name="back">ビル一覧へ戻る</button></form>
+ 			<button class="button_2"
+ 				type="submit" name="back">ビル一覧へ戻る</button></form></div>
 
  <!--フッター -->
   <footer>

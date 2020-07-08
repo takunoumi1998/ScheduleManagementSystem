@@ -158,8 +158,8 @@ public class BuildingController {
 			// insert用変数
 					//Building building = new Building();
 
-					//building.setBuildingId(form.getBuildingId());
-					/*building.setBuildingName(form.getBuildingName());
+					/*building.setBuildingId(form.getBuildingId());
+					building.setBuildingName(form.getBuildingName());
 					building.setBuildingNinzu(form.getBuildingNinzu());
 					building.setBuildingTime(form.getBuildingTime());
 					building.setBuildingMonday(form.isBuildingMonday());
@@ -304,7 +304,8 @@ public class BuildingController {
      * 【変更 → 確認】
      */
 	@PostMapping("admin/building/change/confirm")
-	public String postAdminBuildingChangeeConfirm(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingChangeeConfirm(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -342,7 +343,7 @@ public class BuildingController {
 		building.setBuildingStart(str9);
 		building.setBuildingEnd(str10);
 */
-		model.addAttribute("buildingId",str1);
+		//model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
@@ -367,7 +368,8 @@ public class BuildingController {
      * 【変更】確認 → 修正
      */
 	@PostMapping("admin/building/change/backchange")
-	public String postAdminBuildingChangeBackchange(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingChangeBackchange(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -386,7 +388,7 @@ public class BuildingController {
 			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
-		model.addAttribute("buildingId",str1);
+	//	model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
