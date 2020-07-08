@@ -41,9 +41,9 @@ public class EmployeeSchedule {
 
 	//勤務詳細取得
 	@GetMapping("/employee/schedule/detail")
-	public String getEmployeeScheduleDetail(@RequestParam("date")String workDate, Model model) {
+	public String getEmployeeScheduleDetail(@RequestParam("date")String workDate, Model model,Principal principal) {
 		//1件取得の時はListを使わない
-		Work work = workerService.selectOne(workDate);
+		Work work = workerService.selectOne(workDate,principal.getName());
 
 		System.out.println(work);
 

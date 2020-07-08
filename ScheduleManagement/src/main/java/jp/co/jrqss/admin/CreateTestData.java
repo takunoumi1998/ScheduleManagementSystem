@@ -132,7 +132,7 @@ public class CreateTestData {
 						,rd.nextInt(2)
 						,rd.nextInt(2)
 						,building[1]
-						,building[2]
+						,building[0]
 						,building[3]
 						,building[4]
 						,"10:00"
