@@ -25,6 +25,7 @@ public class CreateTestData {
 		BufferedReader br = null;
 		String str;
 		List<String[]> jushoList = new ArrayList<String[]>();
+		List<String[]> employeeList = jushoList;
 		Random rd = new Random();
 		int count = 0;
 		int count2 = 0;
@@ -45,14 +46,19 @@ public class CreateTestData {
 			is = new ClassPathResource("static/csv/employee.csv").getInputStream();
 			isr = new InputStreamReader(is);
 			br = new BufferedReader(isr);
+			int id = 1001;
 
-
+			jdbc.update("delete from desire");
+			jdbc.update("delete from work");
+			jdbc.update("delete from building");
 			jdbc.update("delete from employee where employee_role = 'ROLE_USER'");
 
 			while((str = br.readLine()) != null) {
 				String[] employee  = str.split(",");
 				String[] jusho = jushoList.get(rd.nextInt(count));
-				int rowNumber = jdbc.update("insert into employee(employee_name,"
+				int rowNumber = jdbc.update("insert into employee("
+						+"employee_id,"
+						+"employee_name,"
 						+"employee_adana,"
 						+"desire_days,"
 						+"employee_monday,"
@@ -67,7 +73,8 @@ public class CreateTestData {
 						+"employee_phone_number,"
 						+"employee_mail,"
 						+"employee_bikou)"
-						+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+						+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+						,id++
 						,employee[0]
 						,employee[1]
 						,rd.nextInt(10)
@@ -84,8 +91,56 @@ public class CreateTestData {
 						,employee[2]
 						,""
 						);
-				System.out.println(rowNumber);
 			}
+
+			//ビルCSVの読み込み
+			is = new ClassPathResource("static/csv/building.csv").getInputStream();
+			isr = new InputStreamReader(is);
+			br = new BufferedReader(isr);
+			id=1;
+
+			while((str = br.readLine()) != null) {
+				String[] building  = str.split(",");
+				int rowNumber=jdbc.update("insert into building("
+						+"building_id,"
+						+"building_name,"
+						+"building_ninzu,"
+						+"building_time,"
+						+"building_monday,"
+						+"building_tuesday,"
+						+"building_wednesday,"
+						+"building_thursday,"
+						+"building_friday,"
+						+"building_saturday,"
+						+"building_sunday,"
+						+"building_ad_number,"
+						+"building_address,"
+						+"building_phone_number,"
+						+"building_mail,"
+						+"building_start,"
+						+"building_end)"
+						+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+						,id++
+						,building[0]
+						,rd.nextInt(5)
+						,120
+						,rd.nextInt(2)
+						,rd.nextInt(2)
+						,rd.nextInt(2)
+						,rd.nextInt(2)
+						,rd.nextInt(2)
+						,rd.nextInt(2)
+						,rd.nextInt(2)
+						,building[1]
+						,building[2]
+						,building[3]
+						,building[4]
+						,"10:00"
+						,"12:00"
+
+						);
+			}
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
