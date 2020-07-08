@@ -121,6 +121,7 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
+			@RequestParam("buildingBikou")String str11,
 			Model model) {
 
 		//model.addAttribute("buildingId",str1);
@@ -140,6 +141,7 @@ public class BuildingController {
 		model.addAttribute("buildingMail",str8);
 		model.addAttribute("buildingStart",str9);
 		model.addAttribute("buildingEnd",str10);
+		model.addAttribute("buildingBikou",str11);
 
 
 			return "admin/building/create/confirm";
@@ -210,6 +212,7 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
+			@RequestParam("buildingBikou")String str11,
 			Model model) {
 
 		//model.addAttribute("buildingId",str1);
@@ -229,6 +232,7 @@ public class BuildingController {
 		model.addAttribute("buildingMail",str8);
 		model.addAttribute("buildingStart",str9);
 		model.addAttribute("buildingEnd",str10);
+		model.addAttribute("buildingBikou",str11);
 
 
 		return "admin/building/create/register";
@@ -291,6 +295,7 @@ public class BuildingController {
 		model.addAttribute("buildingMail",building.getBuildingMail());
 		model.addAttribute("buildingStart",building.getBuildingStart());
 		model.addAttribute("buildingEnd",building.getBuildingEnd());
+		model.addAttribute("buildingBikou",building.getBuildingBikou());
 
 
 
@@ -322,6 +327,7 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
+			@RequestParam("buildingBikou")String str11,
 			Model model) {
 
 		/*Building building = new Building();
@@ -360,6 +366,7 @@ public class BuildingController {
 		model.addAttribute("buildingMail",str8);
 		model.addAttribute("buildingStart",str9);
 		model.addAttribute("buildingEnd",str10);
+		model.addAttribute("buildingBikou",str11);
 
 			return "admin/building/change/confirm";
 	}
@@ -386,6 +393,7 @@ public class BuildingController {
 			@RequestParam("buildingMail")String str8,
 			@RequestParam("buildingStart")String str9,
 			@RequestParam("buildingEnd")String str10,
+			@RequestParam("buildingBikou")String str11,
 			Model model) {
 
 		model.addAttribute("buildingId",str1);
@@ -405,6 +413,7 @@ public class BuildingController {
 		model.addAttribute("buildingMail",str8);
 		model.addAttribute("buildingStart",str9);
 		model.addAttribute("buildingEnd",str10);
+		model.addAttribute("buildingBikou",str11);
 
 
 		return "admin/building/change/change";
