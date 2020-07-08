@@ -5,7 +5,7 @@ delete from desire;
 
 --sample
 --insert into building values (1100,'Aビル',1,120,0,0,0,1,0,1,1,'郵便番号','住所','電話番号','メールアドレス','09:00','11:00');
---INSERT INTO employee VALUES(1100,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_USER');
+INSERT INTO employee VALUES(1000,'サンプル','サンプルさん',10,0,0,0,0,0,0,0,'8160000','福岡市早良区百道浜1-1-1','0928411000','seinan@edu.cc.jp','毎月第4月曜日はだめ','$2a$10$NsqIwdjOXUeErn1scAVnjuaz3gszcRETtcisaUKzhOLKELCJbzvHu','ROLE_ADMIN');
 --INSERT INTO work values(1100,1100,1,1,6,'2020-8-1');
 
 -- ビル

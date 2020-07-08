@@ -42,11 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 		.authorizeRequests()
-//		.antMatchers("/admin/**").hasRole("ADMIN")
+		.antMatchers("/admin/**").permitAll()//hasRole("ADMIN")
 		.antMatchers("/webjars/**").permitAll()
 		.antMatchers("/console/**").permitAll()
 		.antMatchers("/css/**").permitAll()
 		.antMatchers("/login").permitAll()
+		.antMatchers("/test").permitAll()
 //		.antMatchers("/**").permitAll();
 		.anyRequest().authenticated();
 
