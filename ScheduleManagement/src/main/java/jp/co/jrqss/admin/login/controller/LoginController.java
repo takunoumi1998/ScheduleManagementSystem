@@ -29,7 +29,7 @@ public class LoginController {
 	@GetMapping("/login")
 	public String getLogin() {
 		String yubin = "123-1234";
-		String jusho = "福岡市";
+		String jusho = "福岡県福岡市博多区吉塚本町１３−７９";
 		String phone = "0120117117";
 		String mail = "abcd@co.jp";
 		String bikou = "備考";
@@ -46,7 +46,7 @@ public class LoginController {
 //		}catch(Exception e) {
 //
 //		}
-		for(int i = 1000; i <= 1010; i++) {
+		for(int i = 1000; i <= 1003; i++) {
 			if(i == 1000) {
 				role = "ROLE_ADMIN";
 			}else {
@@ -75,11 +75,11 @@ public class LoginController {
 
 				System.out.println(role);
 
-				if(i <= 1005) {
+				if(i <= 1000) {
 					jdbc.update("INSERT INTO building VALUES("
 							+ "?" //ID
 							+ ",?"	//名前
-							+ ",5"	//人数
+							+ ",2"	//人数
 							+ ",120"	//勤務時間（分）
 							+ ",1"	//月
 							+ ",0"	//火
@@ -94,11 +94,9 @@ public class LoginController {
 							+ ",?"	//メールアドレス
 							+ ",?"	//開始時間
 							+ ",?)"	//終了時間
-							,i,i+"ビル",yubin,jusho,phone,mail,startTime,endTime);
+							,i,"JRQSS本社",yubin,jusho,phone,mail,startTime,endTime);
 				}
 			}catch(Exception e) {
-				e.printStackTrace();
-				System.out.println("失敗");
 			}
 		}
 		return "admin/login/login";

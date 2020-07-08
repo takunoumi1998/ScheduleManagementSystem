@@ -1,19 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+lang="ja">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/css/admin/Emp_Build_info.css}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <title>従業員一覧</title>
+
+<script>
+$(function() {
+  var page = 0;
+  function draw() {
+	$('#lastpage').html(Math.ceil(($('tr').size()-1)/10));
+    $('#page').html(page + 1);
+    $('tr').hide();
+    $('tr:first,tr:gt(' + page * 10 + '):lt(10)').show();
+  }
+  $('#prev').click(function() {
+    if (page > 0) {
+      page--;
+      draw();
+    }
+  });
+  $('#next').click(function() {
+    if (page < ($('tr').size() - 1) / 10 - 1) {
+      page++;
+      draw();
+    }
+  });
+  draw();
+});
+</script>
+<style>
+td, th {
+  border: 1px solid black;
+  padding: 2px;
+}
+#prev, #next {
+  color: black;
+  cursor: pointer;
+}
+</style>
+
 </head>
 <body>
 
 <h1>従業員情報</h1>
+
 <form  action="/admin/employee/list" method="post">
-  <p>検索したい従業員名を入力してください。</p>
+  <p>従業員名で検索</p>
   <input type="search" name="searchName" placeholder="名前を入力">
   <input type="submit" name="submit"value="検索">
-</form><br>
+</form>
+<form  action="/admin/employee/address" method="post">
+  <p>住所で検索</p>
+  <input type="search" name="searchAddress" placeholder="住所を入力">
+  <input type="submit" name="submit"value="検索">
+</form>
+
+
+
+
 <p>
 <form method="get" action="/admin/employee/create/register">
 <button style="margin-bottom:3vw; float: right;" class="button1" type="submit" name="newinfo">新規登録</button></form>
@@ -31,7 +79,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 
 
-<table border="1">
+
+<table border="1" id="tbl1">
 	<tr>
 		<!-- <td></td> -->
 		<td>従業員ID</td>
@@ -44,7 +93,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	</tr>
 
 <!-- 詳細ページへはgetメソッドのみ飛べる コントローラーにgetを作っておく-->
-	<tr th:each="employee : ${employeeList}">
+		<tr th:each="employee : ${employeeList}">
 		<!-- <td><input type="checkbox" name="delete" value="1"></td> -->
 		<td th:text="${employee.employee_Id}"></td>
 		<td th:text="${employee.employee_Name}"></td>
@@ -56,8 +105,20 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	</tr>
 </table>
 
+<button id="prev">＜</button>　<span id="page"></span>/<span id="lastpage"></span>　<button id="next">＞</button>
+
+<script TYPE="text/javascript">
+
+  //行数取得
+  var row = tbl1.rows.length-1;
+  //結果表示
+  document.write("人数："+row+"人");
+
+</script>
 
 
+
+<p></p>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
 </body>
 </html>

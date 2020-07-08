@@ -6,8 +6,8 @@
 <title>確認画面</title>
 </head>
 <body>
-<h1>削除確認</h1>
-<p>以下の従業員を削除します。削除後はもとに戻せません。</p>
+<h1 class="lead-form">削除確認</h1>
+<p class="lead-form">以下の従業員を削除します。削除後はもとに戻せません。</p>
 <br>
 <h3>従業員ID：　<span th:text="*{employee_Id}"></span></h3>
 <h3>従業員氏名：<span th:text="*{employee_Name}"></span></h3>
@@ -19,13 +19,26 @@
 <!-- 削除ボタン　隠しデータとしてemployee_Idを送る。 -->
 <form action="/admin/employee/delete/complete" method="post">
 <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}">
-<button class="button4" type="submit">削除する</button>
+<input type="submit" class="button4" value="削除する" onclick="return kakunin()"/>
 </form>
 
 
 <!-- 戻るボタン -->
-<form method="get" action="/admin/employee/list"> <button class="button4" type="submit" >戻る</button>
+<form method="get" action="/admin/employee/list">
+		<button class="button_2" type="submit" >戻る</button>
 </form>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
+
+<script type="text/javascript" >
+function kakunin(){
+	if(window.confirm("本当に[[*{employee_Name}]]さんを削除しますか？　削除すると元に戻せません。")){
+		return true;
+	}else{
+		return false;
+	}
+
+}
+
+</script>
 </body>
 </html>

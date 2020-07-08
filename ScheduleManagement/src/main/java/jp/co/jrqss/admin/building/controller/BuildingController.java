@@ -60,6 +60,24 @@ public class BuildingController {
 		}
 	}
 
+	/*
+	 * ビル住所から検索
+	 */
+
+	@PostMapping("admin/building/address")
+	public String postAdminBuildingAddress(Model model , @ModelAttribute("SearchForm") SearchForm searchForm) {
+		if(!(searchForm.getSearchAddress().equals(""))) {
+			List<Building> buildingList = buildingService.findByAddress(searchForm);
+			model.addAttribute("buildingList",buildingList);
+			return "admin/building/list";
+		}else {
+			return getAdminBuildingList(model);
+		}
+	}
+
+
+
+
 	/**
      * 【新規登録】
      */
@@ -140,8 +158,8 @@ public class BuildingController {
 			// insert用変数
 					//Building building = new Building();
 
-					//building.setBuildingId(form.getBuildingId());
-					/*building.setBuildingName(form.getBuildingName());
+					/*building.setBuildingId(form.getBuildingId());
+					building.setBuildingName(form.getBuildingName());
 					building.setBuildingNinzu(form.getBuildingNinzu());
 					building.setBuildingTime(form.getBuildingTime());
 					building.setBuildingMonday(form.isBuildingMonday());
@@ -286,7 +304,8 @@ public class BuildingController {
      * 【変更 → 確認】
      */
 	@PostMapping("admin/building/change/confirm")
-	public String postAdminBuildingChangeeConfirm(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingChangeeConfirm(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -305,7 +324,7 @@ public class BuildingController {
 			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
-		Building building = new Building();
+		/*Building building = new Building();
 
 		building.setBuildingName(str2);
 		building.setBuildingNinzu(str3);
@@ -323,8 +342,8 @@ public class BuildingController {
 		building.setBuildingMail(str8);
 		building.setBuildingStart(str9);
 		building.setBuildingEnd(str10);
-
-
+*/
+		//model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
@@ -349,7 +368,8 @@ public class BuildingController {
      * 【変更】確認 → 修正
      */
 	@PostMapping("admin/building/change/backchange")
-	public String postAdminBuildingChangeBackchange(@RequestParam("buildingId")int str1,
+	public String postAdminBuildingChangeBackchange(
+			//@RequestParam("buildingId")int str1,
 			@RequestParam("buildingName")String str2,
 			@RequestParam("buildingNinzu")int str3,
 			@RequestParam("buildingTime")int str4,
@@ -368,7 +388,7 @@ public class BuildingController {
 			@RequestParam("buildingEnd")String str10,
 			Model model) {
 
-		model.addAttribute("buildingId",str1);
+	//	model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
 		model.addAttribute("buildingTime",str4);
@@ -407,7 +427,7 @@ public class BuildingController {
 					model.addAttribute("result", "更新失敗");
 				}
 
-				return "admin/building/change/complete";
+				return getAdminBuildingList(model);
 
 }
 

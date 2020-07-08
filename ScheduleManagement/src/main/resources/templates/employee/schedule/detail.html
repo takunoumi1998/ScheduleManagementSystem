@@ -36,18 +36,15 @@ li{
 
 a{
 	text-decoration:none;
-	color:white;
 }
 </style>
 
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<!-- CSS -->
-<link rel="stylesheet">
-
 <!-- JQuery -->
 <script
   src="http://code.jquery.com/jquery-3.5.1.js"
@@ -60,37 +57,38 @@ a{
 <title>勤務関係</title>
 </head>
 <body>
-<!--
-	<header>
-	    <div class="menu_button"><span>MENU</span></div>
-	    <nav class="nav">
-	        <ul>
-	            <a href=""><li>スケジュール一覧</li></a>
-	            <a href=""><li>給与一覧</li></a>
-	        </ul>
-	    </nav>
-	</header>
--->
 	<main>
-		<form th:action="@{/employee/schedule/detail}" method="post">
+
+ 	<form  th:action="@{/employee/schedule/detail}" method="get">
 		<div style="text-align:center; font-size:5em; margin-top:5vh;">
 	    	<p style="margin:0;">スケジュール詳細</p>
 	    </div>
+	</form>
 	    <hr>
 	    <div style="font-size:5em;">
 	    	<p style="margin:0; margin-top:5vh;">勤務時間</p>
 	    </div>
 	    <div>
-	    	<table border="1"style="font-size:4em; margin:auto;width:100%;">
+	    	<table border="1" style="font-size:4em; margin:auto; width:100%;">
 	    		<tr style=" background-color:lightgoldenrodyellow">
-	    			<td id="dateTd">日付</td>
+	    			<td>
+	    				<p th:text="${work.workDate}">日付</p>
+	    			</td>
+	    		</tr>
+		   		<tr>
+	    			<td>
+	    				<nobr th:text="${work.buildingName}">ビル</nobr>
+	    				<nobr id="map"></nobr>
+	    			</td>
 	    		</tr>
 	    		<tr>
-	    			<td id="buildingNameTd">ビル名</td>
+	    			<td>
+	    				<nobr th:text="${work.buildingStart}">清掃開始時間</nobr>
+	    				～
+	    				<nobr th:text="${work.buildingEnd}">清掃終了時間</nobr>
+	    			</td>
 	    		</tr>
-	    		<tr>
-	    			<td id="workTimeTd">勤務時間</td>
-	    		</tr>
+
 	    	</table>
 	    </div>
 	    <div style="height:5vh;"></div>
@@ -110,41 +108,41 @@ a{
 	    <div style="height:5vh;">
 	    </div>
 	    <div style="text-align:center; height:5vh;">
-	    	<input type="submit" value="変更を依頼する"  onclick="return redirect()" style="width:50%; font-size:3em; height:5vh; color:white; background-color:red;">
-	    </div>
-	    </form>
-	</main>
-</body>
-</html>
-
-
+	    	<button onclick="return check()" style="width:50%; font-size:3em; height:5vh; color:white; background-color:red;">
+	    	変更を依頼する
+	    	</button>
+		 </div>
+<form id="change" name="change" method="post">
+	<input type="hidden" name="buildingId" th:value="${work.buildingId}">
+	<input type="hidden" name="workNumber" th:value="${work.workNumber}">
+	<input type="hidden" name="workDate" th:value="${work.workDate}">
+	<input type="hidden" name="employeeId" th:value="${work.employeeId}">
+	<input id="desire" type="hidden" name="desireDate">
+</form>
 <script type="text/javascript" th:inline="javascript">
+
 /*<![CDATA[*/
-var date = new Date();
-var buildingName = "不明ビル";
-var workTime = "20:00 ~ 22:00";
+	var work = /*[[${work}]]*/;
 
-var dateTd = document.getElementById("dateTd");
-var buildingNameTd = document.getElementById("buildingNameTd");
-var workTimeTd = document.getElementById("workTimeTd");
+	var map = document.getElementById("map");
+	console.log(map);
+	map.innerHTML="(<a href='https://www.google.com/maps/search/"+work.buildingAddress+"/'>地図</a>)";
 
-dateTd.textContent=date.getMonth()+"月"+date.getDate()+"日"
-buildingNameTd.textContent=buildingName;
-workTimeTd.textContent=workTime
+	//本日の日付を文字列で取得
+	var date = new Date();
+	var dateStr = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+	console.log(dateStr);
+	var desire = document.getElementById("desire");
+	desire.setAttribute("value",dateStr);
 
-$(function() {
-    $(".nav").css("display","none");
-    $(".menu_button").on("click", function() {
-        $(".nav").slideToggle();
-    });
-});
-
-function redirect(){
-	if(confirm("勤務の変更依頼を出しますか？")){
-
-		alert("変更を依頼しました。\nスケジュールに戻ります")
-
-		return true;
+	//onclick=return checkから飛んでくる関数の部分
+function check(){
+	var flag = confirm("勤務の変更依頼を出しますか？");
+	if(flag == true){
+		alert("変更を依頼しました。\nスケジュールに戻ります。")
+		var fm = document.getElementById("change");
+		fm.action = "/employee/schedule/top";
+		fm.submit();
 	}else{
 		return false;
 	}
@@ -153,4 +151,7 @@ function redirect(){
 /*]]>*/
 </script>
 
-
+</main>
+</body>
+</html>
+<!--    -->

@@ -20,7 +20,7 @@
 			<input type="submit" value="トップに戻る" class="left" style="margin-bottom:3vw; float: left;">
 		</form>
 
-		<form action="/admin/schedule/create" method="post">
+		<form action="/admin/schedule/create" method="post"  onSubmit="is_note_msg=false;">
 			<div id='schedule'>
 
 			</div>
@@ -403,6 +403,20 @@
 				}
 			}
 		}
+	}
+
+	window.onbeforeunload = function(event){
+		  event = event || window.event;
+		  event.returnValue = 'ページから移動しますか？';
+	}
+
+	var is_note_msg=true;
+
+	window.onbeforeunload = function(event){
+	  if(is_note_msg){
+	    event = event || window.event;
+	    event.returnValue = '入力中のページから移動しますか？';
+	  }
 	}
 /*]]>*/
 </script>

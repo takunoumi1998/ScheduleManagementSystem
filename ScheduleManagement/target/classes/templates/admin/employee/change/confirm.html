@@ -4,9 +4,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="Detail.css">
-
-	<title>従業員｜入力内容確認ページ</title>
+<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
+	<title>従業員｜入力内容確認</title>
 
  </head>
  <body>
@@ -14,7 +13,7 @@
  		<div class="row">
  			<div class="col-sm-5">
  				<div class="page-header">
- 				<h1>変更内容確認</h1>
+ 				<h1 class="lead-form">変更内容確認</h1>
  				</div>
 
  			<form method="post" action="/admin/employee/change/complete" th:action="@{/admin/employee/change/complete}">
@@ -63,17 +62,11 @@
 			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 
 
+ 	<p>この内容で確定しますか？</p>
 
-
-<br>
-<br>
- 	<h2>この内容で確定しますか？</h2>
-
-
-         <!--<input type="hidden" name="q" value="1">-->
-         <!--実際は入力ページから受け取ったデータを隠し持っておく-->
-         <!--その情報を送るなら”確定”、訂正なら”リダイレクト？”で戻る-->
-		<button type="submit" value="confirm">確定</button>
+    <div class="btn_a">
+		<button class="button_1" type="submit" value="confirm">確定</button>
+	</div>
 
          </form>
 			<form method="post" action="/admin/employee/change/backchange">
@@ -93,7 +86,8 @@
 			<input type="hidden" name="employee_Saturday" id="employee_Saturday" th:value="*{employee_Saturday}">
 			<input type="hidden" name="employee_Sunday" id="employee_Sunday" th:value="*{employee_Sunday}">
 			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
-         <input type="submit"value="修正する">
+	<div class="btn_b">
+         <button class="button_2" type="submit" value="confirm">修正する</button></div>
          </form>
 
 
