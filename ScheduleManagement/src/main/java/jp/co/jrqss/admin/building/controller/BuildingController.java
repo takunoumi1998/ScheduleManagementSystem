@@ -396,6 +396,8 @@ public class BuildingController {
 			@RequestParam("buildingBikou")String str11,
 			Model model) {
 
+		//System.out.println(str11);
+
 		model.addAttribute("buildingId",str1);
 		model.addAttribute("buildingName",str2);
 		model.addAttribute("buildingNinzu",str3);
