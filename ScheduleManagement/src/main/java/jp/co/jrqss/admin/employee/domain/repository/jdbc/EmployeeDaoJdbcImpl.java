@@ -159,7 +159,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao{
 			employeeList.add(employee);
 		}
 
-		System.out.println(employeeList);
+		//System.out.println(employeeList);
 		return employeeList;
 
 	}
