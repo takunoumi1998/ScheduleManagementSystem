@@ -36,7 +36,6 @@ li{
 
 a{
 	text-decoration:none;
-	color:white;
 }
 </style>
 
@@ -46,9 +45,6 @@ a{
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<!-- CSS -->
-<!--  <link rel="stylesheet">	-->
-
 <!-- JQuery -->
 <script
   src="http://code.jquery.com/jquery-3.5.1.js"
@@ -61,17 +57,6 @@ a{
 <title>勤務関係</title>
 </head>
 <body>
-<!--
-	<header>
-	    <div class="menu_button"><span>MENU</span></div>
-	    <nav class="nav">
-	        <ul>
-	            <a href=""><li>スケジュール一覧</li></a>
-	            <a href=""><li>給与一覧</li></a>
-	        </ul>
-	    </nav>
-	</header>
--->
 	<main>
 
  	<form  th:action="@{/employee/schedule/detail}" method="get">
@@ -92,17 +77,15 @@ a{
 	    		</tr>
 		   		<tr>
 	    			<td>
-	    				<p th:text="${work.buildingName}">ビル</p>
+	    				<nobr th:text="${work.buildingName}">ビル</nobr>
+	    				<nobr id="map"></nobr>
 	    			</td>
 	    		</tr>
 	    		<tr>
 	    			<td>
-	    				<p th:text="${work.buildingStart}">清掃開始時間</p>
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<p th:text="${work.buildingEnd}">清掃終了時間</p>
+	    				<nobr th:text="${work.buildingStart}">清掃開始時間</nobr>
+	    				～
+	    				<nobr th:text="${work.buildingEnd}">清掃終了時間</nobr>
 	    			</td>
 	    		</tr>
 
@@ -139,7 +122,11 @@ a{
 <script type="text/javascript" th:inline="javascript">
 
 /*<![CDATA[*/
-	console.log(/*[[${work}]]*/);
+	var work = /*[[${work}]]*/;
+
+	var map = document.getElementById("map");
+	console.log(map);
+	map.innerHTML="(<a href='https://www.google.com/maps/search/"+work.buildingAddress+"/'>地図</a>)";
 
 	//本日の日付を文字列で取得
 	var date = new Date();
@@ -148,7 +135,7 @@ a{
 	var desire = document.getElementById("desire");
 	desire.setAttribute("value",dateStr);
 
-	//onclick=return checkから飛んでくる
+	//onclick=return checkから飛んでくる関数の部分
 function check(){
 	var flag = confirm("勤務の変更依頼を出しますか？");
 	if(flag == true){

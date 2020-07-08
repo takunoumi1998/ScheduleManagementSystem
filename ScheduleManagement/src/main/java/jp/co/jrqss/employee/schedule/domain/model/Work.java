@@ -13,6 +13,7 @@ public class Work {
 	private int workDay;
 	private Date workDate;
 
+	private String buildingAddress;
 	private String buildingName;
 	private String buildingStart;
 	private String buildingEnd;
