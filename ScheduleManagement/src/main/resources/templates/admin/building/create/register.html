@@ -101,6 +101,7 @@ $(function(){
 			if(buildingAddress == ""){
 				$("#Ad_error").html(" 必須項目です ");
 				$("#buildingAddress").addClass("inp_error");
+				result = false;
 			}
 
 			// ビル電話
@@ -304,7 +305,6 @@ $(function(){
 			<label class="label" for="desire_Days">備考</label>
  			<textarea class="form-control" id="buildingBikou"name="buildingBikou"
  			 th:value="*{buildingBikou}"></textarea>
- 			 <input type="text" th:value="*{buildingBikou}">
  	</div>
 
  	<!-- 登録ボタン -->
