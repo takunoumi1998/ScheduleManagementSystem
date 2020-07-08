@@ -29,8 +29,8 @@ public class WorkerService {
 	 * IDなどに対応したデータを取得するときはselectManyの引数に記載（今回ならwork_date）
 	 * 戻り値でも最後に引数と同じものを（そこにはデータ型は不要）
 	 */
-	public Work selectOne(String workDate) {
-		return workdao.selectOne(workDate);
+	public Work selectOne(String workDate,String employeeId) {
+		return workdao.selectOne(workDate,employeeId);
 	}
 
 	//1件insert

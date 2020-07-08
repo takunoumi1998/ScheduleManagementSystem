@@ -13,7 +13,7 @@ public interface WorkDao {
 	public List<Work> selectMany(int employeeId) throws DataAccessException;
 
 	//1件取得
-	public Work selectOne(String workDate) throws DataAccessException;
+	public Work selectOne(String workDate,String employeeId) throws DataAccessException;
 
 	//データを1件insert
 	public int insertOne(DesireForm form)throws DataAccessException;
