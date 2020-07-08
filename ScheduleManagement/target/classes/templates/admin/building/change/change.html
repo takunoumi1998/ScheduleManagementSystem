@@ -201,12 +201,14 @@ function input_check(){
  			<!-- ビル情報入力エリア -->
 
  			<!-- ビルID -->
- <!-- 		<span class="any">入力不可</span>
- 			<label for="buildingId">ビルID</label>
+ 	<div class="form-group">
+  		<span class="any">入力不可</span>
+ 			<label for="buildingId"class="label">ビルID</label>
 				<input type="text" class="form-control" id="buildingId"
  					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
  				<span id="Id_error" class="error_m"></span>
--->
+	</div>
+
  			<!-- ビル名 -->
  	<div class="form-group">
  			<span class="req">必須</span>
@@ -305,8 +307,9 @@ function input_check(){
 	</div>
 	<div class="form-group">
 			<span class="any">任意</span>
-			<label class="label" for="employee_Bikou">備考</label>
-			<textarea name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}"/></textarea>
+			<label class="label" for="buildingBikou">備考</label>
+			<textarea name="buildingBikou"id="buildingBikou"th:value="*{buildingBikou}"></textarea>
+
 	</div>
 
  	<!-- 変更ボタン -->
@@ -324,6 +327,9 @@ function input_check(){
   <footer>
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
+
+
+
 
  		</div>
  </body>

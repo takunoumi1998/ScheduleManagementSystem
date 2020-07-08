@@ -50,6 +50,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingMail((String)map.get("building_mail"));
 			building.setBuildingStart((String)map.get("buildingStart"));
 			building.setBuildingEnd((String)map.get("building_end"));
+			building.setBuildingBikou((String)map.get("building_bikou"));
 
 
 			// 結果返却用リストに返却
@@ -89,6 +90,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingMail((String)map.get("building_mail"));
 			building.setBuildingStart((String)map.get("buildingStart"));
 			building.setBuildingEnd((String)map.get("building_end"));
+			building.setBuildingBikou((String)map.get("building_bikou"));
 
 
 			// 結果返却用リストに返却
@@ -127,8 +129,9 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_phone_number,"
 				+"building_mail,"
 				+"building_start,"
-				+"building_end)"
-				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+				+"building_end,"
+				+"building_bikou)"
+				+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 				//,building.getBuildingId()
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
@@ -146,6 +149,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingMail()
 				,building.getBuildingStart()
 				,building.getBuildingEnd()
+				,building.getBuildingBikou()
 				);
 
 
@@ -180,6 +184,9 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 		building.setBuildingMail((String)map.get("building_mail"));
 		building.setBuildingStart((String)map.get("building_start"));
 		building.setBuildingEnd((String)map.get("building_end"));
+		building.setBuildingBikou((String)map.get("building_bikou"));
+
+
 
 
 
@@ -219,6 +226,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 			building.setBuildingMail((String)map.get("building_mail"));
 			building.setBuildingStart((String)map.get("building_start"));
 			building.setBuildingEnd((String)map.get("building_end"));
+			building.setBuildingBikou((String)map.get("building_bikou"));
+
 
 
 
@@ -252,7 +261,8 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				+"building_phone_number=?,"
 				+"building_mail=?,"
 				+"building_start=?,"
-				+"building_end=?"
+				+"building_end=?,"
+				+"building_bikou=?"
 				+" where building_id=?"
 				,building.getBuildingName()
 				,building.getBuildingNinzu()
@@ -270,6 +280,7 @@ public class BuildingDaoJdbcImpl implements BuildingDao {
 				,building.getBuildingMail()
 				,building.getBuildingStart()
 				,building.getBuildingEnd()
+				,building.getBuildingBikou()
 				,building.getBuildingId()
 				);
 
