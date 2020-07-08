@@ -22,4 +22,5 @@ public class Building {
 	private String buildingMail;
 	private String buildingStart;
 	private String buildingEnd;
+	private String buildingBikou;
 }

@@ -151,11 +151,14 @@ $(function(){
  <h2 class="lead-form">変更箇所を入力してください</h2>
 <form method="post"id="admin/employee/change/complete" action="admin/employee/change/confirm"th:action="@{/admin/employee/change/confirm}">
 
-<!-- 			<span class="any">入力不可</span>
-			<label for="employee_Id">従業員ID</label>
+	  <div class="form-group" >
+ 			<span class="any">入力不可</span>
+			<label for="employee_Id" class="label">従業員ID</label>
 			<input type="text" class="form-control" id="employee_Id" name="employee_Id" th:value="${employee_Id}" readonly="readonly" />
-			<span id="Id_error" class="error_m"></span>
--->
+			 <span id="Id_error" class="error_m"></span>
+
+	</div>
+
 	<div class="form-group">
 			<span class="req">必須</span>
 			<label class="label" for="employee_Name">氏名</label>
@@ -215,7 +218,7 @@ $(function(){
 	<div class="form-group">
 			<span class="any">任意</span>
 			<label class="label" for="employee_Bikou">備考</label>
-			<textarea name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}"/></textarea>
+			<textarea class="form-control"name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}"></textarea>
 	</div>
 <br>
 	<div class="btn_a">

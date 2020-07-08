@@ -200,12 +200,14 @@ $(function(){
  			<!-- ビル情報入力エリア -->
 
  			<!-- ビルID -->
- <!-- 		<span class="any">入力不可</span>
- 			<label for="buildingId">ビルID</label>
+ 	<div class="form-group">
+  		<span class="any">入力不可</span>
+ 			<label for="buildingId"class="label">ビルID</label>
 				<input type="text" class="form-control" id="buildingId"
  					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
  				<span id="Id_error" class="error_m"></span>
--->
+	</div>
+
  			<!-- ビル名 -->
  	<div class="form-group">
  			<span class="req">必須</span>
@@ -306,9 +308,9 @@ $(function(){
 	<div class="form-group">
 			<span class="any">任意</span>
 			<label class="label" for="buildingBikou">備考</label>
- 			<textarea class="form-control" id="buildingBikou"name="buildingBikou"
- 			 th:value="*{buildingBikou}"/></textarea>
- 	</div>
+			<textarea name="buildingBikou"id="buildingBikou"th:value="*{buildingBikou}"></textarea>
+
+	</div>
 
  	<!-- 登録ボタン -->
  	<div class="btn_a">
@@ -324,6 +326,9 @@ $(function(){
   <footer>
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
+
+
+
 
  		</div>
 
