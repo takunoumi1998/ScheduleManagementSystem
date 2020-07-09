@@ -19,7 +19,7 @@
  			<form method="post" action="/admin/employee/change/complete" th:action="@{/admin/employee/change/complete}">
 
 
- 			<!-- <h3>従業員ID：<span th:text="*{employee_Id}"></span></h3> -->
+ 		    <h3>従業員ID：<span th:text="*{employee_Id}"></span></h3>
  			<h3>氏名：<span th:text="*{employee_Name}"></span></h3>
  			<h3>呼び名（勤務表に表示される名前）：<span th:text="*{employee_Adana}"></span></h3>
  			<h3>郵便番号：<span th:text="*{employee_Ad_Number}"></span></h3>
@@ -70,8 +70,8 @@
 
          </form>
 			<form method="post" action="/admin/employee/change/backchange">
-		<!-- <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}"> -->
-			<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
+		    <input type="hidden" name="employee_Id" id="employee_Id" th:value="*{employee_Id}">
+		 	<input type="hidden"  name="employee_Name" id="employee_Name" th:value="*{employee_Name}">
 			<input type="hidden" name="employee_Adana" id="employee_Adana" th:value="*{employee_Adana}">
 			<input type="hidden" name="employee_Ad_Number" id="employee_Ad_Number" th:value="*{employee_Ad_Number}">
 			<input type="hidden" name="employee_Address" id="employee_Address" th:value="*{employee_Address}">
