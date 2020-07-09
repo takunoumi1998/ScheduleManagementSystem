@@ -28,7 +28,6 @@ $(function(){
 		var result = true;
 
 			// エラー用装飾のためのクラスリセット
-			$('#employee_Id').removeClass("inp_error");
 			$('#employee_Name').removeClass("inp_error");
 			$('#employee_Ad_Number').removeClass("inp_error");
 			$('#employee_Address').removeClass("inp_error");
@@ -39,7 +38,7 @@ $(function(){
 
 
 			// 入力エラー文をリセット
-			$("#Id_error").empty();
+			//$("#Id_error").empty();
 			$("#Name_error").empty();
 			$("#AdNum_error").empty();
 			$("#Ad_error").empty();
@@ -50,7 +49,6 @@ $(function(){
 
 
 			// 入力内容セット
-			var employee_Id   = $("#employee_Id").val();
 			var employee_Name  = $("#employee_Name").val();
 			var employee_Ad_Number = $("#employee_Ad_Number").val().replace(/[━.*‐.*―.*－.*\–.*ー.*\-]/gi,'');
 			var employee_Address  = $("#employee_Address").val();
@@ -61,16 +59,6 @@ $(function(){
 
 
 			// 入力内容チェック
-			// 従業員ID
-			if(employee_Id == ""){
-				$("#Id_error").html(" 必須項目です ");
-				$("#employee_Id").addClass("inp_error");
-				result = false;
-			}else if(!(employee_Id.match(/^[0-9]+$/))){
-				$("#Id_error").html(" 半角数字で入力してください ");
-				$("#employee_Id").addClass("inp_error");
-				result = false;
-			}
 
 			// 氏名
 			if(employee_Name == ""){
@@ -98,6 +86,7 @@ $(function(){
 			if(employee_Address == ""){
 				$("#Ad_error").html(" 必須項目です ");
 				$("#employee_Address").addClass("inp_error");
+				result = false;
 			}
 
 			// 電話
@@ -148,18 +137,16 @@ $(function(){
 				return false;
 			}
 
+
 			return result;
-
-
-
-
-
 	}
 
 	</script>
 
  </head>
  <body>
+  			<div class="col-sm-5">
+ 				<div class="page-header">
 
  <h1 class="lead-form">従業員詳細</h1>
  <h2 class="lead-form">変更箇所を入力してください</h2>
@@ -216,9 +203,9 @@ $(function(){
 			<span id="Days_error" class="error_m"></span>
 	</div>
 	<div class="form-group">
-				<span class="req">必須</span>
-              <label for="desire_Days">希望曜日にチェックしてください</label>
-              <span id="Days_error" class="error_m"></span>
+			  <span class="req">必須</span>
+              <label for="desire_Youbi">希望曜日にチェックを入れてください</label>
+              <span id="Youbi_error" class="error_m"></span>
 <br/>
  				<label><input class="checkboxes" type="checkbox" name="employee_Monday" th:checked="${employee_Monday==true}"th:value="*{1}">月曜日</label>
  				<label><input class="checkboxes" type="checkbox" name="employee_Tuesday" th:checked="${employee_Tuesday==true}"th:value="*{1}">火曜日</label>
@@ -249,6 +236,7 @@ $(function(){
     <small>Copyright (c) チーム北岡 All Rights Reserved.</small>
   </footer>
 
+ 		</div>
  		</div>
  </body>
  </html>

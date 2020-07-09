@@ -56,9 +56,9 @@ public class WorkDaoJdbcImpl implements WorkDao{
 	 * SQL文でも最後に引数と同じものを（そこにはデータ型は不要）
 	 */
 	@Override
-	public Work selectOne(String workDate)throws DataAccessException{
+	public Work selectOne(String workDate,String employeeId)throws DataAccessException{
 		try {
-			Map<String,Object>  map = jdbc.queryForMap("SELECT * FROM work,building WHERE building.building_id = work.building_id AND work_date = ?" ,workDate);
+			Map<String,Object>  map = jdbc.queryForMap("SELECT * FROM work,building WHERE building.building_id = work.building_id AND work_date = ? AND work.employee_id = ?" ,workDate,employeeId);
 
 			Work work = new Work();
 
