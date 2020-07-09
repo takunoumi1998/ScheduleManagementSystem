@@ -15,6 +15,7 @@ th{
 
 td{
 	min-width:100px;
+	max-width:300px;
 	text-align:center;
 	border:solid 0.1px black;
 }
@@ -25,6 +26,7 @@ td{
 	left: 0;
 	background-color:lightblue;
 	border-bottom:solid 0.1px black;
+	min-width:200px;
 	z-index:1;
 }
 .out-of-table-fixed2{
@@ -74,8 +76,9 @@ tr:hover{
 
 #schedule{
 	width:100%;
-	max-height:50vh;
+	max-height:70vh;
 	overflow:scroll;
+
 }
 
 p{
