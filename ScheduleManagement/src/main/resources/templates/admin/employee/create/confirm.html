@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href="@{/css/admin/Detail.css}">
+<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
 
 	<title>従業員｜登録内容確認</title>
 
@@ -97,9 +97,9 @@
 			<input type="hidden" name="employee_Saturday" id="employee_Saturday" th:value="*{employee_Saturday}">
 			<input type="hidden" name="employee_Sunday" id="employee_Sunday" th:value="*{employee_Sunday}">
 
-
-
-
+           <h4>備考</h4>
+			<p th:text ="*{employee_Bikou}"/>
+			<input type="hidden" name="employee_Bikou" id="employee_Bikou" th:value="*{employee_Bikou}">
 
 
  	<p>この内容で確定しますか？</p>

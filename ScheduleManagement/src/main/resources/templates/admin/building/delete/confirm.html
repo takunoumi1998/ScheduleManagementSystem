@@ -3,6 +3,7 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/admin/Detail.css}">
 <title>確認画面</title>
 </head>
 <body>
@@ -13,17 +14,24 @@
 
 
 <!-- 削除ボタン　隠しデータとしてbuildingIdを送る。 -->
+<div class="btn_c">
 <form action="/admin/building/delete/complete" method="post">
 <input type="hidden" name="buildingId" id="buildingId" th:value="*{buildingId}">
-<button class="button4" type="submit" onclick="return kakunin()">削除する</button>
+<button class="button_3" type="submit" onclick="return kakunin()">削除する</button></div>
 </form>
 
 
 <!-- 戻るボタン -->
-<form method="get" action="/admin/building/list"> <button class="button4" type="submit" >戻る</button>
-</form>
+<div class="btn_d">
+<form method="get" action="/admin/building/list"> <button class="button_4" type="submit" >戻る</button>
+</div></form>
 
+<br>
+<br>
+
+<footer>
 <small>Copyright(c)チーム北岡 All Rights Reserved.</small>
+</footer>
 
 <script type="text/javascript" >
 function kakunin(){
