@@ -136,7 +136,7 @@ input[type="text"].inp_error {
 }
  .btn_k{
 	position: relative;  /* position: relativeで基準を決める */
-	top:-450px;			 /* 基準となる位置からの配置距離を決める */
+	top:-500px;			 /* 基準となる位置からの配置距離を決める */
 	bottom:0px;
 	left:850px;
 	right:0px;
