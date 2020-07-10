@@ -126,16 +126,20 @@ $(function(){
 			}
 
 			// ビル希望時間
+
 			if(buildingTime == ""){
-				$("#Time_error").html(" 必須項目です ");
+				$("#Time_error").html(" 時刻を入力し 計算ボタンを押してください ");
 				$("#buildingTime").addClass("inp_error");
 				result = false;
 			}else if(!(buildingTime.match(/^[0-9]+$/))){
-				$("#Time_error").html(" 半角数字で入力してください ");
+				$("#Time_error").html(" 時刻を入力し 計算ボタンを押してください ");
+				$("#buildingTime").addClass("inp_error");
+				result = false;
+			}else if(buildingTime >= 1441) {
+				$("#Time_error").html(" 入力が正しいか確認してください ");
 				$("#buildingTime").addClass("inp_error");
 				result = false;
 			}
-
 			// 希望開始時刻
 			if(buildingStart == ""){
 				$("#Start_error").html(" 必須項目です ");
@@ -183,6 +187,15 @@ $(function(){
 			return result;
 	}
 
+	function keisan() {
+
+		var time = 0;
+		var buildingStart = document.getElementById("buildingStart");
+		var buildingEnd = document.getElementById("buildingEnd");
+
+		document.getElementById("buildingTime").value = (buildingEnd.valueAsNumber - buildingStart.valueAsNumber) / 1000 / 60;
+	};
+
 </script>
 
  </head>
@@ -202,7 +215,7 @@ $(function(){
 
  			<!-- ビルID -->
  	<div class="form-group">
-  		<span class="any">入力不可</span>
+  		<span class="any">不可</span>
  			<label for="buildingId"class="label">ビルID</label>
 				<input type="text" class="form-control" id="buildingId"
  					name="buildingId" th:value="${buildingId}" readonly="readonly"/>
@@ -259,14 +272,6 @@ $(function(){
  			<span id="Ninzu_error" class="error_m"></span>
 	</div>
 	<div class="form-group">
- 			<!-- 希望時間 -->
- 			<span class="req">必須</span>
- 			<label class="label" for="buildingTime">希望時間</label>
- 			<input type="text" class="form-control" id="buildingTime"
- 				name="buildingTime" th:value="*{buildingTime}"/>
- 			<span id="Time_error" class="error_m"></span>
-	</div>
-	<div class="form-group">
  			<!-- 希望開始時刻 -->
  			 <span class="req">必須</span>
  			<label class="label" for="buildingStart">希望開始時刻</label>
@@ -282,6 +287,14 @@ $(function(){
  				name="buildingEnd" min="00:00" max="23:59"  th:value="*{buildingEnd}"/>
 			<span id="End_error" class="error_m"></span>
 	</div>
+	<div class="form-group">
+ 			<!-- 希望時間 -->
+ 			<span class="any">自動</span>
+ 			<label class="label" for="buildingTime">1日の希望時間</label>
+ 			<input type="text" class="form-control" id="buildingTime" placeholder="計算ボタンをクリック"
+ 				name="buildingTime" th:value="*{buildingTime}" readonly="readonly"/>
+ 			<span id="Time_error" class="error_m"></span>
+ 	</div>
 	<div class="form-group">
  			<!-- 希望曜日 -->
  			<span class="req">必須</span>
@@ -318,10 +331,15 @@ $(function(){
  			<button class="button_1"
  				type="submit" name="register" id="button01">登録</button></div>
  </form>
+
 	<div class="btn_b">
 		<form method="get" action="/admin/building/list">
  			<button class="button_2"
  				type="submit" name="back">ビル一覧へ戻る</button></form></div>
+
+			<div class="jikan">
+				<button class="btn_k" name="keisan" value="keisan" onclick="keisan();">計算</button>
+			</div>
 
  <!--フッター -->
   <footer>

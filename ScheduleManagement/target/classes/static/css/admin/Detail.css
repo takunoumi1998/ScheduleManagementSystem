@@ -132,7 +132,19 @@ input[type="text"].inp_error {
   font-size:13px;
   font-weight:bold;
   padding: 10px 10px;
-  margin: 0 50px;
+  margin: 0 30px;
+}
+ .btn_k{
+	position: relative;  /* position: relativeで基準を決める */
+	top:-450px;			 /* 基準となる位置からの配置距離を決める */
+	bottom:0px;
+	left:850px;
+	right:0px;
+	width:60px;
+  border: none;  /* 枠線を消す */
+  color: #FFF;
+  background: #00bcd4;
+
 }
 .btn_c,
 .btn_d {
